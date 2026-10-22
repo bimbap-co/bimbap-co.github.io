@@ -90,6 +90,7 @@
       </div>
 
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+        <a href="#org-chart" class="hover:text-sky-400 transition-colors">Org Chart</a>
         <a href="#council" class="hover:text-sky-400 transition-colors">High Council</a>
         <a href="#fleet" class="hover:text-sky-400 transition-colors">Project Fleet</a>
         <a href="#doctrine" class="hover:text-sky-400 transition-colors">Engineering Doctrine</a>
@@ -227,6 +228,160 @@
               <div class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 rounded-full w-full"></div>
             </div>
           </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Organization Chart (Executive Hierarchy) -->
+  <section id="org-chart" class="relative z-10 py-24 px-6 border-t border-white/10 perspective-container">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-14 text-center mx-auto">
+        <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">ORGANIZATIONAL ARCHITECTURE</span>
+        <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">Executive Hierarchy & Governance Tree</h2>
+        <p class="text-slate-400 text-sm md:text-base mt-2 font-light">
+          A clear separation of Sovereign Authority, Presidential Orchestration, and Functional Department Leads.
+        </p>
+      </div>
+
+      <!-- The Tree Container -->
+      <div class="flex flex-col items-center max-w-5xl mx-auto">
+        
+        <!-- LEVEL 1: FOUNDER & CHAIRMAN SOYA -->
+        <div class="w-full max-w-md card-3d specular-glass rounded-2xl p-6 text-center border-indigo-400/40 relative shadow-2xl bg-gradient-to-b from-indigo-950/60 to-[#0e1322]" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-amber-500/10 border border-amber-400/30 text-[11px] font-mono text-amber-300 font-bold mb-3">
+            👑 TIER 3 SOVEREIGN AUTHORITY
+          </div>
+          <h3 class="text-2xl font-black text-white tracking-tight">Founder & Chairman: Soya</h3>
+          <p class="text-xs text-indigo-200/80 font-mono mt-1">Sovereign Intent • Strategic Vision • Final Approvals</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-center gap-4 text-[11px] font-mono text-slate-400">
+            <span>Remote Git Push</span>
+            <span>•</span>
+            <span>Hermes-Secrets</span>
+            <span>•</span>
+            <span>Database Migrations</span>
+          </div>
+        </div>
+
+        <!-- Trunk Connector 1: Soya to Komi -->
+        <div class="flex flex-col items-center my-1">
+          <div class="h-10 w-0.5 bg-gradient-to-b from-indigo-500 via-sky-400 to-sky-500"></div>
+          <div class="px-3 py-0.5 rounded-full bg-sky-950/90 border border-sky-600/50 text-[10px] font-mono text-sky-300 -my-2.5 z-10 shadow-md">
+            Sovereign Intent & Mandates ↓
+          </div>
+          <div class="h-10 w-0.5 bg-gradient-to-b from-sky-500 to-indigo-500"></div>
+        </div>
+
+        <!-- LEVEL 2: PRESIDENT KOMI -->
+        <div class="w-full max-w-lg card-3d specular-glass rounded-2xl p-6 text-center border-sky-400/40 relative shadow-2xl bg-gradient-to-b from-sky-950/50 to-[#0c1220]" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-sky-500/10 border border-sky-400/30 text-[11px] font-mono text-sky-300 font-bold mb-3">
+            ⚡ TIER 2 PRESIDENTIAL ORCHESTRATION
+          </div>
+          <h3 class="text-2xl font-black text-white tracking-tight">President Komi</h3>
+          <p class="text-xs text-sky-200/80 font-mono mt-1">Chief AI Executive • 4-Path Routing Model • Council Leadership</p>
+          <div class="mt-4 pt-3 border-t border-white/10 flex items-center justify-center gap-3 text-[11px] font-mono text-slate-300">
+            <span class="px-2 py-0.5 rounded bg-sky-950/80 border border-sky-800">Path A: Direct</span>
+            <span class="px-2 py-0.5 rounded bg-purple-950/80 border border-purple-800">Path B: Specialist</span>
+            <span class="px-2 py-0.5 rounded bg-indigo-950/80 border border-indigo-800">Path C: Cross-Domain</span>
+            <span class="px-2 py-0.5 rounded bg-emerald-950/80 border border-emerald-800">Path D: Stage-Gate</span>
+          </div>
+        </div>
+
+        <!-- Trunk Connector 2: Komi to Council Manifold -->
+        <div class="flex flex-col items-center my-1 w-full">
+          <div class="h-8 w-0.5 bg-gradient-to-b from-sky-500 to-indigo-500"></div>
+          <div class="px-3 py-0.5 rounded-full bg-indigo-950/90 border border-indigo-600/50 text-[10px] font-mono text-indigo-300 -my-2.5 z-10 shadow-md">
+            Council Direction & Ledger Handoffs ↓
+          </div>
+          <div class="h-8 w-0.5 bg-gradient-to-b from-indigo-500 to-purple-500"></div>
+          
+          <!-- Horizontal Manifold Bar (Desktop) -->
+          <div class="hidden lg:block w-[92%] h-0.5 bg-gradient-to-r from-transparent via-indigo-500 to-transparent relative">
+            <div class="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-indigo-400"></div>
+          </div>
+        </div>
+
+        <!-- LEVEL 3: THE 7 DEPARTMENT HEADS (COUNCIL) -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-3 w-full mt-4 lg:mt-0">
+          
+          <!-- Node 1: Bolt -->
+          <div class="flex flex-col items-center">
+            <div class="hidden lg:block h-6 w-0.5 bg-sky-500/60 mb-2"></div>
+            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-sky-500/30 hover:border-sky-400 transition-all" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+              <div class="text-[10px] font-mono text-sky-400 font-bold">COO</div>
+              <div class="text-sm font-bold text-white mt-0.5">Bolt</div>
+              <div class="text-[11px] text-slate-300 font-light mt-1">Operations & Telemetry</div>
+              <div class="text-[10px] font-mono text-sky-300 mt-2 pt-2 border-t border-white/10">SCC Console</div>
+            </div>
+          </div>
+
+          <!-- Node 2: Asta -->
+          <div class="flex flex-col items-center">
+            <div class="hidden lg:block h-6 w-0.5 bg-purple-500/60 mb-2"></div>
+            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-purple-500/30 hover:border-purple-400 transition-all" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+              <div class="text-[10px] font-mono text-purple-400 font-bold">CTO</div>
+              <div class="text-sm font-bold text-white mt-0.5">Asta</div>
+              <div class="text-[11px] text-slate-300 font-light mt-1">Software Engineering</div>
+              <div class="text-[10px] font-mono text-purple-300 mt-2 pt-2 border-t border-white/10">Code & Vision Kiosk</div>
+            </div>
+          </div>
+
+          <!-- Node 3: Ira -->
+          <div class="flex flex-col items-center">
+            <div class="hidden lg:block h-6 w-0.5 bg-pink-500/60 mb-2"></div>
+            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-pink-500/30 hover:border-pink-400 transition-all" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+              <div class="text-[10px] font-mono text-pink-400 font-bold">CQO</div>
+              <div class="text-sm font-bold text-white mt-0.5">Ira</div>
+              <div class="text-[11px] text-slate-300 font-light mt-1">Quality & Ponytail</div>
+              <div class="text-[10px] font-mono text-pink-300 mt-2 pt-2 border-t border-white/10">YAGNI & QA Gates</div>
+            </div>
+          </div>
+
+          <!-- Node 4: Naufal -->
+          <div class="flex flex-col items-center">
+            <div class="hidden lg:block h-6 w-0.5 bg-emerald-500/60 mb-2"></div>
+            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-emerald-500/30 hover:border-emerald-400 transition-all" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+              <div class="text-[10px] font-mono text-emerald-400 font-bold">CISO</div>
+              <div class="text-sm font-bold text-white mt-0.5">Naufal</div>
+              <div class="text-[11px] text-slate-300 font-light mt-1">Security & HCE</div>
+              <div class="text-[10px] font-mono text-emerald-300 mt-2 pt-2 border-t border-white/10">Hermes-Secrets Vault</div>
+            </div>
+          </div>
+
+          <!-- Node 5: Violet -->
+          <div class="flex flex-col items-center">
+            <div class="hidden lg:block h-6 w-0.5 bg-indigo-500/60 mb-2"></div>
+            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-indigo-500/30 hover:border-indigo-400 transition-all" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+              <div class="text-[10px] font-mono text-indigo-400 font-bold">CDO</div>
+              <div class="text-sm font-bold text-white mt-0.5">Violet</div>
+              <div class="text-[11px] text-slate-300 font-light mt-1">Design & Topology</div>
+              <div class="text-[10px] font-mono text-indigo-300 mt-2 pt-2 border-t border-white/10">System Architecture</div>
+            </div>
+          </div>
+
+          <!-- Node 6: Rin -->
+          <div class="flex flex-col items-center">
+            <div class="hidden lg:block h-6 w-0.5 bg-rose-500/60 mb-2"></div>
+            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-rose-500/30 hover:border-rose-400 transition-all" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+              <div class="text-[10px] font-mono text-rose-400 font-bold">CLO</div>
+              <div class="text-sm font-bold text-white mt-0.5">Rin</div>
+              <div class="text-[11px] text-slate-300 font-light mt-1">Life & Milestones</div>
+              <div class="text-[10px] font-mono text-rose-300 mt-2 pt-2 border-t border-white/10">Wedding 2027</div>
+            </div>
+          </div>
+
+          <!-- Node 7: Yed -->
+          <div class="flex flex-col items-center">
+            <div class="hidden lg:block h-6 w-0.5 bg-amber-500/60 mb-2"></div>
+            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-amber-500/30 hover:border-amber-400 transition-all" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+              <div class="text-[10px] font-mono text-amber-400 font-bold">CMO</div>
+              <div class="text-sm font-bold text-white mt-0.5">Yed</div>
+              <div class="text-[11px] text-slate-300 font-light mt-1">Brand & Media</div>
+              <div class="text-[10px] font-mono text-amber-300 mt-2 pt-2 border-t border-white/10">Sayed Portfolio</div>
+            </div>
+          </div>
+
         </div>
 
       </div>
