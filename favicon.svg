@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <linearGradient id="bimbapGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#6366f1"/>
+      <stop offset="50%" stop-color="#0ea5e9"/>
+      <stop offset="100%" stop-color="#a855f7"/>
+    </linearGradient>
+    <filter id="glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#0ea5e9" flood-opacity="0.45"/>
+    </filter>
+  </defs>
+  <!-- Background Tile -->
+  <rect width="64" height="64" rx="16" fill="#080c16"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="url(#bimbapGrad)"/>
+  <rect x="2" y="2" width="60" height="60" rx="14" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1"/>
+  <!-- Typographic 'b' monogram -->
+  <text x="32" y="44" font-family="'JetBrains Mono', 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif" font-size="38" font-weight="800" fill="#ffffff" text-anchor="middle" filter="url(#glow)">b</text>
+  <!-- Minimalist cyan pulse dot -->
+  <circle cx="47" cy="17" r="3.5" fill="#38bdf8"/>
+  <circle cx="47" cy="17" r="1.5" fill="#ffffff"/>
+</svg>

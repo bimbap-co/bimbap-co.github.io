@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>bimbap.co — Autonomous Multi-Agent Engineering Studio</title>
   <meta name="description" content="Official home of bimbap.co. Founded by Soya, governed by President Komi and the High Council. Autonomous multi-agent engineering studio and personal infrastructure mesh.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='50%25' stop-color='%230ea5e9'/%3E%3Cstop offset='100%25' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%23080c16'/%3E%3Crect x='2' y='2' width='60' height='60' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='45' font-family='sans-serif' font-size='38' font-weight='800' fill='%23ffffff' text-anchor='middle'%3Eb%3C/text%3E%3Ccircle cx='47' cy='17' r='3.5' fill='%2338bdf8'/%3E%3C/svg%3E">
+  <link rel="alternate icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -77,19 +80,20 @@
   </div>
 
   <!-- Navigation -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#06080e]/80 border-b border-white/10">
-    <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-purple-600 flex items-center justify-center font-mono font-bold text-white text-base shadow-lg shadow-indigo-500/25">
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#06080e]/90 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-purple-600 flex items-center justify-center font-mono font-bold text-white text-base shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
           b
         </div>
         <span class="font-bold text-lg tracking-tight text-white flex items-center gap-1">
           bimbap<span class="text-sky-400">.co</span>
         </span>
-        <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-800 text-indigo-300 ml-2 hidden sm:inline-block">v1.0 Studio</span>
-      </div>
+      </a>
 
-      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
+      <!-- Desktop Navigation (lg and wider) -->
+      <nav class="hidden lg:flex items-center gap-6 xl:gap-8 text-xs xl:text-sm font-medium text-slate-300">
         <a href="#org-chart" class="hover:text-sky-400 transition-colors">Org Chart</a>
         <a href="#council" class="hover:text-sky-400 transition-colors">High Council</a>
         <a href="#fleet" class="hover:text-sky-400 transition-colors">Project Fleet</a>
@@ -98,53 +102,100 @@
         <a href="#connect" class="hover:text-sky-400 transition-colors">Connect</a>
       </nav>
 
-      <div class="flex items-center gap-4">
-        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-700/60 text-xs font-mono text-emerald-300">
+      <!-- Right Action Items -->
+      <div class="flex items-center gap-3 sm:gap-4">
+        <div class="hidden sm:flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-700/60 text-xs font-mono text-emerald-300">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>100% NOMINAL</span>
         </div>
-        <a href="https://github.com/bimbap-co" target="_blank" rel="noopener noreferrer" class="text-slate-400 hover:text-white transition-colors">
+
+        <a href="https://github.com/bimbap-co" target="_blank" rel="noopener noreferrer" class="p-1.5 text-slate-400 hover:text-white transition-colors" aria-label="GitHub Organization">
           <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+        </a>
+
+        <!-- Mobile & Tablet Hamburger Button -->
+        <button id="mobileMenuBtn" onclick="toggleMobileMenu()" class="lg:hidden p-2 rounded-xl bg-white/5 border border-white/10 text-slate-300 hover:text-white hover:bg-white/10 transition-colors focus:outline-none" aria-label="Toggle Navigation Menu">
+          <svg id="hamburgerIcon" class="w-5 h-5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16"/></svg>
+          <svg id="closeIcon" class="w-5 h-5 fill-none stroke-current stroke-2 hidden" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile / Tablet Drawer -->
+    <div id="mobileMenu" class="hidden lg:hidden border-t border-white/10 bg-[#06080e]/95 backdrop-blur-2xl px-5 py-4 transition-all">
+      <nav class="flex flex-col space-y-2 text-sm font-medium text-slate-200">
+        <a href="#org-chart" onclick="closeMobileMenu()" class="p-2.5 rounded-lg hover:bg-white/5 hover:text-sky-400 transition-colors flex items-center justify-between">
+          <span>Org Chart</span>
+          <span class="text-xs font-mono text-slate-500">Hierarchy</span>
+        </a>
+        <a href="#council" onclick="closeMobileMenu()" class="p-2.5 rounded-lg hover:bg-white/5 hover:text-sky-400 transition-colors flex items-center justify-between">
+          <span>High Council</span>
+          <span class="text-xs font-mono text-slate-500">Executive Cabinet</span>
+        </a>
+        <a href="#fleet" onclick="closeMobileMenu()" class="p-2.5 rounded-lg hover:bg-white/5 hover:text-sky-400 transition-colors flex items-center justify-between">
+          <span>Project Fleet</span>
+          <span class="text-xs font-mono text-slate-500">Active Systems</span>
+        </a>
+        <a href="#doctrine" onclick="closeMobileMenu()" class="p-2.5 rounded-lg hover:bg-white/5 hover:text-sky-400 transition-colors flex items-center justify-between">
+          <span>Engineering Doctrine</span>
+          <span class="text-xs font-mono text-slate-500">Standards</span>
+        </a>
+        <a href="#telemetry" onclick="closeMobileMenu()" class="p-2.5 rounded-lg hover:bg-white/5 hover:text-sky-400 transition-colors flex items-center justify-between">
+          <span>Host Telemetry</span>
+          <span class="text-xs font-mono text-slate-500">Live Pulse</span>
+        </a>
+        <a href="#connect" onclick="closeMobileMenu()" class="p-2.5 rounded-lg hover:bg-white/5 hover:text-sky-400 transition-colors flex items-center justify-between">
+          <span>Connect &amp; Expand</span>
+          <span class="text-xs font-mono text-sky-400">Direct Channels</span>
+        </a>
+      </nav>
+      <div class="mt-3 pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-slate-400">
+        <span class="flex items-center gap-1.5 text-emerald-400">
+          <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+          Mesh Status: 100% Nominal
+        </span>
+        <a href="https://github.com/bimbap-co" target="_blank" rel="noopener noreferrer" class="text-sky-400 hover:text-sky-300">
+          @bimbap-co
         </a>
       </div>
     </div>
   </header>
 
   <!-- Hero Section -->
-  <section class="relative z-10 pt-20 pb-24 md:pt-28 md:pb-32 px-6 perspective-container">
+  <section class="relative z-10 pt-16 sm:pt-20 pb-20 sm:pb-24 md:pt-28 md:pb-32 px-4 sm:px-6 lg:px-8 perspective-container">
     <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mb-16">
+      <div class="max-w-3xl mb-12 sm:mb-16">
         <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-indigo-200 mb-6 backdrop-blur-md shadow-inner">
           <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
           Precision Engineered Autonomous Mesh
         </div>
 
-        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+        <h1 class="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight break-words">
           Quiet Dominance. <br/>
           <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-indigo-200 to-purple-300">
             Absolute Governance.
           </span>
         </h1>
 
-        <p class="text-slate-300 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-2xl">
+        <p class="text-slate-300 text-base sm:text-lg md:text-xl font-light leading-relaxed mb-8 sm:mb-10 max-w-2xl">
           Founded by <strong>Soya</strong>. Governed by <strong>President Komi</strong> and the 7-head Executive Council. Built on ruthless mathematical parsimony, standard libraries, and verified local metal.
         </p>
 
-        <div class="flex flex-wrap items-center gap-4">
-          <a href="#council" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-600 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 hover:brightness-110 transition-all">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
+          <a href="#council" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-600 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 hover:brightness-110 transition-all text-center">
             Explore High Council
           </a>
-          <a href="#fleet" class="px-6 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-slate-200 font-semibold text-sm hover:bg-white/10 transition-all backdrop-blur-md">
+          <a href="#fleet" class="px-6 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-slate-200 font-semibold text-sm hover:bg-white/10 transition-all backdrop-blur-md text-center">
             Inspect Project Fleet
           </a>
         </div>
       </div>
 
       <!-- Hero 3D Perspective Cards -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
         
         <!-- Card 1: SCC -->
-        <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-4">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-400/30 flex items-center justify-center font-mono font-bold text-sky-300 shadow-md">
               SCC
@@ -155,7 +206,7 @@
             </span>
           </div>
 
-          <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
+          <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
             Soya Control Center
           </h3>
           <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
@@ -174,7 +225,7 @@
         </div>
 
         <!-- Card 2: Face Kiosk -->
-        <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-4">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-500/20 to-pink-500/20 border border-purple-400/30 flex items-center justify-center font-mono font-bold text-purple-300 shadow-md">
               AI
@@ -184,7 +235,7 @@
             </span>
           </div>
 
-          <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+          <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
             Face Attendance Kiosk
           </h3>
           <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
@@ -203,7 +254,7 @@
         </div>
 
         <!-- Card 3: Hermes Secrets -->
-        <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6 cursor-pointer group col-span-1 md:col-span-2 lg:col-span-1" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-4">
             <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500/20 to-emerald-500/20 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-300 shadow-md">
               SEC
@@ -213,7 +264,7 @@
             </span>
           </div>
 
-          <h3 class="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+          <h3 class="text-lg sm:text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
             Hermes Secrets Vault
           </h3>
           <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
@@ -236,39 +287,39 @@
   </section>
 
   <!-- Section: Organization Chart (Executive Hierarchy) -->
-  <section id="org-chart" class="relative z-10 py-20 px-6 border-t border-white/10 perspective-container">
+  <section id="org-chart" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10 perspective-container">
     <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mb-12 text-center mx-auto">
+      <div class="max-w-3xl mb-10 sm:mb-12 text-center mx-auto">
         <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">ORGANIZATIONAL ARCHITECTURE</span>
-        <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">Executive Hierarchy</h2>
-        <p class="text-slate-400 text-sm mt-1 font-light">
+        <h2 class="text-2xl sm:text-4xl md:text-5xl font-extrabold text-white tracking-tight">Executive Hierarchy</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1 font-light">
           Official command tree and functional reporting structure of bimbap.co.
         </p>
       </div>
 
       <!-- The Tree Container -->
-      <div class="flex flex-col items-center max-w-4xl mx-auto">
+      <div class="flex flex-col items-center max-w-5xl mx-auto w-full">
         
         <!-- LEVEL 1: SOYA -->
-        <div class="w-full max-w-sm card-3d specular-glass rounded-2xl p-5 text-center border-indigo-400/40 relative shadow-2xl bg-gradient-to-b from-indigo-950/50 to-[#0c101c]" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
-          <div class="text-[11px] font-mono text-amber-300 font-bold uppercase tracking-wider">Founder & Chairman</div>
-          <h3 class="text-2xl font-black text-white mt-1">Soya</h3>
-          <div class="text-xs text-slate-300 font-mono mt-1">Sovereignty & Strategic Governance</div>
+        <div class="w-full max-w-xs sm:max-w-sm card-3d specular-glass rounded-2xl p-4 sm:p-5 text-center border-indigo-400/40 relative shadow-2xl bg-gradient-to-b from-indigo-950/50 to-[#0c101c]" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="text-[10px] sm:text-[11px] font-mono text-amber-300 font-bold uppercase tracking-wider">Founder & Chairman</div>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-1">Soya</h3>
+          <div class="text-[11px] sm:text-xs text-slate-300 font-mono mt-1">Sovereignty & Strategic Governance</div>
         </div>
 
         <!-- Trunk Connector 1: Soya to Komi -->
-        <div class="h-8 w-0.5 bg-gradient-to-b from-indigo-500 to-sky-400"></div>
+        <div class="h-6 sm:h-8 w-0.5 bg-gradient-to-b from-indigo-500 to-sky-400"></div>
 
         <!-- LEVEL 2: PRESIDENT KOMI -->
-        <div class="w-full max-w-md card-3d specular-glass rounded-2xl p-5 text-center border-sky-400/40 relative shadow-2xl bg-gradient-to-b from-sky-950/50 to-[#0a0f1d]" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
-          <div class="text-[11px] font-mono text-sky-300 font-bold uppercase tracking-wider">President & Chief AI Executive</div>
-          <h3 class="text-2xl font-black text-white mt-1">Komi</h3>
-          <div class="text-xs text-slate-300 font-mono mt-1">Executive Orchestration & Cabinet Direction</div>
+        <div class="w-full max-w-sm sm:max-w-md card-3d specular-glass rounded-2xl p-4 sm:p-5 text-center border-sky-400/40 relative shadow-2xl bg-gradient-to-b from-sky-950/50 to-[#0a0f1d]" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="text-[10px] sm:text-[11px] font-mono text-sky-300 font-bold uppercase tracking-wider">President & Chief AI Executive</div>
+          <h3 class="text-xl sm:text-2xl font-black text-white mt-1">Komi</h3>
+          <div class="text-[11px] sm:text-xs text-slate-300 font-mono mt-1">Executive Orchestration & Cabinet Direction</div>
         </div>
 
         <!-- Trunk Connector 2: Komi to Council Manifold -->
         <div class="flex flex-col items-center w-full">
-          <div class="h-8 w-0.5 bg-gradient-to-b from-sky-400 to-indigo-500"></div>
+          <div class="h-6 sm:h-8 w-0.5 bg-gradient-to-b from-sky-400 to-indigo-500"></div>
           
           <!-- Horizontal Manifold Bar (Desktop) -->
           <div class="hidden lg:block w-[94%] h-0.5 bg-gradient-to-r from-transparent via-indigo-500 to-transparent relative">
@@ -277,75 +328,75 @@
         </div>
 
         <!-- LEVEL 3: THE 7 DEPARTMENT HEADS (COUNCIL) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-3 w-full mt-4 lg:mt-0">
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-2.5 sm:gap-3 w-full mt-4 lg:mt-0">
           
           <!-- Node 1: Bolt -->
           <div class="flex flex-col items-center">
             <div class="hidden lg:block h-6 w-0.5 bg-sky-500/60 mb-2"></div>
-            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-sky-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="w-full card-3d specular-glass rounded-xl p-3 sm:p-3.5 text-center border-sky-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
               <div class="text-[10px] font-mono text-sky-400 font-bold">COO</div>
-              <div class="text-base font-bold text-white mt-0.5">Bolt</div>
-              <div class="text-[11px] text-slate-300 mt-1 leading-tight">Operations & Telemetry</div>
+              <div class="text-sm sm:text-base font-bold text-white mt-0.5">Bolt</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-tight break-words">Operations & Telemetry</div>
             </div>
           </div>
 
           <!-- Node 2: Asta -->
           <div class="flex flex-col items-center">
             <div class="hidden lg:block h-6 w-0.5 bg-purple-500/60 mb-2"></div>
-            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-purple-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="w-full card-3d specular-glass rounded-xl p-3 sm:p-3.5 text-center border-purple-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
               <div class="text-[10px] font-mono text-purple-400 font-bold">CTO</div>
-              <div class="text-base font-bold text-white mt-0.5">Asta</div>
-              <div class="text-[11px] text-slate-300 mt-1 leading-tight">Software Engineering</div>
+              <div class="text-sm sm:text-base font-bold text-white mt-0.5">Asta</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-tight break-words">Software Engineering</div>
             </div>
           </div>
 
           <!-- Node 3: Ira -->
           <div class="flex flex-col items-center">
             <div class="hidden lg:block h-6 w-0.5 bg-pink-500/60 mb-2"></div>
-            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-pink-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="w-full card-3d specular-glass rounded-xl p-3 sm:p-3.5 text-center border-pink-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
               <div class="text-[10px] font-mono text-pink-400 font-bold">CQO</div>
-              <div class="text-base font-bold text-white mt-0.5">Ira</div>
-              <div class="text-[11px] text-slate-300 mt-1 leading-tight">Quality & Standards</div>
+              <div class="text-sm sm:text-base font-bold text-white mt-0.5">Ira</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-tight break-words">Quality & Standards</div>
             </div>
           </div>
 
           <!-- Node 4: Naufal -->
           <div class="flex flex-col items-center">
             <div class="hidden lg:block h-6 w-0.5 bg-emerald-500/60 mb-2"></div>
-            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-emerald-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="w-full card-3d specular-glass rounded-xl p-3 sm:p-3.5 text-center border-emerald-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
               <div class="text-[10px] font-mono text-emerald-400 font-bold">CISO</div>
-              <div class="text-base font-bold text-white mt-0.5">Naufal</div>
-              <div class="text-[11px] text-slate-300 mt-1 leading-tight">Security & Compliance</div>
+              <div class="text-sm sm:text-base font-bold text-white mt-0.5">Naufal</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-tight break-words">Security & Compliance</div>
             </div>
           </div>
 
           <!-- Node 5: Violet -->
           <div class="flex flex-col items-center">
             <div class="hidden lg:block h-6 w-0.5 bg-indigo-500/60 mb-2"></div>
-            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-indigo-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="w-full card-3d specular-glass rounded-xl p-3 sm:p-3.5 text-center border-indigo-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
               <div class="text-[10px] font-mono text-indigo-400 font-bold">CDO</div>
-              <div class="text-base font-bold text-white mt-0.5">Violet</div>
-              <div class="text-[11px] text-slate-300 mt-1 leading-tight">Design & Architecture</div>
+              <div class="text-sm sm:text-base font-bold text-white mt-0.5">Violet</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-tight break-words">Design & Architecture</div>
             </div>
           </div>
 
           <!-- Node 6: Rin -->
           <div class="flex flex-col items-center">
             <div class="hidden lg:block h-6 w-0.5 bg-rose-500/60 mb-2"></div>
-            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-rose-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="w-full card-3d specular-glass rounded-xl p-3 sm:p-3.5 text-center border-rose-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
               <div class="text-[10px] font-mono text-rose-400 font-bold">CLO</div>
-              <div class="text-base font-bold text-white mt-0.5">Rin</div>
-              <div class="text-[11px] text-slate-300 mt-1 leading-tight">Life & Milestones</div>
+              <div class="text-sm sm:text-base font-bold text-white mt-0.5">Rin</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-tight break-words">Life & Milestones</div>
             </div>
           </div>
 
           <!-- Node 7: Yed -->
-          <div class="flex flex-col items-center">
+          <div class="flex flex-col items-center col-span-2 sm:col-span-1 max-w-[220px] sm:max-w-none mx-auto w-full">
             <div class="hidden lg:block h-6 w-0.5 bg-amber-500/60 mb-2"></div>
-            <div class="w-full card-3d specular-glass rounded-xl p-3.5 text-center border-amber-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="w-full card-3d specular-glass rounded-xl p-3 sm:p-3.5 text-center border-amber-500/30" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
               <div class="text-[10px] font-mono text-amber-400 font-bold">CMO</div>
-              <div class="text-base font-bold text-white mt-0.5">Yed</div>
-              <div class="text-[11px] text-slate-300 mt-1 leading-tight">Brand & Media</div>
+              <div class="text-sm sm:text-base font-bold text-white mt-0.5">Yed</div>
+              <div class="text-[10px] sm:text-[11px] text-slate-300 mt-1 leading-tight break-words">Brand & Media</div>
             </div>
           </div>
 
@@ -356,50 +407,50 @@
   </section>
 
   <!-- Section: High Council (Executive Cabinet) -->
-  <section id="council" class="relative z-10 py-20 px-6 border-t border-white/10">
+  <section id="council" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10">
     <div class="max-w-7xl mx-auto">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-10 gap-4">
         <div>
           <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">EXECUTIVE CABINET</span>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-white">The High Council of bimbap.co</h2>
-          <p class="text-slate-400 text-sm mt-1 max-w-xl">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">The High Council of bimbap.co</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1 max-w-xl">
             Presided over by President Komi. Seven specialized department heads leading daily execution across personal infrastructure.
           </p>
         </div>
-        <div class="text-xs font-mono text-slate-400 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10">
+        <div class="text-xs font-mono text-slate-400 px-3.5 py-1.5 rounded-xl bg-white/[0.03] border border-white/10 w-fit">
           Governance: <strong>Ponytail Standard</strong>
         </div>
       </div>
 
       <!-- Presiding Executive Leader: President Komi (Top of Hierarchy) -->
-      <div class="card-3d specular-glass rounded-2xl p-6 md:p-8 mb-8 bg-gradient-to-br from-indigo-950/60 via-[#0e1326] to-purple-950/50 border-indigo-400/40 relative shadow-2xl" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
-        <div class="flex flex-col md:flex-row md:items-center justify-between gap-6">
-          <div class="flex items-start gap-4">
-            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center font-bold text-white text-2xl shadow-xl shadow-indigo-500/30 shrink-0">
+      <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6 md:p-8 mb-6 sm:mb-8 bg-gradient-to-br from-indigo-950/60 via-[#0e1326] to-purple-950/50 border-indigo-400/40 relative shadow-2xl" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 sm:gap-6">
+          <div class="flex flex-col sm:flex-row items-start gap-4">
+            <div class="w-12 h-12 sm:w-14 sm:h-14 rounded-2xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center font-bold text-white text-xl sm:text-2xl shadow-xl shadow-indigo-500/30 shrink-0">
               K
             </div>
             <div>
-              <div class="flex items-center gap-3">
-                <span class="text-xs font-mono px-2.5 py-0.5 rounded-full bg-indigo-950 border border-indigo-700 text-indigo-300 font-bold">PRESIDING EXECUTIVE</span>
-                <span class="text-xs font-mono text-sky-400">TIER 2 ORCHESTRATOR</span>
+              <div class="flex flex-wrap items-center gap-2 sm:gap-3">
+                <span class="text-[11px] sm:text-xs font-mono px-2.5 py-0.5 rounded-full bg-indigo-950 border border-indigo-700 text-indigo-300 font-bold">PRESIDING EXECUTIVE</span>
+                <span class="text-[11px] sm:text-xs font-mono text-sky-400">TIER 2 ORCHESTRATOR</span>
               </div>
-              <h3 class="text-2xl md:text-3xl font-black text-white mt-1.5">President Komi</h3>
-              <p class="text-xs md:text-sm text-slate-300 mt-1 max-w-2xl font-light leading-relaxed">
+              <h3 class="text-xl sm:text-2xl md:text-3xl font-black text-white mt-1.5">President Komi</h3>
+              <p class="text-xs sm:text-sm text-slate-300 mt-1 max-w-2xl font-light leading-relaxed">
                 Chief AI Executive presiding over the High Council. Enforces the 4-Path Routing Model, upholds Ponytail engineering parsimony, mediates handoffs, and reports directly to Founder Soya. Maintains persistent state across the 7 departmental ledgers.
               </p>
             </div>
           </div>
-          <div class="flex flex-wrap md:flex-col items-start md:items-end gap-2 shrink-0 font-mono text-xs">
+          <div class="flex flex-wrap lg:flex-col items-start lg:items-end gap-2 shrink-0 font-mono text-[11px] sm:text-xs w-full lg:w-auto">
             <div class="px-3 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Routing: Paths A, B, C, D</div>
             <div class="px-3 py-1 rounded bg-white/5 border border-white/10 text-slate-300">Brake: Max 2 Loops</div>
-            <div class="px-3 py-1 rounded bg-emerald-950/80 border border-emerald-800 text-emerald-300">Status: Active & Governing</div>
+            <div class="px-3 py-1 rounded bg-emerald-950/80 border border-emerald-800 text-emerald-300">Status: Active &amp; Governing</div>
           </div>
         </div>
       </div>
 
       <!-- 7 Council Department Heads Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         
         <!-- Bolt -->
         <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
@@ -446,7 +497,7 @@
         </div>
 
         <!-- Violet -->
-        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-xl p-4 sm:p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center font-mono font-bold text-indigo-300 text-xs">V</span>
             <span class="text-[11px] font-mono text-indigo-400">CDO</span>
@@ -457,7 +508,7 @@
         </div>
 
         <!-- Rin -->
-        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-xl p-4 sm:p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="w-8 h-8 rounded-lg bg-rose-500/20 border border-rose-400/40 flex items-center justify-center font-mono font-bold text-rose-300 text-xs">R</span>
             <span class="text-[11px] font-mono text-rose-400">CLO</span>
@@ -468,7 +519,7 @@
         </div>
 
         <!-- Yed -->
-        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-xl p-4 sm:p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center font-mono font-bold text-amber-300 text-xs">Y</span>
             <span class="text-[11px] font-mono text-amber-400">CMO</span>
@@ -483,25 +534,25 @@
   </section>
 
   <!-- Section: Project Fleet (Punchy, Keyword-Driven, Mysterious) -->
-  <section id="fleet" class="relative z-10 py-20 px-6 border-t border-white/10">
+  <section id="fleet" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10">
     <div class="max-w-7xl mx-auto">
-      <div class="max-w-2xl mb-12">
+      <div class="max-w-2xl mb-8 sm:mb-12">
         <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">ACTIVE SYSTEMS</span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white">The Verified Project Fleet</h2>
-        <p class="text-slate-400 text-sm mt-1">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">The Verified Project Fleet</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
           Autonomous services active on verified host ports with continuous telemetry.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         
         <!-- Fleet Item 1: SCC -->
-        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-mono text-sky-400">OPERATIONS CORE</span>
             <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-300">PORT 8765</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Soya Control Center (SCC)</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-white">Soya Control Center (SCC)</h3>
           <p class="text-xs text-slate-300 mt-1.5 font-light">
             Real-time telemetry brain and distributed host pulse.
           </p>
@@ -524,12 +575,12 @@
         </div>
 
         <!-- Fleet Item 2: Face Kiosk -->
-        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-mono text-purple-400">NEURAL VISION</span>
             <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 border border-purple-800 text-purple-300">PORT 8080</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Face Attendance Kiosk</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-white">Face Attendance Kiosk</h3>
           <p class="text-xs text-slate-300 mt-1.5 font-light">
             Edge biometric intelligence with strict air-gapped isolation.
           </p>
@@ -549,12 +600,12 @@
         </div>
 
         <!-- Fleet Item 3: Wedding Bot -->
-        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-mono text-rose-400">EVENT PROTOCOL</span>
             <span class="text-xs font-mono px-2 py-0.5 rounded bg-rose-950 border border-rose-800 text-rose-300">PORT 61647</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Wedding Bot 2027</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-white">Wedding Bot 2027</h3>
           <p class="text-xs text-slate-300 mt-1.5 font-light">
             Autonomous milestone coordination and relational registry.
           </p>
@@ -574,12 +625,12 @@
         </div>
 
         <!-- Fleet Item 4: Sayed Portfolio -->
-        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-mono text-amber-400">CAREER ARCHIVE</span>
             <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300">PORT 4173</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Sayed Portfolio Showcase</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-white">Sayed Portfolio Showcase</h3>
           <p class="text-xs text-slate-300 mt-1.5 font-light">
             High-performance career showcase and technical case studies.
           </p>
@@ -603,22 +654,22 @@
   </section>
 
   <!-- Section: Engineering Doctrine -->
-  <section id="doctrine" class="relative z-10 py-20 px-6 border-t border-white/10">
+  <section id="doctrine" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10">
     <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mb-12">
+      <div class="max-w-3xl mb-8 sm:mb-12">
         <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">GOVERNANCE & STANDARDS</span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white">The Ponytail & Sovereign Doctrine</h2>
-        <p class="text-slate-400 text-sm mt-1">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">The Ponytail & Sovereign Doctrine</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
           Rigid operational safety paired with ruthless engineering minimalism.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
         
         <!-- Ponytail -->
-        <div class="specular-glass rounded-2xl p-6 border-l-4 border-l-sky-500">
+        <div class="specular-glass rounded-2xl p-5 sm:p-6 border-l-4 border-l-sky-500">
           <div class="text-xs font-mono text-sky-400 mb-2">ENGINEERING PARSIMONY</div>
-          <h3 class="text-xl font-bold text-white">Ponytail Standard</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-white">Ponytail Standard</h3>
           <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
             Think like a lazy senior developer. The best code is the code never written. Solve the whole problem with the least new code. Standard libraries and native platform features first. Deletion beats addition.
           </p>
@@ -628,9 +679,9 @@
         </div>
 
         <!-- Three Tier Authority -->
-        <div class="specular-glass rounded-2xl p-6 border-l-4 border-l-purple-500">
+        <div class="specular-glass rounded-2xl p-5 sm:p-6 border-l-4 border-l-purple-500">
           <div class="text-xs font-mono text-purple-400 mb-2">SOVEREIGNTY MATRIX</div>
-          <h3 class="text-xl font-bold text-white">Three-Tier Authority</h3>
+          <h3 class="text-lg sm:text-xl font-bold text-white">Three-Tier Authority</h3>
           <ul class="text-xs text-slate-300 mt-2 space-y-2 font-light">
             <li><strong class="text-white font-mono">Tier 1 (Autonomous):</strong> Read files, inspect telemetry, run tests & HCE scans.</li>
             <li><strong class="text-white font-mono">Tier 2 (Presidential):</strong> Local branch commits, config edits, daemon restarts.</li>
@@ -643,45 +694,45 @@
   </section>
 
   <!-- Section: Live Host Telemetry Deck -->
-  <section id="telemetry" class="relative z-10 py-20 px-6 border-t border-white/10">
+  <section id="telemetry" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10">
     <div class="max-w-7xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 sm:mb-12 gap-4">
         <div>
           <span class="text-xs font-mono text-emerald-400 font-semibold tracking-wider uppercase mb-1 block">LIVE HOST ENGINE</span>
-          <h2 class="text-3xl md:text-4xl font-extrabold text-white">System Pulse & Telemetry</h2>
-          <p class="text-slate-400 text-sm mt-1">
+          <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">System Pulse & Telemetry</h2>
+          <p class="text-slate-400 text-xs sm:text-sm mt-1">
             Real-time verified hardware allocation across the personal infrastructure mesh.
           </p>
         </div>
-        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-xs font-mono text-emerald-300">
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-xs font-mono text-emerald-300 w-fit">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
           <span>HOST STATUS: HEALTHY</span>
         </div>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
         
-        <div class="specular-glass rounded-xl p-5">
+        <div class="specular-glass rounded-xl p-4 sm:p-5">
           <div class="text-xs font-mono text-slate-400">PROCESSOR</div>
-          <div class="text-lg font-bold text-white mt-1">Ryzen 5 5500</div>
+          <div class="text-base sm:text-lg font-bold text-white mt-1">Ryzen 5 5500</div>
           <div class="text-xs text-sky-400 mt-1">6 Cores / 12 Threads</div>
         </div>
 
-        <div class="specular-glass rounded-xl p-5">
+        <div class="specular-glass rounded-xl p-4 sm:p-5">
           <div class="text-xs font-mono text-slate-400">SYSTEM MEMORY</div>
-          <div class="text-lg font-bold text-white mt-1">20.0 GB / 32 GB</div>
+          <div class="text-base sm:text-lg font-bold text-white mt-1">20.0 GB / 32 GB</div>
           <div class="text-xs text-emerald-400 mt-1">11.9 GB Cushion Buffer</div>
         </div>
 
-        <div class="specular-glass rounded-xl p-5">
+        <div class="specular-glass rounded-xl p-4 sm:p-5">
           <div class="text-xs font-mono text-slate-400">GRAPHICS COMPUTE</div>
-          <div class="text-lg font-bold text-white mt-1">RTX 3050 (8 GB)</div>
+          <div class="text-base sm:text-lg font-bold text-white mt-1">RTX 3050 (8 GB)</div>
           <div class="text-xs text-purple-300 mt-1">39°C Nominal Thermal</div>
         </div>
 
-        <div class="specular-glass rounded-xl p-5">
+        <div class="specular-glass rounded-xl p-4 sm:p-5">
           <div class="text-xs font-mono text-slate-400">STORAGE SUBSTRATE</div>
-          <div class="text-lg font-bold text-white mt-1">32.7 GB Free (C:)</div>
+          <div class="text-base sm:text-lg font-bold text-white mt-1">32.7 GB Free (C:)</div>
           <div class="text-xs text-slate-400 mt-1">D: 214.8 GB | E: 89.4 GB</div>
         </div>
 
@@ -690,21 +741,21 @@
   </section>
 
   <!-- Section: Connect & Expand (Channels & Promotion) -->
-  <section id="connect" class="relative z-10 py-20 px-6 border-t border-white/10">
+  <section id="connect" class="relative z-10 py-16 sm:py-20 px-4 sm:px-6 lg:px-8 border-t border-white/10">
     <div class="max-w-7xl mx-auto">
-      <div class="max-w-3xl mb-12">
+      <div class="max-w-3xl mb-8 sm:mb-12">
         <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">DIRECT CHANNELS</span>
-        <h2 class="text-3xl md:text-4xl font-extrabold text-white">Connect & Expand</h2>
-        <p class="text-slate-400 text-sm mt-1">
+        <h2 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-white">Connect & Expand</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mt-1">
           Direct interfaces to Founder Sayed Arif Hakimi and the autonomous bimbap.co ecosystem.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
         
         <!-- Channel 1: LinkedIn -->
         <a href="https://www.linkedin.com/in/sayedarifhakimi/" target="_blank" rel="noopener noreferrer" 
-           class="card-3d specular-glass rounded-2xl p-6 flex flex-col justify-between group hover:border-sky-400/50 transition-all block"
+           class="card-3d specular-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between group hover:border-sky-400/50 transition-all block"
            onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -714,20 +765,20 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-sky-950/80 border border-sky-800 text-sky-300">PROFILE</span>
             </div>
             <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Professional Network</div>
-            <h3 class="text-xl font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">Sayed Arif Hakimi</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-white mt-1 group-hover:text-sky-300 transition-colors">Sayed Arif Hakimi</h3>
             <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
               Connect on LinkedIn for enterprise technology architecture, intelligent systems engineering, and strategic tech leadership.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-sky-400">
-            <span>linkedin.com/in/sayedarifhakimi</span>
+            <span class="truncate max-w-[190px]">linkedin.com/in/sayedarifhakimi</span>
             <span class="group-hover:translate-x-1 transition-transform">→</span>
           </div>
         </a>
 
         <!-- Channel 2: Founder Personal GitHub -->
         <a href="https://github.com/SayedArifHakimi" target="_blank" rel="noopener noreferrer" 
-           class="card-3d specular-glass rounded-2xl p-6 flex flex-col justify-between group hover:border-purple-400/50 transition-all block"
+           class="card-3d specular-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between group hover:border-purple-400/50 transition-all block"
            onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -737,20 +788,20 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950/80 border border-purple-800 text-purple-300">DEVELOPER</span>
             </div>
             <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Personal Open Source</div>
-            <h3 class="text-xl font-bold text-white mt-1 group-hover:text-purple-300 transition-colors">@SayedArifHakimi</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-white mt-1 group-hover:text-purple-300 transition-colors">@SayedArifHakimi</h3>
             <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
               Personal engineering workbench, experimental algorithms, AI pipeline prototypes, and developer tooling.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-purple-400">
-            <span>github.com/SayedArifHakimi</span>
+            <span class="truncate max-w-[190px]">github.com/SayedArifHakimi</span>
             <span class="group-hover:translate-x-1 transition-transform">→</span>
           </div>
         </a>
 
         <!-- Channel 3: Studio GitHub -->
         <a href="https://github.com/bimbap-co" target="_blank" rel="noopener noreferrer" 
-           class="card-3d specular-glass rounded-2xl p-6 flex flex-col justify-between group hover:border-indigo-400/50 transition-all block"
+           class="card-3d specular-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between group hover:border-indigo-400/50 transition-all block"
            onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div>
             <div class="flex items-center justify-between mb-4">
@@ -760,19 +811,19 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-indigo-950/80 border border-indigo-800 text-indigo-300">STUDIO ORG</span>
             </div>
             <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Autonomous Fleet Repo</div>
-            <h3 class="text-xl font-bold text-white mt-1 group-hover:text-indigo-300 transition-colors">@bimbap-co</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-white mt-1 group-hover:text-indigo-300 transition-colors">@bimbap-co</h3>
             <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
               Official organization repositories, autonomous governance engines, landing surfaces, and production pipelines.
             </p>
           </div>
           <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between text-xs font-mono text-indigo-400">
-            <span>github.com/bimbap-co</span>
+            <span class="truncate max-w-[190px]">github.com/bimbap-co</span>
             <span class="group-hover:translate-x-1 transition-transform">→</span>
           </div>
         </a>
 
         <!-- Channel 4: Sayed Portfolio Hub -->
-        <div class="card-3d specular-glass rounded-2xl p-6 flex flex-col justify-between group hover:border-amber-400/50 transition-all cursor-pointer"
+        <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6 flex flex-col justify-between group hover:border-amber-400/50 transition-all cursor-pointer"
              onclick="openFleetModal('portfolio')"
              onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div>
@@ -783,7 +834,7 @@
               <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/80 border border-amber-800 text-amber-300">LIVE PREVIEW</span>
             </div>
             <div class="text-[11px] font-mono text-slate-400 uppercase tracking-wider">Interactive Career Hub</div>
-            <h3 class="text-xl font-bold text-white mt-1 group-hover:text-amber-300 transition-colors">Sayed Portfolio</h3>
+            <h3 class="text-lg sm:text-xl font-bold text-white mt-1 group-hover:text-amber-300 transition-colors">Sayed Portfolio</h3>
             <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
               Comprehensive case studies, UiTM Dean's List and ANC awards, full CV template, and responsive systems showcase.
             </p>
@@ -797,7 +848,7 @@
       </div>
 
       <!-- Direct Contact & Inquiry Touchpoint -->
-      <div class="mt-8 card-3d specular-glass rounded-2xl p-6 md:p-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-6 border-white/15 bg-gradient-to-r from-sky-950/30 via-indigo-950/30 to-purple-950/30">
+      <div class="mt-8 card-3d specular-glass rounded-2xl p-5 sm:p-6 md:p-8 flex flex-col lg:flex-row items-start lg:items-center justify-between gap-5 sm:gap-6 border-white/15 bg-gradient-to-r from-sky-950/30 via-indigo-950/30 to-purple-950/30">
         <div>
           <span class="text-xs font-mono text-sky-400 uppercase tracking-wider">DIRECT FOUNDER INQUIRY</span>
           <h3 class="text-xl md:text-2xl font-bold text-white mt-1">Start a Strategic Conversation</h3>
@@ -805,12 +856,12 @@
             Interested in autonomous agent architectures, local telemetry mesh engineering, or consulting collaboration?
           </p>
         </div>
-        <div class="flex flex-wrap items-center gap-3">
-          <a href="mailto:sayedarifhakimi1310@gmail.com" class="px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-mono text-xs font-bold transition-all shadow-lg shadow-sky-500/20 flex items-center gap-2">
+        <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
+          <a href="mailto:sayedarifhakimi1310@gmail.com" class="px-5 py-3 rounded-xl bg-gradient-to-r from-sky-500 to-indigo-600 hover:from-sky-400 hover:to-indigo-500 text-white font-mono text-xs font-bold transition-all shadow-lg shadow-sky-500/20 flex items-center justify-center gap-2">
             <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
             sayedarifhakimi1310@gmail.com
           </a>
-          <button onclick="navigator.clipboard.writeText('sayedarifhakimi1310@gmail.com'); alert('Founder email copied to clipboard!');" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 font-mono text-xs transition-all">
+          <button onclick="navigator.clipboard.writeText('sayedarifhakimi1310@gmail.com'); alert('Founder email copied to clipboard!');" class="px-4 py-3 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 text-slate-300 font-mono text-xs transition-all text-center">
             Copy
           </button>
         </div>
@@ -819,10 +870,10 @@
   </section>
 
   <!-- Interactive Fleet Detail Modal -->
-  <div id="fleetModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300" onclick="handleModalBackdropClick(event)">
-    <div class="relative w-full max-w-2xl specular-glass rounded-2xl p-6 md:p-8 border border-white/20 bg-[#0b0f1d] shadow-2xl transition-all duration-300 transform scale-95" id="modalCard">
+  <div id="fleetModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300" onclick="handleModalBackdropClick(event)">
+    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto specular-glass rounded-2xl p-5 sm:p-6 md:p-8 border border-white/20 bg-[#0b0f1d] shadow-2xl transition-all duration-300 transform scale-95" id="modalCard">
       <!-- Close Button -->
-      <button onclick="closeFleetModal()" class="absolute top-5 right-5 w-8 h-8 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
+      <button onclick="closeFleetModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
         ✕
       </button>
 
@@ -832,18 +883,18 @@
         <span class="text-slate-400" id="modalPort">PORT 8765</span>
       </div>
 
-      <h2 class="text-2xl md:text-3xl font-black text-white" id="modalTitle">System Name</h2>
-      <p class="text-xs md:text-sm text-slate-300 mt-2 leading-relaxed font-light" id="modalSubtitle">
+      <h2 class="text-xl sm:text-2xl md:text-3xl font-black text-white" id="modalTitle">System Name</h2>
+      <p class="text-xs sm:text-sm text-slate-300 mt-2 leading-relaxed font-light" id="modalSubtitle">
         System subtitle description.
       </p>
 
       <!-- Key Specs Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 gap-3 my-6 pt-5 border-t border-white/10 text-xs font-mono" id="modalSpecs">
+      <div class="grid grid-cols-2 sm:grid-cols-3 gap-2.5 sm:gap-3 my-5 sm:my-6 pt-4 sm:pt-5 border-t border-white/10 text-xs font-mono" id="modalSpecs">
         <!-- Injected via JS -->
       </div>
 
       <!-- Deep Architecture Description -->
-      <div class="p-4 rounded-xl bg-white/[0.02] border border-white/10 text-xs text-slate-300 leading-relaxed font-light" id="modalDeepDetails">
+      <div class="p-3.5 sm:p-4 rounded-xl bg-white/[0.02] border border-white/10 text-xs text-slate-300 leading-relaxed font-light" id="modalDeepDetails">
         <!-- Injected via JS -->
       </div>
 
@@ -853,7 +904,7 @@
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           VERIFIED OPERATIONAL
         </span>
-        <button onclick="closeFleetModal()" class="px-5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold font-mono transition-colors">
+        <button onclick="closeFleetModal()" class="px-4 sm:px-5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold font-mono transition-colors">
           Acknowledge & Close
         </button>
       </div>
@@ -861,7 +912,7 @@
   </div>
 
   <!-- Footer -->
-  <footer class="relative z-10 py-12 px-6 border-t border-white/10 bg-[#04060a]">
+  <footer class="relative z-10 py-8 sm:py-12 px-4 sm:px-6 lg:px-8 border-t border-white/10 bg-[#04060a]">
     <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400">
       <div class="flex items-center gap-3">
         <div class="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-sky-600 flex items-center justify-center font-bold text-white text-xs">
@@ -882,19 +933,50 @@
     </div>
   </footer>
 
-  <!-- Scripts: 3D Tilt & Fleet Modal Control -->
+  <!-- Scripts: 3D Tilt, Mobile Menu & Fleet Modal Control -->
   <script>
+    // Responsive Mobile Menu Handlers
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const hamburgerIcon = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      if (!menu) return;
+      const isHidden = menu.classList.contains('hidden');
+      if (isHidden) {
+        menu.classList.remove('hidden');
+        if (hamburgerIcon) hamburgerIcon.classList.add('hidden');
+        if (closeIcon) closeIcon.classList.remove('hidden');
+      } else {
+        menu.classList.add('hidden');
+        if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+      }
+    }
+
+    function closeMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      const hamburgerIcon = document.getElementById('hamburgerIcon');
+      const closeIcon = document.getElementById('closeIcon');
+      if (menu) {
+        menu.classList.add('hidden');
+        if (hamburgerIcon) hamburgerIcon.classList.remove('hidden');
+        if (closeIcon) closeIcon.classList.add('hidden');
+      }
+    }
+
+    // 3D Perspective Tilt (Disabled on touch devices for fluid mobile scrolling)
     function handleTilt(e, card) {
+      if (window.matchMedia('(hover: none)').matches) return;
       const rect = card.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
       
-      const rotateX = ((y - centerY) / centerY) * -10;
-      const rotateY = ((x - centerX) / centerX) * 10;
+      const rotateX = ((y - centerY) / centerY) * -8;
+      const rotateY = ((x - centerX) / centerX) * 8;
 
-      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px)`;
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(8px)`;
     }
 
     function resetTilt(card) {
