@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bimbap.co — Dimensional & High-End Design Showroom</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    @keyframes beam {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    @keyframes aurora {
+      0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.4; }
+      50% { transform: rotate(180deg) scale(1.15); opacity: 0.65; }
+    }
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    .animate-aurora {
+      animation: aurora 18s linear infinite;
+    }
+    .perspective-container {
+      perspective: 1200px;
+    }
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+    }
+    .specular-glass {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%), rgba(12, 16, 28, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 
+                  0 0 0 1px rgba(255, 255, 255, 0.06), 
+                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+    }
+    .specular-glass:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 35px 70px -12px rgba(79, 70, 229, 0.25), 
+                  0 0 30px -5px rgba(99, 102, 241, 0.3),
+                  inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
+    }
+  </style>
+</head>
+<body class="bg-[#06080e] text-slate-100 font-sans antialiased min-h-screen p-4 md:p-8 overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+  <!-- Ambient Aurora Backing (Calm, Soft, High Depth) -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-indigo-900/30 via-sky-900/20 to-transparent blur-[120px] animate-aurora"></div>
+    <div class="absolute top-1/3 -right-40 w-[700px] h-[700px] rounded-full bg-gradient-to-bl from-purple-900/25 via-blue-900/20 to-transparent blur-[140px] animate-aurora" style="animation-delay: -9s;"></div>
+  </div>
+
+  <header class="relative z-10 max-w-6xl mx-auto mb-8 border-b border-slate-800/80 pb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+    <div>
+      <div class="flex items-center gap-2">
+        <span class="px-2.5 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-700/60 text-indigo-300 font-mono text-xs font-semibold">DIMENSIONAL ARCHITECTURE</span>
+        <span class="text-xs text-slate-400 font-mono">APPLE PRO & STRIPE DEPTH</span>
+      </div>
+      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight text-white mt-2">
+        bimbap<span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-400 via-indigo-300 to-purple-400">.co</span> — High-End Dimensional Showroom
+      </h1>
+      <p class="text-slate-400 text-sm mt-1 max-w-2xl">
+        Tactile 3D perspective, specular glass reflections, floating bento layers, and fluid live telemetry. Zero flat minimalism, zero eye-burning neon.
+      </p>
+    </div>
+
+    <!-- Mode Selector Tabs -->
+    <div class="flex flex-wrap items-center gap-2 p-1.5 rounded-2xl bg-slate-900/90 border border-slate-800 shadow-2xl backdrop-blur-xl">
+      <button onclick="switchConcept('concept3D')" id="tab-concept3D" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg shadow-indigo-500/25">
+        1. 3D Perspective Glass (Apple)
+      </button>
+      <button onclick="switchConcept('conceptAurora')" id="tab-conceptAurora" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">
+        2. Aurora Telemetry Deck (Stripe)
+      </button>
+      <button onclick="switchConcept('conceptBento')" id="tab-conceptBento" class="px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white">
+        3. Floating Hardware Console (Linear)
+      </button>
+    </div>
+  </header>
+
+  <main class="relative z-10 max-w-6xl mx-auto">
+
+    <!-- CONCEPT 1: 3D PERSPECTIVE GLASS -->
+    <section id="view-concept3D" class="space-y-8">
+      <div class="relative rounded-3xl border border-white/10 bg-gradient-to-b from-[#0e1322] via-[#090d18] to-[#05070c] p-8 md:p-14 shadow-2xl overflow-hidden perspective-container">
+        
+        <div class="absolute inset-0 bg-[linear-gradient(to_right,#1f293d08_1px,transparent_1px),linear-gradient(to_bottom,#1f293d08_1px,transparent_1px)] bg-[size:32px_32px] pointer-events-none"></div>
+
+        <div class="relative z-10 max-w-3xl mb-12">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-indigo-200 mb-6 backdrop-blur-md shadow-inner">
+            <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+            Move cursor over cards below to test real-time 3D tilt & specular physics
+          </div>
+
+          <h2 class="text-4xl md:text-6xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+            Quiet Dominance. <br/>
+            <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-indigo-200 to-purple-300">
+              Architectural Multi-Agent Mesh.
+            </span>
+          </h2>
+
+          <p class="text-slate-300 text-base md:text-lg leading-relaxed max-w-2xl font-light">
+            Founded by Soya. Seven autonomous council minds governing local host metal with ruthless mathematical parsimony. Built with standard libraries and absolute fact integrity.
+          </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 relative z-10">
+          
+          <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-400/30 flex items-center justify-center font-mono font-bold text-sky-300 shadow-md">
+                SCC
+              </div>
+              <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 flex items-center gap-1.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                PORT 8765
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
+              Soya Control Center
+            </h3>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+              Autonomous telemetry brain. 6 verified live adapters active with zero degraded nodes.
+            </p>
+
+            <div class="mt-6 pt-4 border-t border-white/10 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-400">Daemon Pulse</span>
+                <span class="text-sky-300 font-bold">100% NOMINAL</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden p-0.5">
+                <div class="h-full bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full w-full"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-500/20 to-pink-500/20 border border-purple-400/30 flex items-center justify-center font-mono font-bold text-purple-300 shadow-md">
+                AI
+              </div>
+              <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-purple-950/80 border border-purple-700/60 text-purple-300">
+                PORT 8080
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+              Face Attendance Kiosk
+            </h3>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+              YuNet & SFace ONNX neural vision engine. 13/13 tests verified with air-gapped gallery.
+            </p>
+
+            <div class="mt-6 pt-4 border-t border-white/10 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-400">ONNX Models</span>
+                <span class="text-purple-300 font-bold">YuNet + SFace</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden p-0.5">
+                <div class="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full w-full"></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div class="flex items-center justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500/20 to-emerald-500/20 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-300 shadow-md">
+                SEC
+              </div>
+              <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-amber-950/80 border border-amber-700/60 text-amber-300">
+                AIR-GAPPED
+              </span>
+            </div>
+
+            <h3 class="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+              Hermes Secrets Vault
+            </h3>
+            <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+              Explicit NTFS owner DACLs. Zero cloud exposure, zero Git commits, byte-verified.
+            </p>
+
+            <div class="mt-6 pt-4 border-t border-white/10 space-y-2">
+              <div class="flex justify-between text-xs font-mono">
+                <span class="text-slate-400">Access Perimeter</span>
+                <span class="text-emerald-400 font-bold">SOYASMACHINE\US</span>
+              </div>
+              <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden p-0.5">
+                <div class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 rounded-full w-full"></div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="mt-8 rounded-2xl bg-white/[0.04] border border-white/10 p-5 backdrop-blur-xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-xl">
+          <div class="flex items-center gap-4">
+            <div class="w-11 h-11 rounded-xl bg-gradient-to-br from-indigo-500 to-sky-600 flex items-center justify-center font-bold text-white shadow-lg shadow-indigo-500/30">
+              K
+            </div>
+            <div>
+              <div class="text-xs text-indigo-300 font-mono tracking-wider">CHIEF AI EXECUTIVE</div>
+              <div class="text-sm font-bold text-white">President Komi — Orchestrator Active</div>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-6 font-mono text-xs text-slate-300">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              <span>4 Daemons Up</span>
+            </div>
+            <div class="hidden sm:block text-slate-500">•</div>
+            <div>RAM: <span class="text-white font-semibold">20.0 GB</span></div>
+            <div class="hidden sm:block text-slate-500">•</div>
+            <div>DRIVE C: <span class="text-emerald-300 font-semibold">32.7 GB Free</span></div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONCEPT 2: AURORA TELEMETRY DECK -->
+    <section id="view-conceptAurora" class="space-y-8 hidden">
+      <div class="relative rounded-3xl border border-indigo-900/40 bg-[#090c16] p-8 md:p-12 shadow-2xl overflow-hidden">
+        
+        <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+          <div>
+            <div class="text-xs font-mono text-indigo-400 font-bold uppercase tracking-wider mb-2">LIVE SYSTEM PULSE // STRIPE ENGINE DECK</div>
+            <h2 class="text-3xl md:text-5xl font-black tracking-tight text-white">Continuous Verification.</h2>
+            <p class="text-slate-400 text-sm mt-1">Real-time harmonic packet oscillation without flashing or eye glare.</p>
+          </div>
+          <div class="flex items-center gap-3">
+            <button onclick="toggleOscillator()" id="oscillatorBtn" class="px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all">
+              ⚡ Oscillate Waves
+            </button>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-white/10 bg-[#05070e] p-6 shadow-2xl relative overflow-hidden mb-6">
+          <div class="flex items-center justify-between mb-3 text-xs font-mono text-slate-400">
+            <span>PACKET FREQUENCY & HOST BUS LATENCY</span>
+            <span class="text-sky-400 flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+              SYNCHRONIZED (0.00ms Jitter)
+            </span>
+          </div>
+          <canvas id="auroraCanvas" class="w-full h-44 rounded-xl"></canvas>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+            <span class="text-[11px] font-mono text-slate-400">HIGH COUNCIL HEADS</span>
+            <div class="text-2xl font-bold text-white mt-1">7 Leaders</div>
+            <div class="text-[11px] text-indigo-300 mt-1">Bolt, Asta, Ira, Naufal, Violet, Rin, Yed</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+            <span class="text-[11px] font-mono text-slate-400">PONYTAIL STANDARD</span>
+            <div class="text-2xl font-bold text-white mt-1">Max 2 Loops</div>
+            <div class="text-[11px] text-emerald-300 mt-1">Shortest working diff wins</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+            <span class="text-[11px] font-mono text-slate-400">MEMORY RETENTION</span>
+            <div class="text-2xl font-bold text-white mt-1">7 Ledgers</div>
+            <div class="text-[11px] text-sky-300 mt-1">Selective context loading</div>
+          </div>
+          <div class="p-4 rounded-xl bg-white/[0.03] border border-white/10 backdrop-blur-md">
+            <span class="text-[11px] font-mono text-slate-400">AUTHORITY TIERS</span>
+            <div class="text-2xl font-bold text-white mt-1">Tier 1–3</div>
+            <div class="text-[11px] text-purple-300 mt-1">Sovereign Founder approval gate</div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONCEPT 3: FLOATING HARDWARE CONSOLE -->
+    <section id="view-conceptBento" class="space-y-8 hidden">
+      <div class="relative rounded-3xl border border-slate-700/60 bg-gradient-to-b from-[#111625] to-[#0a0d16] p-8 md:p-12 shadow-2xl">
+        
+        <div class="max-w-2xl mb-8">
+          <div class="text-xs font-mono text-slate-400 uppercase tracking-widest mb-2">PRECISION HARDWARE CONSOLE</div>
+          <h2 class="text-3xl md:text-5xl font-extrabold text-white tracking-tight">bimbap.co Studio Matrix</h2>
+          <p class="text-slate-300 text-sm mt-2 font-light">Brushed metal feel, deep bevels, tactile status toggles, and zero eye glare.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div class="p-6 rounded-2xl bg-[#141a2e] border border-slate-700/80 shadow-2xl flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-mono text-indigo-400 font-bold">SOVEREIGN LAYER</div>
+              <h3 class="text-xl font-bold text-white mt-1">Founder & Chairman Soya</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">Strategic intent and sovereign approvals. Remote Git pushes, secrets, and database migrations require explicit sign-off.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700 flex justify-between items-center text-xs font-mono">
+              <span class="text-slate-400">Authority</span>
+              <span class="text-indigo-300 font-bold">TIER 3 SOVEREIGN</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#141a2e] border border-slate-700/80 shadow-2xl flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-mono text-sky-400 font-bold">EXECUTIVE COMMAND</div>
+              <h3 class="text-xl font-bold text-white mt-1">President Komi</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">4-Path routing orchestration (A/B/C/D). Ponytail parsimony enforcement. Synthesizes council handoffs into 1 executive briefing.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700 flex justify-between items-center text-xs font-mono">
+              <span class="text-slate-400">Authority</span>
+              <span class="text-sky-300 font-bold">TIER 2 PRESIDENTIAL</span>
+            </div>
+          </div>
+
+          <div class="p-6 rounded-2xl bg-[#141a2e] border border-slate-700/80 shadow-2xl flex flex-col justify-between">
+            <div>
+              <div class="text-xs font-mono text-emerald-400 font-bold">EXECUTIVE COUNCIL</div>
+              <h3 class="text-xl font-bold text-white mt-1">7 Department Heads</h3>
+              <p class="text-xs text-slate-400 mt-2 leading-relaxed">Bolt (Ops), Asta (Tech), Ira (QA), Naufal (Security), Violet (Design), Rin (Life), Yed (Media). Independent departmental ledgers.</p>
+            </div>
+            <div class="mt-6 pt-4 border-t border-slate-700 flex justify-between items-center text-xs font-mono">
+              <span class="text-slate-400">Authority</span>
+              <span class="text-emerald-300 font-bold">TIER 1 AUTONOMOUS</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    function switchConcept(conceptId) {
+      const views = ['concept3D', 'conceptAurora', 'conceptBento'];
+      views.forEach(id => {
+        const viewEl = document.getElementById('view-' + id);
+        const tabEl = document.getElementById('tab-' + id);
+        if (id === conceptId) {
+          viewEl.classList.remove('hidden');
+          tabEl.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg shadow-indigo-500/25";
+        } else {
+          viewEl.classList.add('hidden');
+          tabEl.className = "px-3.5 py-2 rounded-xl text-xs font-bold transition-all text-slate-400 hover:text-white";
+        }
+      });
+
+      if (conceptId === 'conceptAurora') {
+        initAuroraCanvas();
+      }
+    }
+
+    function handleTilt(e, card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px)`;
+    }
+
+    function resetTilt(card) {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    }
+
+    let auroraInitialized = false;
+    let waveRunning = true;
+    function initAuroraCanvas() {
+      if (auroraInitialized) return;
+      const canvas = document.getElementById('auroraCanvas');
+      if (!canvas) return;
+      const ctx = canvas.getContext('2d');
+      let width = canvas.width = canvas.offsetWidth;
+      let height = canvas.height = canvas.offsetHeight;
+
+      window.addEventListener('resize', () => {
+        if (canvas) {
+          width = canvas.width = canvas.offsetWidth;
+          height = canvas.height = canvas.offsetHeight;
+        }
+      });
+
+      let step = 0;
+      function render() {
+        if (!waveRunning) return;
+        ctx.clearRect(0, 0, width, height);
+
+        ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < width; x += 40) {
+          ctx.beginPath();
+          ctx.moveTo(x, 0);
+          ctx.lineTo(x, height);
+          ctx.stroke();
+        }
+
+        ctx.beginPath();
+        for (let x = 0; x < width; x++) {
+          const y = height / 2 + Math.sin((x + step) * 0.015) * 24 + Math.cos((x - step) * 0.02) * 14;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = '#6366f1';
+        ctx.lineWidth = 2.5;
+        ctx.shadowColor = '#4f46e5';
+        ctx.shadowBlur = 12;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        ctx.beginPath();
+        for (let x = 0; x < width; x++) {
+          const y = height / 2 + Math.cos((x + step * 1.2) * 0.018) * 18 - Math.sin((x - step) * 0.012) * 12;
+          if (x === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 2;
+        ctx.shadowColor = '#0284c7';
+        ctx.shadowBlur = 8;
+        ctx.stroke();
+        ctx.shadowBlur = 0;
+
+        step += 1.2;
+        requestAnimationFrame(render);
+      }
+      render();
+      auroraInitialized = true;
+    }
+
+    function toggleOscillator() {
+      waveRunning = !waveRunning;
+      const btn = document.getElementById('oscillatorBtn');
+      if (btn) {
+        btn.innerText = waveRunning ? "⚡ Oscillate Waves" : "⏸ Waves Paused";
+        btn.className = waveRunning 
+          ? "px-4 py-2 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-mono text-xs font-bold shadow-lg shadow-indigo-600/30 transition-all"
+          : "px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 font-mono text-xs font-bold transition-all";
+      }
+      if (waveRunning) {
+        initAuroraCanvas();
+      }
+    }
+  </script>
+</body>
+</html>
+

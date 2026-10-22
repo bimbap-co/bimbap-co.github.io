@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>bimbap.co — Autonomous Multi-Agent Engineering Studio</title>
-  <meta name="description" content="Official home of bimbap.co. Founded by Soya, governed by President Komi and the High Council. Autonomous multi-agent software studio and personal infrastructure mesh.">
+  <meta name="description" content="Official home of bimbap.co. Founded by Soya, governed by President Komi and the High Council. Autonomous multi-agent engineering studio and personal infrastructure mesh.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -17,82 +17,87 @@
           fontFamily: {
             sans: ['"Plus Jakarta Sans"', 'sans-serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            brand: {
-              50: '#ecfeff',
-              100: '#cffafe',
-              200: '#a5f3fc',
-              300: '#67e8f9',
-              400: '#22d3ee',
-              500: '#06b6d4',
-              600: '#0891b2',
-              700: '#0e7490',
-              800: '#155e75',
-              900: '#164e63',
-            },
-            surface: {
-              base: '#090d16',
-              raised: '#0f172a',
-              card: '#131e36',
-              border: '#1e293b',
-              accent: '#38bdf8'
-            }
           }
         }
       }
     }
   </script>
   <style>
-    body {
-      background-color: #070a12;
-      color: #f1f5f9;
-      font-family: 'Plus Jakarta Sans', sans-serif;
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
     }
-    .glow-cyan {
-      box-shadow: 0 0 40px -10px rgba(6, 182, 212, 0.25);
+    @keyframes aurora {
+      0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.35; }
+      50% { transform: rotate(180deg) scale(1.15); opacity: 0.6; }
     }
-    .glow-card:hover {
-      box-shadow: 0 0 30px -5px rgba(56, 189, 248, 0.15);
-      border-color: rgba(56, 189, 248, 0.4);
+    .animate-float {
+      animation: float 6s ease-in-out infinite;
+    }
+    .animate-aurora {
+      animation: aurora 22s linear infinite;
+    }
+    .perspective-container {
+      perspective: 1200px;
+    }
+    .card-3d {
+      transform-style: preserve-3d;
+      transition: transform 0.15s ease-out, box-shadow 0.25s ease-out, border-color 0.25s ease-out;
+    }
+    .specular-glass {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.06) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(10, 14, 26, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+                  0 0 0 1px rgba(255, 255, 255, 0.05), 
+                  inset 0 1px 1px 0 rgba(255, 255, 255, 0.18);
+    }
+    .specular-glass:hover {
+      border-color: rgba(99, 102, 241, 0.45);
+      box-shadow: 0 35px 70px -15px rgba(79, 70, 229, 0.28), 
+                  0 0 35px -5px rgba(99, 102, 241, 0.3),
+                  inset 0 1px 2px 0 rgba(255, 255, 255, 0.3);
     }
     .grid-bg {
-      background-size: 40px 40px;
+      background-size: 36px 36px;
       background-image: 
         linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
         linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
     }
   </style>
 </head>
-<body class="selection:bg-cyan-500 selection:text-black">
+<body class="bg-[#06080e] text-slate-100 font-sans antialiased min-h-screen selection:bg-indigo-500 selection:text-white relative overflow-x-hidden">
 
-  <!-- Background Decorative Gradient -->
-  <div class="fixed inset-0 grid-bg pointer-events-none z-0 opacity-70"></div>
-  <div class="fixed -top-40 -left-40 w-96 h-96 bg-cyan-600/10 rounded-full blur-3xl pointer-events-none"></div>
-  <div class="fixed top-1/2 -right-40 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl pointer-events-none"></div>
+  <!-- Ambient Aurora Backing (Calm, Soft, High Depth) -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="fixed inset-0 grid-bg opacity-75"></div>
+    <div class="absolute -top-40 -left-40 w-[650px] h-[650px] rounded-full bg-gradient-to-tr from-indigo-900/35 via-sky-900/20 to-transparent blur-[130px] animate-aurora"></div>
+    <div class="absolute top-1/3 -right-40 w-[750px] h-[750px] rounded-full bg-gradient-to-bl from-purple-900/30 via-blue-900/20 to-transparent blur-[150px] animate-aurora" style="animation-delay: -11s;"></div>
+  </div>
 
   <!-- Navigation -->
-  <header class="sticky top-0 z-50 backdrop-blur-md bg-[#070a12]/80 border-b border-surface-border">
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#06080e]/80 border-b border-white/10">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-gradient-to-tr from-cyan-500 to-blue-600 flex items-center justify-center font-mono font-bold text-black text-lg shadow-lg shadow-cyan-500/20">
+        <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-purple-600 flex items-center justify-center font-mono font-bold text-white text-base shadow-lg shadow-indigo-500/25">
           b
         </div>
-        <span class="font-bold text-lg tracking-tight text-white flex items-center gap-1.5">
-          bimbap<span class="text-cyan-400">.co</span>
+        <span class="font-bold text-lg tracking-tight text-white flex items-center gap-1">
+          bimbap<span class="text-sky-400">.co</span>
         </span>
-        <span class="text-xs font-mono px-2 py-0.5 rounded-full bg-cyan-950 border border-cyan-800 text-cyan-300 ml-2 hidden sm:inline-block">v1.0 Studio</span>
+        <span class="text-[11px] font-mono px-2 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-800 text-indigo-300 ml-2 hidden sm:inline-block">v1.0 Studio</span>
       </div>
 
       <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-        <a href="#council" class="hover:text-cyan-400 transition-colors">High Council</a>
-        <a href="#fleet" class="hover:text-cyan-400 transition-colors">Project Fleet</a>
-        <a href="#doctrine" class="hover:text-cyan-400 transition-colors">Engineering Doctrine</a>
-        <a href="#status" class="hover:text-cyan-400 transition-colors">System Pulse</a>
+        <a href="#council" class="hover:text-sky-400 transition-colors">High Council</a>
+        <a href="#fleet" class="hover:text-sky-400 transition-colors">Project Fleet</a>
+        <a href="#doctrine" class="hover:text-sky-400 transition-colors">Engineering Doctrine</a>
+        <a href="#telemetry" class="hover:text-sky-400 transition-colors">Host Telemetry</a>
       </nav>
 
       <div class="flex items-center gap-4">
-        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/60 border border-emerald-800/80 text-xs font-mono text-emerald-400">
+        <div class="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-950/70 border border-emerald-700/60 text-xs font-mono text-emerald-300">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           <span>100% NOMINAL</span>
         </div>
@@ -104,412 +109,449 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="relative z-10 pt-24 pb-20 px-6 text-center max-w-5xl mx-auto">
-    <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-cyan-950/80 border border-cyan-800/80 text-cyan-300 text-xs font-mono font-medium mb-6">
-      <span class="w-1.5 h-1.5 rounded-full bg-cyan-400"></span>
-      Autonomous Multi-Agent Software Studio
-    </div>
-
-    <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6">
-      Engineering at the speed of <br>
-      <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-blue-500">Autonomous Council.</span>
-    </h1>
-
-    <p class="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed mb-10">
-      <strong class="text-white font-medium">bimbap.co</strong> is Soya's personal multi-agent technology company. Governed by <span class="text-cyan-300">President Komi</span> and powered by a dedicated High Council of 7 AI Department Heads orchestrating concurrent vision systems, infrastructure planes, and real-time operations.
-    </p>
-
-    <div class="flex flex-wrap items-center justify-center gap-4">
-      <a href="#council" class="px-6 py-3 rounded-lg bg-cyan-500 hover:bg-cyan-400 text-slate-950 font-semibold text-sm transition-all shadow-lg shadow-cyan-500/25">
-        Meet the High Council
-      </a>
-      <a href="#fleet" class="px-6 py-3 rounded-lg bg-surface-raised hover:bg-surface-card border border-surface-border text-slate-200 font-medium text-sm transition-all">
-        Explore Project Fleet
-      </a>
-      <a href="https://github.com/bimbap-co" target="_blank" rel="noopener noreferrer" class="px-6 py-3 rounded-lg bg-transparent hover:bg-slate-900 border border-slate-700 text-slate-300 font-medium text-sm transition-all flex items-center gap-2">
-        <span>GitHub Organization</span>
-        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
-      </a>
-    </div>
-
-    <!-- Live Telemetry Quick Bar -->
-    <div class="mt-14 p-4 rounded-xl bg-surface-raised/80 border border-surface-border backdrop-blur max-w-4xl mx-auto grid grid-cols-2 sm:grid-cols-4 gap-4 text-left font-mono">
-      <div class="border-r border-surface-border/50 pr-4">
-        <div class="text-[11px] text-slate-500 uppercase tracking-wider">Fleet Health</div>
-        <div class="text-emerald-400 font-bold text-base mt-0.5 flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-emerald-400"></span> 100 / 100
+  <section class="relative z-10 pt-20 pb-24 md:pt-28 md:pb-32 px-6 perspective-container">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-16">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-indigo-200 mb-6 backdrop-blur-md shadow-inner">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+          Precision Engineered Autonomous Mesh
         </div>
-      </div>
-      <div class="border-r border-surface-border/50 pr-4">
-        <div class="text-[11px] text-slate-500 uppercase tracking-wider">Control Plane</div>
-        <div class="text-cyan-400 font-bold text-base mt-0.5">SCC :8765</div>
-      </div>
-      <div class="border-r border-surface-border/50 pr-4">
-        <div class="text-[11px] text-slate-500 uppercase tracking-wider">Active Daemons</div>
-        <div class="text-white font-bold text-base mt-0.5">4 Online</div>
-      </div>
-      <div>
-        <div class="text-[11px] text-slate-500 uppercase tracking-wider">Discipline</div>
-        <div class="text-indigo-400 font-bold text-base mt-0.5">Ponytail 🟢</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- The High Council Section -->
-  <section id="council" class="relative z-10 py-20 px-6 border-t border-surface-border max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-2 font-semibold">Governance & Leadership</div>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">The High Council</h2>
-      <p class="text-slate-400 mt-4 leading-relaxed">
-        Soya's sovereign intent is directed through President Komi and dispatched across 7 specialized Department Heads operating in closed-loop peer review.
-      </p>
-    </div>
+        <h1 class="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tight text-white mb-6 leading-tight">
+          Quiet Dominance. <br/>
+          <span class="bg-clip-text text-transparent bg-gradient-to-r from-sky-300 via-indigo-200 to-purple-300">
+            Absolute Governance.
+          </span>
+        </h1>
 
-    <!-- Sovereign & President Hierarchy -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto mb-10">
-      <div class="p-6 rounded-2xl bg-gradient-to-b from-surface-raised to-surface-card border border-surface-border hover:border-cyan-500/50 transition-all glow-card">
-        <div class="flex items-center justify-between mb-4">
-          <span class="px-2.5 py-1 rounded bg-amber-950/70 border border-amber-800 text-amber-300 font-mono text-xs uppercase tracking-wider">Sovereign Authority</span>
-          <span class="text-xs font-mono text-slate-500">Tier 3 Sign-Off</span>
-        </div>
-        <h3 class="text-2xl font-bold text-white">Soya</h3>
-        <p class="text-cyan-400 font-mono text-xs mt-0.5 font-medium">Founder & Chairman</p>
-        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-          Provides sovereign strategic intent, final approvals on external releases, private credentials, and high-impact corporate direction.
+        <p class="text-slate-300 text-lg md:text-xl font-light leading-relaxed mb-10 max-w-2xl">
+          Founded by <strong>Soya</strong>. Governed by <strong>President Komi</strong> and the 7-head Executive Council. Built on ruthless mathematical parsimony, standard libraries, and verified local metal.
         </p>
-      </div>
 
-      <div class="p-6 rounded-2xl bg-gradient-to-b from-surface-raised to-surface-card border border-surface-border hover:border-cyan-500/50 transition-all glow-card">
-        <div class="flex items-center justify-between mb-4">
-          <span class="px-2.5 py-1 rounded bg-cyan-950/70 border border-cyan-800 text-cyan-300 font-mono text-xs uppercase tracking-wider">Executive Command</span>
-          <span class="text-xs font-mono text-slate-500">Tier 2 Authorized</span>
+        <div class="flex flex-wrap items-center gap-4">
+          <a href="#council" class="px-6 py-3.5 rounded-xl bg-gradient-to-r from-indigo-600 via-blue-600 to-sky-600 text-white font-semibold text-sm shadow-xl shadow-indigo-600/30 hover:brightness-110 transition-all">
+            Explore High Council
+          </a>
+          <a href="#fleet" class="px-6 py-3.5 rounded-xl bg-white/[0.04] border border-white/10 text-slate-200 font-semibold text-sm hover:bg-white/10 transition-all backdrop-blur-md">
+            Inspect Project Fleet
+          </a>
         </div>
-        <h3 class="text-2xl font-bold text-white">President Komi</h3>
-        <p class="text-cyan-400 font-mono text-xs mt-0.5 font-medium">Chief AI Executive & Orchestrator</p>
-        <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-          Commands the High Council, resolves inter-agent deadlocks via Ponytail rules, synthesizes cross-project health, and reports directly to Founder Soya.
-        </p>
-      </div>
-    </div>
-
-    <!-- The 7 Department Heads -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-      
-      <!-- Bolt -->
-      <div class="p-5 rounded-xl bg-surface-raised/70 border border-surface-border hover:border-cyan-500/40 transition-all glow-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-blue-950 text-blue-300 border border-blue-800">COO</span>
-          <span class="text-[11px] font-mono text-emerald-400">● Active</span>
-        </div>
-        <h4 class="text-lg font-bold text-white">Bolt</h4>
-        <div class="text-xs text-cyan-400 font-mono">Operations & Telemetry</div>
-        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
-          Tech Lead for Soya Control Center (SCC). Manages host CPU/RAM/GPU telemetry, port hygiene, and daemon resilience.
-        </p>
       </div>
 
-      <!-- Asta -->
-      <div class="p-5 rounded-xl bg-surface-raised/70 border border-surface-border hover:border-cyan-500/40 transition-all glow-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800">CTO</span>
-          <span class="text-[11px] font-mono text-emerald-400">● Active</span>
-        </div>
-        <h4 class="text-lg font-bold text-white">Asta</h4>
-        <div class="text-xs text-cyan-400 font-mono">Software Engineering</div>
-        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
-          Tech Lead for Face Recognition Kiosk. Architects computer vision inference (YuNet + SFace ONNX) and core algorithms.
-        </p>
-      </div>
-
-      <!-- Ira -->
-      <div class="p-5 rounded-xl bg-surface-raised/70 border border-surface-border hover:border-cyan-500/40 transition-all glow-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">CQO</span>
-          <span class="text-[11px] font-mono text-emerald-400">● Active</span>
-        </div>
-        <h4 class="text-lg font-bold text-white">Ira</h4>
-        <div class="text-xs text-cyan-400 font-mono">Quality & Standards</div>
-        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
-          Cross-project quality gatekeeper. Enforces Ponytail parsimony (strict YAGNI, shortest working diff, standard-library first).
-        </p>
-      </div>
-
-      <!-- Naufal -->
-      <div class="p-5 rounded-xl bg-surface-raised/70 border border-surface-border hover:border-cyan-500/40 transition-all glow-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-800">CISO</span>
-          <span class="text-[11px] font-mono text-emerald-400">● Active</span>
-        </div>
-        <h4 class="text-lg font-bold text-white">Naufal</h4>
-        <div class="text-xs text-cyan-400 font-mono">Security & Compliance</div>
-        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
-          Tech Lead for Health Check Engineer (HCE). Enforces air-gap around Hermes-Secrets, biometric privacy, and database integrity.
-        </p>
-      </div>
-
-      <!-- Violet -->
-      <div class="p-5 rounded-xl bg-surface-raised/70 border border-surface-border hover:border-cyan-500/40 transition-all glow-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-pink-950 text-pink-300 border border-pink-800">CDO</span>
-          <span class="text-[11px] font-mono text-emerald-400">● Active</span>
-        </div>
-        <h4 class="text-lg font-bold text-white">Violet</h4>
-        <div class="text-xs text-cyan-400 font-mono">Design & Architecture</div>
-        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
-          Chief Design Architect. Authors system topology layouts, component trees, and minimal UI contracts before code is written.
-        </p>
-      </div>
-
-      <!-- Rin -->
-      <div class="p-5 rounded-xl bg-surface-raised/70 border border-surface-border hover:border-cyan-500/40 transition-all glow-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">CLO</span>
-          <span class="text-[11px] font-mono text-emerald-400">● Active</span>
-        </div>
-        <h4 class="text-lg font-bold text-white">Rin</h4>
-        <div class="text-xs text-cyan-400 font-mono">Life & Milestones</div>
-        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
-          Tech Lead for Wedding 2027 systems. Governs the Telegram RSVP gateway daemon, Notion sync, and family archives.
-        </p>
-      </div>
-
-      <!-- Yed -->
-      <div class="p-5 rounded-xl bg-surface-raised/70 border border-surface-border hover:border-cyan-500/40 transition-all glow-card">
-        <div class="flex items-center justify-between mb-3">
-          <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">CMO</span>
-          <span class="text-[11px] font-mono text-emerald-400">● Active</span>
-        </div>
-        <h4 class="text-lg font-bold text-white">Yed</h4>
-        <div class="text-xs text-cyan-400 font-mono">Brand & Media</div>
-        <p class="text-xs text-slate-400 mt-2.5 leading-relaxed">
-          Tech Lead for Sayed Portfolio & Media. Manages static performance, CV artifacts, Streamer Era production, and OBS scenes.
-        </p>
-      </div>
-
-      <!-- Office Building -->
-      <div class="p-5 rounded-xl bg-surface-raised/30 border border-dashed border-surface-border flex flex-col justify-center items-center text-center">
-        <div class="w-10 h-10 rounded-full bg-cyan-950/60 border border-cyan-800 flex items-center justify-center text-cyan-400 mb-2">
-          🏢
-        </div>
-        <h4 class="text-sm font-bold text-white">The Executive Building</h4>
-        <div class="text-[11px] text-slate-400 font-mono mt-1">E:\Hermes-Profiles\president</div>
-        <div class="text-[11px] text-cyan-400 font-mono mt-0.5">7 Ledgers Active</div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Project Fleet Showcase -->
-  <section id="fleet" class="relative z-10 py-20 px-6 border-t border-surface-border max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-2 font-semibold">Live Systems & Workloads</div>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">The Innovation Fleet</h2>
-      <p class="text-slate-400 mt-4 leading-relaxed">
-        Five autonomous software systems running concurrently on our local PC engine under strict read-only observation and air-gapped security.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      
-      <!-- SCC -->
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border flex flex-col justify-between glow-card">
-        <div>
+      <!-- Hero 3D Perspective Cards -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        
+        <!-- Card 1: SCC -->
+        <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-cyan-950 text-cyan-300 border border-cyan-800">Port 8765</span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">● Healthy</span>
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-500/20 to-indigo-500/20 border border-sky-400/30 flex items-center justify-center font-mono font-bold text-sky-300 shadow-md">
+              SCC
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-emerald-300 flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              PORT 8765
+            </span>
+          </div>
+
+          <h3 class="text-xl font-bold text-white group-hover:text-sky-300 transition-colors">
+            Soya Control Center
+          </h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            Autonomous telemetry brain. 6 verified live adapters active with zero degraded nodes.
+          </p>
+
+          <div class="mt-6 pt-4 border-t border-white/10 space-y-2">
+            <div class="flex justify-between text-xs font-mono">
+              <span class="text-slate-400">Daemon Pulse</span>
+              <span class="text-sky-300 font-bold">100% NOMINAL</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden p-0.5">
+              <div class="h-full bg-gradient-to-r from-sky-400 to-indigo-500 rounded-full w-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Face Kiosk -->
+        <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-purple-500/20 to-pink-500/20 border border-purple-400/30 flex items-center justify-center font-mono font-bold text-purple-300 shadow-md">
+              AI
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-purple-950/80 border border-purple-700/60 text-purple-300">
+              PORT 8080
+            </span>
+          </div>
+
+          <h3 class="text-xl font-bold text-white group-hover:text-purple-300 transition-colors">
+            Face Attendance Kiosk
+          </h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            YuNet & SFace ONNX neural vision engine. 13/13 tests verified with air-gapped gallery.
+          </p>
+
+          <div class="mt-6 pt-4 border-t border-white/10 space-y-2">
+            <div class="flex justify-between text-xs font-mono">
+              <span class="text-slate-400">ONNX Models</span>
+              <span class="text-purple-300 font-bold">YuNet + SFace</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden p-0.5">
+              <div class="h-full bg-gradient-to-r from-purple-400 to-pink-500 rounded-full w-full"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Hermes Secrets -->
+        <div class="card-3d specular-glass rounded-2xl p-6 cursor-pointer group" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-amber-500/20 to-emerald-500/20 border border-amber-400/30 flex items-center justify-center font-mono font-bold text-amber-300 shadow-md">
+              SEC
+            </div>
+            <span class="text-xs font-mono px-2.5 py-1 rounded-full bg-amber-950/80 border border-amber-700/60 text-amber-300">
+              AIR-GAPPED
+            </span>
+          </div>
+
+          <h3 class="text-xl font-bold text-white group-hover:text-amber-300 transition-colors">
+            Hermes Secrets Vault
+          </h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            Explicit NTFS owner DACLs. Zero cloud exposure, zero Git commits, byte-verified.
+          </p>
+
+          <div class="mt-6 pt-4 border-t border-white/10 space-y-2">
+            <div class="flex justify-between text-xs font-mono">
+              <span class="text-slate-400">Access Perimeter</span>
+              <span class="text-emerald-400 font-bold">SOYASMACHINE\US</span>
+            </div>
+            <div class="w-full h-1.5 bg-slate-800 rounded-full overflow-hidden p-0.5">
+              <div class="h-full bg-gradient-to-r from-amber-400 to-emerald-400 rounded-full w-full"></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: High Council -->
+  <section id="council" class="relative z-10 py-20 px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">EXECUTIVE CABINET</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white">The High Council of bimbap.co</h2>
+          <p class="text-slate-400 text-sm mt-1 max-w-xl">
+            Seven specialized department heads governed by President Komi. Each owns a dedicated domain and maintains an independent verified ledger.
+          </p>
+        </div>
+        <div class="text-xs font-mono text-slate-400 px-4 py-2 rounded-xl bg-white/[0.03] border border-white/10">
+          Governance: <strong>Ponytail Standard</strong>
+        </div>
+      </div>
+
+      <!-- 7 Council Members Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+        
+        <!-- Bolt -->
+        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center font-mono font-bold text-sky-300 text-xs">B</span>
+            <span class="text-[11px] font-mono text-sky-400">COO</span>
+          </div>
+          <h3 class="font-bold text-white text-base">Bolt</h3>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Operations & Telemetry</div>
+          <p class="text-xs text-slate-300 mt-2 font-light">Directs Soya Control Center, host CPU/RAM metrics, and port listeners.</p>
+        </div>
+
+        <!-- Asta -->
+        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center font-mono font-bold text-purple-300 text-xs">A</span>
+            <span class="text-[11px] font-mono text-purple-400">CTO</span>
+          </div>
+          <h3 class="font-bold text-white text-base">Asta</h3>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Software Engineering</div>
+          <p class="text-xs text-slate-300 mt-2 font-light">Leads core codebases, ONNX face kiosk models, and technical builds.</p>
+        </div>
+
+        <!-- Ira -->
+        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-pink-500/20 border border-pink-400/40 flex items-center justify-center font-mono font-bold text-pink-300 text-xs">I</span>
+            <span class="text-[11px] font-mono text-pink-400">CQO</span>
+          </div>
+          <h3 class="font-bold text-white text-base">Ira</h3>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Quality & Standards</div>
+          <p class="text-xs text-slate-300 mt-2 font-light">Enforces Ponytail parsimony (YAGNI, minimal working diffs), audits PRs.</p>
+        </div>
+
+        <!-- Naufal -->
+        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center font-mono font-bold text-emerald-300 text-xs">N</span>
+            <span class="text-[11px] font-mono text-emerald-400">CISO</span>
+          </div>
+          <h3 class="font-bold text-white text-base">Naufal</h3>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Security & Compliance</div>
+          <p class="text-xs text-slate-300 mt-2 font-light">Guards Hermes-Secrets, tests SQLite PRAGMA integrity, guarantees 100/100 HCE.</p>
+        </div>
+
+        <!-- Violet -->
+        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center font-mono font-bold text-indigo-300 text-xs">V</span>
+            <span class="text-[11px] font-mono text-indigo-400">CDO</span>
+          </div>
+          <h3 class="font-bold text-white text-base">Violet</h3>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Design & Architecture</div>
+          <p class="text-xs text-slate-300 mt-2 font-light">Designs system topologies, visual schemas, and UI contracts before code is written.</p>
+        </div>
+
+        <!-- Rin -->
+        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-rose-500/20 border border-rose-400/40 flex items-center justify-center font-mono font-bold text-rose-300 text-xs">R</span>
+            <span class="text-[11px] font-mono text-rose-400">CLO</span>
+          </div>
+          <h3 class="font-bold text-white text-base">Rin</h3>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Life & Milestones</div>
+          <p class="text-xs text-slate-300 mt-2 font-light">Oversees Wedding 2027 operations, Telegram bot gateway, and Notion bridges.</p>
+        </div>
+
+        <!-- Yed -->
+        <div class="card-3d specular-glass rounded-xl p-5" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center font-mono font-bold text-amber-300 text-xs">Y</span>
+            <span class="text-[11px] font-mono text-amber-400">CMO</span>
+          </div>
+          <h3 class="font-bold text-white text-base">Yed</h3>
+          <div class="text-xs text-slate-400 font-mono mt-0.5">Brand & Media</div>
+          <p class="text-xs text-slate-300 mt-2 font-light">Directs Sayed Portfolio, Streamer Era media production, and broadcast setups.</p>
+        </div>
+
+        <!-- President Komi (Executive Card) -->
+        <div class="card-3d specular-glass rounded-xl p-5 bg-gradient-to-br from-indigo-950/60 to-purple-950/60 border-indigo-500/40" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-3">
+            <span class="w-8 h-8 rounded-lg bg-white/20 border border-white/40 flex items-center justify-center font-mono font-bold text-white text-xs">K</span>
+            <span class="text-[11px] font-mono text-indigo-300 font-bold">PRESIDENT</span>
+          </div>
+          <h3 class="font-bold text-white text-base">President Komi</h3>
+          <div class="text-xs text-indigo-300 font-mono mt-0.5">Chief AI Executive</div>
+          <p class="text-xs text-slate-200 mt-2 font-light">Orchestrates the 4-Path Routing Model, enforces parsimony, briefs Founder Soya.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Project Fleet -->
+  <section id="fleet" class="relative z-10 py-20 px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-2xl mb-12">
+        <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">ACTIVE SYSTEMS</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white">The Verified Project Fleet</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Every project is anchored to verified local host listeners and clean repositories.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Fleet Item 1 -->
+        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="flex items-center justify-between mb-4">
+            <span class="text-xs font-mono text-sky-400">TELEMETRY_ENGINE</span>
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-300">Port 8765</span>
           </div>
           <h3 class="text-xl font-bold text-white">Soya Control Center (SCC)</h3>
-          <p class="text-xs font-mono text-slate-400 mt-1">Tech Lead: Bolt (COO)</p>
-          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-            Real-time infrastructure command & observation plane. Fastify/FastAPI backend querying narrow local adapters without write mutations.
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            Real-time dashboard and telemetry brain. Fastify + Vite + WebSocket. 6 adapters reporting nominal health: system, ollama, wedding, portfolio, face_attendance, folder_health.
           </p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>Loopback Only</span>
-          <span>TypeScript / React / Vite</span>
-        </div>
-      </div>
-
-      <!-- Face Recognition -->
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border flex flex-col justify-between glow-card">
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 text-purple-300 border border-purple-800">Port 8080</span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">● Healthy</span>
+          <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-slate-400">
+            <span>Branch: codex/scc-v0.3</span>
+            <span class="text-emerald-400 font-semibold">94/94 Tests Passed</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Edge Face Recognition Kiosk</h3>
-          <p class="text-xs font-mono text-slate-400 mt-1">Tech Lead: Asta (CTO)</p>
-          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-            Local biometric attendance kiosk using OpenCV DNN, YuNet face detection, and SFace feature vectors. Zero external cloud exposure.
-          </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>ONNX Inference</span>
-          <span>SQLite / Python</span>
-        </div>
-      </div>
 
-      <!-- Sayed Portfolio -->
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border flex flex-col justify-between glow-card">
-        <div>
+        <!-- Fleet Item 2 -->
+        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 text-amber-300 border border-amber-800">Port 4173</span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">● Healthy</span>
+            <span class="text-xs font-mono text-purple-400">VISION_ENGINE</span>
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 border border-purple-800 text-purple-300">Port 8080</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Sayed Digital Portfolio</h3>
-          <p class="text-xs font-mono text-slate-400 mt-1">Tech Lead: Yed (CMO)</p>
-          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-            Zero-runtime static web showcase with 7 published case study routes. High-performance, zero baggage, verified 100% link integrity.
+          <h3 class="text-xl font-bold text-white">Face Recognition Attendance Kiosk</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            Local edge kiosk powered by OpenCV YuNet detector and SFace embedding matcher. Air-gapped biometric embeddings with zero cloud exposure.
           </p>
+          <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-slate-400">
+            <span>Runtime: Python 3.13</span>
+            <span class="text-purple-300 font-semibold">13/13 Tests Passed</span>
+          </div>
         </div>
-        <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>Zero Runtime</span>
-          <span>HTML5 / CSS / Vanilla TS</span>
-        </div>
-      </div>
 
-      <!-- Wedding 2027 -->
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border flex flex-col justify-between glow-card">
-        <div>
+        <!-- Fleet Item 3 -->
+        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-rose-950 text-rose-300 border border-rose-800">Port 61647</span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">● Healthy</span>
+            <span class="text-xs font-mono text-rose-400">LIFE_OPERATIONS</span>
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-rose-950 border border-rose-800 text-rose-300">Port 61647</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Soyarin Wedding 2027</h3>
-          <p class="text-xs font-mono text-slate-400 mt-1">Tech Lead: Rin (CLO)</p>
-          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-            Autonomous milestone orchestrator with Telegram Bot API gateway, guest registry, and Notion controlled push/pull synchronization.
+          <h3 class="text-xl font-bold text-white">Wedding Bot 2027 Profile</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            Telegram RSVP and vendor coordination bot. 3 healthy SQLite databases (kanban, shared-state, state). Controlled on-demand push/pull bridge to Notion.
           </p>
+          <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-slate-400">
+            <span>Daemon PID: 27772</span>
+            <span class="text-rose-300 font-semibold">3/3 DBs Healthy</span>
+          </div>
         </div>
-        <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>Telegram Gateway</span>
-          <span>3x SQLite Stores</span>
-        </div>
-      </div>
 
-      <!-- HCE -->
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border flex flex-col justify-between glow-card">
-        <div>
+        <!-- Fleet Item 4 -->
+        <div class="card-3d specular-glass rounded-2xl p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-red-950 text-red-300 border border-red-800">Governance Engine</span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">● 100/100</span>
+            <span class="text-xs font-mono text-amber-400">STATIC_SHOWCASE</span>
+            <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300">Port 4173</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Health Check Engineer (HCE)</h3>
-          <p class="text-xs font-mono text-slate-400 mt-1">Tech Lead: Naufal (CISO)</p>
-          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-            Continuous automated governance scanning all repositories for token leaks, SQLite locks, git hygiene, and secret air-gaps.
+          <h3 class="text-xl font-bold text-white">Sayed Portfolio</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            High-performance static career showcase. CV documents, case studies, and responsive styling backed up on persistent branch backup/portfolio-update-20261023.
           </p>
-        </div>
-        <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>Hermes-Secrets Guard</span>
-          <span>Python / PowerShell</span>
-        </div>
-      </div>
-
-      <!-- AI Core / Ollama -->
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border flex flex-col justify-between glow-card">
-        <div>
-          <div class="flex items-center justify-between mb-4">
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-emerald-950 text-emerald-300 border border-emerald-800">Port 11434</span>
-            <span class="text-xs font-mono text-emerald-400 flex items-center gap-1">● Healthy</span>
+          <div class="mt-6 pt-4 border-t border-white/10 flex justify-between items-center text-xs font-mono text-slate-400">
+            <span>8/8 Routes Verified</span>
+            <span class="text-amber-300 font-semibold">0 Build Baggage</span>
           </div>
-          <h3 class="text-xl font-bold text-white">Local AI Core (Ollama)</h3>
-          <p class="text-xs font-mono text-slate-400 mt-1">Managed: High Council</p>
-          <p class="text-slate-400 text-sm mt-3 leading-relaxed">
-            On-device local language models (`qwen3:8b`, `gemma4:latest`, `embeddinggemma`) accelerated by NVIDIA RTX 3050 hardware compute.
-          </p>
         </div>
-        <div class="mt-6 pt-4 border-t border-surface-border/60 flex items-center justify-between text-xs font-mono text-slate-400">
-          <span>14.4 GiB Pulled</span>
-          <span>CUDA / ONNX</span>
-        </div>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- Engineering Doctrine -->
-  <section id="doctrine" class="relative z-10 py-20 px-6 border-t border-surface-border max-w-7xl mx-auto">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <div class="text-xs font-mono text-cyan-400 uppercase tracking-widest mb-2 font-semibold">Standard of Excellence</div>
-      <h2 class="text-3xl sm:text-5xl font-extrabold text-white tracking-tight">The Ponytail Doctrine</h2>
-      <p class="text-slate-400 mt-4 leading-relaxed">
-        We think like a lazy senior developer: The best code is the code never written. We reject premature abstraction and technical debt before it reaches production.
-      </p>
-    </div>
-
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border">
-        <div class="w-10 h-10 rounded-lg bg-cyan-950 border border-cyan-800 flex items-center justify-center font-mono font-bold text-cyan-400 mb-4">
-          01
-        </div>
-        <h3 class="text-lg font-bold text-white mb-2">Shortest Working Diff</h3>
-        <p class="text-sm text-slate-400 leading-relaxed">
-          Every pull request is reviewed by Ira (CQO) against diff brevity. If a problem can be solved in 3 lines of standard library, 50 lines of framework boilerplate is rejected.
-        </p>
-      </div>
-
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border">
-        <div class="w-10 h-10 rounded-lg bg-cyan-950 border border-cyan-800 flex items-center justify-center font-mono font-bold text-cyan-400 mb-4">
-          02
-        </div>
-        <h3 class="text-lg font-bold text-white mb-2">Strict YAGNI</h3>
-        <p class="text-sm text-slate-400 leading-relaxed">
-          "You Aren't Gonna Need It." Speculative interfaces, unused factory wrappers, and future-proofing abstractions are deleted on sight. We solve real requirements today.
-        </p>
-      </div>
-
-      <div class="p-6 rounded-2xl bg-surface-raised border border-surface-border">
-        <div class="w-10 h-10 rounded-lg bg-cyan-950 border border-cyan-800 flex items-center justify-center font-mono font-bold text-cyan-400 mb-4">
-          03
-        </div>
-        <h3 class="text-lg font-bold text-white mb-2">Air-Gapped Vaults</h3>
-        <p class="text-sm text-slate-400 leading-relaxed">
-          Credentials in `Hermes-Secrets` and biometric embeddings in `gallery.json` never touch Git or public clouds. Local compute stays local; privacy is absolute.
-        </p>
       </div>
     </div>
   </section>
 
-  <!-- Live System Pulse -->
-  <section id="status" class="relative z-10 py-16 px-6 border-t border-surface-border max-w-5xl mx-auto text-center">
-    <div class="p-8 rounded-2xl bg-gradient-to-b from-surface-raised to-surface-card border border-surface-border glow-cyan">
-      <div class="flex items-center justify-center gap-2 mb-3">
-        <span class="w-3 h-3 rounded-full bg-emerald-400 animate-ping"></span>
-        <span class="text-xs font-mono text-emerald-400 uppercase tracking-wider font-semibold">Real-Time Operational Pulse</span>
+  <!-- Section: Engineering Doctrine -->
+  <section id="doctrine" class="relative z-10 py-20 px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="max-w-3xl mb-12">
+        <span class="text-xs font-mono text-sky-400 font-semibold tracking-wider uppercase mb-1 block">GOVERNANCE & STANDARDS</span>
+        <h2 class="text-3xl md:text-4xl font-extrabold text-white">The Ponytail & Sovereign Doctrine</h2>
+        <p class="text-slate-400 text-sm mt-1">
+          Rigid operational safety paired with ruthless engineering minimalism.
+        </p>
       </div>
-      <h2 class="text-2xl sm:text-3xl font-bold text-white tracking-tight">System Status: NOMINAL</h2>
-      <p class="text-slate-400 text-sm max-w-xl mx-auto mt-2">
-        All 6 adapter sub-planes active on loopback. Automated Windows startup tasks running under limited privileges. Zero degraded conditions detected.
-      </p>
 
-      <div class="mt-8 flex flex-wrap justify-center gap-6 text-xs font-mono text-slate-300">
-        <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> SCC (FastAPI :8765)</div>
-        <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Attendance Kiosk (:8080)</div>
-        <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Portfolio (:4173)</div>
-        <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> Wedding Gateway (:61647)</div>
-        <div class="flex items-center gap-1.5"><span class="w-2 h-2 rounded-full bg-emerald-400"></span> HCE Guard (100/100)</div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        
+        <!-- Ponytail -->
+        <div class="specular-glass rounded-2xl p-6 border-l-4 border-l-sky-500">
+          <div class="text-xs font-mono text-sky-400 mb-2">ENGINEERING PARSIMONY</div>
+          <h3 class="text-xl font-bold text-white">Ponytail Standard</h3>
+          <p class="text-xs text-slate-300 mt-2 leading-relaxed font-light">
+            Think like a lazy senior developer. The best code is the code never written. Solve the whole problem with the least new code. Standard libraries and native platform features first. Deletion beats addition.
+          </p>
+          <div class="mt-4 pt-4 border-t border-white/10 text-xs font-mono text-slate-400">
+            Deadlock Brake: <strong>Max 2 revision loops between QA and Eng</strong>
+          </div>
+        </div>
+
+        <!-- Three Tier Authority -->
+        <div class="specular-glass rounded-2xl p-6 border-l-4 border-l-purple-500">
+          <div class="text-xs font-mono text-purple-400 mb-2">SOVEREIGNTY MATRIX</div>
+          <h3 class="text-xl font-bold text-white">Three-Tier Authority</h3>
+          <ul class="text-xs text-slate-300 mt-2 space-y-2 font-light">
+            <li><strong class="text-white font-mono">Tier 1 (Autonomous):</strong> Read files, inspect telemetry, run tests & HCE scans.</li>
+            <li><strong class="text-white font-mono">Tier 2 (Presidential):</strong> Local branch commits, config edits, daemon restarts.</li>
+            <li><strong class="text-white font-mono">Tier 3 (Founder Sovereign):</strong> Remote Git push, secrets modification, DB deletion. (Founder Soya ONLY).</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Section: Live Host Telemetry Deck -->
+  <section id="telemetry" class="relative z-10 py-20 px-6 border-t border-white/10">
+    <div class="max-w-7xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-4">
+        <div>
+          <span class="text-xs font-mono text-emerald-400 font-semibold tracking-wider uppercase mb-1 block">LIVE HOST ENGINE</span>
+          <h2 class="text-3xl md:text-4xl font-extrabold text-white">System Pulse & Telemetry</h2>
+          <p class="text-slate-400 text-sm mt-1">
+            Real-time verified hardware allocation across the personal infrastructure mesh.
+          </p>
+        </div>
+        <div class="flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-950/80 border border-emerald-700/60 text-xs font-mono text-emerald-300">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
+          <span>HOST STATUS: HEALTHY</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <div class="specular-glass rounded-xl p-5">
+          <div class="text-xs font-mono text-slate-400">PROCESSOR</div>
+          <div class="text-lg font-bold text-white mt-1">Ryzen 5 5500</div>
+          <div class="text-xs text-sky-400 mt-1">6 Cores / 12 Threads</div>
+        </div>
+
+        <div class="specular-glass rounded-xl p-5">
+          <div class="text-xs font-mono text-slate-400">SYSTEM MEMORY</div>
+          <div class="text-lg font-bold text-white mt-1">20.0 GB / 32 GB</div>
+          <div class="text-xs text-emerald-400 mt-1">11.9 GB Cushion Buffer</div>
+        </div>
+
+        <div class="specular-glass rounded-xl p-5">
+          <div class="text-xs font-mono text-slate-400">GRAPHICS COMPUTE</div>
+          <div class="text-lg font-bold text-white mt-1">RTX 3050 (8 GB)</div>
+          <div class="text-xs text-purple-300 mt-1">39°C Nominal Thermal</div>
+        </div>
+
+        <div class="specular-glass rounded-xl p-5">
+          <div class="text-xs font-mono text-slate-400">STORAGE SUBSTRATE</div>
+          <div class="text-lg font-bold text-white mt-1">32.7 GB Free (C:)</div>
+          <div class="text-xs text-slate-400 mt-1">D: 214.8 GB | E: 89.4 GB</div>
+        </div>
+
       </div>
     </div>
   </section>
 
   <!-- Footer -->
-  <footer class="relative z-10 py-12 px-6 border-t border-surface-border text-center text-xs text-slate-500 font-mono">
-    <div class="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-2">
-        <div class="w-5 h-5 rounded bg-cyan-500/20 text-cyan-400 font-bold flex items-center justify-center text-[10px]">b</div>
-        <span class="text-slate-400 font-sans font-semibold">bimbap.co</span>
-        <span>— Autonomous Multi-Agent Software Studio</span>
+  <footer class="relative z-10 py-12 px-6 border-t border-white/10 bg-[#04060a]">
+    <div class="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-400">
+      <div class="flex items-center gap-3">
+        <div class="w-6 h-6 rounded bg-gradient-to-br from-indigo-500 to-sky-600 flex items-center justify-center font-bold text-white text-xs">
+          b
+        </div>
+        <span>bimbap.co © 2026. All rights reserved.</span>
       </div>
-      <div>
-        <span>Sovereign Leadership: <strong>Soya</strong></span> · 
-        <span>Executive Command: <strong>President Komi</strong></span>
-      </div>
-      <div>
-        <span>© 2026 bimbap.co · All rights reserved.</span>
+
+      <div class="flex items-center gap-6">
+        <span>Founder & Chairman: <strong class="text-slate-200">Soya</strong></span>
+        <span>•</span>
+        <span>President: <strong class="text-slate-200">Komi</strong></span>
+        <span>•</span>
+        <a href="https://github.com/bimbap-co" target="_blank" rel="noopener noreferrer" class="hover:text-white transition-colors text-sky-400 font-mono">
+          @bimbap-co
+        </a>
       </div>
     </div>
   </footer>
 
+  <!-- 3D Perspective Card Tilt Script -->
+  <script>
+    function handleTilt(e, card) {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(12px)`;
+    }
+
+    function resetTilt(card) {
+      card.style.transform = 'perspective(1000px) rotateX(0deg) rotateY(0deg) translateZ(0px)';
+    }
+  </script>
 </body>
 </html>

@@ -29,3 +29,4 @@ To preview locally:
 python -m http.server 3000 --directory "E:\Soya\Github\bimbap-co.github.io"
 ```
 Open `http://localhost:3000` in your browser.
+
