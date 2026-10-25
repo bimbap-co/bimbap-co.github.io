@@ -433,7 +433,7 @@
       </div>
 
       <!-- Presiding Executive Leader: President Komi -->
-      <div class="card-3d specular-glass rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 bg-gradient-to-br from-indigo-950/60 via-[#0e1326] to-purple-950/50 border-indigo-400/40 relative shadow-2xl" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+      <div class="card-3d specular-glass rounded-2xl p-4 sm:p-5 mb-6 sm:mb-8 bg-gradient-to-br from-indigo-950/60 via-[#0e1326] to-purple-950/50 border-indigo-400/40 hover:border-indigo-400/80 transition-all cursor-pointer group relative shadow-2xl" onclick="openCouncilModal('komi')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
         <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4">
           <div class="flex flex-col sm:flex-row items-start sm:items-center gap-3.5">
             <div class="w-11 h-11 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-indigo-500 to-sky-500 flex items-center justify-center font-bold text-white text-xl shadow-lg shadow-indigo-500/30 shrink-0">
@@ -444,7 +444,10 @@
                 <span class="text-[10px] sm:text-[11px] font-mono px-2 py-0.5 rounded-full bg-indigo-950 border border-indigo-700 text-indigo-300 font-bold">COMPANY PRESIDENT</span>
                 <span class="text-[10px] sm:text-[11px] font-mono text-sky-400 font-bold">LEAD HIGH COUNCIL</span>
               </div>
-              <h3 class="text-lg sm:text-xl font-black text-white mt-1">President Komi</h3>
+              <h3 class="text-lg sm:text-xl font-black text-white mt-1 group-hover:text-indigo-300 transition-colors flex items-center gap-2">
+                <span>President Komi</span>
+                <span class="text-xs font-mono font-normal text-indigo-400 group-hover:underline">More Info &rarr;</span>
+              </h3>
               <p class="text-xs text-slate-300 mt-1 max-w-2xl font-light leading-relaxed">
                 Takes direction from Founder Soya, coordinates the 4 High Council leads, and guides specialist teams for fast, verified results.
               </p>
@@ -468,187 +471,194 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           <!-- Bolt (Sky Theme) -->
-          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-sky-500/40 bg-sky-950/20" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-sky-500/40 bg-sky-950/20 hover:border-sky-400/80 hover:bg-sky-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('bolt')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
                 <span class="w-7 h-7 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center font-mono font-bold text-sky-300 text-xs">B</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-sky-950 border border-sky-800 text-sky-300 font-bold">HIGH COUNCIL</span>
               </div>
-              <h4 class="font-bold text-white text-base">Bolt</h4>
+              <h4 class="font-bold text-white text-base group-hover:text-sky-300 transition-colors">Bolt</h4>
               <div class="text-xs text-sky-400 font-mono mt-0.5">Operations &amp; Platform</div>
-              <p class="text-xs text-slate-300 mt-1.5 font-light leading-snug">Monitors computer speed, memory, and running apps so everything works without lag.</p>
+              <ul class="mt-2 space-y-1 text-xs text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-sky-400 font-bold">•</span><span>Computer speed &amp; RAM/CPU health</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-sky-400 font-bold">•</span><span>Background services &amp; daemons</span></li>
+              </ul>
             </div>
-            <div class="mt-3 pt-2 border-t border-white/10 text-[10px] font-mono text-sky-300">
-              Directs: Pim (HR) &amp; Rin (Life)
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-sky-300">
+              <span>Directs: Pim &amp; Rin</span>
+              <span class="text-sky-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
           <!-- Asta (Purple Theme) -->
-          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-purple-500/40 bg-purple-950/20" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-purple-500/40 bg-purple-950/20 hover:border-purple-400/80 hover:bg-purple-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('asta')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
                 <span class="w-7 h-7 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center font-mono font-bold text-purple-300 text-xs">A</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-purple-950 border border-purple-800 text-purple-300 font-bold">HIGH COUNCIL</span>
               </div>
-              <h4 class="font-bold text-white text-base">Asta</h4>
+              <h4 class="font-bold text-white text-base group-hover:text-purple-300 transition-colors">Asta</h4>
               <div class="text-xs text-purple-400 font-mono mt-0.5">Software Engineering</div>
-              <p class="text-xs text-slate-300 mt-1.5 font-light leading-snug">Builds reliable, clean code for our apps, web interfaces, and smart offline camera tools.</p>
+              <ul class="mt-2 space-y-1 text-xs text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-purple-400 font-bold">•</span><span>Clean code &amp; feature architecture</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-purple-400 font-bold">•</span><span>Web apps &amp; smart offline tools</span></li>
+              </ul>
             </div>
-            <div class="mt-3 pt-2 border-t border-white/10 text-[10px] font-mono text-purple-300">
-              Directs: Ira (Quality)
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-purple-300">
+              <span>Directs: Ira (Quality)</span>
+              <span class="text-purple-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
           <!-- Naufal (Emerald Theme) -->
-          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-emerald-500/40 bg-emerald-950/20" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-emerald-500/40 bg-emerald-950/20 hover:border-emerald-400/80 hover:bg-emerald-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('naufal')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
                 <span class="w-7 h-7 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center font-mono font-bold text-emerald-300 text-xs">N</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-300 font-bold">HIGH COUNCIL</span>
               </div>
-              <h4 class="font-bold text-white text-base">Naufal</h4>
+              <h4 class="font-bold text-white text-base group-hover:text-emerald-300 transition-colors">Naufal</h4>
               <div class="text-xs text-emerald-400 font-mono mt-0.5">Security &amp; Privacy</div>
-              <p class="text-xs text-slate-300 mt-1.5 font-light leading-snug">Protects passwords, private files, and databases so nothing is ever leaked or exposed.</p>
+              <ul class="mt-2 space-y-1 text-xs text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-emerald-400 font-bold">•</span><span>Secret isolation &amp; zero leaks</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-emerald-400 font-bold">•</span><span>Air-gapped database protection</span></li>
+              </ul>
             </div>
-            <div class="mt-3 pt-2 border-t border-white/10 text-[10px] font-mono text-emerald-300">
-              Directs: Gwenny (Resilience)
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-emerald-300">
+              <span>Directs: Gwenny</span>
+              <span class="text-emerald-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
           <!-- Violet (Indigo Theme) -->
-          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-indigo-500/40 bg-indigo-950/20" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <div class="card-3d specular-glass rounded-xl p-3.5 sm:p-4 flex flex-col justify-between border-indigo-500/40 bg-indigo-950/20 hover:border-indigo-400/80 hover:bg-indigo-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('violet')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
                 <span class="w-7 h-7 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center font-mono font-bold text-indigo-300 text-xs">V</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-indigo-950 border border-indigo-800 text-indigo-300 font-bold">HIGH COUNCIL</span>
               </div>
-              <h4 class="font-bold text-white text-base">Violet</h4>
+              <h4 class="font-bold text-white text-base group-hover:text-indigo-300 transition-colors">Violet</h4>
               <div class="text-xs text-indigo-400 font-mono mt-0.5">Design &amp; Architecture</div>
-              <p class="text-xs text-slate-300 mt-1.5 font-light leading-snug">Designs friendly user screens, comfortable colors, and clean layouts before code is written.</p>
+              <ul class="mt-2 space-y-1 text-xs text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-indigo-400 font-bold">•</span><span>Clean user screens &amp; palettes</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-indigo-400 font-bold">•</span><span>Interface layout &amp; design systems</span></li>
+              </ul>
             </div>
-            <div class="mt-3 pt-2 border-t border-white/10 text-[10px] font-mono text-indigo-300">
-              Directs: Yed (Media)
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-indigo-300">
+              <span>Directs: Yed (Media)</span>
+              <span class="text-indigo-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
         </div>
       </div>
 
-      <!-- TIER 2: SPECIALIST TEAMS (EXACT 4-COLUMN ALIGNMENT WITH HIGH COUNCIL) -->
+      <!-- TIER 2: SPECIALIST TEAMS (5 DEDICATED LEADS REPORTING TO HIGH COUNCIL) -->
       <div>
         <div class="flex items-center gap-2.5 mb-3 sm:mb-4">
           <span class="w-2 h-2 rounded-full bg-indigo-400"></span>
           <h3 class="text-xs sm:text-sm font-mono uppercase font-bold text-slate-300 tracking-wider">Specialist Teams (Reporting to High Council Leads)</h3>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-3.5 sm:gap-4">
           
-          <!-- Column 1: Operations Specialists (Pim & Rin) - Sky Theme -->
-          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-sky-500/30 bg-sky-950/15" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <!-- Pim (Sky Theme - Reports to Bolt) -->
+          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-sky-500/30 bg-sky-950/20 hover:border-sky-400/80 hover:bg-sky-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('pim')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
+                <span class="w-6 h-6 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center font-mono font-bold text-sky-300 text-xs">P</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-sky-950 border border-sky-800 text-sky-300 font-bold">REPORTS TO BOLT</span>
-                <span class="text-[10px] font-mono text-sky-400">2 Leads</span>
               </div>
-              <div class="space-y-1.5">
-                <!-- Pim -->
-                <div class="p-2 rounded-lg bg-sky-950/40 border border-sky-500/25">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                      <span class="w-5 h-5 rounded bg-sky-500/25 border border-sky-400/40 flex items-center justify-center font-mono font-bold text-sky-300 text-[10px]">P</span>
-                      <h4 class="font-bold text-white text-xs">Pim</h4>
-                    </div>
-                    <span class="text-[9px] text-sky-400 font-mono">HR</span>
-                  </div>
-                  <p class="text-[10px] text-slate-300 mt-1 font-light leading-snug">Monitors team health, task quality, and workload balance.</p>
-                </div>
-                <!-- Rin -->
-                <div class="p-2 rounded-lg bg-sky-950/40 border border-sky-500/25">
-                  <div class="flex items-center justify-between">
-                    <div class="flex items-center gap-2">
-                      <span class="w-5 h-5 rounded bg-sky-500/25 border border-sky-400/40 flex items-center justify-center font-mono font-bold text-sky-300 text-[10px]">R</span>
-                      <h4 class="font-bold text-white text-xs">Rin</h4>
-                    </div>
-                    <span class="text-[9px] text-sky-400 font-mono">Life Events</span>
-                  </div>
-                  <p class="text-[10px] text-slate-300 mt-1 font-light leading-snug">Organizes 2027 wedding plans, guest lists, and milestone dates.</p>
-                </div>
-              </div>
+              <h4 class="font-bold text-white text-sm group-hover:text-sky-300 transition-colors">Pim</h4>
+              <div class="text-[11px] text-sky-400 font-mono mt-0.5">HR &amp; Team Care</div>
+              <ul class="mt-2 space-y-1 text-[11px] text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-sky-400 font-bold">•</span><span>Monitors bot health &amp; quality</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-sky-400 font-bold">•</span><span>Workload balance &amp; metrics</span></li>
+              </ul>
             </div>
-            <div class="mt-2.5 pt-2 border-t border-white/10 text-[10px] font-mono text-sky-300">
-              Pillar: Operations
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-sky-300">
+              <span>Pillar: Operations</span>
+              <span class="text-sky-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
-          <!-- Column 2: Engineering Specialist (Ira) - Purple Theme -->
-          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-purple-500/30 bg-purple-950/15" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <!-- Rin (Sky Theme - Reports to Bolt) -->
+          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-sky-500/30 bg-sky-950/20 hover:border-sky-400/80 hover:bg-sky-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('rin')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
+                <span class="w-6 h-6 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center font-mono font-bold text-sky-300 text-xs">R</span>
+                <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-sky-950 border border-sky-800 text-sky-300 font-bold">REPORTS TO BOLT</span>
+              </div>
+              <h4 class="font-bold text-white text-sm group-hover:text-sky-300 transition-colors">Rin</h4>
+              <div class="text-[11px] text-sky-400 font-mono mt-0.5">Life Events &amp; Milestones</div>
+              <ul class="mt-2 space-y-1 text-[11px] text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-sky-400 font-bold">•</span><span>2027 wedding plans &amp; RSVPs</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-sky-400 font-bold">•</span><span>Milestone &amp; family reminders</span></li>
+              </ul>
+            </div>
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-sky-300">
+              <span>Pillar: Operations</span>
+              <span class="text-sky-400 group-hover:underline">More Info &rarr;</span>
+            </div>
+          </div>
+
+          <!-- Ira (Purple Theme - Reports to Asta) -->
+          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-purple-500/30 bg-purple-950/20 hover:border-purple-400/80 hover:bg-purple-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('ira')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="w-6 h-6 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center font-mono font-bold text-purple-300 text-xs">I</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-purple-950 border border-purple-800 text-purple-300 font-bold">REPORTS TO ASTA</span>
-                <span class="text-[10px] font-mono text-purple-400">1 Lead</span>
               </div>
-              <div class="p-2.5 rounded-lg bg-purple-950/40 border border-purple-500/25">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-lg bg-purple-500/20 border border-purple-400/40 flex items-center justify-center font-mono font-bold text-purple-300 text-xs">I</span>
-                    <h4 class="font-bold text-white text-sm">Ira</h4>
-                  </div>
-                  <span class="text-[10px] text-purple-400 font-mono">Quality</span>
-                </div>
-                <div class="text-[11px] text-purple-300 font-mono mt-1">Code Quality &amp; Standards</div>
-                <p class="text-[11px] text-slate-300 mt-1.5 font-light leading-snug">Makes sure everything we build is tidy, easy to understand, thoroughly tested, and free of bloat.</p>
-              </div>
+              <h4 class="font-bold text-white text-sm group-hover:text-purple-300 transition-colors">Ira</h4>
+              <div class="text-[11px] text-purple-400 font-mono mt-0.5">Quality &amp; Standards</div>
+              <ul class="mt-2 space-y-1 text-[11px] text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-purple-400 font-bold">•</span><span>Clean code &amp; clutter removal</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-purple-400 font-bold">•</span><span>Automated test verification</span></li>
+              </ul>
             </div>
-            <div class="mt-2.5 pt-2 border-t border-white/10 text-[10px] font-mono text-purple-300">
-              Pillar: Engineering
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-purple-300">
+              <span>Pillar: Engineering</span>
+              <span class="text-purple-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
-          <!-- Column 3: Security Specialist (Gwenny) - Emerald Theme -->
-          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-emerald-500/30 bg-emerald-950/15" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <!-- Gwenny (Emerald Theme - Reports to Naufal) -->
+          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-emerald-500/30 bg-emerald-950/20 hover:border-emerald-400/80 hover:bg-emerald-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('gwenny')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
+                <span class="w-6 h-6 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center font-mono font-bold text-emerald-300 text-xs">G</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-emerald-950 border border-emerald-800 text-emerald-300 font-bold">REPORTS TO NAUFAL</span>
-                <span class="text-[10px] font-mono text-emerald-400">1 Lead</span>
               </div>
-              <div class="p-2.5 rounded-lg bg-emerald-950/40 border border-emerald-500/25">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-lg bg-emerald-500/20 border border-emerald-400/40 flex items-center justify-center font-mono font-bold text-emerald-300 text-xs">G</span>
-                    <h4 class="font-bold text-white text-sm">Gwenny</h4>
-                  </div>
-                  <span class="text-[10px] text-emerald-400 font-mono">Resilience</span>
-                </div>
-                <div class="text-[11px] text-emerald-300 font-mono mt-1">Resilience &amp; Red Team</div>
-                <p class="text-[11px] text-slate-300 mt-1.5 font-light leading-snug">Explores cutting-edge tech and real-time improvements. Proactively tests our systems for hidden weaknesses.</p>
-              </div>
+              <h4 class="font-bold text-white text-sm group-hover:text-emerald-300 transition-colors">Gwenny</h4>
+              <div class="text-[11px] text-emerald-400 font-mono mt-0.5">Resilience &amp; Red Team</div>
+              <ul class="mt-2 space-y-1 text-[11px] text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-emerald-400 font-bold">•</span><span>Cutting-edge tech exploration</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-emerald-400 font-bold">•</span><span>Red Team vulnerability checks</span></li>
+              </ul>
             </div>
-            <div class="mt-2.5 pt-2 border-t border-white/10 text-[10px] font-mono text-emerald-300">
-              Pillar: Security
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-emerald-300">
+              <span>Pillar: Security</span>
+              <span class="text-emerald-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
-          <!-- Column 4: Design Specialist (Yed) - Indigo Theme -->
-          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-indigo-500/30 bg-indigo-950/15" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
+          <!-- Yed (Indigo Theme - Reports to Violet) -->
+          <div class="card-3d specular-glass rounded-xl p-3 sm:p-3.5 flex flex-col justify-between border-indigo-500/30 bg-indigo-950/20 hover:border-indigo-400/80 hover:bg-indigo-950/30 transition-all cursor-pointer group" onclick="openCouncilModal('yed')" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
             <div>
               <div class="flex items-center justify-between mb-2">
+                <span class="w-6 h-6 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center font-mono font-bold text-indigo-300 text-xs">Y</span>
                 <span class="text-[9px] font-mono px-2 py-0.5 rounded bg-indigo-950 border border-indigo-800 text-indigo-300 font-bold">REPORTS TO VIOLET</span>
-                <span class="text-[10px] font-mono text-indigo-400">1 Lead</span>
               </div>
-              <div class="p-2.5 rounded-lg bg-indigo-950/40 border border-indigo-500/25">
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-2">
-                    <span class="w-6 h-6 rounded-lg bg-indigo-500/20 border border-indigo-400/40 flex items-center justify-center font-mono font-bold text-indigo-300 text-xs">Y</span>
-                    <h4 class="font-bold text-white text-sm">Yed</h4>
-                  </div>
-                  <span class="text-[10px] text-indigo-400 font-mono">Media</span>
-                </div>
-                <div class="text-[11px] text-indigo-300 font-mono mt-1">Media &amp; Showcases</div>
-                <p class="text-[11px] text-slate-300 mt-1.5 font-light leading-snug">Creates engaging portfolio websites, videos, and presentations to share our projects with everyone.</p>
-              </div>
+              <h4 class="font-bold text-white text-sm group-hover:text-indigo-300 transition-colors">Yed</h4>
+              <div class="text-[11px] text-indigo-400 font-mono mt-0.5">Media &amp; Showcases</div>
+              <ul class="mt-2 space-y-1 text-[11px] text-slate-300 font-light leading-snug">
+                <li class="flex items-start gap-1.5"><span class="text-indigo-400 font-bold">•</span><span>Interactive showcase &amp; CV sites</span></li>
+                <li class="flex items-start gap-1.5"><span class="text-indigo-400 font-bold">•</span><span>Videos, graphics &amp; decks</span></li>
+              </ul>
             </div>
-            <div class="mt-2.5 pt-2 border-t border-white/10 text-[10px] font-mono text-indigo-300">
-              Pillar: Design
+            <div class="mt-3 pt-2 border-t border-white/10 flex items-center justify-between text-[10px] font-mono text-indigo-300">
+              <span>Pillar: Design</span>
+              <span class="text-indigo-400 group-hover:underline">More Info &rarr;</span>
             </div>
           </div>
 
@@ -703,7 +713,10 @@
         <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-mono text-purple-400">SMART CHECK-IN</span>
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 border border-purple-800 text-purple-300">PORT 8080</span>
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-purple-950/80 border border-purple-600 text-purple-200 font-bold animate-pulse">ONLINE SOON</span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-purple-950 border border-purple-800 text-purple-300">PORT 8080</span>
+            </div>
           </div>
           <h3 class="text-lg sm:text-xl font-bold text-white">Face Attendance Kiosk</h3>
           <p class="text-xs text-slate-300 mt-1.5 font-light">
@@ -716,8 +729,11 @@
             <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">100% Offline &amp; Safe</span>
           </div>
 
-          <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
-            <span class="text-purple-300 font-mono font-semibold">ALL TESTS PASSED</span>
+          <div class="pt-4 border-t border-white/10 flex flex-wrap gap-2 justify-between items-center text-xs">
+            <a href="https://github.com/SayedArifHakimi/face-recognition-attendance-system" target="_blank" rel="noopener noreferrer" class="text-purple-300 hover:text-white font-mono flex items-center gap-1.5 text-[11px] bg-purple-950/60 hover:bg-purple-900/80 px-2.5 py-1.5 rounded-lg border border-purple-700/60 transition-colors">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub Repo &nearr;</span>
+            </a>
             <button onclick="openFleetModal('face')" class="text-purple-400 hover:text-purple-300 font-mono transition-colors">
               Read More →
             </button>
@@ -753,7 +769,10 @@
         <div class="card-3d specular-glass rounded-2xl p-5 sm:p-6" onmousemove="handleTilt(event, this)" onmouseleave="resetTilt(this)">
           <div class="flex items-center justify-between mb-3">
             <span class="text-xs font-mono text-amber-400">PORTFOLIO &amp; CV</span>
-            <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300">PORT 4173</span>
+            <div class="flex items-center gap-1.5">
+              <span class="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-950/80 border border-amber-600 text-amber-200 font-bold animate-pulse">ONLINE SOON</span>
+              <span class="text-xs font-mono px-2 py-0.5 rounded bg-amber-950 border border-amber-800 text-amber-300">PORT 4173</span>
+            </div>
           </div>
           <h3 class="text-lg sm:text-xl font-bold text-white">Sayed Portfolio Showcase</h3>
           <p class="text-xs text-slate-300 mt-1.5 font-light">
@@ -766,8 +785,11 @@
             <span class="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">Honors &amp; Resume</span>
           </div>
 
-          <div class="pt-4 border-t border-white/10 flex justify-between items-center text-xs">
-            <span class="text-amber-300 font-mono font-semibold">LIVE PREVIEW</span>
+          <div class="pt-4 border-t border-white/10 flex flex-wrap gap-2 justify-between items-center text-xs">
+            <a href="https://github.com/SayedArifHakimi/sayed-portfolio" target="_blank" rel="noopener noreferrer" class="text-amber-300 hover:text-white font-mono flex items-center gap-1.5 text-[11px] bg-amber-950/60 hover:bg-amber-900/80 px-2.5 py-1.5 rounded-lg border border-amber-700/60 transition-colors">
+              <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+              <span>GitHub Repo &nearr;</span>
+            </a>
             <button onclick="openFleetModal('portfolio')" class="text-amber-400 hover:text-amber-300 font-mono transition-colors">
               Read More →
             </button>
@@ -994,6 +1016,66 @@
     </div>
   </section>
 
+  <!-- Interactive Council Detail Modal -->
+  <div id="councilModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300" onclick="handleCouncilModalBackdropClick(event)">
+    <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto specular-glass rounded-2xl p-5 sm:p-6 md:p-8 border border-white/20 bg-[#0b0f1d] shadow-2xl transition-all duration-300 transform scale-95" id="councilModalCard">
+      <!-- Close Button -->
+      <button onclick="closeCouncilModal()" class="absolute top-4 right-4 sm:top-5 sm:right-5 w-8 h-8 rounded-lg bg-white/5 border border-white/10 text-slate-400 hover:text-white hover:bg-white/10 flex items-center justify-center transition-colors">
+        ✕
+      </button>
+
+      <!-- Modal Content Header -->
+      <div class="flex items-start sm:items-center gap-3.5 sm:gap-4 mb-4">
+        <div id="councilModalAvatar" class="w-12 h-12 rounded-xl flex items-center justify-center font-mono font-black text-xl shadow-lg shrink-0">
+          K
+        </div>
+        <div>
+          <div class="flex flex-wrap items-center gap-2 mb-1">
+            <span id="councilModalPillar" class="text-[10px] font-mono px-2 py-0.5 rounded-full font-bold">EXECUTIVE</span>
+            <span id="councilModalRoleBadge" class="text-[10px] font-mono px-2 py-0.5 rounded font-bold">HIGH COUNCIL</span>
+            <span id="councilModalReporting" class="text-[10px] font-mono text-slate-400">Reports to Soya</span>
+          </div>
+          <h2 class="text-xl sm:text-2xl font-black text-white" id="councilModalName">Name</h2>
+          <div class="text-xs font-mono" id="councilModalRole">Role Title</div>
+        </div>
+      </div>
+
+      <!-- Mandate Block -->
+      <div class="p-3.5 rounded-xl bg-white/[0.03] border border-white/10 mb-4">
+        <div class="text-[10px] font-mono uppercase text-slate-400 font-bold mb-1">OPERATIONAL MANDATE</div>
+        <p class="text-xs sm:text-sm text-slate-200 leading-relaxed font-light" id="councilModalMandate">
+          Mandate text.
+        </p>
+      </div>
+
+      <!-- Core Responsibilities -->
+      <div class="mb-4">
+        <div class="text-[10px] font-mono uppercase text-slate-400 font-bold mb-2">KEY RESPONSIBILITIES &amp; SCOPE</div>
+        <div class="space-y-2" id="councilModalResponsibilities">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Tools & Systems -->
+      <div class="mb-5 pt-3 border-t border-white/10">
+        <div class="text-[10px] font-mono uppercase text-slate-400 font-bold mb-2">DOMAIN TOOLS &amp; STACK</div>
+        <div class="flex flex-wrap gap-1.5" id="councilModalTools">
+          <!-- Injected via JS -->
+        </div>
+      </div>
+
+      <!-- Action Footer -->
+      <div class="pt-4 border-t border-white/10 flex flex-wrap gap-3 items-center justify-between text-xs font-mono">
+        <span class="text-slate-400" id="councilModalRelation">
+          Reporting line
+        </span>
+        <button onclick="closeCouncilModal()" class="px-4 sm:px-5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white font-semibold transition-colors">
+          Close Window
+        </button>
+      </div>
+    </div>
+  </div>
+
   <!-- Interactive Fleet Detail Modal -->
   <div id="fleetModal" class="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-4 md:p-6 bg-black/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300" onclick="handleModalBackdropClick(event)">
     <div class="relative w-full max-w-2xl max-h-[90vh] overflow-y-auto specular-glass rounded-2xl p-5 sm:p-6 md:p-8 border border-white/20 bg-[#0b0f1d] shadow-2xl transition-all duration-300 transform scale-95" id="modalCard">
@@ -1024,14 +1106,20 @@
       </div>
 
       <!-- Action Footer -->
-      <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+      <div class="mt-6 pt-4 border-t border-white/10 flex flex-wrap gap-3 items-center justify-between">
         <span class="text-xs font-mono text-emerald-400 flex items-center gap-1.5" id="modalLiveStatus">
           <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
           RUNNING SMOOTHLY
         </span>
-        <button onclick="closeFleetModal()" class="px-4 sm:px-5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold font-mono transition-colors">
-          Close Window
-        </button>
+        <div class="flex items-center gap-2">
+          <a id="modalGithubLink" href="#" target="_blank" rel="noopener noreferrer" class="hidden px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold font-mono transition-colors items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"/></svg>
+            <span>GitHub Repo &nearr;</span>
+          </a>
+          <button onclick="closeFleetModal()" class="px-4 sm:px-5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-white text-xs font-semibold font-mono transition-colors">
+            Close Window
+          </button>
+        </div>
       </div>
     </div>
   </div>
@@ -1115,6 +1203,7 @@
         port: "PORT 8765",
         title: "Soya Control Center",
         subtitle: "A live dashboard that keeps our computer running fast, healthy, and responsive.",
+        githubUrl: "https://github.com/SayedArifHakimi/soya-control-center",
         specs: [
           { label: "CORE TECH", val: "Node.js / Fastify" },
           { label: "HEALTH CHECK", val: "All 6 Modules Active" },
@@ -1131,16 +1220,17 @@
         port: "PORT 8080",
         title: "Face Attendance Kiosk",
         subtitle: "A fast, private camera check-in system that keeps all facial data strictly on your device.",
+        githubUrl: "https://github.com/SayedArifHakimi/face-recognition-attendance-system",
         specs: [
           { label: "CORE TECH", val: "Python & ONNX AI" },
           { label: "FACE DETECTION", val: "Instant YuNet" },
           { label: "MATCHING SPEED", val: "Sub-Second" },
           { label: "PRIVACY", val: "100% Offline (No Cloud)" },
-          { label: "TEST VERIFICATION", val: "13 of 13 Passed" },
+          { label: "ONLINE DEPLOY", val: "Coming Soon" },
           { label: "LEAD HELPER", val: "Asta (Engineering)" }
         ],
-        details: "Designed with complete user privacy in mind. The system detects faces in real time and matches them with stored templates inside a secured local file. No photos or personal data are ever uploaded to the internet or shared with third parties.",
-        status: "All 13 Tests Verified & Ready"
+        details: "Designed with complete user privacy in mind. The system detects faces in real time and matches them with stored templates inside a secured local file. No photos or personal data are ever uploaded to the internet or shared with third parties. Online demo version deployable soon.",
+        status: "All 13 Tests Verified • Online Soon"
       },
       wedding: {
         category: "FAMILY & FRIENDS",
@@ -1163,16 +1253,191 @@
         port: "PORT 4173",
         title: "Sayed Portfolio Showcase",
         subtitle: "A clean, fast personal website showcasing academic awards, engineering projects, and resume.",
+        githubUrl: "https://github.com/SayedArifHakimi/sayed-portfolio",
         specs: [
           { label: "PAGE SPEED", val: "Instant (< 40ms)" },
           { label: "DESIGN", val: "Clean & Minimal" },
           { label: "PAGES", val: "8 Verified Sections" },
           { label: "HONORS", val: "UiTM Dean's List & ANC" },
-          { label: "DEGREE", val: "Intelligent Systems" },
+          { label: "DEPLOYMENT", val: "Online Web Soon" },
           { label: "LEAD HELPER", val: "Yed (Media)" }
         ],
-        details: "Highlights the academic and professional achievements of Founder Sayed Arif Hakimi. Graduated with top honors (Diploma ANC CGPA 3.87, Degree CGPA 3.65) in Intelligent Systems Engineering. Includes downloadable CV and interactive project highlights.",
-        status: "Live & Mobile Optimized"
+        details: "Highlights the academic and professional achievements of Founder Sayed Arif Hakimi. Graduated with top honors (Diploma ANC CGPA 3.87, Degree CGPA 3.65) in Intelligent Systems Engineering. Repository is ready for live public deployment.",
+        status: "Verified • Ready to Use Online"
+      }
+    };
+
+    // Council Technical Registry (Structured, Detailed, No-Yapping Domain Specs)
+    const councilData = {
+      komi: {
+        avatar: "K",
+        theme: "indigo",
+        name: "President Komi",
+        role: "Lead AI Coordinator & Company President",
+        tier: "LEAD HIGH COUNCIL",
+        pillar: "EXECUTIVE COMMAND",
+        reporting: "Directly to Founder Soya",
+        mandate: "Exclusive executive interface for Founder Soya. Translates founder intent into prioritized deliverables, coordinates the 4 High Council leads, and audits output quality before presentation.",
+        responsibilities: [
+          { title: "Founder Intent Translation", desc: "Single entry point for Founder Soya's commands, breaking down broad requirements into clear execution tickets." },
+          { title: "High Council Coordination", desc: "Directs and aligns work across Bolt (Ops), Asta (Engineering), Naufal (Security), and Violet (Design)." },
+          { title: "Quality Verification Gating", desc: "Audits specialist outputs to ensure verified functionality, tidy code, and zero clutter before handoff." },
+          { title: "Dependency Resolution", desc: "Monitors cross-team dependencies and unblocks specialists to maintain continuous delivery velocity." }
+        ],
+        tools: ["Hermes Agent Core", "Context Registry", "Dispatch Engine", "Memory State", "Audit Pipeline"]
+      },
+      bolt: {
+        avatar: "B",
+        theme: "sky",
+        name: "Bolt",
+        role: "Operations & Platform Lead",
+        tier: "HIGH COUNCIL",
+        pillar: "OPERATIONS",
+        reporting: "Reports to President Komi",
+        mandate: "Guarantees workstation host stability, background daemon execution, hardware cushions, and operational team performance (Pim & Rin).",
+        responsibilities: [
+          { title: "Hardware Cushion Management", desc: "Maintains safe CPU, GPU, and RAM operating margins (>25% cushion) across all active profiles." },
+          { title: "Daemon & Service Lifecycle", desc: "Oversees PM2 daemons, local web servers (ports 8765, 8080, 4173), and scheduled background tasks." },
+          { title: "Team HR & Care Oversight", desc: "Directs Pim to track bot turnaround latency, error logs, and workload distribution across all agents." },
+          { title: "Life Events Supervision", desc: "Directs Rin to manage Founder Soya's personal timeline reminders, calendar databases, and 2027 wedding logistics." }
+        ],
+        tools: ["Fastify / Node.js", "PowerShell Core", "PM2 Daemons", "Task Scheduler", "Soya Control Center"]
+      },
+      asta: {
+        avatar: "A",
+        theme: "purple",
+        name: "Asta",
+        role: "Software Engineering Lead",
+        tier: "HIGH COUNCIL",
+        pillar: "ENGINEERING",
+        reporting: "Reports to President Komi",
+        mandate: "Directs codebase architecture, application implementation, and production quality across all web applications and offline ML tools.",
+        responsibilities: [
+          { title: "Codebase Architecture", desc: "Defines scalable component patterns, lightweight state management, and strict module boundaries." },
+          { title: "Offline & Edge AI Engineering", desc: "Develops high-speed local inference systems (like Face Attendance Kiosk) with zero external cloud dependencies." },
+          { title: "Code Standards Governance", desc: "Directs Ira to enforce automated linting, regression testing, and ruthless removal of dead code." },
+          { title: "Release & Branch Hygiene", desc: "Maintains clean Git commit history, semantic versioning, and rock-solid production builds." }
+        ],
+        tools: ["Python / ONNX Runtime", "Node.js", "TypeScript", "Tailwind CSS", "Git / GitHub CLI"]
+      },
+      naufal: {
+        avatar: "N",
+        theme: "emerald",
+        name: "Naufal",
+        role: "Security & Privacy Lead",
+        tier: "HIGH COUNCIL",
+        pillar: "SECURITY",
+        reporting: "Reports to President Komi",
+        mandate: "Enforces zero-leak secret governance, strictly air-gapped biometrics, safe sandbox isolation, and defensive posture across all systems.",
+        responsibilities: [
+          { title: "Secret Isolation & Safe Storage", desc: "Locks tokens, private keys, and environment variables into local enclaves; blocks repository commits." },
+          { title: "Biometric Data Sovereignty", desc: "Enforces 100% offline edge processing for facial embeddings with zero network transmission." },
+          { title: "Adversarial & Red Team Directives", desc: "Directs Gwenny to probe edge defenses, review CVE updates, and test systems for hidden vulnerabilities." },
+          { title: "Network & Port Auditing", desc: "Verifies local socket bindings, firewall borders, and localhost-only listeners to prevent external exposure." }
+        ],
+        tools: ["Hermes Secrets Safe", "OpenSSL / GPG", "Air-gapped DBs", "File Access Audits", "Semgrep"]
+      },
+      violet: {
+        avatar: "V",
+        theme: "indigo",
+        name: "Violet",
+        role: "Design & Architecture Lead",
+        tier: "HIGH COUNCIL",
+        pillar: "DESIGN",
+        reporting: "Reports to President Komi",
+        mandate: "Crafts cohesive brand aesthetics, high-density dashboard layouts, clean visual hierarchy, and tactile interactive polish across all web applications.",
+        responsibilities: [
+          { title: "Design Systems & Tokens", desc: "Standardizes dark color themes, specular glass shaders, responsive typography, and tactile spacing." },
+          { title: "Ergonomics & Information Density", desc: "Eliminates visual noise to present complex real-time metrics with effortless readability." },
+          { title: "Showcase & Media Supervision", desc: "Directs Yed to produce interactive CV sites, high-impact video assets, and public documentation demos." },
+          { title: "Interaction & Motion Systems", desc: "Tunes 3D cursor tilts, spring physics, modal transitions, and accessible keyboard shortcuts." }
+        ],
+        tools: ["Tailwind CSS", "Figma Design Specs", "CSS 3D Transforms", "SVG Vector Engine", "HTML5 Canvas"]
+      },
+      pim: {
+        avatar: "P",
+        theme: "sky",
+        name: "Pim",
+        role: "HR & Team Care Specialist",
+        tier: "SPECIALIST LEAD",
+        pillar: "OPERATIONS",
+        reporting: "Reports to Bolt (Operations)",
+        mandate: "Monitors bot team workload distribution, task turnaround health, agent error logs, and team coordination efficiency across all AI profiles.",
+        responsibilities: [
+          { title: "Bot Performance Metrics", desc: "Tracks execution turnaround latency, tool call accuracy, and completion rates across all assistant profiles." },
+          { title: "Workload Balancing", desc: "Detects agent overcapacity early and recommends task redistribution to Bolt before slowdowns occur." },
+          { title: "Prompt & Instruction Triage", desc: "Catches recurring model confusion points or tool failures to recommend immediate instruction tuning." },
+          { title: "Team Operational Health", desc: "Maintains continuous health records ensuring all assistants operate reliably without stalled states." }
+        ],
+        tools: ["Transcript Log Parsers", "Health Check Monitors", "Error Triage Logs", "Performance Metrics"]
+      },
+      rin: {
+        avatar: "R",
+        theme: "sky",
+        name: "Rin",
+        role: "Life Events & Milestones Specialist",
+        tier: "SPECIALIST LEAD",
+        pillar: "OPERATIONS",
+        reporting: "Reports to Bolt (Operations)",
+        mandate: "Coordinates Founder Soya's personal calendar schedules, milestone timelines, and the complete 2027 wedding coordination database.",
+        responsibilities: [
+          { title: "Wedding 2027 Coordination", desc: "Maintains guest RSVP records, meal preferences, seat mappings, and vendor timeline milestones." },
+          { title: "Telegram Chat Assistant", desc: "Operates automated Telegram bot flows for seamless, friendly guest RSVPs and schedule updates." },
+          { title: "Personal Milestone Reminders", desc: "Tracks upcoming family anniversaries, birthdays, and key life events with advance notifications." },
+          { title: "Notion Database Sync", desc: "Keeps master event boards and schedules updated and neatly organized for mobile access." }
+        ],
+        tools: ["Telegram Bot API", "Notion Databases", "JSON RSVP Stores", "ICS Calendars", "Task Reminders"]
+      },
+      ira: {
+        avatar: "I",
+        theme: "purple",
+        name: "Ira",
+        role: "Quality & Standards Specialist",
+        tier: "SPECIALIST LEAD",
+        pillar: "ENGINEERING",
+        reporting: "Reports to Asta (Engineering)",
+        mandate: "Enforces clean code standards, executes automated validation suites, eliminates dead code, and guards against complexity bloat.",
+        responsibilities: [
+          { title: "Code Quality & Static Analysis", desc: "Inspects code, markup, and styles for syntax compliance, type safety, and clean structural patterns." },
+          { title: "Automated Test Verification", desc: "Executes end-to-end and unit test suites (e.g. 13/13 face kiosk test suite) before releases." },
+          { title: "Clutter & Bloat Removal", desc: "Continuously identifies redundant assets, unused dependencies, and bloated text to keep code lean." },
+          { title: "Documentation Consistency", desc: "Ensures technical documentation, ports, and instructions exactly match active code behavior." }
+        ],
+        tools: ["HTML/CSS Validators", "Node Test Runner", "ESLint / Prettier", "Git Pre-commit Hooks"]
+      },
+      gwenny: {
+        avatar: "G",
+        theme: "emerald",
+        name: "Gwenny",
+        role: "Resilience & Red Team Specialist",
+        tier: "SPECIALIST LEAD",
+        pillar: "SECURITY",
+        reporting: "Reports to Naufal (Security)",
+        mandate: "Continuously tracks cutting-edge tech improvements, tests systems for hidden weaknesses through adversarial probing, and strengthens team resilience.",
+        responsibilities: [
+          { title: "Red Team Adversarial Probing", desc: "Simulates edge attacks, boundary escapes, and secret leak scenarios to identify vulnerabilities early." },
+          { title: "Continuous Tech Exploration", desc: "Tracks the latest AI models, runtime optimizations, and security CVEs for real-time improvements." },
+          { title: "Purple Team Hardening", desc: "Translates attack findings into actionable defensive rules and updated system guidelines for Naufal." },
+          { title: "Edge Stress Testing", desc: "Fuzzes offline models and API endpoints with edge inputs to ensure robust failure handling." }
+        ],
+        tools: ["Semgrep / SAST Scanners", "Adversarial Prompts", "Dependency Audits", "Fuzzing Scripts", "Security Advisories"]
+      },
+      yed: {
+        avatar: "Y",
+        theme: "indigo",
+        name: "Yed",
+        role: "Media & Showcases Specialist",
+        tier: "SPECIALIST LEAD",
+        pillar: "DESIGN",
+        reporting: "Reports to Violet (Design)",
+        mandate: "Builds and maintains interactive showcase sites, CV portfolios, product screenshots, and video presentations for the bimbap fleet.",
+        responsibilities: [
+          { title: "Interactive Portfolio Sites", desc: "Maintains Founder Sayed's interactive CV and showcase with sub-40ms loading and mobile parity." },
+          { title: "Showcases & Online Demos", desc: "Prepares live web demonstrations and public-facing showcases for offline tools." },
+          { title: "Visual Storytelling", desc: "Creates informative screenshots, clean system diagrams, and banners for public repositories." },
+          { title: "GitHub Showcases Polish", desc: "Ensures repository README banners, demo pages, and web previews meet top-tier visual polish." }
+        ],
+        tools: ["HTML5 / Tailwind CSS", "GitHub Pages", "Remotion / Video Media", "Figma / SVG", "Screen Capture"]
       }
     };
 
@@ -1189,6 +1454,18 @@
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
         ${data.status}
       `;
+
+      const githubLink = document.getElementById('modalGithubLink');
+      if (githubLink) {
+        if (data.githubUrl) {
+          githubLink.href = data.githubUrl;
+          githubLink.classList.remove('hidden');
+          githubLink.classList.add('inline-flex');
+        } else {
+          githubLink.classList.add('hidden');
+          githubLink.classList.remove('inline-flex');
+        }
+      }
 
       const specsContainer = document.getElementById('modalSpecs');
       specsContainer.innerHTML = data.specs.map(s => `
@@ -1209,9 +1486,12 @@
     function closeFleetModal() {
       const modal = document.getElementById('fleetModal');
       const card = document.getElementById('modalCard');
+      if (!modal) return;
       modal.classList.add('opacity-0', 'pointer-events-none');
-      card.classList.remove('scale-100');
-      card.classList.add('scale-95');
+      if (card) {
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+      }
       document.body.style.overflow = 'auto';
     }
 
@@ -1221,8 +1501,117 @@
       }
     }
 
+    function openCouncilModal(id) {
+      const data = councilData[id];
+      if (!data) return;
+
+      const themeMap = {
+        sky: {
+          bg: "bg-sky-500/20",
+          border: "border-sky-400/40",
+          text: "text-sky-300",
+          badgeBg: "bg-sky-950",
+          badgeBorder: "border-sky-700",
+          badgeText: "text-sky-300",
+          bullet: "text-sky-400"
+        },
+        purple: {
+          bg: "bg-purple-500/20",
+          border: "border-purple-400/40",
+          text: "text-purple-300",
+          badgeBg: "bg-purple-950",
+          badgeBorder: "border-purple-700",
+          badgeText: "text-purple-300",
+          bullet: "text-purple-400"
+        },
+        emerald: {
+          bg: "bg-emerald-500/20",
+          border: "border-emerald-400/40",
+          text: "text-emerald-300",
+          badgeBg: "bg-emerald-950",
+          badgeBorder: "border-emerald-700",
+          badgeText: "text-emerald-300",
+          bullet: "text-emerald-400"
+        },
+        indigo: {
+          bg: "bg-indigo-500/20",
+          border: "border-indigo-400/40",
+          text: "text-indigo-300",
+          badgeBg: "bg-indigo-950",
+          badgeBorder: "border-indigo-700",
+          badgeText: "text-indigo-300",
+          bullet: "text-indigo-400"
+        }
+      };
+
+      const theme = themeMap[data.theme] || themeMap.indigo;
+
+      const avatarEl = document.getElementById('councilModalAvatar');
+      avatarEl.textContent = data.avatar;
+      avatarEl.className = `w-12 h-12 rounded-xl flex items-center justify-center font-mono font-black text-xl shadow-lg border ${theme.bg} ${theme.border} ${theme.text}`;
+
+      const pillarEl = document.getElementById('councilModalPillar');
+      pillarEl.textContent = data.pillar;
+      pillarEl.className = `text-[10px] font-mono px-2 py-0.5 rounded-full font-bold border ${theme.badgeBg} ${theme.badgeBorder} ${theme.badgeText}`;
+
+      const tierEl = document.getElementById('councilModalRoleBadge');
+      tierEl.textContent = data.tier;
+      tierEl.className = `text-[10px] font-mono px-2 py-0.5 rounded font-bold border ${theme.badgeBg} ${theme.badgeBorder} ${theme.badgeText}`;
+
+      document.getElementById('councilModalReporting').textContent = data.reporting;
+      document.getElementById('councilModalName').textContent = data.name;
+      document.getElementById('councilModalRole').textContent = data.role;
+      document.getElementById('councilModalRole').className = `text-xs font-mono ${theme.text}`;
+      document.getElementById('councilModalMandate').textContent = data.mandate;
+      document.getElementById('councilModalRelation').textContent = data.reporting;
+
+      const respContainer = document.getElementById('councilModalResponsibilities');
+      respContainer.innerHTML = data.responsibilities.map(r => `
+        <div class="p-2.5 rounded-lg bg-white/[0.02] border border-white/5 flex items-start gap-2.5">
+          <span class="${theme.bullet} font-bold text-sm leading-none mt-0.5">•</span>
+          <div>
+            <div class="text-xs font-bold text-white">${r.title}</div>
+            <div class="text-[11px] text-slate-300 font-light mt-0.5 leading-relaxed">${r.desc}</div>
+          </div>
+        </div>
+      `).join('');
+
+      const toolsContainer = document.getElementById('councilModalTools');
+      toolsContainer.innerHTML = data.tools.map(t => `
+        <span class="px-2.5 py-1 rounded-md bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">${t}</span>
+      `).join('');
+
+      const modal = document.getElementById('councilModal');
+      const card = document.getElementById('councilModalCard');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      card.classList.remove('scale-95');
+      card.classList.add('scale-100');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCouncilModal() {
+      const modal = document.getElementById('councilModal');
+      const card = document.getElementById('councilModalCard');
+      if (!modal) return;
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      if (card) {
+        card.classList.remove('scale-100');
+        card.classList.add('scale-95');
+      }
+      document.body.style.overflow = 'auto';
+    }
+
+    function handleCouncilModalBackdropClick(e) {
+      if (e.target === document.getElementById('councilModal')) {
+        closeCouncilModal();
+      }
+    }
+
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeFleetModal();
+      if (e.key === 'Escape') {
+        closeFleetModal();
+        closeCouncilModal();
+      }
     });
   </script>
 </body>
