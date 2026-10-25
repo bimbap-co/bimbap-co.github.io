@@ -159,11 +159,11 @@
   <!-- Hero Section -->
   <section class="relative z-10 pt-16 sm:pt-20 pb-20 sm:pb-24 md:pt-28 md:pb-32 px-4 sm:px-6 lg:px-8 perspective-container">
     <div class="max-w-7xl mx-auto">
-      <!-- Hero Content & YouTube Channel Display Grid -->
+      <!-- Hero Content & YouTube Channel Display Grid (Enlarged Dimension) -->
       <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center mb-12 sm:mb-16">
         
         <!-- Left Hero Content -->
-        <div class="lg:col-span-7">
+        <div class="lg:col-span-6">
           <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/5 border border-white/10 text-xs font-medium text-indigo-200 mb-6 backdrop-blur-md shadow-inner">
             <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
             Smart Software Built for Real Life
@@ -190,49 +190,40 @@
           </div>
         </div>
 
-        <!-- Right: YouTube Channel Video Display (Simple & Plain, No Curve, No Color Border) -->
-        <div class="lg:col-span-5">
-          <div class="p-4 sm:p-5 border border-white/10 bg-[#090d18] shadow-2xl relative">
+        <!-- Right: YouTube Channel Video Display (Enlarged, Reverted Curves, Very Low Opacity Red Border, No Extra Buttons) -->
+        <div class="lg:col-span-6">
+          <div class="specular-glass rounded-2xl p-4 sm:p-5 md:p-6 border border-red-500/15 bg-gradient-to-b from-red-950/15 via-[#0e1120] to-[#090d18] shadow-2xl relative overflow-hidden group">
             
             <!-- Top Channel Info Bar -->
-            <div class="flex items-center justify-between gap-3 mb-3">
+            <div class="flex items-center justify-between gap-3 mb-3.5">
               <div class="flex items-center gap-2.5 min-w-0">
-                <div class="w-8 h-8 bg-white/5 border border-white/10 flex items-center justify-center shrink-0">
-                  <svg class="w-4 h-4 fill-white" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                <div class="w-9 h-9 rounded-xl bg-red-600/15 border border-red-500/25 flex items-center justify-center shrink-0">
+                  <svg class="w-4 h-4 fill-red-500" viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
                 </div>
                 <div class="min-w-0">
-                  <h3 class="font-bold text-white text-sm truncate">Soya</h3>
-                  <p class="text-[10px] font-mono text-slate-400 truncate">@soyasnaps</p>
+                  <div class="flex items-center gap-1.5">
+                    <h3 class="font-bold text-white text-sm truncate">Soya</h3>
+                    <span class="w-1.5 h-1.5 rounded-full bg-red-500/80 animate-pulse"></span>
+                  </div>
+                  <p class="text-[11px] font-mono text-slate-400 truncate">@soyasnaps</p>
                 </div>
               </div>
 
-              <a href="https://www.youtube.com/@soyasnaps" target="_blank" rel="noopener noreferrer" class="shrink-0 px-3 py-1.5 bg-white/10 hover:bg-white/20 border border-white/15 text-white font-mono text-xs font-semibold flex items-center gap-1.5 transition-colors">
+              <a href="https://www.youtube.com/@soyasnaps" target="_blank" rel="noopener noreferrer" class="shrink-0 px-3.5 py-1.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/15 text-white font-mono text-xs font-semibold flex items-center gap-1.5 transition-colors">
                 <span>Go to Channel</span>
                 <span class="text-xs">&rarr;</span>
               </a>
             </div>
 
-            <!-- 16:9 Responsive Video Player Embed (No Curve) -->
-            <div class="relative w-full aspect-video bg-black border border-white/10">
+            <!-- 16:9 Responsive Video Player Embed (Rounded Corners) -->
+            <div class="relative w-full aspect-video rounded-xl overflow-hidden bg-black/90 border border-white/10 shadow-inner">
               <iframe id="heroYoutubePlayer" class="w-full h-full" src="https://www.youtube-nocookie.com/embed/8oCyFGFKVRQ?rel=0" title="Soya Snaps YouTube Video" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen loading="lazy"></iframe>
             </div>
 
-            <!-- Video Info & Recent Clips Switcher (No Channel link, Plain Buttons) -->
-            <div class="mt-3 pt-2.5 border-t border-white/10">
-              <div class="text-[11px] text-slate-300 font-medium truncate mb-2" id="heroVideoTitle">
-                REDLINE 2026 VLOG 🔥
-              </div>
-              <div class="flex flex-wrap gap-1 text-[10px] font-mono">
-                <button onclick="switchHeroVideo('8oCyFGFKVRQ', 'REDLINE 2026 VLOG 🔥 | Men’s Doubles')" class="px-2 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors">
-                  ▶ REDLINE Vlog
-                </button>
-                <button onclick="switchHeroVideo('fQAKuwdfi8c', 'Zumba & Frisbee with Ask4key')" class="px-2 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors">
-                  ▶ Zumba &amp; Frisbee
-                </button>
-                <button onclick="switchHeroVideo('aMy6kI7y7LU', '4 Years With You 🤍')" class="px-2 py-1 bg-white/5 hover:bg-white/10 border border-white/10 text-slate-300 hover:text-white transition-colors">
-                  ▶ 4 Years 🤍
-                </button>
-              </div>
+            <!-- Video Info Footer (Clean, No Extra Buttons) -->
+            <div class="mt-3.5 pt-3 border-t border-white/10 flex items-center justify-between text-xs">
+              <span class="text-slate-300 font-medium truncate" id="heroVideoTitle">REDLINE 2026 VLOG 🔥 | Men’s Doubles with Joe</span>
+              <span class="text-[11px] font-mono text-slate-400 shrink-0 ml-2">Latest Upload</span>
             </div>
 
           </div>
