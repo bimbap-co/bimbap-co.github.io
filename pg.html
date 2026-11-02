@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ms" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Panduan & Pelan Simpanan Emas — Bersama Sayed | Public Gold</title>
+  <meta name="description" content="Panduan mudah, telus dan mesra pemula untuk memulakan simpanan emas fizikal bersama Public Gold. Bimbingan bersama Sayed Arif Hakimi (PGBO).">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            pg: {
+              gold: '#c59b27',
+              golddark: '#9a7516',
+              goldlight: '#fbf5e6',
+              goldborder: '#e6c875',
+              navy: '#0f172a',
+              card: '#ffffff',
+              bg: '#f8fafc',
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      background-color: #f8fafc;
+      color: #1e293b;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+    }
+    .gold-gradient-bg {
+      background: linear-gradient(135deg, #c59b27 0%, #e5b839 50%, #b88a18 100%);
+    }
+    .gold-text-gradient {
+      background: linear-gradient(135deg, #a47814 0%, #c59b27 50%, #835f0f 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .gold-card-shadow {
+      box-shadow: 0 10px 25px -5px rgba(197, 155, 39, 0.12), 0 8px 10px -6px rgba(15, 23, 42, 0.04);
+    }
+    .gold-card-border {
+      border: 1px solid rgba(197, 155, 39, 0.25);
+    }
+    .touch-btn {
+      min-height: 52px;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- Top Sticky Navigation & Presentation Controls -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-amber-200/60 shadow-sm">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-18 py-2.5 flex items-center justify-between gap-3">
+      
+      <!-- Brand Logo / Presenter Tag -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl gold-gradient-bg flex items-center justify-center text-white font-extrabold text-lg shadow-md shadow-amber-500/20">
+          PG
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-extrabold text-slate-900 tracking-tight text-base sm:text-lg">PUBLIC GOLD</span>
+            <span class="text-[11px] font-bold px-2 py-0.5 rounded-md bg-amber-100 text-amber-900 border border-amber-300">PGBO Sayed</span>
+          </div>
+          <p class="text-xs text-slate-500 hidden sm:block">Panduan Menabung & Memiliki Emas Fizikal</p>
+        </div>
+      </div>
+
+      <!-- Mode & View Toggle -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- View Mode: Slide vs Full Page -->
+        <div class="bg-slate-100 p-1 rounded-xl border border-slate-200 flex items-center text-xs font-semibold">
+          <button onclick="setViewMode('slide')" id="btn-mode-slide" class="px-3 py-1.5 rounded-lg bg-white text-amber-900 shadow-sm transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M7 4v16M17 4v16M3 8h4m10 0h4M3 12h18M3 16h4m10 0h4M4 20h16a1 1 0 001-1V5a1 1 0 00-1-1H4a1 1 0 00-1 1v14a1 1 0 001 1z"/></svg>
+            <span class="hidden md:inline">Mod</span> Slaid
+          </button>
+          <button onclick="setViewMode('scroll')" id="btn-mode-scroll" class="px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h7"/></svg>
+            <span class="hidden md:inline">Mod</span> Penuh
+          </button>
+        </div>
+
+        <!-- Language Toggle -->
+        <button onclick="toggleLanguage()" id="langToggleBtn" class="px-2.5 py-1.5 rounded-xl border border-slate-200 text-xs font-mono font-bold text-slate-700 bg-white hover:bg-slate-50 transition-all shadow-sm">
+          BM ⇄ EN
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Presentation Progress Bar (Active in Slide Mode) -->
+    <div id="slideProgressBarContainer" class="w-full bg-slate-100 h-1.5 relative">
+      <div id="slideProgressBar" class="h-full gold-gradient-bg transition-all duration-300 w-1/6"></div>
+    </div>
+  </header>
+
+  <!-- Main Presentation Container -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 py-6 sm:py-10 flex-grow w-full">
+
+    <!-- Slide Navigation Header (in Slide Mode) -->
+    <div id="slideIndicatorBar" class="flex items-center justify-between mb-4 text-xs sm:text-sm font-semibold text-slate-600 bg-white px-4 py-2.5 rounded-xl border border-amber-200/80 shadow-sm">
+      <div class="flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+        <span id="slideTitleTracker" class="text-slate-900 font-bold">1. Realiti Wang vs Emas</span>
+      </div>
+      <div class="font-mono text-amber-800 bg-amber-50 px-2.5 py-1 rounded-md border border-amber-200" id="slideCountTracker">
+        Slaid 1 / 6
+      </div>
+    </div>
+
+    <!-- SLIDE 1: Realiti Wang Simpanan vs Emas -->
+    <section id="slide-1" class="slide-section bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 gold-card-shadow mb-8 transition-all">
+      <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-semibold text-xs mb-3 border border-amber-300">
+        LANGKAH 1 DARI 6 &bull; MENGAPA EMAS?
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+        Realiti Wang Kertas vs Emas: <span class="gold-text-gradient">Menyelamatkan Nilai Wang Anda</span>
+      </h1>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Ramai daripada kita rajin menabung wang tunai di bank. Namun tanpa kita sedari, kuasa beli wang kertas semakin menyusut setiap tahun akibat inflasi.
+      </p>
+
+      <!-- Practical Comparison Grid -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        <div class="bg-rose-50 border border-rose-200 rounded-xl p-5">
+          <div class="flex items-center gap-2 text-rose-800 font-bold text-sm mb-2">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6"/></svg>
+            Wang Kertas (RM)
+          </div>
+          <p class="text-xs sm:text-sm text-rose-900/80 leading-relaxed">
+            Dahulu RM50 boleh penuh satu troli barangan dapur. Hari ini RM50 hanya dapat beberapa barang asas sahaja. Nilai nombornya kekal RM50, tetapi <strong>kuasa belinya jatuh</strong>.
+          </p>
+        </div>
+
+        <div class="bg-amber-50 border border-amber-300 rounded-xl p-5">
+          <div class="flex items-center gap-2 text-amber-900 font-bold text-sm mb-2">
+            <svg class="w-5 h-5 text-amber-600" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6"/></svg>
+            Emas Fizikal (Gram)
+          </div>
+          <p class="text-xs sm:text-sm text-amber-950 leading-relaxed">
+            Sejak zaman Rasulullah SAW (1,400 tahun lalu), <strong>1 Dinar emas (4.25g)</strong> mampu membeli seekor kambing. Hari ini, 1 Dinar (~RM1,800+) masih mampu membeli seekor kambing hidup!
+          </p>
+        </div>
+      </div>
+
+      <!-- Core Message Callout -->
+      <div class="bg-slate-50 border-l-4 border-amber-500 p-4 rounded-r-xl text-xs sm:text-sm text-slate-700">
+        <strong class="text-slate-900">Prinsip Emas:</strong> Emas bukan untuk cepat kaya dalam masa semalaman. Emas adalah <em>pelindung kekayaan</em> (wealth preserver) dan disiplin simpanan kalis bocor untuk jangka masa panjang.
+      </div>
+    </section>
+
+    <!-- SLIDE 2: Mengenal Public Gold (Kredibiliti & Keselamatan) -->
+    <section id="slide-2" class="slide-section bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 gold-card-shadow mb-8 transition-all hidden">
+      <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-semibold text-xs mb-3 border border-amber-300">
+        LANGKAH 2 DARI 6 &bull; KREDIBILITI
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+        Mengapa Lebih 1 Juta Rakyat Malaysia Memilih <span class="gold-text-gradient">Public Gold</span>?
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Public Gold merupakan syarikat perdagangan logam mulia (emas & perak fizikal) terbesar di Malaysia yang diasaskan sejak tahun 2008.
+      </p>
+
+      <!-- 4 Pillars -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+        
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/60 flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg bg-emerald-100 text-emerald-800 flex items-center justify-center font-bold text-sm shrink-0">
+            ✓
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">100% Patuh Shariah</h3>
+            <p class="text-xs text-slate-600">Disahkan patuh Shariah sepenuhnya oleh Amanie Advisors Sdn Bhd mengikut piawaian Shariah antarabangsa.</p>
+          </div>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/60 flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg bg-amber-100 text-amber-800 flex items-center justify-center font-bold text-sm shrink-0">
+            ★
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Piawaian Emas LBMA 999.9</h3>
+            <p class="text-xs text-slate-600">Emas tulen diiktiraf London Bullion Market Association (LBMA), bebas cukai SST dan diterima di seluruh dunia.</p>
+          </div>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/60 flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg bg-sky-100 text-sky-800 flex items-center justify-center font-bold text-sm shrink-0">
+            📦
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Emas Fizikal Bersandar 1:1</h3>
+            <p class="text-xs text-slate-600">Bukan sekadar nombor atas kertas. Setiap gram dalam akaun anda disandarkan oleh jongkong emas sebenar dalam peti besi simpanan.</p>
+          </div>
+        </div>
+
+        <div class="border border-slate-200 rounded-xl p-4 bg-slate-50/60 flex items-start gap-3">
+          <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-800 flex items-center justify-center font-bold text-sm shrink-0">
+            🛡️
+          </div>
+          <div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">Pos Berinsurans (GIT) & Cawangan</h3>
+            <p class="text-xs text-slate-600">Boleh ambil sendiri di cawangan Public Gold seluruh negara, atau dihantar terus ke pintu rumah dengan insurans penuh (Gold In Transit).</p>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="p-4 rounded-xl bg-amber-50/70 border border-amber-200 text-xs text-amber-900">
+        <strong>Fakta Penting:</strong> Akaun pendaftaran adalah percuma seumur hidup. Tiada sebarang yuran tahunan, yuran komitmen, atau yuran simpanan tersembunyi.
+      </div>
+    </section>
+
+    <!-- SLIDE 3: 3 Cara Mudah Memiliki Emas -->
+    <section id="slide-3" class="slide-section bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 gold-card-shadow mb-8 transition-all hidden">
+      <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-semibold text-xs mb-3 border border-amber-300">
+        LANGKAH 3 DARI 6 &bull; PILIHAN PRODUK
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+        3 Cara Mudah <span class="gold-text-gradient">Memiliki Emas Public Gold</span>
+      </h2>
+      <p class="text-slate-600 text-sm sm:text-base leading-relaxed mb-6">
+        Anda tidak perlu menunggu ada ribuan ringgit baru boleh mula. Pilih kaedah yang paling selesa mengikut bajet anda:
+      </p>
+
+      <div class="space-y-4 mb-6">
+        <!-- 1. GAP -->
+        <div class="border-2 border-amber-400 bg-amber-50/30 rounded-2xl p-5 relative overflow-hidden">
+          <div class="absolute top-0 right-0 bg-amber-500 text-white font-bold text-[11px] px-3 py-1 rounded-bl-xl uppercase tracking-wider">
+            Paling Popular
+          </div>
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-amber-600 text-white font-bold text-xs flex items-center justify-center">1</span>
+            <h3 class="text-lg font-bold text-slate-900">Akaun GAP (Gold Accumulation Program)</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 mb-3 leading-relaxed">
+            Kaedah menabung emas gram demi gram secara digital patuh Shariah serendah <strong>RM100 sahaja</strong>. Sistem akan menukar RM100 anda kepada gram emas (4 tempat perpuluhan) berdasarkan harga emas harian.
+          </p>
+          <ul class="text-xs text-slate-600 space-y-1.5 font-medium">
+            <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold">✓</span> Mula serendah RM100 atau 1 gram bila-bila masa (24 jam sehari).</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold">✓</span> Tiada paksaan beli setiap bulan. Ada bajet lebih, tambah lagi.</li>
+            <li class="flex items-center gap-2"><span class="text-emerald-600 font-bold">✓</span> Boleh ditebus keluar menjadi jongkong emas fizikal serendah 1g, 5g, 10g, atau 1 Dinar bila gram mencukupi.</li>
+          </ul>
+        </div>
+
+        <!-- 2. Outright Purchase -->
+        <div class="border border-slate-200 bg-white rounded-2xl p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">2</span>
+            <h3 class="text-lg font-bold text-slate-900">Beli Terus (Outright Purchase)</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Beli emas fizikal secara terus dan bayar penuh sekaligus. Sesuai bagi mereka yang ingin terus memegang jongkong emas 10g, 20g, 50g, 100g, atau Dinar di tangan serta-merta.
+          </p>
+        </div>
+
+        <!-- 3. EPP -->
+        <div class="border border-slate-200 bg-white rounded-2xl p-5">
+          <div class="flex items-center gap-3 mb-2">
+            <span class="w-7 h-7 rounded-full bg-slate-800 text-white font-bold text-xs flex items-center justify-center">3</span>
+            <h3 class="text-lg font-bold text-slate-900">Pelan Ansuran Patuh Shariah (EPP)</h3>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+            Kunci harga emas hari ini, dan bayar secara ansuran bulanan selama 6 hingga 10 bulan (Easy Payment Plan). Sangat ideal untuk pembelian Dinar hantaran perkahwinan atau jongkong 10g ke atas.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- SLIDE 4: Kalkulator Simpanan Emas Interaktif -->
+    <section id="slide-4" class="slide-section bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 gold-card-shadow mb-8 transition-all hidden">
+      <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-semibold text-xs mb-3 border border-amber-300">
+        LANGKAH 4 DARI 6 &bull; SIMULASI REALITI
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-2">
+        Kalkulator Simpanan: <span class="gold-text-gradient">Berapa Gram Anda Boleh Miliki?</span>
+      </h2>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6">
+        Gunakan slider di bawah untuk melihat simulasi simpanan emas bulanan anda:
+      </p>
+
+      <!-- Interactive Calculator Card -->
+      <div class="bg-amber-50/40 border border-amber-200 rounded-2xl p-5 sm:p-6 mb-6">
+        
+        <!-- Budget Slider -->
+        <div class="mb-6">
+          <div class="flex justify-between items-center mb-2">
+            <label for="monthlySavingsSlider" class="text-xs sm:text-sm font-bold text-slate-800">Bajet Simpanan Bulanan Anda:</label>
+            <span class="text-xl sm:text-2xl font-extrabold text-amber-900 font-mono" id="sliderValDisplay">RM 300</span>
+          </div>
+          <input type="range" id="monthlySavingsSlider" min="100" max="2000" step="50" value="300" oninput="updateCalculator(this.value)" class="w-full h-2.5 bg-amber-200 rounded-lg appearance-none cursor-pointer accent-amber-600">
+          <div class="flex justify-between text-[11px] text-slate-500 font-mono mt-1">
+            <span>RM 100</span>
+            <span>RM 500</span>
+            <span>RM 1,000</span>
+            <span>RM 2,000</span>
+          </div>
+        </div>
+
+        <!-- Calculated Results -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 text-center mb-4">
+          <div class="bg-white p-3 rounded-xl border border-amber-200/80 shadow-sm">
+            <span class="text-[11px] text-slate-500 block">3 Bulan</span>
+            <span class="text-lg sm:text-xl font-extrabold text-amber-900 font-mono block mt-1" id="calcGrams3M">~1.96g</span>
+            <span class="text-[10px] text-slate-400 font-mono" id="calcRM3M">RM 900</span>
+          </div>
+          <div class="bg-white p-3 rounded-xl border border-amber-200/80 shadow-sm">
+            <span class="text-[11px] text-slate-500 block">6 Bulan</span>
+            <span class="text-lg sm:text-xl font-extrabold text-amber-900 font-mono block mt-1" id="calcGrams6M">~3.91g</span>
+            <span class="text-[10px] text-slate-400 font-mono" id="calcRM6M">RM 1,800</span>
+          </div>
+          <div class="bg-amber-100/70 p-3 rounded-xl border-2 border-amber-400 shadow-sm">
+            <span class="text-[11px] text-amber-900 font-bold block">1 Tahun (12 Bln)</span>
+            <span class="text-lg sm:text-xl font-extrabold text-amber-900 font-mono block mt-1" id="calcGrams1Y">~7.83g</span>
+            <span class="text-[10px] text-amber-800 font-mono" id="calcRM1Y">RM 3,600</span>
+          </div>
+          <div class="bg-white p-3 rounded-xl border border-amber-200/80 shadow-sm">
+            <span class="text-[11px] text-slate-500 block">3 Tahun</span>
+            <span class="text-lg sm:text-xl font-extrabold text-amber-900 font-mono block mt-1" id="calcGrams3Y">~23.48g</span>
+            <span class="text-[10px] text-slate-400 font-mono" id="calcRM3Y">RM 10,800</span>
+          </div>
+        </div>
+
+        <!-- Practical Milestone Highlight -->
+        <div class="bg-white p-4 rounded-xl border border-amber-300 text-xs sm:text-sm text-slate-700 flex items-start gap-3">
+          <div class="text-2xl">🎯</div>
+          <div>
+            <strong class="text-slate-900">Pencapaian Matlamat:</strong>
+            <p class="text-xs text-slate-600 mt-0.5" id="milestoneRemark">
+              Dengan RM300/bulan, dalam tempoh ~7 bulan anda sudah berjaya mengumpul emas melebihi <strong>1 Dinar (4.25g)</strong> untuk simpanan peribadi atau mas kahwin!
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <p class="text-[11px] text-slate-400 font-mono text-center">
+        *Pengiraan berdasarkan anggaran rujukan emas GAP RM 460/g. Harga emas sebenar berubah mengikut pasaran harian.
+      </p>
+    </section>
+
+    <!-- SLIDE 5: Perbandingan Telus Platform Emas -->
+    <section id="slide-5" class="slide-section bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 gold-card-shadow mb-8 transition-all hidden">
+      <div class="inline-block px-3 py-1 rounded-full bg-amber-100 text-amber-900 font-semibold text-xs mb-3 border border-amber-300">
+        LANGKAH 5 DARI 6 &bull; PERBANDINGAN TELUS
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-2">
+        Perbandingan Telus: <span class="gold-text-gradient">Memilih Platform Yang Tepat</span>
+      </h2>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6">
+        Prinsip kami: <strong>Pendidik dahulu, penjual kemudian</strong>. Kami bandingkan secara jujur kelebihan dan kekurangan pelbagai pilihan di pasaran:
+      </p>
+
+      <div class="overflow-x-auto mb-6">
+        <table class="w-full text-xs sm:text-sm border-collapse border border-slate-200 rounded-xl overflow-hidden">
+          <thead>
+            <tr class="bg-amber-100/60 text-amber-950 font-bold text-left border-b border-amber-200">
+              <th class="p-3">Ciri-Ciri</th>
+              <th class="p-3 bg-amber-200/50 text-amber-950 font-extrabold">Public Gold (GAP)</th>
+              <th class="p-3 text-slate-700">Akaun Emas Bank</th>
+              <th class="p-3 text-slate-700">Barang Kemas 916</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-slate-200">
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Pegangan Fizikal</td>
+              <td class="p-3 bg-amber-50 font-bold text-emerald-800">Boleh keluarkan emas 999 fizikal bila-bila masa</td>
+              <td class="p-3 text-slate-600">Kebanyakannya digital; caj tinggi jika tebus fizikal</td>
+              <td class="p-3 text-slate-600">Fizikal boleh dipakai</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Kos Tambahan / Upah</td>
+              <td class="p-3 bg-amber-50 font-bold text-emerald-800">Tiada upah; hanya caj premium cetak minimum jika tebus</td>
+              <td class="p-3 text-slate-600">Yuran pengurusan tahunan tertentu</td>
+              <td class="p-3 text-rose-700">Caj upah tukang tinggi (15% - 25%)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Spread (Susut Nilai)</td>
+              <td class="p-3 bg-amber-50 font-bold text-emerald-800">Rendah (6% - 9% mengikut saiz)</td>
+              <td class="p-3 text-slate-600">Sangat rendah (3% - 6%)</td>
+              <td class="p-3 text-rose-700">Tinggi (20% - 25% bila jual balik)</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Modal Permulaan</td>
+              <td class="p-3 bg-amber-50 font-bold text-emerald-800">RM 100 sahaja</td>
+              <td class="p-3 text-slate-600">Bermula 1 gram (~RM460+)</td>
+              <td class="p-3 text-slate-600">Bergantung harga barang kemas</td>
+            </tr>
+            <tr>
+              <td class="p-3 font-semibold text-slate-800">Sesuai Untuk</td>
+              <td class="p-3 bg-amber-50 font-bold text-amber-950">Simpanan jangka panjang, mas kahwin, dana kecemasan</td>
+              <td class="p-3 text-slate-600">Pelaburan digital jangka pendek</td>
+              <td class="p-3 text-slate-600">Perhiasan & hadiah wanita</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="p-4 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-600">
+        <strong>Kesimpulan:</strong> Jika matlamat anda adalah membina simpanan emas fizikal tulen sedikit demi sedikit dengan fleksibiliti pengeluaran, Public Gold adalah instrumen yang sangat praktikal.
+      </div>
+    </section>
+
+    <!-- SLIDE 6: Cara Mula & Hubungi Sayed -->
+    <section id="slide-6" class="slide-section bg-white rounded-2xl p-6 sm:p-10 border border-slate-200 gold-card-shadow mb-8 transition-all hidden">
+      <div class="inline-block px-3 py-1 rounded-full bg-emerald-100 text-emerald-900 font-semibold text-xs mb-3 border border-emerald-300">
+        LANGKAH TERAKHIR &bull; TINDAKAN MUDAH
+      </div>
+      <h2 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-2">
+        Langkah Mudah Bermula Hari Ini <span class="gold-text-gradient">(Percuma)</span>
+      </h2>
+      <p class="text-slate-600 text-xs sm:text-sm mb-6">
+        Tiada komitmen bulanan paksa. Anda berhak mengawal simpanan anda sendiri sepenuhnya:
+      </p>
+
+      <!-- 3 Steps -->
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <div class="border border-slate-200 bg-slate-50 p-4 rounded-xl text-center">
+          <span class="w-8 h-8 rounded-full gold-gradient-bg text-white font-bold text-sm inline-flex items-center justify-center mb-2">1</span>
+          <h3 class="font-bold text-slate-900 text-sm mb-1">Daftar Akaun Percuma</h3>
+          <p class="text-xs text-slate-500">Daftar akaun rasmi Public Gold menggunakan link pengenalan dealer tanpa sebarang bayaran.</p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 p-4 rounded-xl text-center">
+          <span class="w-8 h-8 rounded-full gold-gradient-bg text-white font-bold text-sm inline-flex items-center justify-center mb-2">2</span>
+          <h3 class="font-bold text-slate-900 text-sm mb-1">Dapatkan PG Code</h3>
+          <p class="text-xs text-slate-500">Terima PG Code rasmi anda melalui emel dan log masuk ke portal atau aplikasi Public Gold.</p>
+        </div>
+
+        <div class="border border-slate-200 bg-slate-50 p-4 rounded-xl text-center">
+          <span class="w-8 h-8 rounded-full gold-gradient-bg text-white font-bold text-sm inline-flex items-center justify-center mb-2">3</span>
+          <h3 class="font-bold text-slate-900 text-sm mb-1">Mula Serendah RM100</h3>
+          <p class="text-xs text-slate-500">Buat belian pertama melalui online banking (FPX) ke dalam akaun GAP anda bila-bila masa.</p>
+        </div>
+      </div>
+
+      <!-- Sayed Dealer Profile & Direct Contact Card -->
+      <div class="bg-gradient-to-br from-amber-500 via-amber-600 to-yellow-600 text-white p-6 sm:p-8 rounded-2xl shadow-xl relative overflow-hidden">
+        <div class="relative z-10 flex flex-col sm:flex-row items-center justify-between gap-6">
+          <div class="text-center sm:text-left">
+            <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white font-mono text-xs font-semibold uppercase tracking-wider mb-2 inline-block">
+              Bimbingan Percuma Dari PGBO Sah
+            </span>
+            <h3 class="text-2xl sm:text-3xl font-extrabold text-white mb-1">Sayed Arif Hakimi</h3>
+            <p class="text-amber-100 text-sm mb-2">Public Gold Business Owner (PGBO) &bull; Brand: @GOLDWITHSAYED</p>
+            <p class="text-xs text-white/90 max-w-md leading-relaxed">
+              Saya sedia membimbing anda langkah demi langkah dari pendaftaran, penetapan matlamat simpanan, hingga pengeluaran emas fizikal.
+            </p>
+          </div>
+
+          <div class="flex flex-col w-full sm:w-auto gap-3 shrink-0">
+            <a href="https://publicgold.com.my" target="_blank" rel="noopener noreferrer" class="py-3 px-6 rounded-xl bg-white text-amber-900 font-extrabold text-sm text-center shadow-lg hover:bg-amber-50 transition-all">
+              Daftar Akaun Public Gold ↗
+            </a>
+            <a href="https://wa.me/60136294868?text=Salam%20Sayed,%20saya%20berminat%20nak%20mula%20simpanan%20emas%20Public%20Gold" target="_blank" rel="noopener noreferrer" class="py-3 px-6 rounded-xl bg-emerald-700 hover:bg-emerald-600 text-white font-extrabold text-sm text-center shadow-lg transition-all flex items-center justify-center gap-2">
+              <span>WhatsApp Sayed Langsung</span>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion / Quick Answers -->
+      <div class="mt-8 space-y-3">
+        <h4 class="font-bold text-slate-800 text-sm">Soalan Lazim Pemula (FAQ):</h4>
+        
+        <details class="group bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+          <summary class="font-semibold text-xs sm:text-sm text-slate-800 cursor-pointer list-none flex justify-between items-center">
+            <span>Bolehkah emas dalam akaun GAP dikeluarkan fizikal?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Ya! Bila-bila masa baki gram anda mencukupi, anda boleh tebus keluar jongkong emas tulen 999.9 (1g, 5g, 10g, atau Dinar) sama ada ambil di cawangan atau pos berinsurans ke rumah.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+          <summary class="font-semibold text-xs sm:text-sm text-slate-800 cursor-pointer list-none flex justify-between items-center">
+            <span>Adakah wajib beli setiap bulan?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Tidak sama sekali. Akaun GAP tiada komitmen bulanan. Anda boleh menabung bila-bila masa anda ada bajet, sama ada sebulan sekali, dua bulan sekali, atau bila-bila masa sahaja.
+          </p>
+        </details>
+
+        <details class="group bg-slate-50 p-3.5 rounded-xl border border-slate-200">
+          <summary class="font-semibold text-xs sm:text-sm text-slate-800 cursor-pointer list-none flex justify-between items-center">
+            <span>Jika perlukan duit kecemasan, mudah ke nak jual balik?</span>
+            <span class="text-slate-400 group-open:rotate-180 transition-transform">▼</span>
+          </summary>
+          <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+            Sangat mudah. Anda boleh klik "Buyback" dalam aplikasi Public Gold 24 jam sehari, dan wang hasil jualan akan dipindahkan terus ke akaun bank anda dalam tempoh 1 hingga 3 hari bekerja.
+          </p>
+        </details>
+      </div>
+
+    </section>
+
+    <!-- Bottom Presentation Control Buttons (Only in Slide Mode) -->
+    <div id="presentationNavControls" class="sticky bottom-4 z-40 bg-white/95 backdrop-blur-md p-3 sm:p-4 rounded-2xl border border-amber-200 shadow-xl flex items-center justify-between gap-3">
+      
+      <button onclick="prevSlide()" id="prevBtn" class="touch-btn px-4 sm:px-6 py-2.5 rounded-xl border border-slate-300 bg-white text-slate-700 hover:bg-slate-50 font-bold text-xs sm:text-sm flex items-center gap-2 transition-all disabled:opacity-40 disabled:cursor-not-allowed">
+        <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"/></svg>
+        <span>Sebelumnya</span>
+      </button>
+
+      <!-- Dot Indicators -->
+      <div class="hidden sm:flex items-center gap-1.5" id="dotIndicators">
+        <span onclick="goToSlide(1)" class="w-3 h-3 rounded-full cursor-pointer bg-amber-500"></span>
+        <span onclick="goToSlide(2)" class="w-2.5 h-2.5 rounded-full cursor-pointer bg-slate-300"></span>
+        <span onclick="goToSlide(3)" class="w-2.5 h-2.5 rounded-full cursor-pointer bg-slate-300"></span>
+        <span onclick="goToSlide(4)" class="w-2.5 h-2.5 rounded-full cursor-pointer bg-slate-300"></span>
+        <span onclick="goToSlide(5)" class="w-2.5 h-2.5 rounded-full cursor-pointer bg-slate-300"></span>
+        <span onclick="goToSlide(6)" class="w-2.5 h-2.5 rounded-full cursor-pointer bg-slate-300"></span>
+      </div>
+
+      <button onclick="nextSlide()" id="nextBtn" class="touch-btn px-5 sm:px-8 py-2.5 rounded-xl gold-gradient-bg text-white font-extrabold text-xs sm:text-sm shadow-md hover:brightness-105 flex items-center gap-2 transition-all">
+        <span id="nextBtnLabel">Seterusnya</span>
+        <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+    </div>
+
+  </main>
+
+  <!-- Clean Footer -->
+  <footer class="border-t border-slate-200 bg-white py-6 text-center text-xs text-slate-500 font-medium">
+    <div class="max-w-4xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <p>&copy; Public Gold Business Owner &bull; Sayed Arif Hakimi &bull; @GOLDWITHSAYED</p>
+      <div class="flex items-center gap-4 text-xs">
+        <a href="local.html" class="text-amber-800 font-semibold hover:underline">← Local Fleet Portal</a>
+        <a href="https://publicgold.com.my" target="_blank" rel="noopener noreferrer" class="hover:underline">Laman Rasmi Public Gold ↗</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script for Slides, Calculation, and Mode Switching -->
+  <script>
+    let currentSlide = 1;
+    const totalSlides = 6;
+    let viewMode = 'slide'; // 'slide' or 'scroll'
+    const slideTitles = [
+      "1. Realiti Wang vs Emas",
+      "2. Kredibiliti Public Gold",
+      "3. 3 Cara Memiliki Emas",
+      "4. Kalkulator Simpanan Emas",
+      "5. Perbandingan Platform Emas",
+      "6. Langkah Mudah Bermula"
+    ];
+
+    function showSlide(index) {
+      if (viewMode !== 'slide') return;
+      currentSlide = Math.max(1, Math.min(index, totalSlides));
+
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById('slide-' + i);
+        if (slide) {
+          if (i === currentSlide) {
+            slide.classList.remove('hidden');
+          } else {
+            slide.classList.add('hidden');
+          }
+        }
+      }
+
+      // Update progress bar
+      const progressPercent = (currentSlide / totalSlides) * 100;
+      document.getElementById('slideProgressBar').style.width = progressPercent + '%';
+
+      // Update counters & title
+      document.getElementById('slideCountTracker').innerText = `Slaid ${currentSlide} / ${totalSlides}`;
+      document.getElementById('slideTitleTracker').innerText = slideTitles[currentSlide - 1];
+
+      // Update Prev / Next buttons
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const nextBtnLabel = document.getElementById('nextBtnLabel');
+
+      prevBtn.disabled = (currentSlide === 1);
+      if (currentSlide === totalSlides) {
+        nextBtnLabel.innerText = "Selesai (Daftar)";
+      } else {
+        nextBtnLabel.innerText = "Seterusnya";
+      }
+
+      // Update dot indicators
+      const dots = document.getElementById('dotIndicators').children;
+      for (let d = 0; d < dots.length; d++) {
+        if (d + 1 === currentSlide) {
+          dots[d].className = "w-3 h-3 rounded-full cursor-pointer bg-amber-600 transition-all";
+        } else {
+          dots[d].className = "w-2.5 h-2.5 rounded-full cursor-pointer bg-slate-300 hover:bg-slate-400 transition-all";
+        }
+      }
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        showSlide(currentSlide + 1);
+      } else {
+        // Last slide: scroll to CTA
+        document.getElementById('slide-6').scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        showSlide(currentSlide - 1);
+      }
+    }
+
+    function goToSlide(n) {
+      showSlide(n);
+    }
+
+    // Keyboard Arrow Controls for Presentation
+    document.addEventListener('keydown', (e) => {
+      if (viewMode === 'slide') {
+        if (e.key === 'ArrowRight' || e.key === 'Space') {
+          nextSlide();
+        } else if (e.key === 'ArrowLeft') {
+          prevSlide();
+        }
+      }
+    });
+
+    // View Mode Toggle (Slide vs Full Page)
+    function setViewMode(mode) {
+      viewMode = mode;
+      const btnSlide = document.getElementById('btn-mode-slide');
+      const btnScroll = document.getElementById('btn-mode-scroll');
+      const indicatorBar = document.getElementById('slideIndicatorBar');
+      const navControls = document.getElementById('presentationNavControls');
+      const progressBar = document.getElementById('slideProgressBarContainer');
+
+      if (mode === 'scroll') {
+        // Show all slides
+        for (let i = 1; i <= totalSlides; i++) {
+          const s = document.getElementById('slide-' + i);
+          if (s) s.classList.remove('hidden');
+        }
+        indicatorBar.classList.add('hidden');
+        navControls.classList.add('hidden');
+        progressBar.classList.add('hidden');
+
+        btnScroll.className = "px-3 py-1.5 rounded-lg bg-white text-amber-900 shadow-sm transition-all flex items-center gap-1.5";
+        btnSlide.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5";
+      } else {
+        // Re-enable slide mode
+        indicatorBar.classList.remove('hidden');
+        navControls.classList.remove('hidden');
+        progressBar.classList.remove('hidden');
+        btnSlide.className = "px-3 py-1.5 rounded-lg bg-white text-amber-900 shadow-sm transition-all flex items-center gap-1.5";
+        btnScroll.className = "px-3 py-1.5 rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5";
+        showSlide(currentSlide);
+      }
+    }
+
+    // Interactive Savings Calculator
+    const goldPricePerGram = 460; // Reference price RM460/g
+
+    function updateCalculator(val) {
+      const rm = parseFloat(val);
+      document.getElementById('sliderValDisplay').innerText = `RM ${rm.toLocaleString('en-US')}`;
+
+      const grams3M = ((rm * 3) / goldPricePerGram).toFixed(2);
+      const grams6M = ((rm * 6) / goldPricePerGram).toFixed(2);
+      const grams1Y = ((rm * 12) / goldPricePerGram).toFixed(2);
+      const grams3Y = ((rm * 36) / goldPricePerGram).toFixed(2);
+
+      document.getElementById('calcGrams3M').innerText = `~${grams3M}g`;
+      document.getElementById('calcRM3M').innerText = `RM ${(rm * 3).toLocaleString('en-US')}`;
+
+      document.getElementById('calcGrams6M').innerText = `~${grams6M}g`;
+      document.getElementById('calcRM6M').innerText = `RM ${(rm * 6).toLocaleString('en-US')}`;
+
+      document.getElementById('calcGrams1Y').innerText = `~${grams1Y}g`;
+      document.getElementById('calcRM1Y').innerText = `RM ${(rm * 12).toLocaleString('en-US')}`;
+
+      document.getElementById('calcGrams3Y').innerText = `~${grams3Y}g`;
+      document.getElementById('calcRM3Y').innerText = `RM ${(rm * 36).toLocaleString('en-US')}`;
+
+      // Dynamic Remark based on budget
+      const remark = document.getElementById('milestoneRemark');
+      const monthsFor1Dinar = ( (4.25 * goldPricePerGram) / rm ).toFixed(1);
+      if (rm < 250) {
+        remark.innerHTML = `Dengan simpanan RM${rm}/bulan, anda mengumpul ~<strong>${grams1Y}g</strong> setahun secara konsisten dan kalis inflasi tanpa membebankan perbelanjaan harian.`;
+      } else if (rm <= 500) {
+        remark.innerHTML = `Dengan RM${rm}/bulan, dalam masa ~<strong>${monthsFor1Dinar} bulan</strong> sahaja anda sudah mampu memiliki <strong>1 Dinar (4.25g)</strong> untuk simpanan kecemasan atau mas kahwin!`;
+      } else {
+        remark.innerHTML = `Dengan RM${rm}/bulan, anda mampu mengumpul <strong>${grams1Y}g emas tulen</strong> dalam tempoh 1 tahun sahaja (nilai aset fizikal melebihi RM${(rm*12).toLocaleString('en-US')})!`;
+      }
+    }
+
+    // Initialize on load
+    window.addEventListener('DOMContentLoaded', () => {
+      showSlide(1);
+      updateCalculator(300);
+    });
+  </script>
+</body>
+</html>
+

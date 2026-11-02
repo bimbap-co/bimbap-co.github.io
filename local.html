@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>bimbap.co — Local Projects & Fleet Portal</title>
+  <meta name="description" content="Master launchpad and real-time operational directory for all local bimbap.co projects, daemons, ports, and workspaces.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0%25' y1='0%25' x2='100%25' y2='100%25'%3E%3Cstop offset='0%25' stop-color='%236366f1'/%3E%3Cstop offset='50%25' stop-color='%230ea5e9'/%3E%3Cstop offset='100%25' stop-color='%23a855f7'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='%23080c16'/%3E%3Crect x='2' y='2' width='60' height='60' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='45' font-family='sans-serif' font-size='38' font-weight='800' fill='%23ffffff' text-anchor='middle'%3Eb%3C/text%3E%3Ccircle cx='47' cy='17' r='3.5' fill='%2338bdf8'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    @keyframes aurora {
+      0%, 100% { transform: rotate(0deg) scale(1); opacity: 0.35; }
+      50% { transform: rotate(180deg) scale(1.15); opacity: 0.55; }
+    }
+    .animate-aurora {
+      animation: aurora 22s linear infinite;
+    }
+    .specular-glass {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.015) 100%), rgba(10, 14, 26, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.6), inset 0 1px 1px 0 rgba(255, 255, 255, 0.15);
+      transition: all 0.25s ease;
+    }
+    .specular-glass:hover {
+      border-color: rgba(99, 102, 241, 0.4);
+      box-shadow: 0 30px 60px -15px rgba(79, 70, 229, 0.25), inset 0 1px 2px 0 rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+    .grid-bg {
+      background-size: 36px 36px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-[#06080e] text-slate-100 font-sans antialiased min-h-screen selection:bg-indigo-500 selection:text-white relative overflow-x-hidden flex flex-col justify-between">
+
+  <!-- Ambient Aurora Backing -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden z-0">
+    <div class="fixed inset-0 grid-bg opacity-75"></div>
+    <div class="absolute -top-40 -left-40 w-[600px] h-[600px] rounded-full bg-gradient-to-tr from-indigo-900/30 via-sky-900/20 to-transparent blur-[120px] animate-aurora"></div>
+    <div class="absolute top-1/2 -right-40 w-[700px] h-[700px] rounded-full bg-gradient-to-bl from-purple-900/25 via-blue-900/20 to-transparent blur-[140px] animate-aurora" style="animation-delay: -10s;"></div>
+  </div>
+
+  <!-- Header -->
+  <header class="sticky top-0 z-50 backdrop-blur-xl bg-[#06080e]/90 border-b border-white/10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <a href="index.html" class="flex items-center gap-3 group">
+          <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-indigo-500 via-sky-500 to-purple-600 flex items-center justify-center font-mono font-bold text-white text-base shadow-lg shadow-indigo-500/25 group-hover:scale-105 transition-transform">
+            b
+          </div>
+          <span class="font-bold text-lg tracking-tight text-white flex items-center gap-1">
+            bimbap<span class="text-sky-400">.co</span>
+          </span>
+        </a>
+        <span class="text-slate-600">/</span>
+        <span class="text-xs sm:text-sm font-mono text-slate-300 bg-white/5 border border-white/10 px-2.5 py-1 rounded-lg flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+          Local Fleet Portal
+        </span>
+      </div>
+
+      <div class="flex items-center gap-3">
+        <button onclick="pingAllServices()" class="px-3 py-1.5 rounded-lg bg-indigo-600/20 border border-indigo-500/30 hover:bg-indigo-600/30 text-indigo-300 font-mono text-xs flex items-center gap-1.5 transition-all" title="Refresh local port pingers">
+          <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+          <span class="hidden sm:inline">Refresh Pulse</span>
+        </button>
+        <a href="index.html" class="text-xs text-slate-400 hover:text-white px-3 py-1.5 rounded-lg hover:bg-white/5 transition-all">
+          ← Main Studio
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 py-8 sm:py-12 flex-grow w-full">
+
+    <!-- Hero Title -->
+    <div class="mb-8">
+      <div class="flex items-center gap-2 mb-2">
+        <span class="px-2.5 py-0.5 rounded-full bg-indigo-950/80 border border-indigo-700/60 text-indigo-300 font-mono text-xs font-semibold">SOYA INNOVATION FLEET</span>
+        <span class="text-xs text-slate-400 font-mono">HOST: 127.0.0.1 (NOMINAL)</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight text-white">
+        Local Projects & Service Launchpad
+      </h1>
+      <p class="text-slate-400 text-sm sm:text-base mt-2 max-w-3xl">
+        One-click gateways, active port telemetry, and operational details for all autonomous platforms, local daemons, and cloud workspaces running on Founder Soya's workstation.
+      </p>
+    </div>
+
+    <!-- Filter & Search Bar -->
+    <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
+      <div class="flex flex-wrap items-center gap-2" id="filterContainer">
+        <button onclick="filterCategory('all')" id="btn-all" class="filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-500/25">
+          All Services (9)
+        </button>
+        <button onclick="filterCategory('live')" id="btn-live" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white/5 border border-white/10 text-slate-400 hover:text-white">
+          Active HTTP Ports (5)
+        </button>
+        <button onclick="filterCategory('workspace')" id="btn-workspace" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white/5 border border-white/10 text-slate-400 hover:text-white">
+          Core Workspaces (2)
+        </button>
+        <button onclick="filterCategory('cloud')" id="btn-cloud" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white/5 border border-white/10 text-slate-400 hover:text-white">
+          Cloud & Milestones (2)
+        </button>
+      </div>
+
+      <div class="relative w-full sm:w-72">
+        <input type="text" id="searchInput" oninput="searchProjects()" placeholder="Search project, port, or lead..." class="w-full bg-slate-900/80 border border-white/10 rounded-xl px-3.5 py-2 pl-9 text-xs sm:text-sm text-white placeholder-slate-500 focus:outline-none focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-all font-mono">
+        <svg class="w-4 h-4 text-slate-500 absolute left-3 top-2.5 pointer-events-none fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/></svg>
+      </div>
+    </div>
+
+    <!-- Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5" id="projectGrid">
+
+      <!-- 1. Soya Control Center (SCC) -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="live" data-search="soya control center scc 8765 bolt coo operations hardware daemons">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-sky-500/10 border border-sky-500/30 text-sky-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-sky-400"></span>
+              PORT :8765
+            </span>
+            <span id="badge-8765" class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              ONLINE
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Soya Control Center
+            <span class="text-xs font-mono font-normal text-slate-500">SCC</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Real-time infrastructure command & observation console. Monitors host CPU/RAM/GPU pulse, system daemons, and fleet health adapters.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Bolt (COO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Path:</span> <span class="text-slate-300 truncate max-w-[180px]" title="E:\Soya\Github\Soya_Control_Center">E:\Soya\...\Soya_Control_Center</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">URL:</span> <span class="text-sky-400 font-bold">http://localhost:8765</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <a href="http://localhost:8765" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-sky-600 to-indigo-600 hover:from-sky-500 hover:to-indigo-500 text-white font-semibold text-xs text-center shadow-lg shadow-sky-500/20 transition-all flex items-center justify-center gap-1.5">
+            <span>Open Console</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <button onclick="copyToClipboard('http://localhost:8765', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy URL">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 2. Sayed Digital Portfolio Preview -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="live" data-search="sayed portfolio preview 4173 yed cmo violet cdo media cv showcase">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-purple-500/10 border border-purple-500/30 text-purple-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-purple-400"></span>
+              PORT :4173
+            </span>
+            <span id="badge-4173" class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              ONLINE
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Sayed Digital Portfolio
+            <span class="text-xs font-mono font-normal text-slate-500">Preview</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            High-performance digital web showcase. Houses interactive CV assets, project engineering case studies, and live streamer production previews.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Yed (CMO) & Violet (CDO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Path:</span> <span class="text-slate-300 truncate max-w-[180px]" title="E:\Hermes-Profiles\sayed-portfolio">E:\Hermes-Profiles\sayed-portfolio</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">URL:</span> <span class="text-purple-400 font-bold">http://localhost:4173</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <a href="http://localhost:4173" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white font-semibold text-xs text-center shadow-lg shadow-purple-500/20 transition-all flex items-center justify-center gap-1.5">
+            <span>Open Portfolio</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <button onclick="copyToClipboard('http://localhost:4173', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy URL">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 3. Face Recognition Attendance Kiosk -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="live" data-search="face recognition attendance kiosk 8080 asta cto software engineering biometric vision onnx">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-emerald-500/10 border border-emerald-500/30 text-emerald-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              PORT :8080
+            </span>
+            <span id="badge-8080" class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              ONLINE
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Face Recognition Kiosk
+            <span class="text-xs font-mono font-normal text-slate-500">Biometrics</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Edge biometric vision portal running lightweight YuNet & SFace ONNX neural models for real-time local attendance tracking.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Asta (CTO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Path:</span> <span class="text-slate-300 truncate max-w-[180px]" title="E:\Hermes-Profiles\face-recognition">E:\Hermes-Profiles\face-recognition</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">URL:</span> <span class="text-emerald-400 font-bold">http://localhost:8080</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <a href="http://localhost:8080" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-500 hover:to-teal-500 text-white font-semibold text-xs text-center shadow-lg shadow-emerald-500/20 transition-all flex items-center justify-center gap-1.5">
+            <span>Open Attendance</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <button onclick="copyToClipboard('http://localhost:8080', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy URL">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 4. Ollama Local LLM Neural Engine -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="live" data-search="ollama local ai llm endpoint 11434 gwenny crio naufal ciso resilience neural substrate">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              PORT :11434
+            </span>
+            <span id="badge-11434" class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              ONLINE
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Ollama Neural Engine
+            <span class="text-xs font-mono font-normal text-slate-500">Local LLM</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Local on-premise AI model execution engine. Provides zero-cloud latency inference for offline agents and confidential task delegation.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Gwenny (CRIO) & Naufal (CISO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Type:</span> <span class="text-slate-300">REST API Substrate</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">URL:</span> <span class="text-amber-400 font-bold">http://localhost:11434</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <a href="http://localhost:11434" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-600 to-orange-600 hover:from-amber-500 hover:to-orange-500 text-white font-semibold text-xs text-center shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-1.5">
+            <span>Check API Endpoint</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <button onclick="copyToClipboard('http://localhost:11434', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy URL">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 5. Soyarin Wedding 2027 Portal & Gateway -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="live" data-search="wedding 2027 soyarin rin clo bolt coo life milestones telegram notion gateway">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-pink-500/10 border border-pink-500/30 text-pink-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-pink-400"></span>
+              PORT :61647
+            </span>
+            <span id="badge-61647" class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-slate-700 text-slate-300 border border-slate-600 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-400"></span>
+              STANDBY
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Wedding 2027 Hub
+            <span class="text-xs font-mono font-normal text-slate-500">Soyarin</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Life milestone orchestrator, Notion sync daemon, and Telegram interactive guest gateway for Soyarin Wedding 2027.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Rin (CLO) & Bolt (COO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Path:</span> <span class="text-slate-300 truncate max-w-[180px]" title="E:\Hermes-Profiles\wedding-2027">E:\Hermes-Profiles\wedding-2027</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Gateway:</span> <span class="text-pink-400 font-bold">http://localhost:61647</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <a href="http://localhost:61647" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-pink-600 to-rose-600 hover:from-pink-500 hover:to-rose-500 text-white font-semibold text-xs text-center shadow-lg shadow-pink-500/20 transition-all flex items-center justify-center gap-1.5">
+            <span>Open Gateway</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <button onclick="copyToClipboard('http://localhost:61647', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy URL">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 6. Public Gold Work (@GOLDWITHSAYED) -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between border-amber-500/30" data-category="cloud" data-search="public gold work goldwithsayed pgbo gap tiktok gfs calendar yed cmo rin clo dinar hantaran">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-yellow-500/10 border border-yellow-500/30 text-yellow-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-yellow-400"></span>
+              GOOGLE DRIVE CLOUD
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              SYNCED
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Public Gold Work
+            <span class="text-xs font-mono font-normal text-yellow-400">@GOLDWITHSAYED</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Centralized multi-agent gold education & PGBO workspace. Houses 72-post TikTok GFS calendar, GAP saving tracking, and 1 Dinar hantaran milestone.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Yed (CMO) & Rin (CLO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Structure:</span> <span class="text-slate-300">8 Canonical Data Folders</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Target:</span> <span class="text-yellow-300 font-semibold">1 Dinar Hantaran & DCA</span></div>
+          </div>
+        </div>
+        <div class="flex flex-col gap-2 pt-2 border-t border-white/5">
+          <div class="flex items-center gap-2">
+            <a href="pg.html" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-500 via-amber-600 to-yellow-600 hover:brightness-110 text-white font-bold text-xs text-center shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-1.5">
+              <span>Buka Pitch Deck / Panduan Emas</span>
+              <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </a>
+            <button onclick="copyToClipboard('http://localhost:3000/pg.html', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy Pitch Deck URL">
+              <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+            </button>
+          </div>
+          <a href="https://drive.google.com/drive/folders/1T2dASFZMh-NVH4NSabk8yNQ2L_a8OmkW" target="_blank" rel="noopener noreferrer" class="py-1.5 px-3 rounded-lg bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white font-mono text-[11px] text-center border border-white/5 transition-all">
+            Google Drive Workspace (8 Folders) ↗
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. bimbap.co Studio Site (Local & Production) -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="cloud" data-search="bimbap-co github pages website studio komi president high council live 3000">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-indigo-500/10 border border-indigo-500/30 text-indigo-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-400"></span>
+              PRODUCTION & LOCAL :3000
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              ACTIVE
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            bimbap.co Studio
+            <span class="text-xs font-mono font-normal text-slate-500">Root Site</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            The studio public website. Displays executive AI org charts, Ponytail engineering doctrine, interactive 3D showrooms, and live company stats.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">President Komi</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Live URL:</span> <span class="text-indigo-300 truncate max-w-[180px]">https://bimbap-co.github.io</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Local:</span> <span class="text-slate-400 font-mono">http://localhost:3000</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <a href="https://bimbap-co.github.io" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 hover:from-indigo-500 hover:to-blue-500 text-white font-semibold text-xs text-center shadow-lg shadow-indigo-500/20 transition-all flex items-center justify-center gap-1.5">
+            <span>Live GitHub Pages</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <button onclick="copyToClipboard('https://bimbap-co.github.io', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy Live URL">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 8. Office of the President (Hermes Governance) -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="workspace" data-search="office of president komi hermes governance council ledgers cac roadmap fleet status">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-400"></span>
+              GOVERNANCE SUITE
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              ACTIVE
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Presidential Cabinet
+            <span class="text-xs font-mono font-normal text-slate-500">Office</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Centralized decision-making hub. Maintains CAC ledgers, High Council charters (Bolt, Asta, Naufal, Violet), and fleet operational matrix.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Executive:</span> <span class="text-slate-300">President Komi</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Path:</span> <span class="text-slate-300 truncate max-w-[180px]" title="E:\Hermes-Profiles\president">E:\Hermes-Profiles\president</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Ledgers:</span> <span class="text-blue-300">CAC, Council & Fleet</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <button onclick="copyToClipboard('E:\\Hermes-Profiles\\president', this)" class="flex-1 py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 font-semibold text-xs text-center transition-all flex items-center justify-center gap-1.5">
+            <span>Copy Directory Path</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- 9. Health Check Engineer (HCE) -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="workspace" data-search="health check engineer hce naufal ciso ira cqo security compliance zero bloat guardrails">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-teal-500/10 border border-teal-500/30 text-teal-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-teal-400"></span>
+              SECURITY AUDITOR
+            </span>
+            <span class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              100/100
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Health Check Engineer
+            <span class="text-xs font-mono font-normal text-slate-500">HCE</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Automated security, zero-bloat, and workspace integrity auditing framework. Enforces air-gapped secrets and Ponytail engineering standards.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Naufal (CISO) & Ira (CQO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Path:</span> <span class="text-slate-300 truncate max-w-[180px]" title="E:\Hermes-Profiles\folder-health-check">E:\Hermes-Profiles\folder-health-check</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Score:</span> <span class="text-emerald-400 font-bold">100 / 100 Sovereign Health</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <button onclick="copyToClipboard('E:\\Hermes-Profiles\\folder-health-check', this)" class="flex-1 py-2 px-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-slate-200 font-semibold text-xs text-center transition-all flex items-center justify-center gap-1.5">
+            <span>Copy Directory Path</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Quick Terminal Cheat Sheet -->
+    <div class="mt-12 specular-glass rounded-2xl p-6">
+      <h3 class="text-lg font-bold text-white mb-2 flex items-center gap-2">
+        <span class="w-2.5 h-2.5 rounded-full bg-indigo-500"></span>
+        Quick Start Commands & Local Daemons
+      </h3>
+      <p class="text-xs text-slate-400 mb-4">
+        Need to spin up or restart one of your local servers? Run these in PowerShell:
+      </p>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+        <div class="bg-black/50 p-3 rounded-xl border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="text-sky-400"># Soya Control Center (Port 8765)</span><br/>
+            <span class="text-slate-300">python -m http.server 8765</span>
+          </div>
+          <button onclick="copyToClipboard('cd E:\\Soya\\Github\\Soya_Control_Center; python -m http.server 8765', this)" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white" title="Copy Command">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+
+        <div class="bg-black/50 p-3 rounded-xl border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="text-purple-400"># Sayed Portfolio Preview (Port 4173)</span><br/>
+            <span class="text-slate-300">npx serve dist -l 4173</span>
+          </div>
+          <button onclick="copyToClipboard('cd E:\\Hermes-Profiles\\sayed-portfolio; npx serve dist -l 4173', this)" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white" title="Copy Command">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+
+        <div class="bg-black/50 p-3 rounded-xl border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="text-emerald-400"># Face Attendance Kiosk (Port 8080)</span><br/>
+            <span class="text-slate-300">python app.py --port 8080</span>
+          </div>
+          <button onclick="copyToClipboard('cd E:\\Hermes-Profiles\\face-recognition; python app.py --port 8080', this)" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white" title="Copy Command">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+
+        <div class="bg-black/50 p-3 rounded-xl border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="text-indigo-400"># bimbap.co Local Dev (Port 3000)</span><br/>
+            <span class="text-slate-300">python -m http.server 3000</span>
+          </div>
+          <button onclick="copyToClipboard('cd E:\\Soya\\Github\\bimbap-co.github.io; python -m http.server 3000', this)" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white" title="Copy Command">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="relative z-10 border-t border-white/10 py-6 text-center text-xs text-slate-500 font-mono">
+    <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+      <div>
+        <span>bimbap.co &bull; Founder Soya &bull; Office of President Komi</span>
+      </div>
+      <div>
+        <span>Strict Ponytail Zero-Bloat Standard &bull; HCE 100/100</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 bg-slate-900 border border-indigo-500/50 text-white text-xs font-mono px-4 py-2.5 rounded-xl shadow-2xl flex items-center gap-2 pointer-events-none">
+    <svg class="w-4 h-4 text-emerald-400 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
+    <span id="toastMsg">URL copied to clipboard!</span>
+  </div>
+
+  <script>
+    // Copy to clipboard helper
+    function copyToClipboard(text, btnElement) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast('Copied: ' + text);
+        if (btnElement) {
+          const originalHTML = btnElement.innerHTML;
+          btnElement.innerHTML = `<svg class="w-4 h-4 text-emerald-400 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>`;
+          setTimeout(() => { btnElement.innerHTML = originalHTML; }, 1500);
+        }
+      }).catch(err => {
+        showToast('Failed to copy');
+      });
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toastMsg');
+      toastMsg.innerText = msg;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2500);
+    }
+
+    // Filter by Category
+    function filterCategory(cat) {
+      document.querySelectorAll('.filter-btn').forEach(b => {
+        b.classList.remove('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-500/25');
+        b.classList.add('bg-white/5', 'border', 'border-white/10', 'text-slate-400');
+      });
+      const activeBtn = document.getElementById('btn-' + cat);
+      if (activeBtn) {
+        activeBtn.classList.remove('bg-white/5', 'border-white/10', 'text-slate-400');
+        activeBtn.classList.add('bg-indigo-600', 'text-white', 'shadow-lg', 'shadow-indigo-500/25');
+      }
+
+      document.querySelectorAll('.project-card').forEach(card => {
+        if (cat === 'all' || card.dataset.category === cat) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Live search filter
+    function searchProjects() {
+      const query = document.getElementById('searchInput').value.toLowerCase().trim();
+      document.querySelectorAll('.project-card').forEach(card => {
+        const text = card.dataset.search.toLowerCase();
+        if (!query || text.includes(query)) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    }
+
+    // Client-side lightweight ping check for local ports
+    async function pingPort(port, badgeId) {
+      const badge = document.getElementById(badgeId);
+      if (!badge) return;
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 1200);
+        // Using no-cors mode to test port reachability without CORS preflight block
+        await fetch(`http://localhost:${port}/`, { mode: 'no-cors', signal: controller.signal });
+        clearTimeout(timeoutId);
+        badge.className = "px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1";
+        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> ONLINE`;
+      } catch (e) {
+        // If aborted or connection refused
+        badge.className = "px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-slate-800 text-slate-400 border border-slate-700 flex items-center gap-1";
+        badge.innerHTML = `<span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span> STANDBY`;
+      }
+    }
+
+    function pingAllServices() {
+      pingPort(8765, 'badge-8765');
+      pingPort(4173, 'badge-4173');
+      pingPort(8080, 'badge-8080');
+      pingPort(11434, 'badge-11434');
+      pingPort(61647, 'badge-61647');
+    }
+
+    // Initial ping on load
+    window.addEventListener('DOMContentLoaded', () => {
+      pingAllServices();
+    });
+  </script>
+</body>
+</html>
+
