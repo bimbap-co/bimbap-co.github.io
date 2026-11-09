@@ -3538,7 +3538,9 @@ body.guest-mode .guest-auth-prompt-btn {
   color: var(--charcoal-muted);
   line-height: 1.6;
   margin: 0;
-  max-width: 760px;
+  width: 100%;
+  max-width: 100%;
+  text-wrap: balance;
 }
 
 .guest-auth-prompt-btn {
