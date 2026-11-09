@@ -1370,15 +1370,13 @@ function overview(parent) {
           <span>💰</span> Expenses by Wedding Phase
         </span>
         <div class="chart-tab-group" id="chart-view-tabs">
-          <button type="button" class="chart-tab-btn active" data-chart="pie">🥧 Pie Chart</button>
-          <button type="button" class="chart-tab-btn" data-chart="bar">📊 Bar Chart</button>
-          <button type="button" class="chart-tab-btn" data-chart="line">📈 Growth Line</button>
+          <button type="button" class="chart-tab-btn active" data-chart="pie">🥧 Pie Breakdown</button>
+          <button type="button" class="chart-tab-btn" data-chart="line">📈 Forecast & Growth</button>
           <button type="button" class="chart-expand-btn" id="btn-chart-expand" title="Expand Expenses Tracking to full view">⛶ Expand</button>
         </div>
       </div>
       <div class="chart-stage">
         <div id="chart-view-pie" class="chart-view active"></div>
-        <div id="chart-view-bar" class="chart-view"></div>
         <div id="chart-view-line" class="chart-view"></div>
       </div>
     </div>
@@ -1528,13 +1526,9 @@ function overview(parent) {
         s.style.opacity = "0.35";
       }
     });
-    rightCard.querySelectorAll(".donut-legend-row").forEach((r, i) => {
+    rightCard.querySelectorAll(".donut-legend-card, .donut-legend-row").forEach((r, i) => {
       if (i === idx) r.classList.add("is-hovered");
       else r.classList.remove("is-hovered");
-    });
-    rightCard.querySelectorAll(".bar-card-item").forEach((b, i) => {
-      if (i === idx) b.classList.add("is-hovered");
-      else b.classList.remove("is-hovered");
     });
 
     // Animate Contribution Split Card to reflect this phase
@@ -1580,11 +1574,8 @@ function overview(parent) {
       s.setAttribute("stroke-width", "24");
       s.style.opacity = "1";
     });
-    rightCard.querySelectorAll(".donut-legend-row").forEach(r => {
+    rightCard.querySelectorAll(".donut-legend-card, .donut-legend-row").forEach(r => {
       r.classList.remove("is-hovered");
-    });
-    rightCard.querySelectorAll(".bar-card-item").forEach(b => {
-      b.classList.remove("is-hovered");
     });
 
     // Reset Contribution Split Card to overall total
@@ -1684,11 +1675,11 @@ function overview(parent) {
     showModalContent();
   }
 
-  // 1. Render Interactive Pie/Donut Chart
+  // 1. Render Interactive Pie/Donut Chart (Enlarged to fill stage)
   const pieWrap = rightCard.querySelector("#chart-view-pie");
   if (pieWrap) {
-    const radius = 68;
-    const circumference = 2 * Math.PI * radius; // ~427.26
+    const radius = 78;
+    const circumference = 2 * Math.PI * radius; // ~490.09
     let accumulatedOffset = 0;
     
     const slicesSvg = phaseData.map((p, idx) => {
@@ -1696,39 +1687,46 @@ function overview(parent) {
       const offset = accumulatedOffset;
       accumulatedOffset += sliceLen;
       return `
-        <circle cx="95" cy="95" r="${radius}"
+        <circle cx="110" cy="110" r="${radius}"
           fill="none"
           stroke="${p.color}"
-          stroke-width="24"
+          stroke-width="26"
           stroke-dasharray="${sliceLen.toFixed(2)} ${(circumference - sliceLen).toFixed(2)}"
           stroke-dashoffset="${(-offset).toFixed(2)}"
           class="donut-slice"
           data-index="${idx}"
+          style="cursor: pointer; transition: all 0.25s ease;"
         />
       `;
     }).join("");
 
     pieWrap.innerHTML = `
-      <div style="display: flex; gap: 18px; align-items: center;">
-        <div style="flex-shrink: 0; width: 190px; height: 190px;">
-          <svg viewBox="0 0 190 190" style="width: 100%; height: 100%; transform: rotate(-90deg);">
-            <circle cx="95" cy="95" r="${radius}" fill="none" stroke="#F4EFEA" stroke-width="24" />
+      <div style="display: flex; gap: 20px; align-items: center; padding: 6px 4px;">
+        <div style="flex-shrink: 0; width: 220px; height: 220px; position: relative;">
+          <svg viewBox="0 0 220 220" style="width: 100%; height: 100%; transform: rotate(-90deg);">
+            <circle cx="110" cy="110" r="${radius}" fill="none" stroke="#F4EFEA" stroke-width="26" />
             ${slicesSvg}
-            <g transform="rotate(90 95 95)">
-              <text id="donut-center-label" x="95" y="84" text-anchor="middle" font-size="9" font-weight="700" fill="#8A8282" letter-spacing="0.5px">TOTAL SPENT</text>
-              <text id="donut-center-value" x="95" y="105" text-anchor="middle" font-size="16" font-weight="800" fill="#6B1D2F">${money(reconciledPaid).replace(".00", "")}</text>
-              <text id="donut-center-sub" x="95" y="120" text-anchor="middle" font-size="9" font-weight="600" fill="#5C5555">by Phase</text>
+            <g transform="rotate(90 110 110)">
+              <text id="donut-center-label" x="110" y="98" text-anchor="middle" font-size="10" font-weight="700" fill="#8A8282" letter-spacing="0.5px">TOTAL SPENT</text>
+              <text id="donut-center-value" x="110" y="120" text-anchor="middle" font-size="18" font-weight="800" fill="#6B1D2F">${money(reconciledPaid).replace(".00", "")}</text>
+              <text id="donut-center-sub" x="110" y="136" text-anchor="middle" font-size="10" font-weight="600" fill="#5C5555">by Phase</text>
             </g>
           </svg>
         </div>
         <div style="flex: 1; font-size: 11px; display: flex; flex-direction: column; gap: 6px;">
           ${phaseData.map((p, idx) => `
-            <div class="donut-legend-row" data-index="${idx}" title="${p.name}: RM ${p.amount.toLocaleString()} (${p.pct}%) · Hover to see split, click for receipts">
-              <div style="display: flex; align-items: center; gap: 7px;">
-                <span style="width: 10px; height: 10px; border-radius: 50%; background: ${p.color}; flex-shrink: 0;"></span>
-                <span style="font-weight: 600; color: var(--charcoal);">${p.short}</span>
+            <div class="donut-legend-card" data-index="${idx}" title="${p.name}: RM ${p.amount.toLocaleString()} (${p.pct}%) · Hover to see split, click for receipts">
+              <div style="display: flex; justify-content: space-between; align-items: center;">
+                <div style="display: flex; align-items: center; gap: 7px;">
+                  <span style="width: 10px; height: 10px; border-radius: 50%; background: ${p.color}; flex-shrink: 0;"></span>
+                  <strong style="color: var(--charcoal); font-size: 11px;">${p.name}</strong>
+                </div>
+                <strong style="color: var(--burgundy); font-size: 12px;">RM ${p.amount.toLocaleString()} <span style="font-size: 10px; color: var(--charcoal-muted); font-weight: normal;">(${p.pct}%)</span></strong>
               </div>
-              <strong style="color: var(--burgundy); font-size: 12px;">RM ${p.amount.toLocaleString()} <span style="font-size: 10px; color: var(--charcoal-muted); font-weight: normal;">(${p.pct}%)</span></strong>
+              <div style="display: flex; justify-content: space-between; font-size: 10px; color: var(--charcoal-muted); margin-top: 2px;">
+                <span>${p.sayedAmount > 0 ? `Sayed: RM ${p.sayedAmount.toLocaleString()}` : ""}${p.shamiraAmount > 0 ? (p.sayedAmount > 0 ? " · " : "") + `Shamira: RM ${p.shamiraAmount.toLocaleString()}` : ""}</span>
+                <span style="font-weight: 600; color: ${p.color};">${p.packageRef}</span>
+              </div>
             </div>
           `).join("")}
         </div>
@@ -1741,117 +1739,268 @@ function overview(parent) {
       slice.addEventListener("click", () => openPhaseModal(phaseData[idx]));
     });
 
-    pieWrap.querySelectorAll(".donut-legend-row").forEach((row, idx) => {
+    pieWrap.querySelectorAll(".donut-legend-card").forEach((row, idx) => {
       row.addEventListener("mouseenter", () => highlightPhase(idx));
       row.addEventListener("mouseleave", resetPhase);
       row.addEventListener("click", () => openPhaseModal(phaseData[idx]));
     });
   }
 
-  // 2. Render Expanded Bar Chart (Point 4.b: Fills empty space aesthetically)
-  const barWrap = rightCard.querySelector("#chart-view-bar");
-  if (barWrap) {
-    barWrap.innerHTML = `
-      <div class="bar-chart-expanded">
-        ${phaseData.map((p, idx) => `
-          <div class="bar-card-item" data-index="${idx}" title="${p.name}: RM ${p.amount.toLocaleString()} (${p.pct}%) · Hover to see contribution split, click for receipts">
-            <div class="bar-card-header">
-              <div class="bar-card-title">
-                <span style="width: 9px; height: 9px; border-radius: 50%; background: ${p.color}; flex-shrink: 0;"></span>
-                <span>${p.name}</span>
-              </div>
-              <span class="bar-card-val">RM ${p.amount.toLocaleString()} <span style="font-size: 10px; color: var(--charcoal-muted); font-weight: normal;">(${p.pct}%)</span></span>
-            </div>
-            <div class="bar-card-track">
-              <div class="bar-card-fill" style="width: ${p.pct}%; background: ${p.color};"></div>
-            </div>
-            <div class="bar-card-footer">
-              <span>Payer Split: <strong>Sayed RM ${p.sayedAmount.toLocaleString()} (${p.sayedPct}%) · Shamira RM ${p.shamiraAmount.toLocaleString()} (${p.shamiraPct}%)</strong></span>
-              <span style="font-weight: 700; color: var(--burgundy);">${p.packageRef}</span>
-            </div>
-          </div>
-        `).join("")}
-      </div>
-    `;
-
-    barWrap.querySelectorAll(".bar-card-item").forEach((cardItem, idx) => {
-      cardItem.addEventListener("mouseenter", () => highlightPhase(idx));
-      cardItem.addEventListener("mouseleave", resetPhase);
-      cardItem.addEventListener("click", () => openPhaseModal(phaseData[idx]));
-    });
-  }
-
-  // 3. Render Growth Line Chart with Dual Subtle Split Gradient (Point 4.c)
+  // 2. Render Interactive Forecasting & Growth Line Chart (Point 4.c & User Request)
   const lineWrap = rightCard.querySelector("#chart-view-line");
   if (lineWrap) {
+    const forecastMilestones = [
+      {
+        id: "merisik",
+        label: "Merisik",
+        subLabel: "Sep 2026",
+        status: "Completed",
+        isActual: true,
+        cumulative: 510,
+        delta: "+RM 510",
+        headroom: 24490,
+        headroomPct: "98.0%",
+        x: 55,
+        y: 146,
+        color: "#5C5555",
+        payer: "Shamira RM 510 (100%)",
+        desc: "Venue booking RM250 + food RM260 paid 100% by Bride (Settled)."
+      },
+      {
+        id: "today",
+        label: "Today",
+        subLabel: "10 Nov 2026",
+        status: "Reconciled Baseline",
+        isActual: true,
+        cumulative: reconciledPaid, // 7998
+        delta: "+RM 7,488",
+        headroom: 25000 - reconciledPaid, // 17002
+        headroomPct: ((17002 / 25000) * 100).toFixed(1) + "%",
+        x: 165,
+        y: 110,
+        color: "#6B1D2F",
+        payer: "Sayed RM 6,938 (86.7%) · Shamira RM 1,060 (13.3%)",
+        desc: "16 reconciled payments across Royale Palace, Nikah prep, Tunang rings & vendors."
+      },
+      {
+        id: "tunang",
+        label: "1. Tunang",
+        subLabel: "27 Dec 2026 · 46d",
+        status: "Projected Target",
+        isActual: false,
+        cumulative: 9498,
+        delta: "+RM 1,500",
+        headroom: 15502,
+        headroomPct: "62.0%",
+        x: 275,
+        y: 101,
+        color: "#588157",
+        payer: "Sayed RM 7,688 · Shamira RM 1,810",
+        desc: "Gastrohub Event House final settlement, 2 desserts balance & doorgifts (30 pax)."
+      },
+      {
+        id: "nikah",
+        label: "2. Nikah",
+        subLabel: "27 Mar 2027 · 136d",
+        status: "Projected Target",
+        isActual: false,
+        cumulative: 14800,
+        delta: "+RM 5,302",
+        headroom: 10200,
+        headroomPct: "40.8%",
+        x: 385,
+        y: 73,
+        color: "#0EA5E9",
+        payer: "Sayed RM 12,990 · Shamira RM 1,810",
+        desc: "Masjid Cyberjaya hall rental, Tok Kadi, pre-Nikah video/photo instalments & jamuan."
+      },
+      {
+        id: "sanding",
+        label: "3. Sanding",
+        subLabel: "27 Nov 2027 · 381d",
+        status: "Final Target",
+        isActual: false,
+        cumulative: 24500,
+        delta: "+RM 9,700",
+        headroom: 500,
+        headroomPct: "2.0% under budget",
+        x: 490,
+        y: 30,
+        color: "#6B1D2F",
+        payer: "Sayed RM 22,690 · Shamira RM 1,810",
+        desc: "Royale Palace final balance, grand pelamin, full photo/video & 400 pax reception (+RM 500 savings under RM 25k cap)."
+      }
+    ];
+
+    let activeMilestoneIdx = 1; // Default to 'Today'
+
     lineWrap.innerHTML = `
-      <div style="width: 100%; height: 210px;">
-        <svg viewBox="0 0 460 200" style="width: 100%; height: 100%;">
-          <defs>
-            <!-- Sayed Contribution Gradient (Burgundy) -->
-            <linearGradient id="lineSayedGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#6B1D2F" stop-opacity="0.30"/>
-              <stop offset="100%" stop-color="#6B1D2F" stop-opacity="0.02"/>
-            </linearGradient>
-            <!-- Shamira Contribution Gradient (Rose Subtle) -->
-            <linearGradient id="lineShamiraGrad" x1="0" y1="0" x2="0" y2="1">
-              <stop offset="0%" stop-color="#EC4899" stop-opacity="0.22"/>
-              <stop offset="100%" stop-color="#EC4899" stop-opacity="0.02"/>
-            </linearGradient>
-          </defs>
+      <div class="forecast-stage-wrap">
+        <!-- Milestone Navigation Stepper Chips -->
+        <div class="forecast-stepper-bar">
+          ${forecastMilestones.map((m, idx) => `
+            <button type="button" class="forecast-step-chip ${idx === activeMilestoneIdx ? "active" : ""}" data-idx="${idx}" title="${m.label} (${m.subLabel}) · RM ${m.cumulative.toLocaleString()}">
+              <span style="width: 7px; height: 7px; border-radius: 50%; background: ${m.color};"></span>
+              <span>${m.label}</span>
+              <span style="font-weight: 800; color: ${idx === activeMilestoneIdx ? '#FFFFFF' : 'var(--burgundy)'};">RM ${m.cumulative.toLocaleString()}</span>
+            </button>
+          `).join("")}
+        </div>
 
-          <!-- Budget Target Line RM 25k -->
-          <line x1="50" y1="30" x2="430" y2="30" stroke="#6B1D2F" stroke-width="1.2" stroke-dasharray="4 4" />
-          <text x="45" y="33" text-anchor="end" font-size="9" font-weight="700" fill="#6B1D2F">25k</text>
-          <text x="425" y="24" text-anchor="end" font-size="9" font-weight="800" fill="#6B1D2F">TOTAL BUDGET RM 25,000</text>
+        <!-- Interactive Forecasting SVG -->
+        <div style="width: 100%; height: 165px; position: relative;">
+          <svg viewBox="0 0 540 180" style="width: 100%; height: 100%;">
+            <defs>
+              <linearGradient id="actualGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#6B1D2F" stop-opacity="0.32"/>
+                <stop offset="100%" stop-color="#6B1D2F" stop-opacity="0.02"/>
+              </linearGradient>
+              <linearGradient id="forecastGrad" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0%" stop-color="#A78BFA" stop-opacity="0.14"/>
+                <stop offset="100%" stop-color="#A78BFA" stop-opacity="0.01"/>
+              </linearGradient>
+            </defs>
 
-          <!-- Grid Lines -->
-          <line x1="50" y1="80" x2="430" y2="80" stroke="#E5DFD7" stroke-width="1" />
-          <text x="45" y="83" text-anchor="end" font-size="9" fill="#8A8282">15k</text>
+            <!-- RM 25,000 Budget Cap Reference Line -->
+            <line x1="45" y1="26" x2="510" y2="26" stroke="#6B1D2F" stroke-width="1.3" stroke-dasharray="4 4" />
+            <text x="40" y="29" text-anchor="end" font-size="9" font-weight="700" fill="#6B1D2F">25k</text>
+            <rect x="365" y="16" width="145" height="18" rx="4" fill="#6B1D2F" fill-opacity="0.08" />
+            <text x="505" y="29" text-anchor="end" font-size="8.5" font-weight="800" fill="#6B1D2F" letter-spacing="0.3px">TOTAL BUDGET CAP RM 25,000</text>
 
-          <line x1="50" y1="130" x2="430" y2="130" stroke="#E5DFD7" stroke-width="1" />
-          <text x="45" y="133" text-anchor="end" font-size="9" fill="#8A8282">7k</text>
+            <!-- Horizontal Grid Lines -->
+            <line x1="45" y1="73" x2="510" y2="73" stroke="#E5DFD7" stroke-width="1" />
+            <text x="40" y="76" text-anchor="end" font-size="8.5" fill="#8A8282">15k</text>
 
-          <line x1="50" y1="175" x2="430" y2="175" stroke="#D5CCC2" stroke-width="1" />
-          <text x="45" y="178" text-anchor="end" font-size="9" fill="#8A8282">0</text>
+            <line x1="45" y1="110" x2="510" y2="110" stroke="#E5DFD7" stroke-width="1" />
+            <text x="40" y="113" text-anchor="end" font-size="8.5" fill="#8A8282">7k</text>
 
-          <!-- Subtle Contribution Split Legend on Line Chart -->
-          <g transform="translate(52, 48)">
-            <circle cx="4" cy="4" r="3.5" fill="#6B1D2F"/>
-            <text x="11" y="7" font-size="8.5" fill="#6B1D2F" font-weight="700">Sayed (75.2%)</text>
-            <circle cx="85" cy="4" r="3.5" fill="#EC4899"/>
-            <text x="92" y="7" font-size="8.5" fill="#EC4899" font-weight="700">Shamira (24.8%)</text>
-          </g>
+            <line x1="45" y1="150" x2="510" y2="150" stroke="#D5CCC2" stroke-width="1" />
+            <text x="40" y="153" text-anchor="end" font-size="8.5" fill="#8A8282">0</text>
 
-          <!-- Shaded Area for Sayed (Burgundy Gradient) -->
-          <polygon points="50,175 50,171 140,131 140,175" fill="url(#lineSayedGrad)" />
+            <!-- Gradient Area: Actual Reconciled Spend -->
+            <polygon points="55,150 55,146 165,110 165,150" fill="url(#actualGrad)" />
 
-          <!-- Subtle Shaded Layer for Shamira (Rose Gradient) -->
-          <polygon points="50,175 50,173 140,158 140,175" fill="url(#lineShamiraGrad)" />
+            <!-- Gradient Area: Projected Forecast Spend -->
+            <polygon points="165,150 165,110 275,101 385,73 490,30 490,150" fill="url(#forecastGrad)" />
 
-          <!-- Dotted Forecast Path to Sanding -->
-          <path d="M 140 131 L 220 120 L 320 95 L 430 35" fill="none" stroke="#1B1818" stroke-width="2" stroke-dasharray="4 4" />
+            <!-- Forecast Trajectory (Dashed) -->
+            <path d="M 165 110 L 275 101 L 385 73 L 490 30" fill="none" stroke="#64748B" stroke-width="2.2" stroke-dasharray="4 4" />
 
-          <!-- Solid Actual Path to Today -->
-          <path d="M 50 171 L 140 131" fill="none" stroke="#6B1D2F" stroke-width="3" stroke-linecap="round" />
+            <!-- Actual Trajectory (Solid Burgundy) -->
+            <path d="M 55 146 L 165 110" fill="none" stroke="#6B1D2F" stroke-width="3.5" stroke-linecap="round" />
 
-          <!-- Today Node -->
-          <circle cx="140" cy="131" r="5" fill="#6B1D2F" stroke="#FFFFFF" stroke-width="2" />
-          <text x="140" y="121" text-anchor="middle" font-size="10" font-weight="800" fill="#6B1D2F">${money(reconciledPaid).replace(".00", "")}</text>
+            <!-- Dynamic Tracking Crosshair -->
+            <line id="forecast-crosshair" x1="165" y1="16" x2="165" y2="150" stroke="#6B1D2F" stroke-width="1.3" stroke-dasharray="3 3" opacity="0.7" style="transition: all 0.25s ease;" />
 
-          <!-- Final Node -->
-          <circle cx="430" cy="35" r="4.5" fill="#1B1818" stroke="#FFFFFF" stroke-width="2" />
-          <text x="425" y="48" text-anchor="end" font-size="9" font-weight="800" fill="#1B1818">Expected: RM 24,500</text>
+            <!-- Active Halo Pulse -->
+            <circle id="forecast-halo" cx="165" cy="110" r="11" fill="#6B1D2F" opacity="0.22" style="transition: all 0.25s ease;" />
 
-          <!-- Phase Labels -->
-          <text x="50" y="190" text-anchor="middle" font-size="9" fill="#8A8282">Merisik</text>
-          <text x="140" y="190" text-anchor="middle" font-size="9" font-weight="700" fill="#6B1D2F">Today</text>
-          <text x="220" y="190" text-anchor="middle" font-size="9" fill="#8A8282">Tunang</text>
-          <text x="320" y="190" text-anchor="middle" font-size="9" fill="#8A8282">Nikah</text>
-          <text x="430" y="190" text-anchor="middle" font-size="9" fill="#8A8282">Sanding</text>
-        </svg>
+            <!-- Milestone Nodes and Labels -->
+            ${forecastMilestones.map((m, idx) => `
+              <g class="forecast-node-group" data-idx="${idx}">
+                <circle cx="${m.x}" cy="${m.y}" r="${m.isActual ? 5.5 : 4.5}" fill="${m.color}" stroke="#FFFFFF" stroke-width="2" class="forecast-dot-elem" data-idx="${idx}" style="cursor: pointer; transition: transform 0.2s ease;" />
+                <circle cx="${m.x}" cy="${m.y}" r="15" fill="transparent" class="forecast-hitbox" data-idx="${idx}" style="cursor: pointer;" />
+                <text x="${m.x}" y="${m.y - 10}" text-anchor="middle" font-size="8.5" font-weight="800" fill="${m.color}">RM ${m.cumulative >= 1000 ? (m.cumulative / 1000).toFixed(1) + "k" : m.cumulative}</text>
+                <text x="${m.x}" y="165" text-anchor="middle" font-size="9" font-weight="${idx === activeMilestoneIdx ? '700' : '500'}" fill="${idx === activeMilestoneIdx ? '#6B1D2F' : '#64748B'}" class="forecast-x-label" data-idx="${idx}">${m.label}</text>
+              </g>
+            `).join("")}
+          </svg>
+        </div>
+
+        <!-- Live Numerical Forecast Inspector Card -->
+        <div class="forecast-inspector-card" id="forecast-inspector-box">
+          <!-- Populated dynamically via updateInspector() -->
+        </div>
       </div>
     `;
+
+    function updateInspector(idx) {
+      activeMilestoneIdx = idx;
+      const m = forecastMilestones[idx];
+
+      // Update crosshair & halo
+      const crosshair = lineWrap.querySelector("#forecast-crosshair");
+      const halo = lineWrap.querySelector("#forecast-halo");
+      if (crosshair) {
+        crosshair.setAttribute("x1", m.x);
+        crosshair.setAttribute("x2", m.x);
+        crosshair.setAttribute("stroke", m.color);
+      }
+      if (halo) {
+        halo.setAttribute("cx", m.x);
+        halo.setAttribute("cy", m.y);
+        halo.setAttribute("fill", m.color);
+      }
+
+      // Update stepper chips
+      lineWrap.querySelectorAll(".forecast-step-chip").forEach((btn, i) => {
+        if (i === idx) {
+          btn.classList.add("active");
+          btn.style.color = "#FFFFFF";
+          const valSpan = btn.querySelectorAll("span")[2];
+          if (valSpan) valSpan.style.color = "#FFFFFF";
+        } else {
+          btn.classList.remove("active");
+          btn.style.color = "var(--charcoal)";
+          const valSpan = btn.querySelectorAll("span")[2];
+          if (valSpan) valSpan.style.color = "var(--burgundy)";
+        }
+      });
+
+      // Update x-axis labels
+      lineWrap.querySelectorAll(".forecast-x-label").forEach((lbl, i) => {
+        if (i === idx) {
+          lbl.setAttribute("font-weight", "800");
+          lbl.setAttribute("fill", m.color);
+        } else {
+          lbl.setAttribute("font-weight", "500");
+          lbl.setAttribute("fill", "#64748B");
+        }
+      });
+
+      // Populate Inspector Box
+      const box = lineWrap.querySelector("#forecast-inspector-box");
+      if (box) {
+        box.innerHTML = `
+          <div style="flex: 1; min-width: 0;">
+            <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+              <span style="width: 9px; height: 9px; border-radius: 50%; background: ${m.color};"></span>
+              <strong style="font-size: 13px; color: var(--charcoal);">${m.label}</strong>
+              <span class="pill-chip" style="font-size: 10px; padding: 1px 6px; background: var(--bg-soft);">${m.subLabel}</span>
+              <span style="font-size: 10px; font-weight: 700; color: ${m.color}; background: ${m.color}15; padding: 1px 7px; border-radius: 12px;">${m.status}</span>
+            </div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 3px; line-height: 1.4;">
+              ${m.desc}
+            </div>
+            <div style="font-size: 10px; color: var(--charcoal); margin-top: 2px;">
+              <strong>Payer Split:</strong> ${m.payer}
+            </div>
+          </div>
+          <div style="text-align: right; flex-shrink: 0; padding-left: 12px; border-left: 1px solid var(--border);">
+            <div style="font-size: 9px; font-weight: 700; color: var(--charcoal-muted); text-transform: uppercase;">Cumulative Spend</div>
+            <div style="font-size: 16px; font-weight: 800; color: var(--burgundy);">RM ${m.cumulative.toLocaleString()}</div>
+            <div style="font-size: 10px; font-weight: 700; color: ${m.headroom > 0 ? '#10B981' : '#F59E0B'}; margin-top: 1px;">
+              ${m.headroom > 0 ? `RM ${m.headroom.toLocaleString()} Headroom` : `At Budget Cap`}
+            </div>
+            <div style="font-size: 9px; color: var(--charcoal-muted);">${m.delta} from prev</div>
+          </div>
+        `;
+      }
+    }
+
+    // Initial render of inspector with 'Today'
+    updateInspector(1);
+
+    // Event bindings for stepper chips and SVG nodes
+    lineWrap.querySelectorAll(".forecast-step-chip").forEach(btn => {
+      btn.addEventListener("click", () => updateInspector(parseInt(btn.dataset.idx, 10)));
+      btn.addEventListener("mouseenter", () => updateInspector(parseInt(btn.dataset.idx, 10)));
+    });
+
+    lineWrap.querySelectorAll(".forecast-hitbox, .forecast-dot-elem").forEach(el => {
+      el.addEventListener("click", () => updateInspector(parseInt(el.dataset.idx, 10)));
+      el.addEventListener("mouseenter", () => updateInspector(parseInt(el.dataset.idx, 10)));
+    });
   }
 
   // Bind Chart Switcher Tabs
