@@ -953,7 +953,7 @@ function overview(parent) {
           <span class="horizon-num" style="font-size: 24px; color: var(--burgundy);">${money(reconciledPaid).replace(".00", "")}</span>
           <span class="horizon-unit" style="color: var(--charcoal-muted); font-size: 13px;">of RM 25,000 Spent</span>
         </div>
-        <div class="horizon-sub">${money(remainingBudget).replace(".00", "")} Left to Spend · Expected Total: RM 24,500</div>
+        <div class="horizon-sub">${money(remainingBudget).replace(".00", "")} Left to Spend</div>
       </div>
       <div class="horizon-footer">
         <span style="font-size: 11px; font-weight: 700; color: #15803D;">${paidTransactionsCount} Verified Payments</span>
