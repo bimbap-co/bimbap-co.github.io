@@ -3436,31 +3436,31 @@ function tentativeView(parent) {
 /* ========================================================================= */
 const TUNANG_GUEST_ROSTER = [
   // Groom Side (13 Pax · 9 entries)
-  { id: "tg-1", no: 1, name: "abah", side: "Groom", pax: 1, role: "Bapa Pengantin Lelaki", status: "Confirmed", note: "Bapa Sayed Arif Hakimi" },
-  { id: "tg-2", no: 2, name: "mama", side: "Groom", pax: 1, role: "Ibu Pengantin Lelaki", status: "Confirmed", note: "Ibu Sayed Arif Hakimi" },
-  { id: "tg-3", no: 3, name: "siblings", side: "Groom", pax: 5, role: "Adik-beradik Groom", status: "Confirmed", note: "5 adik-beradik Groom" },
-  { id: "tg-4", no: 4, name: "abang shahrom", side: "Groom", pax: 1, role: "Keluarga Terdekat", status: "Confirmed", note: "Keluarga Groom" },
-  { id: "tg-5", no: 5, name: "achin", side: "Groom", pax: 1, role: "Keluarga Terdekat", status: "Confirmed", note: "Keluarga Groom" },
-  { id: "tg-6", no: 6, name: "aunty amy", side: "Groom", pax: 1, role: "Ibu Saudara Groom", status: "Confirmed", note: "Ibu Saudara Groom" },
-  { id: "tg-7", no: 7, name: "pakcik", side: "Groom", pax: 1, role: "Bapa Saudara Groom", status: "Confirmed", note: "Bapa Saudara Groom" },
-  { id: "tg-8", no: 8, name: "makcik", side: "Groom", pax: 1, role: "Ibu Saudara Groom", status: "Confirmed", note: "Ibu Saudara Groom" },
-  { id: "tg-9", no: 9, name: "raisya+rizqi", side: "Groom", pax: 1, role: "Keluarga Groom", status: "Confirmed", note: "Keluarga Groom" },
+  { id: "tg-1", no: 1, name: "Abah", side: "Groom", pax: 1, role: "Father of the Groom", status: "Confirmed", note: "Sayed's Father" },
+  { id: "tg-2", no: 2, name: "Mama", side: "Groom", pax: 1, role: "Mother of the Groom", status: "Confirmed", note: "Sayed's Mother" },
+  { id: "tg-3", no: 3, name: "Siblings", side: "Groom", pax: 5, role: "Groom's Siblings", status: "Confirmed", note: "5 immediate siblings" },
+  { id: "tg-4", no: 4, name: "Abang Shahrom", side: "Groom", pax: 1, role: "Close Family", status: "Confirmed", note: "Groom's Family" },
+  { id: "tg-5", no: 5, name: "Achin", side: "Groom", pax: 1, role: "Close Family", status: "Confirmed", note: "Groom's Family" },
+  { id: "tg-6", no: 6, name: "Aunty Amy", side: "Groom", pax: 1, role: "Aunt (Groom's Side)", status: "Confirmed", note: "Groom's Aunt" },
+  { id: "tg-7", no: 7, name: "Pakcik", side: "Groom", pax: 1, role: "Uncle (Groom's Side)", status: "Confirmed", note: "Groom's Uncle" },
+  { id: "tg-8", no: 8, name: "Makcik", side: "Groom", pax: 1, role: "Aunt (Groom's Side)", status: "Confirmed", note: "Groom's Aunt" },
+  { id: "tg-9", no: 9, name: "Raisya & Rizqi", side: "Groom", pax: 1, role: "Groom's Family", status: "Confirmed", note: "Groom's Extended Family" },
 
   // Bride Side (16 Pax · 14 entries)
-  { id: "tb-1", no: 1, name: "ibu", side: "Bride", pax: 1, role: "Ibu Pengantin Perempuan", status: "Confirmed", note: "Ibu Nor Shamira (Norzilawati)" },
-  { id: "tb-2", no: 2, name: "ayah", side: "Bride", pax: 1, role: "Bapa Pengantin Perempuan", status: "Confirmed", note: "Bapa Nor Shamira" },
-  { id: "tb-3", no: 3, name: "uncle", side: "Bride", pax: 1, role: "Bapa Saudara Bride", status: "Confirmed", note: "Bapa Saudara Bride" },
-  { id: "tb-4", no: 4, name: "siblings", side: "Bride", pax: 3, role: "Adik-beradik Bride", status: "Confirmed", note: "3 adik-beradik Bride" },
-  { id: "tb-5", no: 5, name: "kak elaine", side: "Bride", pax: 1, role: "Keluarga / Rakan Rapat", status: "Confirmed", note: "Keluarga / Rakan Bride" },
-  { id: "tb-6", no: 6, name: "sherly", side: "Bride", pax: 1, role: "Keluarga / Rakan Rapat", status: "Confirmed", note: "Keluarga / Rakan Bride" },
-  { id: "tb-7", no: 7, name: "syasya", side: "Bride", pax: 1, role: "Keluarga / Rakan Rapat", status: "Confirmed", note: "Keluarga / Rakan Bride" },
-  { id: "tb-8", no: 8, name: "kak mija", side: "Bride", pax: 1, role: "Keluarga / Rakan Rapat", status: "Confirmed", note: "Keluarga / Rakan Bride" },
-  { id: "tb-9", no: 9, name: "abang lukman", side: "Bride", pax: 1, role: "Keluarga Bride", status: "Confirmed", note: "Keluarga Bride" },
-  { id: "tb-10", no: 10, name: "pakngah", side: "Bride", pax: 1, role: "Bapa Saudara Bride", status: "Confirmed", note: "Bapa Saudara Bride" },
-  { id: "tb-11", no: 11, name: "makngah", side: "Bride", pax: 1, role: "Ibu Saudara Bride", status: "Confirmed", note: "Ibu Saudara Bride" },
-  { id: "tb-12", no: 12, name: "marsya", side: "Bride", pax: 1, role: "Keluarga Bride", status: "Confirmed", note: "Keluarga Bride" },
-  { id: "tb-13", no: 13, name: "farisya", side: "Bride", pax: 1, role: "Keluarga Bride", status: "Confirmed", note: "Keluarga Bride" },
-  { id: "tb-14", no: 14, name: "wahida", side: "Bride", pax: 1, role: "Keluarga Bride", status: "Confirmed", note: "Keluarga Bride" }
+  { id: "tb-1", no: 1, name: "Ibu", side: "Bride", pax: 1, role: "Mother of the Bride", status: "Confirmed", note: "Nor Shamira's Mother (Norzilawati)" },
+  { id: "tb-2", no: 2, name: "Ayah", side: "Bride", pax: 1, role: "Father of the Bride", status: "Confirmed", note: "Nor Shamira's Father" },
+  { id: "tb-3", no: 3, name: "Uncle", side: "Bride", pax: 1, role: "Uncle (Bride's Side)", status: "Confirmed", note: "Bride's Uncle" },
+  { id: "tb-4", no: 4, name: "Siblings", side: "Bride", pax: 3, role: "Bride's Siblings", status: "Confirmed", note: "3 immediate siblings" },
+  { id: "tb-5", no: 5, name: "Kak Elaine", side: "Bride", pax: 1, role: "Close Family & Friend", status: "Confirmed", note: "Bride's Close Circle" },
+  { id: "tb-6", no: 6, name: "Sherly", side: "Bride", pax: 1, role: "Close Family & Friend", status: "Confirmed", note: "Bride's Close Circle" },
+  { id: "tb-7", no: 7, name: "Syasya", side: "Bride", pax: 1, role: "Close Family & Friend", status: "Confirmed", note: "Bride's Close Circle" },
+  { id: "tb-8", no: 8, name: "Kak Mija", side: "Bride", pax: 1, role: "Close Family & Friend", status: "Confirmed", note: "Bride's Close Circle" },
+  { id: "tb-9", no: 9, name: "Abang Lukman", side: "Bride", pax: 1, role: "Bride's Family", status: "Confirmed", note: "Bride's Family" },
+  { id: "tb-10", no: 10, name: "Pak Ngah", side: "Bride", pax: 1, role: "Uncle (Bride's Side)", status: "Confirmed", note: "Bride's Uncle" },
+  { id: "tb-11", no: 11, name: "Mak Ngah", side: "Bride", pax: 1, role: "Aunt (Bride's Side)", status: "Confirmed", note: "Bride's Aunt" },
+  { id: "tb-12", no: 12, name: "Marsya", side: "Bride", pax: 1, role: "Bride's Family", status: "Confirmed", note: "Bride's Family" },
+  { id: "tb-13", no: 13, name: "Farisya", side: "Bride", pax: 1, role: "Bride's Family", status: "Confirmed", note: "Bride's Family" },
+  { id: "tb-14", no: 14, name: "Wahida", side: "Bride", pax: 1, role: "Bride's Family", status: "Confirmed", note: "Bride's Family" }
 ];
 
 function guestsView(parent, records = []) {
@@ -3484,11 +3484,11 @@ function guestsView(parent, records = []) {
       <div class="checklist-headline-row">
         <div>
           <h2 class="section-title">Guest Lists &amp; RSVP Management</h2>
-          <p class="section-caption">Senarai nama tetamu rasmi &amp; peruntukan kuota majlis Tunang, Nikah, dan Sanding — diselaraskan dengan Google Sheets rasmi.</p>
+          <p class="section-caption">Official guest allocations and confirmed attendee rosters for Tunang, Nikah, and Sanding — reconciled with live Google Sheets.</p>
         </div>
         <div class="checklist-progress-bar-wrap">
           <span id="guests-counter-badge" class="counter-badge" style="background: var(--burgundy-soft); color: var(--burgundy); font-weight: 700; padding: 4px 12px; border-radius: 9999px; font-size: 12px; border: 1px solid var(--burgundy-border);">
-            Tunang: 29 / 30 Pax Sah
+            Tunang: 29 / 30 Confirmed Pax
           </span>
         </div>
       </div>
@@ -3498,32 +3498,32 @@ function guestsView(parent, records = []) {
         <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid #588157; border-radius: 8px; padding: 12px;">
           <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">1. TUNANG (GASTROHUB)</div>
           <div style="font-size: 20px; font-weight: 800; color: var(--charcoal); margin: 4px 0;">29 / 30 Pax</div>
-          <div style="font-size: 11px; color: #15803D; font-weight: 600;">✓ 100% Sah (13 Groom · 16 Bride · 1 Buffer)</div>
+          <div style="font-size: 11px; color: #15803D; font-weight: 600;">✓ 100% Confirmed (13 Groom · 16 Bride · 1 Buffer)</div>
         </div>
         <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid #0EA5E9; border-radius: 8px; padding: 12px;">
           <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">2. NIKAH (MASJID CYBERJAYA)</div>
-          <div style="font-size: 20px; font-weight: 800; color: var(--charcoal); margin: 4px 0;">200 Pax Sasaran</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">~100 Groom · ~100 Bride (Penyusunan Nama)</div>
+          <div style="font-size: 20px; font-weight: 800; color: var(--charcoal); margin: 4px 0;">200 Pax Target</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">~100 Groom · ~100 Bride (Compiling Roster)</div>
         </div>
         <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--burgundy); border-radius: 8px; padding: 12px;">
           <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">3. SANDING (ROYALE PALACE)</div>
-          <div style="font-size: 20px; font-weight: 800; color: var(--charcoal); margin: 4px 0;">400 Pax Sasaran</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">200 Groom · 200 Bride (Penyusunan Nama)</div>
+          <div style="font-size: 20px; font-weight: 800; color: var(--charcoal); margin: 4px 0;">400 Pax Target</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">200 Groom · 200 Bride (Compiling Roster)</div>
         </div>
         <div style="background: var(--burgundy-soft); border: 1px solid var(--burgundy-border); border-radius: 8px; padding: 12px; text-align: center;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--burgundy); letter-spacing: 0.5px;">JUMLAH KAPASITI</div>
+          <div style="font-size: 10px; font-weight: 800; color: var(--burgundy); letter-spacing: 0.5px;">TOTAL CAPACITY</div>
           <div style="font-size: 22px; font-weight: 800; color: var(--burgundy); margin: 2px 0;">630 Pax</div>
-          <div style="font-size: 10px; color: var(--burgundy);">Merentas 3 Majlis</div>
+          <div style="font-size: 10px; color: var(--burgundy);">Across 3 Celebrations</div>
         </div>
       </div>
 
       <!-- Primary Mode Switcher (Named Guest Roster vs Allocation Categories) -->
       <div style="display: flex; gap: 8px; margin: 16px 0 10px 0; border-bottom: 2px solid var(--border); padding-bottom: 12px; flex-wrap: wrap;" id="guest-mode-switcher">
         <button type="button" class="guest-mode-pill active" data-mode="roster" style="padding: 8px 18px; border-radius: 9999px; font-size: 13px; font-weight: 700; cursor: pointer; border: 1px solid var(--burgundy); background: var(--burgundy); color: #fff; transition: all 0.15s ease;">
-          📋 Senarai Nama Tetamu (Tunang: 23 Kumpulan · 29 Pax Sah)
+          📋 Guest Roster by Name (Tunang: 23 Groups · 29 Confirmed Pax)
         </button>
         <button type="button" class="guest-mode-pill" data-mode="categories" style="padding: 8px 18px; border-radius: 9999px; font-size: 13px; font-weight: 600; cursor: pointer; border: 1px solid var(--border); background: var(--bg-soft); color: var(--charcoal); transition: all 0.15s ease;">
-          📊 Ringkasan Kuota &amp; Kategori (9 Kategori)
+          📊 Quota &amp; Category Breakdown (9 Categories)
         </button>
       </div>
     </div>
@@ -3556,20 +3556,20 @@ function guestsView(parent, records = []) {
     const badge = container.querySelector("#guests-counter-badge");
     if (badge) {
       if (rosterEvent === "Tunang") {
-        badge.innerHTML = `Tunang: <strong>${totalPax}</strong> Pax (${filteredRoster.length} Kumpulan)`;
+        badge.innerHTML = `Tunang: <strong>${totalPax}</strong> Confirmed Pax (${filteredRoster.length} Groups)`;
       } else if (rosterEvent === "Nikah") {
-        badge.innerHTML = `Nikah: Sasaran 200 Pax`;
+        badge.innerHTML = `Nikah: Target 200 Pax`;
       } else {
-        badge.innerHTML = `Sanding: Sasaran 400 Pax`;
+        badge.innerHTML = `Sanding: Target 400 Pax`;
       }
     }
 
     let subHtml = `
       <!-- Event Phase Tabs for Roster -->
       <div class="checklist-phase-tabs" id="roster-event-tabs" style="margin-bottom: 12px;">
-        <button type="button" class="checklist-phase-btn ${rosterEvent === "Tunang" ? "active" : ""}" data-event="Tunang">1. Tunang (29 Pax Sah · 23 Nama)</button>
-        <button type="button" class="checklist-phase-btn ${rosterEvent === "Nikah" ? "active" : ""}" data-event="Nikah">2. Nikah (Sasaran 200 Pax)</button>
-        <button type="button" class="checklist-phase-btn ${rosterEvent === "Sanding" ? "active" : ""}" data-event="Sanding">3. Sanding (Sasaran 400 Pax)</button>
+        <button type="button" class="checklist-phase-btn ${rosterEvent === "Tunang" ? "active" : ""}" data-event="Tunang">1. Tunang (29 Confirmed Pax · 23 Names)</button>
+        <button type="button" class="checklist-phase-btn ${rosterEvent === "Nikah" ? "active" : ""}" data-event="Nikah">2. Nikah (Target 200 Pax)</button>
+        <button type="button" class="checklist-phase-btn ${rosterEvent === "Sanding" ? "active" : ""}" data-event="Sanding">3. Sanding (Target 400 Pax)</button>
       </div>
     `;
 
@@ -3578,35 +3578,35 @@ function guestsView(parent, records = []) {
         <!-- Tunang Controls & Filters -->
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; margin-bottom: 12px; background: #FAF8F5; padding: 10px 14px; border-radius: 8px; border: 1px solid var(--border);">
           <div class="filter-pills-group" id="roster-side-pills" style="margin: 0;">
-            <button type="button" class="filter-pill ${rosterSide === "all" ? "active" : ""}" data-side="all">Semua Tetamu (29 Pax)</button>
-            <button type="button" class="filter-pill ${rosterSide === "Groom" ? "active" : ""}" data-side="Groom">Pihak Lelaki (13 Pax)</button>
-            <button type="button" class="filter-pill ${rosterSide === "Bride" ? "active" : ""}" data-side="Bride">Pihak Perempuan (16 Pax)</button>
+            <button type="button" class="filter-pill ${rosterSide === "all" ? "active" : ""}" data-side="all">All Guests (29 Pax)</button>
+            <button type="button" class="filter-pill ${rosterSide === "Groom" ? "active" : ""}" data-side="Groom">Groom's Side (13 Pax)</button>
+            <button type="button" class="filter-pill ${rosterSide === "Bride" ? "active" : ""}" data-side="Bride">Bride's Side (16 Pax)</button>
           </div>
 
           <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
             <!-- Layout Toggle -->
             <div style="display: inline-flex; border: 1px solid var(--border); border-radius: 6px; overflow: hidden; background: #fff;">
               <button type="button" id="toggle-layout-sbs" style="padding: 6px 12px; font-size: 11.5px; font-weight: 600; border: none; cursor: pointer; background: ${rosterLayout === "side-by-side" ? "var(--burgundy)" : "#fff"}; color: ${rosterLayout === "side-by-side" ? "#fff" : "var(--charcoal)"};">
-                📑 Bersebelahan
+                📑 Side-by-Side
               </button>
               <button type="button" id="toggle-layout-unified" style="padding: 6px 12px; font-size: 11.5px; font-weight: 600; border: none; cursor: pointer; border-left: 1px solid var(--border); background: ${rosterLayout === "unified" ? "var(--burgundy)" : "#fff"}; color: ${rosterLayout === "unified" ? "#fff" : "var(--charcoal)"};">
-                📋 Jadual Bersatu
+                📋 Unified Roster
               </button>
             </div>
 
             <!-- Search input -->
-            <input type="text" class="checklist-search-input" id="roster-search" value="${rosterQuery}" placeholder="Cari nama tetamu (cth: abah, aunty amy, makngah, farisya)…" style="min-width: 260px;">
+            <input type="text" class="checklist-search-input" id="roster-search" value="${rosterQuery}" placeholder="Search guest name or role (e.g. Abah, Aunty Amy, Pak Ngah, Farisya)…" style="min-width: 260px;">
 
             <!-- Google Sheet Link -->
             <a href="https://docs.google.com/spreadsheets/d/1kXieqBHblrcWIHF8hE_r0WmYeiwfbILi2NPW2-zOLFY/edit#gid=1748384218" target="_blank" rel="noopener noreferrer" class="source-link-chip" style="font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 4px; padding: 6px 10px;">
-              Google Sheets Tunang ↗
+              Tunang Google Sheets ↗
             </a>
           </div>
         </div>
       `;
 
       if (rosterLayout === "side-by-side" && rosterSide === "all") {
-        // SIDE-BY-SIDE VIEW (Mirroring the user's Google Sheet screenshot)
+        // SIDE-BY-SIDE VIEW (Polished professional English & Title Case)
         subHtml += `
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 10px;">
             <!-- GROOM SIDE (13 Pax · 9 Entries) -->
@@ -3614,21 +3614,21 @@ function guestsView(parent, records = []) {
               <div style="padding: 12px 14px; background: #EFF6FF; border-bottom: 1px solid #DBEAFE; display: flex; justify-content: space-between; align-items: center;">
                 <div>
                   <h3 style="font-size: 14px; font-weight: 800; color: #1E3A8A; margin: 0; display: flex; align-items: center; gap: 6px;">
-                    <span>👨‍💼 Pihak Pengantin Lelaki</span>
-                    <span style="font-size: 11px; background: #DBEAFE; color: #1E40AF; padding: 2px 8px; border-radius: 9999px;">${groomPax} Pax (${groomList.length} Kumpulan)</span>
+                    <span>👨‍💼 Groom's Entourage &amp; Family</span>
+                    <span style="font-size: 11px; background: #DBEAFE; color: #1E40AF; padding: 2px 8px; border-radius: 9999px;">${groomPax} Pax (${groomList.length} Groups)</span>
                   </h3>
-                  <div style="font-size: 11px; color: #3B82F6; margin-top: 2px;">Keluarga &amp; Rombongan Sayed Arif Hakimi</div>
+                  <div style="font-size: 11px; color: #3B82F6; margin-top: 2px;">Family &amp; Entourage of Sayed Arif Hakimi</div>
                 </div>
-                <span style="font-size: 11px; font-weight: 700; color: #15803D; background: #DCFCE7; padding: 2px 8px; border-radius: 4px;">✓ Sah Hadir</span>
+                <span style="font-size: 11px; font-weight: 700; color: #15803D; background: #DCFCE7; padding: 2px 8px; border-radius: 4px;">✓ Confirmed Attendance</span>
               </div>
               <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                 <table class="checklist-table" style="margin: 0; width: 100%;">
                   <thead>
                     <tr style="background: #F8FAFC;">
                       <th style="width: 38px; text-align: center;">No.</th>
-                      <th>Nama Tetamu (Guest Name)</th>
+                      <th>Guest Name</th>
                       <th style="width: 70px; text-align: right;">Pax</th>
-                      <th>Peranan / Hubungan</th>
+                      <th>Relationship / Role</th>
                       <th style="width: 90px; text-align: center;">Status</th>
                     </tr>
                   </thead>
@@ -3640,16 +3640,16 @@ function guestsView(parent, records = []) {
                         <td style="text-align: right; font-weight: 800; color: #1D4ED8;">${g.pax}</td>
                         <td style="font-size: 11.5px; color: var(--charcoal-muted);">${g.role}</td>
                         <td style="text-align: center;">
-                          <span style="font-size: 10.5px; font-weight: 700; padding: 2px 6px; border-radius: 4px; background: #DCFCE7; color: #15803D;">✓ Sah</span>
+                          <span style="font-size: 10.5px; font-weight: 700; padding: 2px 6px; border-radius: 4px; background: #DCFCE7; color: #15803D;">✓ Confirmed</span>
                         </td>
                       </tr>
                     `).join("")}
                   </tbody>
                   <tfoot>
                     <tr style="background: #F1F5F9; font-weight: 800; border-top: 2px solid #CBD5E1;">
-                      <td colspan="2" style="padding: 10px 12px; color: #1E293B;">JUMLAH PIHAK LELAKI</td>
+                      <td colspan="2" style="padding: 10px 12px; color: #1E293B;">TOTAL GROOM'S SIDE</td>
                       <td style="text-align: right; padding: 10px 12px; color: #1D4ED8; font-size: 14px;">${groomPax} Pax</td>
-                      <td colspan="2" style="font-size: 11px; color: var(--charcoal-muted);">${groomList.length} Kumpulan / Entri</td>
+                      <td colspan="2" style="font-size: 11px; color: var(--charcoal-muted);">${groomList.length} Groups / Entries</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -3661,21 +3661,21 @@ function guestsView(parent, records = []) {
               <div style="padding: 12px 14px; background: #FDF2F8; border-bottom: 1px solid #FCE7F3; display: flex; justify-content: space-between; align-items: center;">
                 <div>
                   <h3 style="font-size: 14px; font-weight: 800; color: #831843; margin: 0; display: flex; align-items: center; gap: 6px;">
-                    <span>👰‍♀️ Pihak Pengantin Perempuan</span>
-                    <span style="font-size: 11px; background: #FCE7F3; color: #9D174D; padding: 2px 8px; border-radius: 9999px;">${bridePax} Pax (${brideList.length} Kumpulan)</span>
+                    <span>👰‍♀️ Bride's Entourage &amp; Family</span>
+                    <span style="font-size: 11px; background: #FCE7F3; color: #9D174D; padding: 2px 8px; border-radius: 9999px;">${bridePax} Pax (${brideList.length} Groups)</span>
                   </h3>
-                  <div style="font-size: 11px; color: #EC4899; margin-top: 2px;">Keluarga &amp; Rakan Nor Shamira Irwani</div>
+                  <div style="font-size: 11px; color: #EC4899; margin-top: 2px;">Family &amp; Friends of Nor Shamira Irwani</div>
                 </div>
-                <span style="font-size: 11px; font-weight: 700; color: #15803D; background: #DCFCE7; padding: 2px 8px; border-radius: 4px;">✓ Sah Hadir</span>
+                <span style="font-size: 11px; font-weight: 700; color: #15803D; background: #DCFCE7; padding: 2px 8px; border-radius: 4px;">✓ Confirmed Attendance</span>
               </div>
               <div style="overflow-x: auto; -webkit-overflow-scrolling: touch;">
                 <table class="checklist-table" style="margin: 0; width: 100%;">
                   <thead>
                     <tr style="background: #FDF2F8;">
                       <th style="width: 38px; text-align: center;">No.</th>
-                      <th>Nama Tetamu (Guest Name)</th>
+                      <th>Guest Name</th>
                       <th style="width: 70px; text-align: right;">Pax</th>
-                      <th>Peranan / Hubungan</th>
+                      <th>Relationship / Role</th>
                       <th style="width: 90px; text-align: center;">Status</th>
                     </tr>
                   </thead>
@@ -3687,16 +3687,16 @@ function guestsView(parent, records = []) {
                         <td style="text-align: right; font-weight: 800; color: #BE185D;">${g.pax}</td>
                         <td style="font-size: 11.5px; color: var(--charcoal-muted);">${g.role}</td>
                         <td style="text-align: center;">
-                          <span style="font-size: 10.5px; font-weight: 700; padding: 2px 6px; border-radius: 4px; background: #DCFCE7; color: #15803D;">✓ Sah</span>
+                          <span style="font-size: 10.5px; font-weight: 700; padding: 2px 6px; border-radius: 4px; background: #DCFCE7; color: #15803D;">✓ Confirmed</span>
                         </td>
                       </tr>
                     `).join("")}
                   </tbody>
                   <tfoot>
                     <tr style="background: #FFF1F2; font-weight: 800; border-top: 2px solid #FECDD3;">
-                      <td colspan="2" style="padding: 10px 12px; color: #881337;">JUMLAH PIHAK PEREMPUAN</td>
+                      <td colspan="2" style="padding: 10px 12px; color: #881337;">TOTAL BRIDE'S SIDE</td>
                       <td style="text-align: right; padding: 10px 12px; color: #BE185D; font-size: 14px;">${bridePax} Pax</td>
-                      <td colspan="2" style="font-size: 11px; color: var(--charcoal-muted);">${brideList.length} Kumpulan / Entri</td>
+                      <td colspan="2" style="font-size: 11px; color: var(--charcoal-muted);">${brideList.length} Groups / Entries</td>
                     </tr>
                   </tfoot>
                 </table>
@@ -3707,18 +3707,18 @@ function guestsView(parent, records = []) {
           <!-- Total Summary Callout Strip -->
           <div style="margin-top: 14px; background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid #15803D; border-radius: 8px; padding: 12px 16px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
             <div>
-              <span style="font-weight: 800; color: var(--charcoal); font-size: 13px;">✓ Rumusan Kehadiran Tunang:</span>
-              <span style="color: var(--charcoal); font-size: 13px; margin-left: 4px;"><strong>29 Pax</strong> disahkan hadir (<strong>13</strong> Lelaki + <strong>16</strong> Perempuan) daripada kapasiti <strong>30 Pax</strong> Gastrohub Event House.</span>
+              <span style="font-weight: 800; color: var(--charcoal); font-size: 13px;">✓ Tunang Attendance Summary:</span>
+              <span style="color: var(--charcoal); font-size: 13px; margin-left: 4px;"><strong>29 Pax</strong> confirmed (<strong>13</strong> Groom + <strong>16</strong> Bride) of <strong>30 Pax</strong> total capacity at Gastrohub Event House.</span>
             </div>
             <div style="font-size: 12px; font-weight: 700; color: #15803D; background: #DCFCE7; padding: 4px 10px; border-radius: 6px;">
-              Baki 1 Kerusi Buffer Sedia Ada
+              1 Reserved Buffer Seat Remaining
             </div>
           </div>
         `;
       } else {
         // UNIFIED TABLE VIEW (Or single side view)
         if (!filteredRoster.length) {
-          subHtml += `<p class="empty" style="padding: 30px; text-align: center;">Tiada nama tetamu yang sepadan dengan carian "${rosterQuery}".</p>`;
+          subHtml += `<p class="empty" style="padding: 30px; text-align: center;">No guests matching the search "${rosterQuery}".</p>`;
         } else {
           subHtml += `
             <div class="table-wrap" style="overflow-x: auto; -webkit-overflow-scrolling: touch; margin-top: 10px; background: #fff; border: 1px solid var(--border); border-radius: 8px;">
@@ -3726,20 +3726,20 @@ function guestsView(parent, records = []) {
                 <thead>
                   <tr>
                     <th class="col-no" style="width: 40px; text-align: center;">No.</th>
-                    <th>Nama Tetamu (Guest Name)</th>
-                    <th style="width: 130px;">Pihak (Side)</th>
-                    <th style="width: 90px; text-align: right;">Bil. Pax</th>
-                    <th>Peranan / Hubungan Rasmi</th>
-                    <th style="width: 120px; text-align: center;">Status RSVP</th>
-                    <th style="width: 120px; text-align: center;">Pautan Sheet</th>
+                    <th>Guest Name</th>
+                    <th style="width: 140px;">Side / Party</th>
+                    <th style="width: 90px; text-align: right;">Pax</th>
+                    <th>Relationship / Official Role</th>
+                    <th style="width: 120px; text-align: center;">RSVP Status</th>
+                    <th style="width: 120px; text-align: center;">Sheet Link</th>
                   </tr>
                 </thead>
                 <tbody>
                   ${filteredRoster.map((g, idx) => {
                     const isGroom = g.side === "Groom";
                     const sidePill = isGroom
-                      ? `<span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; background: #DBEAFE; color: #1E40AF;">👨‍💼 Lelaki (Groom)</span>`
-                      : `<span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; background: #FCE7F3; color: #9D174D;">👰‍♀️ Perempuan (Bride)</span>`;
+                      ? `<span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; background: #DBEAFE; color: #1E40AF;">👨‍💼 Groom's Side</span>`
+                      : `<span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 9999px; background: #FCE7F3; color: #9D174D;">👰‍♀️ Bride's Side</span>`;
 
                     return `
                       <tr>
@@ -3752,7 +3752,7 @@ function guestsView(parent, records = []) {
                         <td style="text-align: right; font-weight: 800; font-size: 14px; color: ${isGroom ? "#1D4ED8" : "#BE185D"};">${g.pax} Pax</td>
                         <td style="font-size: 12px; color: var(--charcoal);">${g.role}</td>
                         <td style="text-align: center;">
-                          <span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #DCFCE7; color: #15803D;">✓ Sah Hadir</span>
+                          <span style="font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; background: #DCFCE7; color: #15803D;">✓ Confirmed</span>
                         </td>
                         <td style="text-align: center;">
                           <a href="https://docs.google.com/spreadsheets/d/1kXieqBHblrcWIHF8hE_r0WmYeiwfbILi2NPW2-zOLFY/edit#gid=1748384218" target="_blank" rel="noopener noreferrer" class="source-link-chip" style="font-size: 11px;">Sheet ↗</a>
@@ -3763,9 +3763,9 @@ function guestsView(parent, records = []) {
                 </tbody>
                 <tfoot>
                   <tr style="background: #FAF8F5; font-weight: 800; border-top: 2px solid var(--border);">
-                    <td colspan="3" style="padding: 10px 14px;">JUMLAH KESELURUHAN (PAPARAN INI)</td>
+                    <td colspan="3" style="padding: 10px 14px;">TOTAL ATTENDANCE (CURRENT VIEW)</td>
                     <td style="text-align: right; padding: 10px 14px; color: var(--burgundy); font-size: 15px;">${totalPax} Pax</td>
-                    <td colspan="3" style="font-size: 11.5px; color: var(--charcoal-muted);">${filteredRoster.length} Kumpulan / Entri</td>
+                    <td colspan="3" style="font-size: 11.5px; color: var(--charcoal-muted);">${filteredRoster.length} Groups / Entries</td>
                   </tr>
                 </tfoot>
               </table>
@@ -3779,38 +3779,38 @@ function guestsView(parent, records = []) {
         <div style="background: #FFFFFF; border: 1px solid var(--border); border-top: 4px solid #0EA5E9; border-radius: 8px; padding: 24px; margin-top: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
             <div>
-              <h3 style="font-size: 16px; font-weight: 800; color: #0284C7; margin: 0 0 6px 0;">2. Nikah (Masjid Raja Haji Fi Sabilillah, Cyberjaya) — Sasaran 200 Pax</h3>
+              <h3 style="font-size: 16px; font-weight: 800; color: #0284C7; margin: 0 0 6px 0;">2. Nikah (Masjid Raja Haji Fi Sabilillah, Cyberjaya) — 200 Pax Target</h3>
               <p style="font-size: 12.5px; color: var(--charcoal-muted); margin: 0; line-height: 1.5; max-width: 650px;">
-                Peruntukan tetamu majlis akad nikah adalah sebanyak <strong>200 orang</strong> (anggaran 100 pihak lelaki &amp; 100 pihak perempuan). Senarai nama tetamu jemputan individu sedang dikemaskini dalam Google Sheets rasmi.
+                Solemnization ceremony allocation is set for <strong>200 guests</strong> (estimated 100 Groom &amp; 100 Bride). Individual invitation lists are currently being compiled in the official Google Sheets.
               </p>
             </div>
-            <span style="font-size: 11.5px; font-weight: 700; color: #0369A1; background: #E0F2FE; padding: 4px 12px; border-radius: 9999px;">Penyusunan Nama</span>
+            <span style="font-size: 11.5px; font-weight: 700; color: #0369A1; background: #E0F2FE; padding: 4px 12px; border-radius: 9999px;">Compiling Roster</span>
           </div>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0;">
             <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 12px;">
-              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">KUOTA PIHAK LELAKI</div>
-              <div style="font-size: 18px; font-weight: 800; color: #1D4ED8; margin: 4px 0;">100 Pax Sasaran</div>
-              <div style="font-size: 11px; color: var(--charcoal-muted);">Keluarga terdekat &amp; sahabat Sayed</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">GROOM'S ALLOCATION</div>
+              <div style="font-size: 18px; font-weight: 800; color: #1D4ED8; margin: 4px 0;">100 Pax Target</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">Immediate family &amp; Sayed's circle</div>
             </div>
             <div style="background: #FDF2F8; border: 1px solid #FCE7F3; border-radius: 6px; padding: 12px;">
-              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">KUOTA PIHAK PEREMPUAN</div>
-              <div style="font-size: 18px; font-weight: 800; color: #BE185D; margin: 4px 0;">100 Pax Sasaran</div>
-              <div style="font-size: 11px; color: var(--charcoal-muted);">Keluarga terdekat &amp; sahabat Shamira</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">BRIDE'S ALLOCATION</div>
+              <div style="font-size: 18px; font-weight: 800; color: #BE185D; margin: 4px 0;">100 Pax Target</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">Immediate family &amp; Shamira's circle</div>
             </div>
             <div style="background: #FAF8F5; border: 1px solid var(--border); border-radius: 6px; padding: 12px;">
-              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">LOKASI &amp; WAKTU</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">LOCATION &amp; SCHEDULE</div>
               <div style="font-size: 14px; font-weight: 800; color: var(--charcoal); margin: 4px 0;">9:00 AM - 1:00 PM</div>
-              <div style="font-size: 11px; color: var(--charcoal-muted);">Masjid Cyberjaya · 27 Mac 2027</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">Masjid Cyberjaya · 27 Mar 2027</div>
             </div>
           </div>
 
           <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <a href="https://docs.google.com/spreadsheets/d/1kXieqBHblrcWIHF8hE_r0WmYeiwfbILi2NPW2-zOLFY/edit#gid=712613532" target="_blank" rel="noopener noreferrer" class="cta-button" style="text-decoration: none; padding: 8px 16px; font-size: 12.5px; font-weight: 700; background: #0284C7; color: #fff; border-radius: 6px;">
-              Buka Google Sheets Nikah (gid=712613532) ↗
+              Open Nikah Google Sheets (gid=712613532) ↗
             </a>
             <button type="button" class="btn-switch-to-categories" style="padding: 8px 16px; font-size: 12.5px; font-weight: 600; background: var(--bg-soft); color: var(--charcoal); border: 1px solid var(--border); border-radius: 6px; cursor: pointer;">
-              Lihat Ringkasan Kuota Kategori
+              View Quota Categories
             </button>
           </div>
         </div>
@@ -3821,38 +3821,38 @@ function guestsView(parent, records = []) {
         <div style="background: #FFFFFF; border: 1px solid var(--border); border-top: 4px solid var(--burgundy); border-radius: 8px; padding: 24px; margin-top: 10px;">
           <div style="display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px;">
             <div>
-              <h3 style="font-size: 16px; font-weight: 800; color: var(--burgundy); margin: 0 0 6px 0;">3. Sanding (Royale Palace, Cyberjaya) — Sasaran 400 Pax</h3>
+              <h3 style="font-size: 16px; font-weight: 800; color: var(--burgundy); margin: 0 0 6px 0;">3. Sanding (Royale Palace, Cyberjaya) — 400 Pax Target</h3>
               <p style="font-size: 12.5px; color: var(--charcoal-muted); margin: 0; line-height: 1.5; max-width: 650px;">
-                Majlis resepsi perdana menampung <strong>400 tetamu</strong> (200 pihak lelaki &amp; 200 pihak perempuan) di Royale Palace Cyberjaya. Senarai jemputan keluarga besar dan kenalan sedang dikompilasikan dalam Google Sheets rasmi.
+                The grand wedding reception will host <strong>400 guests</strong> (200 Groom &amp; 200 Bride) at Royale Palace Cyberjaya. Comprehensive lists for extended families and friends are currently being finalized in the official Google Sheets.
               </p>
             </div>
-            <span style="font-size: 11.5px; font-weight: 700; color: var(--burgundy); background: var(--burgundy-soft); padding: 4px 12px; border-radius: 9999px;">Penyusunan Nama</span>
+            <span style="font-size: 11.5px; font-weight: 700; color: var(--burgundy); background: var(--burgundy-soft); padding: 4px 12px; border-radius: 9999px;">Compiling Roster</span>
           </div>
 
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 20px 0;">
             <div style="background: #F8FAFC; border: 1px solid #E2E8F0; border-radius: 6px; padding: 12px;">
-              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">KUOTA PIHAK LELAKI</div>
-              <div style="font-size: 18px; font-weight: 800; color: #1D4ED8; margin: 4px 0;">200 Pax Sasaran</div>
-              <div style="font-size: 11px; color: var(--charcoal-muted);">Keluarga besar &amp; rakan Groom</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">GROOM'S ALLOCATION</div>
+              <div style="font-size: 18px; font-weight: 800; color: #1D4ED8; margin: 4px 0;">200 Pax Target</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">Extended family &amp; Groom's network</div>
             </div>
             <div style="background: #FDF2F8; border: 1px solid #FCE7F3; border-radius: 6px; padding: 12px;">
-              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">KUOTA PIHAK PEREMPUAN</div>
-              <div style="font-size: 18px; font-weight: 800; color: #BE185D; margin: 4px 0;">200 Pax Sasaran</div>
-              <div style="font-size: 11px; color: var(--charcoal-muted);">Keluarga besar &amp; rakan Bride</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">BRIDE'S ALLOCATION</div>
+              <div style="font-size: 18px; font-weight: 800; color: #BE185D; margin: 4px 0;">200 Pax Target</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">Extended family &amp; Bride's network</div>
             </div>
             <div style="background: #FAF8F5; border: 1px solid var(--border); border-radius: 6px; padding: 12px;">
-              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">LOKASI &amp; WAKTU</div>
+              <div style="font-size: 11px; font-weight: 700; color: var(--charcoal-muted);">LOCATION &amp; SCHEDULE</div>
               <div style="font-size: 14px; font-weight: 800; color: var(--charcoal); margin: 4px 0;">11:00 AM - 4:00 PM</div>
               <div style="font-size: 11px; color: var(--charcoal-muted);">Royale Palace · 27 Nov 2027</div>
             </div>
           </div>
 
-          <div style="display: gap: 10px; flex-wrap: wrap;">
+          <div style="display: flex; gap: 10px; flex-wrap: wrap;">
             <a href="https://docs.google.com/spreadsheets/d/1kXieqBHblrcWIHF8hE_r0WmYeiwfbILi2NPW2-zOLFY/edit#gid=1983050853" target="_blank" rel="noopener noreferrer" class="cta-button" style="text-decoration: none; padding: 8px 16px; font-size: 12.5px; font-weight: 700; background: var(--burgundy); color: #fff; border-radius: 6px;">
-              Buka Google Sheets Sanding (gid=1983050853) ↗
+              Open Sanding Google Sheets (gid=1983050853) ↗
             </a>
-            <button type="button" class="btn-switch-to-categories" style="padding: 8px 16px; font-size: 12.5px; font-weight: 600; background: var(--bg-soft); color: var(--charcoal); border: 1px solid var(--border); border-radius: 6px; cursor: pointer; margin-left: 10px;">
-              Lihat Ringkasan Kuota Kategori
+            <button type="button" class="btn-switch-to-categories" style="padding: 8px 16px; font-size: 12.5px; font-weight: 600; background: var(--bg-soft); color: var(--charcoal); border: 1px solid var(--border); border-radius: 6px; cursor: pointer;">
+              View Quota Categories
             </button>
           </div>
         </div>
@@ -3996,9 +3996,9 @@ function guestsView(parent, records = []) {
 
           let inlineExpandBtn = "";
           if (isGroomTunang) {
-            inlineExpandBtn = `<button type="button" class="btn-toggle-cat-roster" data-id="${r.id}" style="margin-top: 6px; font-size: 11px; padding: 2px 8px; border-radius: 4px; border: 1px solid #93C5FD; background: #EFF6FF; color: #1E40AF; cursor: pointer; font-weight: 700;">${isExpanded ? "▲ Tutup 9 Nama Tetamu" : "▼ Lihat 9 Nama Tetamu Pihak Lelaki"}</button>`;
+            inlineExpandBtn = `<button type="button" class="btn-toggle-cat-roster" data-id="${r.id}" style="margin-top: 6px; font-size: 11px; padding: 2px 8px; border-radius: 4px; border: 1px solid #93C5FD; background: #EFF6FF; color: #1E40AF; cursor: pointer; font-weight: 700;">${isExpanded ? "▲ Close 9 Guest Names" : "▼ View 9 Groom Guest Names"}</button>`;
           } else if (isBrideTunang) {
-            inlineExpandBtn = `<button type="button" class="btn-toggle-cat-roster" data-id="${r.id}" style="margin-top: 6px; font-size: 11px; padding: 2px 8px; border-radius: 4px; border: 1px solid #F9A8D4; background: #FDF2F8; color: #9D174D; cursor: pointer; font-weight: 700;">${isExpanded ? "▲ Tutup 14 Nama Tetamu" : "▼ Lihat 14 Nama Tetamu Pihak Perempuan"}</button>`;
+            inlineExpandBtn = `<button type="button" class="btn-toggle-cat-roster" data-id="${r.id}" style="margin-top: 6px; font-size: 11px; padding: 2px 8px; border-radius: 4px; border: 1px solid #F9A8D4; background: #FDF2F8; color: #9D174D; cursor: pointer; font-weight: 700;">${isExpanded ? "▲ Close 14 Guest Names" : "▼ View 14 Bride Guest Names"}</button>`;
           }
 
           let expandedRowHtml = "";
@@ -4011,7 +4011,7 @@ function guestsView(parent, records = []) {
               <tr style="background: ${isGroomTunang ? "#F0F7FF" : "#FFF5F7"};">
                 <td colspan="8" style="padding: 12px 16px;">
                   <div style="font-weight: 800; font-size: 12px; color: ${isGroomTunang ? "#1E3A8A" : "#831843"}; margin-bottom: 8px;">
-                    📋 Senarai Nama Rasmi (${rosterItems.reduce((s, g) => s + g.pax, 0)} Pax · ${rosterItems.length} Kumpulan):
+                    📋 Official Guest Roster (${rosterItems.reduce((s, g) => s + g.pax, 0)} Pax · ${rosterItems.length} Groups):
                   </div>
                   <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 8px;">
                     ${rosterItems.map(g => `
