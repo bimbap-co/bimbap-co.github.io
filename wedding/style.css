@@ -2976,25 +2976,25 @@ dialog#detail-modal {
 /* 32. PHASE PILLS (3 LIGHT COLOURS - Checklist Point 6.b)                   */
 /* ========================================================================= */
 .phase-chip-tunang {
-  background: #FEF9C3 !important; /* Yellow */
-  color: #854D0E !important;
-  border: 1px solid #FDE047 !important;
+  background: #EBF5EB !important; /* Matcha Green */
+  color: #2D5A27 !important;
+  border: 1px solid #A8D5A2 !important;
   font-weight: 700 !important;
   padding: 2px 8px !important;
   border-radius: 9999px !important;
 }
 
 .phase-chip-nikah {
-  background: #DCFCE7 !important; /* Green */
-  color: #166534 !important;
-  border: 1px solid #86EFAC !important;
+  background: #E0F2FE !important; /* Sky Blue */
+  color: #0369A1 !important;
+  border: 1px solid #7DD3FC !important;
   font-weight: 700 !important;
   padding: 2px 8px !important;
   border-radius: 9999px !important;
 }
 
 .phase-chip-sanding {
-  background: #F3E8FF !important; /* Purple */
+  background: #F3E8FF !important; /* Purple (Stay current colour) */
   color: #6B21A8 !important;
   border: 1px solid #D8B4FE !important;
   font-weight: 700 !important;

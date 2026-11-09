@@ -318,14 +318,14 @@ function guestView(parent) {
       </h3>
     </div>
     <div class="dress-code-grid">
-      <div class="dress-card" style="border-left: 3px solid #65A30D;">
+      <div class="dress-card" style="border-left: 3px solid #588157;">
         <div class="dress-card-title">
           <span>1. Tunang</span>
           <span class="phase-chip-tunang">27/12/2026</span>
         </div>
         <div class="dress-swatch-row">
           <div class="dress-swatch" style="background: #F7FEE7; color: #3F6212;">
-            <span class="swatch-circle" style="background: #65A30D;"></span>
+            <span class="swatch-circle" style="background: #588157;"></span>
             <span>Matcha</span>
           </div>
           <div class="dress-swatch" style="background: #FFF1F2; color: #9F1239;">
@@ -335,7 +335,7 @@ function guestView(parent) {
         </div>
       </div>
 
-      <div class="dress-card" style="border-left: 3px solid #2563EB;">
+      <div class="dress-card" style="border-left: 3px solid #0EA5E9;">
         <div class="dress-card-title">
           <span>2. Nikah</span>
           <span class="phase-chip-nikah">27/03/2027</span>
@@ -408,7 +408,7 @@ function tentativeView(parent) {
     <div class="phase-accordion is-open" id="accordion-phase-1">
       <div class="phase-accordion-header" role="button" tabindex="0">
         <div class="phase-accordion-title-wrap">
-          <span class="phase-number-tag" style="background: var(--burgundy);">P1</span>
+          <span class="phase-number-tag" style="background: #588157;">P1</span>
           <div>
             <h3 class="phase-accordion-heading">1. Tunang</h3>
             <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub Event House, Cyberjaya</div>
@@ -496,7 +496,7 @@ function tentativeView(parent) {
     <div class="phase-accordion is-open" id="accordion-phase-2" style="margin-top: 18px;">
       <div class="phase-accordion-header" role="button" tabindex="0">
         <div class="phase-accordion-title-wrap">
-          <span class="phase-number-tag" style="background: var(--charcoal);">P2</span>
+          <span class="phase-number-tag" style="background: #0284C7;">P2</span>
           <div>
             <h3 class="phase-accordion-heading">2. Nikah</h3>
             <div class="phase-accordion-sub">Saturday, 27/03/2027 · 9:00 AM–1:00 PM · Masjid Raja Haji Fi Sabilillah, Cyberjaya</div>
