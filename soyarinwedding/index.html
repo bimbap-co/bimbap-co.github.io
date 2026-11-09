@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SoyaRin Wedding</title>
+  <link rel="icon" type="image/svg+xml" href="./favicon.svg">
+  <link rel="alternate icon" type="image/x-icon" href="./favicon.ico">
+  <link rel="stylesheet" href="./style.css">
+  <script src="./app.js" defer></script>
+</head>
+<body>
+  <!-- Sovereign Top Header (Clean: Logo, Names, Hashtag, Year & Top-Right Shortcut Icons) -->
+  <header class="masthead">
+    <div class="masthead-inner">
+      <div class="brand-group">
+        <a class="monogram-seal" href="#overview" title="S&amp;S 2026–2027">
+          <span>S&amp;S</span>
+        </a>
+        <div class="brand-text">
+          <div class="brand-title-row">
+            <h1 class="brand-names">Sayed X Shamira Wedding</h1>
+            <span class="hashtag-badge">#SAHdenganIra</span>
+            <span class="year-badge">2026 – 2027</span>
+          </div>
+          <div class="brand-subline">
+            <span><strong>Groom:</strong> Sayed Arif Hakimi (Sayed)</span>
+            <span class="subline-dot">·</span>
+            <span><strong>Bride:</strong> Nor Shamira Irwani (Shamira)</span>
+          </div>
+        </div>
+      </div>
+      <div class="header-right-group">
+        <div class="header-shortcuts">
+          <button type="button" class="shortcut-icon-btn auth-key-btn" id="btn-portal-auth" data-prompt="Unlock Soya &amp; Rin Control Center" title="Unlock Soya &amp; Rin Control Center" aria-label="Unlock Soya &amp; Rin Control Center">🔒</button>
+          <a href="https://drive.google.com/drive/folders/1jjoMAaYn8oipUMiFq0zOkUdCGV-b4HTo" target="_blank" rel="noopener noreferrer" class="shortcut-icon-btn" data-prompt="Google Drive · Invoices &amp; Receipts Folder" title="Google Drive · Invoices &amp; Receipts Folder" aria-label="Google Drive">📁</a>
+          <a href="https://docs.google.com/spreadsheets/d/1kXieqBHblrcWIHF8hE_r0WmYeiwfbILi2NPW2-zOLFY/edit?usp=sharing" target="_blank" rel="noopener noreferrer" class="shortcut-icon-btn" data-prompt="Google Sheets · Wedding Budget Tracker" title="Google Sheets · Wedding Budget Tracker" aria-label="Google Sheets">📊</a>
+          <a href="https://app.notion.com/3c8caff354e78133bb29eca4687f6300" target="_blank" rel="noopener noreferrer" class="shortcut-icon-btn" data-prompt="Notion · Official Wedding Workspace" title="Notion · Official Wedding Workspace" aria-label="Notion">📝</a>
+          <a href="http://127.0.0.1:61647" target="_blank" rel="noopener noreferrer" class="shortcut-icon-btn" data-prompt="Telegram Bot · Hermes Gateway (:61647)" title="Telegram Bot · Hermes Gateway (:61647)" aria-label="Telegram">🤖</a>
+          <button type="button" class="shortcut-icon-btn" id="btn-header-contacts" data-prompt="VIP &amp; Vendors Contact Directory" title="VIP &amp; Vendors Contact Directory" aria-label="Contacts Directory">📞</button>
+        </div>
+        <div class="header-search-wrap" title="Search all wedding records (Press / to focus)">
+          <span class="search-input-icon">🔍</span>
+          <input type="search" id="header-search-input" placeholder="Search wedding sources… (/)" aria-label="Search wedding sources">
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Horizontal Navigation Tabs -->
+  <nav class="tabs-bar" aria-label="Control Center views" id="nav"></nav>
+
+  <!-- Main View Container -->
+  <main class="page-container">
+    <section id="content" aria-labelledby="page-title"></section>
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <span>Sayed &amp; Shamira · <strong>#SAHdenganIra</strong></span>
+        <span>Wedding Control Center · Private Workspace <button type="button" id="btn-footer-lock" style="background:none;border:none;color:inherit;cursor:pointer;opacity:0.35;font-size:10px;padding:0 3px;" title="Soya &amp; Rin Access" aria-label="Soya &amp; Rin Access">🔒</button></span>
+        <span>Notion &amp; Drive Synced · Malaysia (MYR)</span>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Auth Modal Dialog -->
+  <dialog id="auth-dialog">
+    <form id="auth-form">
+      <div class="dialog-header">
+        <label for="passcode-input">Soya &amp; Rin Sign-In</label>
+        <button id="close-auth" type="button" aria-label="Close authentication">×</button>
+      </div>
+      <p style="font-size: 12px; color: var(--charcoal-muted); margin-bottom: 12px;">
+        Private wedding workspace access (#SAHdenganIra). Enter passcode to unlock financial records, full checklist &amp; vendor contracts.
+      </p>
+      <div class="search-line">
+        <input id="passcode-input" type="password" required placeholder="Enter passcode…" autocomplete="current-password">
+        <button type="submit">Unlock Dashboard</button>
+      </div>
+      <div id="auth-error-msg" style="font-size: 11px; color: var(--burgundy); font-weight: 600; display: none;"></div>
+      <div style="font-size: 10px; color: var(--charcoal-light); margin-top: 10px; border-top: 1px solid var(--border); padding-top: 8px;">
+        🔒 Encrypted Wedding Portal · Access restricted to Soya &amp; Rin
+      </div>
+    </form>
+  </dialog>
+
+  <!-- Search Modal Dialog (Preserved & Polished) -->
+  <dialog id="search-dialog">
+    <form id="search-form">
+      <div class="dialog-header">
+        <label for="query">Search Wedding Sources</label>
+        <button id="close-search" type="button" aria-label="Close search">×</button>
+      </div>
+      <div class="search-line">
+        <input id="query" maxlength="160" required placeholder="Try ‘Gastrohub’, ‘Deloka’, ‘Royale Palace’ or ‘Pelamin’…">
+        <button type="submit">Search</button>
+      </div>
+    </form>
+    <div id="results" aria-live="polite"></div>
+  </dialog>
+  <!-- Detail Modal Dialog for "Read More" Inspect Actions -->
+  <dialog id="detail-modal" class="detail-dialog">
+    <div class="dialog-header">
+      <div id="detail-modal-title" class="dialog-title-luxury">Modal Title</div>
+      <button id="close-detail-modal" type="button" class="dialog-close-btn" aria-label="Close details">×</button>
+    </div>
+    <div id="detail-modal-body" class="detail-modal-body"></div>
+  </dialog>
+</body>
+</html>
