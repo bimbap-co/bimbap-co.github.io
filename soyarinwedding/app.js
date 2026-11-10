@@ -5140,10 +5140,16 @@ function render() {
   if (!requested || requested === "dashboard") requested = isAuthenticated ? "overview" : "guest";
   if (requested === "events") requested = "tentative"; // backwards compatibility
   
-  // If user requests an admin tab while not authenticated, open unlock modal
-  const adminTabs = ["overview", "checklist", "expenses", "tentative", "directory", "records", "guests", "vendors", "sponsors", "files", "documents", "audit", "login", "admin"];
-  if (!isAuthenticated && adminTabs.includes(requested)) {
+  // If user explicitly clicks an admin sign-in trigger (#admin or #login)
+  if (requested === "admin" || requested === "login") {
     openAuthModal();
+    requested = isAuthenticated ? "overview" : "guest";
+    location.hash = "#" + requested;
+  }
+
+  // If user requests a private admin tab while not authenticated, quietly fallback to guest view (do NOT auto-open modal)
+  const adminOnlyTabs = ["overview", "checklist", "expenses", "directory", "records", "guests", "vendors", "sponsors", "files", "documents", "audit"];
+  if (!isAuthenticated && adminOnlyTabs.includes(requested)) {
     requested = "guest";
     location.hash = "#guest";
   }
@@ -5450,10 +5456,6 @@ async function start() {
     
     if (!stateLoaded) {
       const vault = await loadStaticVault();
-      if (vault && !isAuthenticated) {
-        // Automatically prompt for passcode on static admin page
-        setTimeout(() => openAuthModal(), 150);
-      }
       snapshot = {
         revision: "guest-preview",
         mode: "guest",
