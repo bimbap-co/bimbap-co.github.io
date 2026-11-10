@@ -5456,7 +5456,8 @@ function sponsorsView(parent, records = []) {
   const sponsorRecords = records.length ? records : snapshot.records.filter(r => r.tab === "sponsors");
   const container = make("div", "master-sponsors-container");
 
-  let curCategory = "all";
+  let curEvent = "all"; // "all" | "Tunang" | "Nikah" | "Sanding"
+  let curCategory = "all"; // "all" | "Cash" | "Kiosk" | "Ring"
   let curQuery = "";
 
   container.innerHTML = `
@@ -5495,6 +5496,14 @@ function sponsorsView(parent, records = []) {
         </div>
       </div>
 
+      <!-- Phase Tabs (Chronological across Tunang, Nikah, Sanding) -->
+      <div class="checklist-phase-tabs" id="sponsor-event-tabs" style="margin-bottom: 12px;">
+        <button type="button" class="checklist-phase-btn active" data-event="all">All Celebrations (${sponsorRecords.length} Items)</button>
+        <button type="button" class="checklist-phase-btn" data-event="Tunang">1. Tunang (1 Item · Ayah RM1k)</button>
+        <button type="button" class="checklist-phase-btn" data-event="Nikah">2. Nikah (4 Items · RM1.5k Cash/Ring)</button>
+        <button type="button" class="checklist-phase-btn" data-event="Sanding">3. Sanding (6 Live Kiosks)</button>
+      </div>
+
       <!-- Filters & Search -->
       <div class="checklist-headline-row">
         <div class="filter-pills-group" id="sponsor-cat-pills">
@@ -5517,7 +5526,9 @@ function sponsorsView(parent, records = []) {
     if (!mount) return;
 
     let filtered = sponsorRecords.filter(r => {
-      const isCash = (r.amount || 0) > 0 || (r.id && r.id.includes("3c8caff3")) || r.id === "SPN-NIK-001";
+      if (curEvent !== "all" && r.event !== curEvent) return false;
+
+      const isCash = (r.amount || 0) > 0 || (r.id && r.id.includes("3c8caff3")) || r.id === "SPN-NIK-001" || r.id === "sponsor-ayah-tunang";
       const isRing = r.id === "sponsor-ring" || r.id === "SPN-NIK-003" || (r.title && r.title.toLowerCase().includes("ring"));
       const isKiosk = !isCash && !isRing;
 
@@ -5530,6 +5541,17 @@ function sponsorsView(parent, records = []) {
         if (!text.includes(curQuery)) return false;
       }
       return true;
+    });
+
+    // Chronological Sort: Tunang first, then Nikah, then Sanding (Cash & Ring first within each phase)
+    const phaseWeights = { "Tunang": 1, "Nikah": 2, "Sanding": 3 };
+    filtered.sort((a, b) => {
+      const wa = phaseWeights[a.event] || 9;
+      const wb = phaseWeights[b.event] || 9;
+      if (wa !== wb) return wa - wb;
+      const aVal = (a.amount || 0) > 0 ? 1 : 0;
+      const bVal = (b.amount || 0) > 0 ? 1 : 0;
+      return bVal - aVal;
     });
 
     const badge = container.querySelector("#sponsors-counter-badge");
@@ -5580,6 +5602,15 @@ function sponsorsView(parent, records = []) {
 
     mount.replaceChildren(gridEl);
   }
+
+  container.querySelectorAll("#sponsor-event-tabs button").forEach(btn => {
+    btn.addEventListener("click", () => {
+      container.querySelectorAll("#sponsor-event-tabs button").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      curEvent = btn.dataset.event;
+      renderSponsorsGrid();
+    });
+  });
 
   container.querySelectorAll("#sponsor-cat-pills button").forEach(btn => {
     btn.addEventListener("click", () => {
@@ -5773,15 +5804,17 @@ function directoryHubView(parent, activeSub = "guests") {
   }
 
   const navBar = make("div", "subnav-segmented-bar");
+  const sponsorCount = snapshot.records ? snapshot.records.filter(r => r.tab === "sponsors").length : 11;
+  const vendorCount = snapshot.records ? snapshot.records.filter(r => r.tab === "vendors").length : 8;
   navBar.innerHTML = `
     <button type="button" class="subnav-pill ${activeSub === 'guests' ? 'is-active' : ''}" data-sub="guests">
-      Guest Menu
+      👥 Guests &amp; RSVP <span class="tab-badge">30 Pax</span>
     </button>
     <button type="button" class="subnav-pill ${activeSub === 'vendors' ? 'is-active' : ''}" data-sub="vendors">
-      🤝 Vendors &amp; Venues <span class="tab-badge">8</span>
+      🤝 Vendors &amp; Venues <span class="tab-badge">${vendorCount}</span>
     </button>
     <button type="button" class="subnav-pill ${activeSub === 'sponsors' ? 'is-active' : ''}" data-sub="sponsors">
-      Sponsors &amp; Contributors
+      🎁 Sponsors &amp; Contributors <span class="tab-badge">${sponsorCount}</span>
     </button>
     <button type="button" class="subnav-pill ${activeSub === 'rsvps' ? 'is-active' : ''}" data-sub="rsvps">
       💌 Nikah RSVPs
