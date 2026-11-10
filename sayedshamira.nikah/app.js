@@ -719,6 +719,17 @@ function bindFloatingControls() {
   if (audioBtn && audioEl) {
     audioEl.volume = 0.6;
 
+    const startAudio = () => {
+      if (isPlaying) return;
+      audioEl.play().then(() => {
+        isPlaying = true;
+        audioBtn.classList.add("is-playing");
+        if (musicIcon) musicIcon.textContent = "🔊";
+      }).catch((err) => {
+        console.log("Autoplay waiting for user interaction:", err);
+      });
+    };
+
     audioBtn.addEventListener("click", (e) => {
       e.stopPropagation();
       if (!isPlaying) {
@@ -744,18 +755,13 @@ function bindFloatingControls() {
       }
     });
 
-    // Gentle auto-start on first user interaction anywhere on page
-    const tryAutoplay = () => {
-      if (!isPlaying) {
-        audioEl.play().then(() => {
-          isPlaying = true;
-          audioBtn.classList.add("is-playing");
-          if (musicIcon) musicIcon.textContent = "🔊";
-        }).catch(() => {});
-      }
-    };
-    document.addEventListener("click", tryAutoplay, { once: true });
-    document.addEventListener("touchstart", tryAutoplay, { once: true });
+    // Auto-play the music on each refresh after 2 seconds
+    setTimeout(startAudio, 2000);
+
+    // Also attach first-interaction listener if browser autoplay policy delays unprompted audio
+    ["click", "touchstart", "scroll", "keydown"].forEach((evt) => {
+      window.addEventListener(evt, startAudio, { once: true, passive: true });
+    });
   }
 
   // WhatsApp PIC Drawer
