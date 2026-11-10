@@ -714,26 +714,48 @@ function bindFloatingControls() {
   const audioBtn = $("btn-floating-music");
   const audioEl = $("ambient-audio");
   const musicIcon = $("music-icon");
+  let isPlaying = false;
 
-  if (audioBtn) {
-    audioBtn.addEventListener("click", () => {
-      if (!isSynthPlaying) {
-        // Try playing audio element first, else synthesized ambient chords
-        if (audioEl && audioEl.src && !audioEl.error) {
-          audioEl.play().catch(() => {});
-        }
-        isSynthPlaying = true;
-        playAmbientHarpChord();
-        audioBtn.classList.add("is-playing");
-        if (musicIcon) musicIcon.textContent = "🔊";
+  if (audioBtn && audioEl) {
+    audioEl.volume = 0.6;
+
+    audioBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      if (!isPlaying) {
+        audioEl.play().then(() => {
+          isPlaying = true;
+          audioBtn.classList.add("is-playing");
+          if (musicIcon) musicIcon.textContent = "🔊";
+        }).catch((err) => {
+          console.log("Audio playback error, falling back to synth:", err);
+          isPlaying = true;
+          isSynthPlaying = true;
+          playAmbientHarpChord();
+          audioBtn.classList.add("is-playing");
+          if (musicIcon) musicIcon.textContent = "🔊";
+        });
       } else {
-        if (audioEl) audioEl.pause();
+        audioEl.pause();
+        isPlaying = false;
         isSynthPlaying = false;
         if (synthTimer) clearTimeout(synthTimer);
         audioBtn.classList.remove("is-playing");
         if (musicIcon) musicIcon.textContent = "🎵";
       }
     });
+
+    // Gentle auto-start on first user interaction anywhere on page
+    const tryAutoplay = () => {
+      if (!isPlaying) {
+        audioEl.play().then(() => {
+          isPlaying = true;
+          audioBtn.classList.add("is-playing");
+          if (musicIcon) musicIcon.textContent = "🔊";
+        }).catch(() => {});
+      }
+    };
+    document.addEventListener("click", tryAutoplay, { once: true });
+    document.addEventListener("touchstart", tryAutoplay, { once: true });
   }
 
   // WhatsApp PIC Drawer
