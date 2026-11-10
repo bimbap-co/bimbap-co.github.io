@@ -478,20 +478,20 @@ const WEDDING_CONTACTS = [
   },
   {
     category: "Family Principals & Couple",
-    role: "Groom Mother",
-    name: "Pn. Zaini",
+    role: "Groom's Mother",
+    name: "Mama (Groom's Mother)",
     phone: "012-2839140",
     rawPhone: "60122839140",
-    note: "Groom family liaison & sarung cincin lead",
+    note: "Groom family liaison & sarung cincin lead (Pn. Zaini)",
     icon: "🧕"
   },
   {
     category: "Family Principals & Couple",
-    role: "Bride Mother",
-    name: "Pn. Norzilawati",
+    role: "Bride's Mother",
+    name: "Ibu (Bride's Mother)",
     phone: "019-6458300",
     rawPhone: "60196458300",
-    note: "Bride family liaison & welcoming lead",
+    note: "Bride family liaison & welcoming lead (Pn. Norzilawati)",
     icon: "🧕"
   },
   {
@@ -4821,9 +4821,9 @@ function sponsorsView(parent, records = []) {
           <div style="font-size: 11px; color: var(--charcoal-muted);">Funded Groom Elfi Nikah ring (RM 439) with RM 61 buffer</div>
         </div>
         <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #2563EB; border-radius: 8px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">LIVE FOOD KIOSKS</div>
-          <div style="font-size: 20px; font-weight: 800; color: #2563EB; margin: 4px 0;">7 In-Kind Kiosks</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">Sanding live stalls (Apam balik, ice cream, laksa, coffee, etc.)</div>
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">LIVE FOOD &amp; RECEPTION KIOSKS</div>
+          <div style="font-size: 20px; font-weight: 800; color: #2563EB; margin: 4px 0;">8 In-Kind Kiosks</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Sanding live stalls &amp; stations (Apam balik, ice cream, laksa, coffee, photobooth, etc.)</div>
         </div>
       </div>
 
@@ -5337,20 +5337,20 @@ const APPROVED_COORDINATORS = [
   },
   {
     category: "Family Principals & Couple",
-    role: "Groom Mother",
-    name: "Pn. Zaini",
+    role: "Groom's Mother",
+    name: "Mama (Groom's Mother)",
     phone: "012-2839140",
     rawPhone: "60122839140",
-    note: "Groom family liaison & sarung cincin lead",
+    note: "Groom family liaison & sarung cincin lead (Pn. Zaini)",
     icon: "🧕"
   },
   {
     category: "Family Principals & Couple",
-    role: "Bride Mother",
-    name: "Pn. Norzilawati",
+    role: "Bride's Mother",
+    name: "Ibu (Bride's Mother)",
     phone: "019-6458300",
     rawPhone: "60196458300",
-    note: "Bride family liaison & welcoming lead",
+    note: "Bride family liaison & welcoming lead (Pn. Norzilawati)",
     icon: "🧕"
   },
   {
@@ -5473,7 +5473,7 @@ function guestContactsView(parent, isFullPage = true) {
 /* ========================================================================= */
 const APPROVED_SPONSORS = [
   {
-    name: "Achin (Soya's Uncle)",
+    name: "Achin (Groom's Uncle)",
     function: "Nikah Ceremony Gift",
     date: "27/03/2027",
     detail: "Special family cash blessing dedicated to the Akad Nikah ceremony.",
@@ -5481,7 +5481,7 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-nikah"
   },
   {
-    name: "Mama",
+    name: "Mama (Groom's Mother)",
     function: "Groom Nikah Ring Sponsorship",
     date: "27/03/2027",
     detail: "Sponsorship of groom's Elfi platinum wedding ring for Akad Nikah.",
@@ -5489,7 +5489,7 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-nikah"
   },
   {
-    name: "Achin",
+    name: "Achin (Groom's Uncle)",
     function: "Bunga Telur Rebus (In-Kind)",
     date: "27/03/2027",
     detail: "Traditional boiled eggs berkat favor for Nikah ceremony guests.",
@@ -5497,7 +5497,7 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-nikah"
   },
   {
-    name: "Siblings (Soya & Rin)",
+    name: "Cik Jah (Groom's Auntie)",
     function: "Balang Kacang Favors (In-Kind)",
     date: "27/03/2027",
     detail: "Curated peanut jar berkat door gifts for Nikah attendees.",
@@ -5505,7 +5505,7 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-nikah"
   },
   {
-    name: "Mama",
+    name: "Mama (Groom's Mother)",
     function: "Reception Beras Supply (In-Kind)",
     date: "27/11/2027",
     detail: "In-kind staple rice contribution for reception catering support.",
@@ -5513,7 +5513,7 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-sanding"
   },
   {
-    name: "Mama",
+    name: "Mama (Groom's Mother)",
     function: "Apam Balik & Ice Cream Live Kiosk",
     date: "27/11/2027",
     detail: "Fresh hot apam balik and artisanal ice cream live food station.",
@@ -5521,7 +5521,7 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-sanding"
   },
   {
-    name: "Mama",
+    name: "Mama (Groom's Mother)",
     function: "Laksa Live Kiosk",
     date: "27/11/2027",
     detail: "Traditional Malay laksa live cooking stall for reception guests.",
@@ -5529,7 +5529,7 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-sanding"
   },
   {
-    name: "Siblings (Soya & Rin)",
+    name: "Angah (Groom's Siblings)",
     function: "Artisan Coffee Live Kiosk",
     date: "27/11/2027",
     detail: "Freshly brewed barista coffee corner during Sanding reception.",
@@ -5537,7 +5537,15 @@ const APPROVED_SPONSORS = [
     phaseClass: "phase-chip-sanding"
   },
   {
-    name: "Ibu Rin (Bride's Mother)",
+    name: "Along (Groom's Siblings)",
+    function: "Photobooth Live Station (In-Kind)",
+    date: "27/11/2027",
+    detail: "Interactive guest photobooth station with instant prints during reception.",
+    phase: "3. Sanding",
+    phaseClass: "phase-chip-sanding"
+  },
+  {
+    name: "Ibu (Bride's Mother)",
     function: "Sweet Dessert & Pastry Table",
     date: "27/11/2027",
     detail: "Specially curated sweet dessert & pastry display table.",
@@ -5560,7 +5568,7 @@ function guestSponsorsView(parent) {
         </p>
       </div>
       <span class="tab-badge" style="background: var(--burgundy); color: #fff; border-radius: 9999px; padding: 2px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;">
-        9 Contributions
+        ${APPROVED_SPONSORS.length} Contributions
       </span>
     </div>
     <div class="guest-sponsors-grid">
