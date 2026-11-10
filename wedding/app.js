@@ -888,7 +888,7 @@ function tentativeView(parent) {
         <div class="tunang-visual-showcase" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; margin: 18px 0 16px;">
           
           <!-- 1. Official Programme Poster Card -->
-          <div class="visual-panel-card" style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div class="visual-panel-card" style="background: var(--bg-soft); border: 1px solid var(--border); border-top: 3px solid var(--burgundy); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px;">
                 <div>
@@ -908,16 +908,16 @@ function tentativeView(parent) {
           </div>
 
           <!-- 2. Official Floor Plan & Seating Layout Card -->
-          <div class="visual-panel-card" style="background: #FAFDF8; border: 1px solid #D1E7DD; border-top: 3px solid #166534; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
+          <div class="visual-panel-card" style="background: var(--bg-soft); border: 1px solid var(--border); border-top: 3px solid #16a34a; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
               <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px;">
                 <div>
-                  <div style="font-weight: 700; font-size: 14px; color: #166534; font-family: var(--font-serif);">🪑 Floor Plan &amp; Seating Layout</div>
+                  <div style="font-weight: 700; font-size: 14px; color: var(--charcoal); font-family: var(--font-serif);"><span style="color: #16a34a;">🪑</span> Floor Plan &amp; Seating Layout</div>
                   <div style="font-size: 11.5px; color: var(--charcoal-muted); margin-top: 2px;">30 Pax · Table 1 (VIP 14-pax) &amp; Table 2 (Family 16-pax)</div>
                 </div>
-                <span style="background: #DCFCE7; color: #166534; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px;">Level 1 Hall</span>
+                <span style="background: rgba(22, 163, 74, 0.15); color: #16a34a; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(22, 163, 74, 0.25);">Level 1 Hall</span>
               </div>
-              <div style="text-align: center; background: rgba(0,0,0,0.02); padding: 8px; border-radius: 8px; border: 1px solid #D1E7DD;">
+              <div style="text-align: center; background: rgba(0,0,0,0.02); padding: 8px; border-radius: 8px; border: 1px solid var(--border);">
                 <img src="./posters/tunang-seating-layout.jpg" alt="Tunang Seating Layout & Floor Plan" id="thumb-seating-tunang-tab" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.2s;" title="Click to view interactive blueprint" loading="lazy">
               </div>
             </div>
