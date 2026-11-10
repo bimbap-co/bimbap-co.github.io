@@ -15,6 +15,82 @@ const make = (tag, className, text) => {
   return el;
 };
 
+/* ========================================================================= */
+/* THEME MANAGER (LIGHT · DARK · SYSTEM)                                     */
+/* ========================================================================= */
+const THEME_STORAGE_KEY = "soyarin_theme";
+
+function getActiveThemePreference() {
+  try {
+    return localStorage.getItem(THEME_STORAGE_KEY) || "system";
+  } catch (e) {
+    return "system";
+  }
+}
+
+function applyTheme(preference) {
+  const root = document.documentElement;
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const effectiveTheme = (preference === "dark" || (preference === "system" && prefersDark)) ? "dark" : "light";
+  
+  root.setAttribute("data-theme", effectiveTheme);
+  root.setAttribute("data-theme-preference", preference);
+
+  document.querySelectorAll(".theme-switcher-btn").forEach(btn => {
+    const val = btn.getAttribute("data-theme-val");
+    const isActive = val === preference;
+    btn.classList.toggle("is-active", isActive);
+    btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
+function setThemePreference(preference) {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, preference);
+  } catch (e) {}
+  applyTheme(preference);
+}
+
+if (window.matchMedia) {
+  try {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+      if (getActiveThemePreference() === "system") {
+        applyTheme("system");
+      }
+    });
+  } catch (e) {}
+}
+
+function createThemeSwitcherHtml(idPrefix = "nav") {
+  const current = getActiveThemePreference();
+  return `
+    <div class="theme-switcher-group" role="group" aria-label="Theme mode switcher" id="${idPrefix}-theme-switcher">
+      <button type="button" class="theme-switcher-btn ${current === 'light' ? 'is-active' : ''}" data-theme-val="light" title="Light theme" aria-label="Light mode" aria-pressed="${current === 'light'}">
+        <span class="theme-icon">☀️</span>
+        <span class="theme-label">Light</span>
+      </button>
+      <button type="button" class="theme-switcher-btn ${current === 'dark' ? 'is-active' : ''}" data-theme-val="dark" title="Dark theme" aria-label="Dark mode" aria-pressed="${current === 'dark'}">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark</span>
+      </button>
+      <button type="button" class="theme-switcher-btn ${current === 'system' ? 'is-active' : ''}" data-theme-val="system" title="Follow system theme" aria-label="System mode" aria-pressed="${current === 'system'}">
+        <span class="theme-icon">💻</span>
+        <span class="theme-label">Auto</span>
+      </button>
+    </div>
+  `;
+}
+
+function bindThemeSwitcherEvents(container = document) {
+  container.querySelectorAll(".theme-switcher-btn").forEach(btn => {
+    btn.onclick = e => {
+      e.preventDefault();
+      const val = btn.getAttribute("data-theme-val");
+      if (val) setThemePreference(val);
+    };
+  });
+}
+
 const money = value => value == null ? "—" : new Intl.NumberFormat("en-MY", {
   style: "currency", currency: "MYR", minimumFractionDigits: 2
 }).format(value);
@@ -5083,6 +5159,10 @@ function renderNav() {
     }
 
     const rightAction = make("div", "nav-side-action");
+    const themeWrap = make("div", "nav-theme-wrap");
+    themeWrap.innerHTML = createThemeSwitcherHtml("guest-nav");
+    rightAction.append(themeWrap);
+
     const adminLink = make("a", "nav-admin-btn");
     adminLink.href = "#admin";
     adminLink.title = "Soya & Rin Admin Access (Unlock Control Center)";
@@ -5108,9 +5188,14 @@ function renderNav() {
       }
       tabsInner.append(link);
     }
+    const themeWrap = make("div", "admin-nav-theme-wrap");
+    themeWrap.style.marginLeft = "auto";
+    themeWrap.innerHTML = createThemeSwitcherHtml("admin-nav");
+    tabsInner.append(themeWrap);
   }
 
   navBar.append(tabsInner);
+  bindThemeSwitcherEvents(navBar);
 }
 
 const APPROVED_EVENTS = [
@@ -5907,6 +5992,8 @@ async function start() {
     
     updateBanner();
     render();
+    applyTheme(getActiveThemePreference());
+    bindThemeSwitcherEvents(document);
     window.addEventListener("hashchange", render);
     $("btn-header-contacts")?.addEventListener("click", openContactsModal);
     $("btn-footer-lock")?.addEventListener("click", openAuthModal);

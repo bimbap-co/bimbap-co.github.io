@@ -20,6 +20,82 @@ function daysUntil(dateString) {
   return days > 0 ? days : 0;
 }
 
+/* ========================================================================= */
+/* THEME MANAGER (LIGHT · DARK · SYSTEM)                                     */
+/* ========================================================================= */
+const THEME_STORAGE_KEY = "soyarin_theme";
+
+function getActiveThemePreference() {
+  try {
+    return localStorage.getItem(THEME_STORAGE_KEY) || "system";
+  } catch (e) {
+    return "system";
+  }
+}
+
+function applyTheme(preference) {
+  const root = document.documentElement;
+  const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const effectiveTheme = (preference === "dark" || (preference === "system" && prefersDark)) ? "dark" : "light";
+  
+  root.setAttribute("data-theme", effectiveTheme);
+  root.setAttribute("data-theme-preference", preference);
+
+  document.querySelectorAll(".theme-switcher-btn").forEach(btn => {
+    const val = btn.getAttribute("data-theme-val");
+    const isActive = val === preference;
+    btn.classList.toggle("is-active", isActive);
+    btn.setAttribute("aria-pressed", isActive ? "true" : "false");
+  });
+}
+
+function setThemePreference(preference) {
+  try {
+    localStorage.setItem(THEME_STORAGE_KEY, preference);
+  } catch (e) {}
+  applyTheme(preference);
+}
+
+if (window.matchMedia) {
+  try {
+    window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+      if (getActiveThemePreference() === "system") {
+        applyTheme("system");
+      }
+    });
+  } catch (e) {}
+}
+
+function createThemeSwitcherHtml(idPrefix = "nav") {
+  const current = getActiveThemePreference();
+  return `
+    <div class="theme-switcher-group" role="group" aria-label="Theme mode switcher" id="${idPrefix}-theme-switcher">
+      <button type="button" class="theme-switcher-btn ${current === 'light' ? 'is-active' : ''}" data-theme-val="light" title="Light theme" aria-label="Light mode" aria-pressed="${current === 'light'}">
+        <span class="theme-icon">☀️</span>
+        <span class="theme-label">Light</span>
+      </button>
+      <button type="button" class="theme-switcher-btn ${current === 'dark' ? 'is-active' : ''}" data-theme-val="dark" title="Dark theme" aria-label="Dark mode" aria-pressed="${current === 'dark'}">
+        <span class="theme-icon">🌙</span>
+        <span class="theme-label">Dark</span>
+      </button>
+      <button type="button" class="theme-switcher-btn ${current === 'system' ? 'is-active' : ''}" data-theme-val="system" title="Follow system theme" aria-label="System mode" aria-pressed="${current === 'system'}">
+        <span class="theme-icon">💻</span>
+        <span class="theme-label">Auto</span>
+      </button>
+    </div>
+  `;
+}
+
+function bindThemeSwitcherEvents(container = document) {
+  container.querySelectorAll(".theme-switcher-btn").forEach(btn => {
+    btn.onclick = e => {
+      e.preventDefault();
+      const val = btn.getAttribute("data-theme-val");
+      if (val) setThemePreference(val);
+    };
+  });
+}
+
 // Anti-scraping telephone & WhatsApp handlers (decodes base64 on explicit click)
 function openWaB64(enc) {
   try {
@@ -241,10 +317,14 @@ function renderNav() {
   if (!navBar) return;
   navBar.replaceChildren();
 
-  const tabsInner = make("div", "tabs-bar-inner");
+  const tabsInner = make("div", "tabs-bar-inner guest-nav-layout");
   let requested = location.hash.slice(1);
   if (!requested || !GUEST_TABS[requested]) requested = "guest";
 
+  const leftSpacer = make("div", "nav-side-spacer");
+  leftSpacer.setAttribute("aria-hidden", "true");
+
+  const centerTabs = make("div", "nav-center-tabs");
   for (const [id, [label, icon, desc]] of Object.entries(GUEST_TABS)) {
     const a = make("a");
     a.href = `#${id}`;
@@ -254,9 +334,17 @@ function renderNav() {
     const iconSpan = make("span", "icon", icon);
     const labelSpan = make("span", "label", label);
     a.append(iconSpan, labelSpan);
-    tabsInner.append(a);
+    centerTabs.append(a);
   }
+
+  const rightAction = make("div", "nav-side-action");
+  const themeWrap = make("div", "nav-theme-wrap");
+  themeWrap.innerHTML = createThemeSwitcherHtml("guest-nav");
+  rightAction.append(themeWrap);
+
+  tabsInner.append(leftSpacer, centerTabs, rightAction);
   navBar.append(tabsInner);
+  bindThemeSwitcherEvents(navBar);
 }
 
 /* ========================================================================= */
@@ -931,4 +1019,8 @@ function render() {
 }
 
 window.addEventListener("hashchange", render);
-document.addEventListener("DOMContentLoaded", render);
+document.addEventListener("DOMContentLoaded", () => {
+  render();
+  applyTheme(getActiveThemePreference());
+  bindThemeSwitcherEvents(document);
+});

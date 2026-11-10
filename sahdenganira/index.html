@@ -6,8 +6,19 @@
   <title>Sayed &amp; Shamira Wedding · #SAHdenganIra</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="alternate icon" type="image/x-icon" href="./favicon.ico">
-  <link rel="stylesheet" href="./style.css?v=1794287015">
-  <script src="./app.js?v=1794287015" defer></script>
+  <link rel="stylesheet" href="./style.css?v=1794287616">
+  <script>
+    (function() {
+      try {
+        var saved = localStorage.getItem("soyarin_theme") || "system";
+        var prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+        var activeTheme = (saved === "dark" || (saved === "system" && prefersDark)) ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", activeTheme);
+        document.documentElement.setAttribute("data-theme-preference", saved);
+      } catch (e) {}
+    })();
+  </script>
+  <script src="./app.js?v=1794287616" defer></script>
 </head>
 <body class="guest-mode">
   <!-- Sovereign Top Header (Clean: Monogram, Names, Hashtag, Year) -->
@@ -42,8 +53,23 @@
     <footer class="site-footer">
       <div class="footer-inner">
         <span>Sayed &amp; Shamira · <strong>#SAHdenganIra</strong></span>
+        <div class="footer-theme-wrap">
+          <div class="theme-switcher-group" role="group" aria-label="Theme mode switcher">
+            <button type="button" class="theme-switcher-btn" data-theme-val="light" title="Light theme" aria-label="Light mode">
+              <span class="theme-icon">☀️</span>
+              <span class="theme-label">Light</span>
+            </button>
+            <button type="button" class="theme-switcher-btn" data-theme-val="dark" title="Dark theme" aria-label="Dark mode">
+              <span class="theme-icon">🌙</span>
+              <span class="theme-label">Dark</span>
+            </button>
+            <button type="button" class="theme-switcher-btn" data-theme-val="system" title="Follow system theme" aria-label="System mode">
+              <span class="theme-icon">💻</span>
+              <span class="theme-label">Auto</span>
+            </button>
+          </div>
+        </div>
         <span>Official Wedding Portal · 2026–2027</span>
-        <span>Nilai &amp; Cyberjaya · Malaysia</span>
       </div>
     </footer>
   </main>
