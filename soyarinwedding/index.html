@@ -6,7 +6,7 @@
   <title>SoyaRin Wedding</title>
   <link rel="icon" type="image/svg+xml" href="./favicon.svg">
   <link rel="alternate icon" type="image/x-icon" href="./favicon.ico">
-  <link rel="stylesheet" href="./style.css?v=1794292360">
+  <link rel="stylesheet" href="./style.css?v=1794308114">
   <script>
     (function() {
       try {
@@ -18,7 +18,7 @@
       } catch (e) {}
     })();
   </script>
-  <script src="./app.js?v=1794292360" defer></script>
+  <script src="./app.js?v=1794308114" defer></script>
 </head>
 <body>
   <!-- Sovereign Top Header (Clean: Logo, Names, Hashtag, Year & Top-Right Shortcut Icons) -->
@@ -49,6 +49,9 @@
           <a href="https://app.notion.com/3c8caff354e78133bb29eca4687f6300" target="_blank" rel="noopener noreferrer" class="shortcut-icon-btn" data-prompt="Notion · Official Wedding Workspace" title="Notion · Official Wedding Workspace" aria-label="Notion">📝</a>
           <a href="http://127.0.0.1:61647" target="_blank" rel="noopener noreferrer" class="shortcut-icon-btn" data-prompt="Telegram Bot · Hermes Gateway (:61647)" title="Telegram Bot · Hermes Gateway (:61647)" aria-label="Telegram">🤖</a>
           <button type="button" class="shortcut-icon-btn" id="btn-header-contacts" data-prompt="VIP &amp; Vendors Contact Directory" title="VIP &amp; Vendors Contact Directory" aria-label="Contacts Directory">📞</button>
+          <button type="button" class="lang-toggle-btn" id="btn-lang-toggle" title="Tukar Bahasa (Switch Language)" aria-label="Switch Language">
+            <span id="lang-current-label">EN</span>
+          </button>
           <div class="theme-dropdown-wrap">
             <button type="button" class="shortcut-icon-btn theme-toggle-btn" id="btn-theme-toggle" data-prompt="Theme mode (Click to switch)" title="Switch Theme (Light / Dark / Auto)" aria-label="Switch Theme" aria-haspopup="true" aria-expanded="false">
               <span class="theme-current-icon">🌓</span>
@@ -153,5 +156,55 @@
     </div>
     <div id="detail-modal-body" class="detail-modal-body"></div>
   </dialog>
+
+  <!-- Floating WhatsApp Family Coordinator Drawer -->
+  <div class="floating-wa-wrap" id="floating-wa-wrap">
+    <div class="floating-wa-drawer" id="floating-wa-drawer">
+      <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); letter-spacing: 0.5px; border-bottom: 1px solid var(--border); padding-bottom: 6px;">
+        Hubungi PIC Keluarga / WhatsApp
+      </div>
+      <a href="https://wa.me/60183767437" target="_blank" rel="noopener noreferrer" class="wa-contact-row">
+        <div>
+          <div style="font-size: 12px; font-weight: 700;">Sayed Arif Hakimi</div>
+          <div style="font-size: 10px; color: var(--charcoal-muted);">Pengantin Lelaki / Groom</div>
+        </div>
+        <span style="font-size: 14px;">💬</span>
+      </a>
+      <a href="https://wa.me/60189559415" target="_blank" rel="noopener noreferrer" class="wa-contact-row">
+        <div>
+          <div style="font-size: 12px; font-weight: 700;">Nor Shamira Irwani</div>
+          <div style="font-size: 10px; color: var(--charcoal-muted);">Pengantin Perempuan / Bride</div>
+        </div>
+        <span style="font-size: 14px;">💬</span>
+      </a>
+      <a href="https://wa.me/60122839140" target="_blank" rel="noopener noreferrer" class="wa-contact-row">
+        <div>
+          <div style="font-size: 12px; font-weight: 700;">Pn. Zaini</div>
+          <div style="font-size: 10px; color: var(--charcoal-muted);">Ibu Pengantin Lelaki</div>
+        </div>
+        <span style="font-size: 14px;">💬</span>
+      </a>
+      <a href="https://wa.me/60196458300" target="_blank" rel="noopener noreferrer" class="wa-contact-row">
+        <div>
+          <div style="font-size: 12px; font-weight: 700;">Pn. Norzilawati</div>
+          <div style="font-size: 10px; color: var(--charcoal-muted);">Ibu Pengantin Perempuan</div>
+        </div>
+        <span style="font-size: 14px;">💬</span>
+      </a>
+    </div>
+    <button type="button" class="floating-wa-btn" id="btn-floating-wa" title="WhatsApp PIC Keluarga">
+      <span>💬</span> <span>WhatsApp PIC</span>
+    </button>
+  </div>
+
+  <!-- Floating Ambient Music Player -->
+  <div class="floating-music-wrap">
+    <audio id="ambient-audio" loop preload="none">
+      <source src="./audio/wedding-acoustic.mp3" type="audio/mp3">
+    </audio>
+    <button type="button" class="floating-music-btn" id="btn-floating-music" title="Muzik Latar (Buka / Tutup)">
+      <span id="music-icon">🎵</span>
+    </button>
+  </div>
 </body>
 </html>

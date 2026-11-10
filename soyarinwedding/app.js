@@ -2419,8 +2419,32 @@ function overview(parent) {
     });
   });
 
+  // Live Nikah RSVP Telemetry Strip
+  const rsvpStrip = make("div", "admin-rsvp-telemetry-strip");
+  rsvpStrip.innerHTML = `
+    <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--burgundy); border-radius: 8px; padding: 12px 16px; margin: 14px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+      <div style="display: flex; align-items: center; gap: 10px;">
+        <span style="font-size: 20px;">💌</span>
+        <div>
+          <div style="display: flex; align-items: center; gap: 8px;">
+            <strong style="color: var(--charcoal); font-size: 13px;">Akad Nikah RSVP Telemetry</strong>
+            <span class="pill-chip" style="font-size: 10px; background: #DCFCE7; color: #15803D; font-weight: 700;">Cap: &le; 200 Pax</span>
+            <span style="font-size: 11px; color: var(--charcoal-muted);">27 Mac 2027 · Masjid Cyberjaya</span>
+          </div>
+          <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;" id="ov-rsvp-hint">
+            Public submissions live feed from guest portal
+          </div>
+        </div>
+      </div>
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 13px; font-weight: 800; color: var(--burgundy);" id="ov-rsvp-pax-count">Live Feed Active</span>
+        <button type="button" class="read-more-btn" onclick="location.hash='#directory'; setTimeout(() => { const b = document.querySelector('[data-sub=rsvps]'); if (b) b.click(); }, 100);">Manage RSVPs ↗</button>
+      </div>
+    </div>
+  `;
+
   // Render everything onto parent
-  parent.replaceChildren(horizon, cockpit, bottomTabs);
+  parent.replaceChildren(horizon, rsvpStrip, cockpit, bottomTabs);
 }
 
 /* ========================================================================= */
@@ -5190,6 +5214,9 @@ function directoryHubView(parent, activeSub = "guests") {
     <button type="button" class="subnav-pill ${activeSub === 'sponsors' ? 'is-active' : ''}" data-sub="sponsors">
       Sponsors &amp; Contributors
     </button>
+    <button type="button" class="subnav-pill ${activeSub === 'rsvps' ? 'is-active' : ''}" data-sub="rsvps">
+      💌 Nikah RSVPs
+    </button>
   `;
 
   const contentMount = make("div", "hub-content-mount");
@@ -5206,6 +5233,8 @@ function directoryHubView(parent, activeSub = "guests") {
       vendorsView(contentMount, snapshot.records.filter(r => r.tab === "vendors"));
     } else if (sub === "sponsors") {
       sponsorsView(contentMount, snapshot.records.filter(r => r.tab === "sponsors"));
+    } else if (sub === "rsvps") {
+      adminRsvpView(contentMount);
     } else {
       guestsView(contentMount, snapshot.records.filter(r => r.tab === "guests"));
     }
@@ -5295,6 +5324,7 @@ function getActiveTabs() {
     return {
       guest: ["Guest Menu", "🌸", "Official Wedding Guide", ""],
       tentative: ["Tentative", "📅", "Day Programmes & Posters", ""],
+      rsvp: ["RSVP Nikah", "💌", "Sahkan Kehadiran & Hadiah", ""],
       contacts: ["Contacts", "📞", "Key PIC Directory", ""]
     };
   }
@@ -5671,6 +5701,650 @@ function guestSponsorsView(parent) {
   parent.append(card);
 }
 
+
+
+const LANG_STORAGE_KEY = "soyarin_lang";
+
+const I18N = {
+  ms: {
+    langBtn: "EN",
+    langPrompt: "Tukar ke Bahasa Inggeris (Switch to English)",
+    navGuest: "Menu Utama",
+    navTentative: "Aturcara",
+    navRsvp: "RSVP Nikah",
+    navContacts: "Hubungi",
+    heroTitle: "Sayed & Shamira Wedding",
+    heroSub: "Dengan penuh kesyukuran dan kasih sayang, kami mengalu-alukan kehadiran keluarga serta para tetamu yang dirahmati ke lembaran bahagia kami.",
+    rsvpCta: "Sahkan Kehadiran Nikah (RSVP)",
+    tentativeCta: "Lihat Aturcara Majlis",
+    daysToGo: "Hari Lagi",
+    rsvpTitle: "Pengesahan Kehadiran (RSVP) Akad Nikah",
+    rsvpDesc: "Majlis Akad Nikah & Jamuan Kesyukuran · Sabtu, 27 Mac 2027 · Masjid Raja Haji Fi Sabilillah, Cyberjaya. Sila sahkan kehadiran anda bagi membantu perancangan kapasiti (< 200 pax).",
+    nameLabel: "Nama Penuh Anda",
+    namePlaceholder: "cth: Pak Ngah / En. Ahmad & Pn. Aminah",
+    phoneLabel: "Nombor Telefon / WhatsApp",
+    phonePlaceholder: "cth: 012-3456789",
+    attendingLabel: "Adakah anda akan hadir?",
+    attendingYes: "Ya, saya/kami akan hadir!",
+    attendingNo: "Maaf, tidak dapat hadir",
+    adultsLabel: "Bilangan Dewasa (12 tahun ke atas)",
+    kidsLabel: "Bilangan Kanak-kanak (bawah 12 tahun)",
+    totalPaxLabel: "Jumlah Kehadiran (Pax)",
+    messageLabel: "Ucapan & Doa Khas (Pilihan)",
+    messagePlaceholder: "Titipkan doa dan ucapan manis buat kedua mempelai…",
+    submitBtn: "Hantar Pengesahan Kehadiran 💌",
+    submitting: "Sedang menghantar…",
+    submitSuccess: "Alhamdulillah! Terima kasih atas pengesahan kehadiran anda.",
+    registryTitle: "Hajat & Hadiah Buat Mempelai",
+    registryDesc: "Kehadiran serta doa restu anda adalah hadiah yang paling bermakna. Sekiranya berhajat menitipkan tanda ingatan, berikut adalah senarai hajat kami atau sumbangan Duit Salam Kaut:",
+    salamKautTitle: "Duit Salam Kaut (Bank QR & Pindahan)",
+    salamKautDesc: "Imbas kod DuitNow QR atau salin nombor akaun di bawah. Selepas pindahan, anda boleh klik butang WhatsApp untuk menghantar resit/notifikasi terus kepada pengantin.",
+    customGiftTitle: "Cadang Hadiah / Hajat Sendiri",
+    customGiftPlaceholder: "cth: Set Periuk Memasak / Blender",
+    customGiftBtn: "Hantar Cadangan Hadiah 🎁",
+    wishesTitle: "Titipan Doa & Ucapan Tetamu",
+  },
+  en: {
+    langBtn: "BM",
+    langPrompt: "Switch to Bahasa Melayu",
+    navGuest: "Guest Menu",
+    navTentative: "Tentative",
+    navRsvp: "Nikah RSVP",
+    navContacts: "Contacts",
+    heroTitle: "Sayed & Shamira Wedding",
+    heroSub: "With gratitude and joy, we warmly welcome our beloved family and friends to celebrate this special chapter of our lives.",
+    rsvpCta: "RSVP for Akad Nikah",
+    tentativeCta: "View Event Schedule",
+    daysToGo: "Days to Go",
+    rsvpTitle: "Akad Nikah Attendance Confirmation (RSVP)",
+    rsvpDesc: "Solemnization & Thanksgiving Reception · Saturday, 27 March 2027 · Masjid Raja Haji Fi Sabilillah, Cyberjaya. Please RSVP to help us manage venue capacity (< 200 pax).",
+    nameLabel: "Your Full Name",
+    namePlaceholder: "e.g. Uncle John / Mr. Ahmad & Mrs. Aminah",
+    phoneLabel: "Phone / WhatsApp Number",
+    phonePlaceholder: "e.g. +6012-3456789",
+    attendingLabel: "Will you be attending?",
+    attendingYes: "Yes, I/we will be attending!",
+    attendingNo: "Sorry, unable to attend",
+    adultsLabel: "Adults (12 years and above)",
+    kidsLabel: "Children (below 12 years)",
+    totalPaxLabel: "Total Headcount (Pax)",
+    messageLabel: "Special Wishes & Du'a (Optional)",
+    messagePlaceholder: "Leave a warm message or prayer for the couple…",
+    submitBtn: "Submit RSVP Confirmation 💌",
+    submitting: "Submitting…",
+    submitSuccess: "Alhamdulillah! Thank you for confirming your attendance.",
+    registryTitle: "Gift Registry & Wishes",
+    registryDesc: "Your presence and prayers are the greatest gifts of all. Should you wish to honor us with a gift, here is our registry and Duit Salam Kaut options:",
+    salamKautTitle: "Duit Salam Kaut (DuitNow QR & Transfer)",
+    salamKautDesc: "Scan the DuitNow QR or copy the bank account details below. After transfer, tap the WhatsApp button to notify the couple directly.",
+    customGiftTitle: "Suggest Your Own Gift",
+    customGiftPlaceholder: "e.g. Microwave Oven / Dinnerware Set",
+    customGiftBtn: "Submit Gift Suggestion 🎁",
+    wishesTitle: "Guest Book & Well Wishes",
+  }
+};
+
+function getActiveLanguage() {
+  try {
+    return localStorage.getItem(LANG_STORAGE_KEY) || "ms";
+  } catch (e) {
+    return "ms";
+  }
+}
+
+function t(key) {
+  const lang = getActiveLanguage();
+  return I18N[lang]?.[key] || I18N.ms[key] || key;
+}
+
+function rsvpView(parent) {
+  const container = make("div", "rsvp-section-wrap");
+
+  // 1. Ceremony Banner
+  const banner = make("div", "rsvp-banner-card");
+  banner.innerHTML = `
+    <span class="rsvp-badge-pill">Akad Nikah · 27 Mac 2027</span>
+    <h2 class="rsvp-banner-title">${t("rsvpTitle")}</h2>
+    <p class="rsvp-banner-sub">${t("rsvpDesc")}</p>
+    <div class="rsvp-facts-grid">
+      <div class="rsvp-fact-box">
+        <div class="rsvp-fact-label">Tarikh &amp; Hari</div>
+        <div class="rsvp-fact-val">Sabtu, 27/03/2027</div>
+      </div>
+      <div class="rsvp-fact-box">
+        <div class="rsvp-fact-label">Masa Majlis</div>
+        <div class="rsvp-fact-val">9:00 AM – 1:00 PM (Akad 10:05 AM)</div>
+      </div>
+      <div class="rsvp-fact-box">
+        <div class="rsvp-fact-label">Lokasi Masjid</div>
+        <div class="rsvp-fact-val">Masjid Raja Haji Fi Sabilillah</div>
+      </div>
+      <div class="rsvp-fact-box">
+        <div class="rsvp-fact-label">Had Kapasiti Dewan</div>
+        <div class="rsvp-fact-val" style="color: #15803D;">Maksimum &le; 200 Pax</div>
+      </div>
+    </div>
+  `;
+  container.append(banner);
+
+  // 2. RSVP Form Card
+  const formCard = make("div", "rsvp-form-card");
+  const existingRsvpStr = localStorage.getItem("soyarin_nikah_rsvp");
+  let existingRsvp = null;
+  try {
+    if (existingRsvpStr) existingRsvp = JSON.parse(existingRsvpStr);
+  } catch (e) {}
+
+  if (existingRsvp) {
+    formCard.innerHTML = `
+      <div style="text-align: center; padding: 12px 0;">
+        <div style="font-size: 40px; margin-bottom: 8px;">✅</div>
+        <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--burgundy); margin: 0 0 6px 0;">
+          ${t("submitSuccess")}
+        </h3>
+        <p style="font-size: 13px; color: var(--charcoal-muted); margin: 0 0 16px 0;">
+          Pengesahan kehadiran telah direkodkan atas nama: <strong>${existingRsvp.name}</strong> (${existingRsvp.attending === "Tidak Hadir" ? "Tidak Hadir" : existingRsvp.pax + " Pax"}).
+        </p>
+        <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Akad+Nikah+Sayed+%26+Shamira&dates=20270327T010000Z/20270327T050000Z&details=Majlis+Akad+Nikah+Sayed+Arif+Hakimi+%26+Nor+Shamira+Irwani&location=Masjid+Raja+Haji+Fi+Sabilillah+Cyberjaya" target="_blank" rel="noopener noreferrer" class="hero-cta-btn tentative-cta-btn">
+            📅 Tambah ke Google Calendar
+          </a>
+          <button type="button" class="btn-copy-acc" id="btn-edit-rsvp" style="padding: 10px 16px;">
+            ✏️ Kemaskini Semula RSVP
+          </button>
+        </div>
+      </div>
+    `;
+    formCard.querySelector("#btn-edit-rsvp")?.addEventListener("click", () => {
+      localStorage.removeItem("soyarin_nikah_rsvp");
+      rsvpView(parent);
+    });
+  } else {
+    formCard.innerHTML = `
+      <form id="nikah-rsvp-form">
+        <h3 style="font-family: var(--font-serif); font-size: 18px; color: var(--burgundy); margin: 0 0 16px 0; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
+          Borang Pengesahan Kehadiran Tetamu
+        </h3>
+
+        <div class="rsvp-form-group">
+          <label class="rsvp-form-label" for="rsvp-name">${t("nameLabel")} *</label>
+          <input type="text" class="rsvp-form-input" id="rsvp-name" required placeholder="${t("namePlaceholder")}">
+        </div>
+
+        <div class="rsvp-form-group">
+          <label class="rsvp-form-label" for="rsvp-phone">${t("phoneLabel")} *</label>
+          <input type="tel" class="rsvp-form-input" id="rsvp-phone" required placeholder="${t("phonePlaceholder")}">
+        </div>
+
+        <div class="rsvp-form-group">
+          <label class="rsvp-form-label">${t("attendingLabel")} *</label>
+          <div class="attendance-radio-group">
+            <div class="attendance-card-opt is-selected" id="opt-attending-yes" data-val="yes">
+              <div class="attendance-radio-circle">✓</div>
+              <div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--charcoal);">${t("attendingYes")}</div>
+                <div style="font-size: 11px; color: var(--charcoal-muted);">Akan hadir meraikan di masjid</div>
+              </div>
+            </div>
+            <div class="attendance-card-opt is-regret" id="opt-attending-no" data-val="no">
+              <div class="attendance-radio-circle">✗</div>
+              <div>
+                <div style="font-size: 14px; font-weight: 700; color: var(--charcoal);">${t("attendingNo")}</div>
+                <div style="font-size: 11px; color: var(--charcoal-muted);">Titipkan doa dari kejauhan</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rsvp-form-group" id="headcount-section">
+          <label class="rsvp-form-label">${t("totalPaxLabel")} (Maksimum 4 Pax / Jemputan) *</label>
+          <div class="pax-breakdown-row">
+            <div>
+              <label style="font-size: 11px; color: var(--charcoal-muted); display: block; margin-bottom: 4px;">${t("adultsLabel")}</label>
+              <select class="rsvp-form-select" id="rsvp-adults">
+                <option value="1">1 Dewasa</option>
+                <option value="2" selected>2 Dewasa</option>
+                <option value="3">3 Dewasa</option>
+                <option value="4">4 Dewasa</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 11px; color: var(--charcoal-muted); display: block; margin-bottom: 4px;">${t("kidsLabel")}</label>
+              <select class="rsvp-form-select" id="rsvp-kids">
+                <option value="0" selected>0 Kanak-kanak</option>
+                <option value="1">1 Kanak-kanak</option>
+                <option value="2">2 Kanak-kanak</option>
+                <option value="3">3 Kanak-kanak</option>
+              </select>
+            </div>
+          </div>
+          <div class="pax-total-banner">
+            <span>Jumlah Kerusi &amp; Makanan Diperlukan:</span>
+            <strong id="rsvp-total-display">2 Pax</strong>
+          </div>
+        </div>
+
+        <div class="rsvp-form-group">
+          <label class="rsvp-form-label" for="rsvp-msg">${t("messageLabel")}</label>
+          <textarea class="rsvp-form-textarea" id="rsvp-msg" rows="3" placeholder="${t("messagePlaceholder")}"></textarea>
+        </div>
+
+        <div id="rsvp-status-alert" style="display: none; padding: 10px 14px; border-radius: 8px; margin-bottom: 14px; font-size: 12px; font-weight: 600;"></div>
+
+        <button type="submit" class="rsvp-submit-btn" id="btn-submit-rsvp">
+          ${t("submitBtn")}
+        </button>
+      </form>
+    `;
+
+    // Interactive logic
+    let currentAttending = "yes";
+    const optYes = formCard.querySelector("#opt-attending-yes");
+    const optNo = formCard.querySelector("#opt-attending-no");
+    const headcountSection = formCard.querySelector("#headcount-section");
+    const adultsSelect = formCard.querySelector("#rsvp-adults");
+    const kidsSelect = formCard.querySelector("#rsvp-kids");
+    const totalDisplay = formCard.querySelector("#rsvp-total-display");
+
+    function updateTotal() {
+      const adults = parseInt(adultsSelect.value, 10) || 1;
+      const kids = parseInt(kidsSelect.value, 10) || 0;
+      const total = adults + kids;
+      totalDisplay.textContent = `${total} Pax`;
+    }
+
+    optYes?.addEventListener("click", () => {
+      currentAttending = "yes";
+      optYes.classList.add("is-selected");
+      optNo.classList.remove("is-selected");
+      headcountSection.style.display = "block";
+    });
+
+    optNo?.addEventListener("click", () => {
+      currentAttending = "no";
+      optNo.classList.add("is-selected");
+      optYes.classList.remove("is-selected");
+      headcountSection.style.display = "none";
+    });
+
+    adultsSelect?.addEventListener("change", updateTotal);
+    kidsSelect?.addEventListener("change", updateTotal);
+
+    const form = formCard.querySelector("#nikah-rsvp-form");
+    form?.addEventListener("submit", async e => {
+      e.preventDefault();
+      const submitBtn = formCard.querySelector("#btn-submit-rsvp");
+      const alertBox = formCard.querySelector("#rsvp-status-alert");
+      const name = formCard.querySelector("#rsvp-name").value.trim();
+      const phone = formCard.querySelector("#rsvp-phone").value.trim();
+      const message = formCard.querySelector("#rsvp-msg").value.trim();
+      const adults = currentAttending === "yes" ? parseInt(adultsSelect.value, 10) : 0;
+      const kids = currentAttending === "yes" ? parseInt(kidsSelect.value, 10) : 0;
+      const totalPax = adults + kids;
+
+      if (!name || !phone) return;
+
+      submitBtn.disabled = true;
+      submitBtn.textContent = t("submitting");
+
+      const payload = {
+        name,
+        phone,
+        event: "Nikah",
+        adults,
+        kids,
+        total_pax: totalPax,
+        attending: currentAttending === "yes" ? "Hadir" : "Tidak Hadir",
+        message
+      };
+
+      try {
+        // Post to server if available
+        await fetch("/api/rsvp", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(payload)
+        }).catch(() => {});
+
+        // Save to local storage
+        localStorage.setItem("soyarin_nikah_rsvp", JSON.stringify({
+          name,
+          phone,
+          attending: payload.attending,
+          pax: totalPax,
+          submittedAt: new Date().toISOString()
+        }));
+
+        alertBox.style.display = "block";
+        alertBox.style.background = "rgba(21, 128, 61, 0.1)";
+        alertBox.style.color = "#15803D";
+        alertBox.textContent = "✓ " + t("submitSuccess");
+
+        setTimeout(() => {
+          rsvpView(parent);
+        }, 1200);
+      } catch (err) {
+        submitBtn.disabled = false;
+        submitBtn.textContent = t("submitBtn");
+      }
+    });
+  }
+  container.append(formCard);
+
+  // 3. Duit Salam Kaut (Bank QR Card)
+  const salamCard = make("div", "salam-kaut-card");
+  salamCard.innerHTML = `
+    <div class="salam-qr-box">
+      <img src="./qr/qr-duitnow.svg" alt="Maybank DuitNow QR" class="salam-qr-img">
+      <div style="font-size: 11px; font-weight: 800; color: #15803D; margin-top: 6px;">
+        MAYBANK DUITNOW QR
+      </div>
+    </div>
+    <div class="bank-details-box">
+      <span class="bank-name-pill">MAYBANK · DUIT SALAM KAUT</span>
+      <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--burgundy); margin: 4px 0 0 0;">
+        ${t("salamKautTitle")}
+      </h3>
+      <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0 0 6px 0; line-height: 1.5;">
+        ${t("salamKautDesc")}
+      </p>
+      <div class="acc-num-row">
+        <span style="font-size: 12px; color: var(--charcoal-muted);">No. Akaun:</span>
+        <span class="acc-num-text" id="acc-num-text">162834241920</span>
+        <button type="button" class="btn-copy-acc" id="btn-copy-maybank">📋 Salin Akaun</button>
+      </div>
+      <div style="font-size: 11px; color: var(--charcoal-muted);">
+        Pemegang: <strong>Sayed Arif Hakimi bin Sayed Ahmad</strong>
+      </div>
+      <a href="https://wa.me/60183767437?text=Salam%20Sayed%20%26%20Shamira%2C%20saya%20telah%20menghantar%20Duit%20Salam%20Kaut%20tanda%20ingatan%20berkat%20perkahwinan." target="_blank" rel="noopener noreferrer" class="btn-wa-salam">
+        <span>💬</span> <span>WhatsApp Resit / Notifikasi ke Soya</span>
+      </a>
+    </div>
+  `;
+  salamCard.querySelector("#btn-copy-maybank")?.addEventListener("click", () => {
+    navigator.clipboard?.writeText("162834241920");
+    const btn = salamCard.querySelector("#btn-copy-maybank");
+    if (btn) {
+      const orig = btn.textContent;
+      btn.textContent = "✓ Disalin!";
+      setTimeout(() => { btn.textContent = orig; }, 2000);
+    }
+  });
+  container.append(salamCard);
+
+  // 4. Gift Registry Cards (Hajat & Hadiah)
+  const registryCard = make("div", "rsvp-form-card");
+  registryCard.innerHTML = `
+    <div style="border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 14px;">
+      <h3 style="font-family: var(--font-serif); font-size: 18px; color: var(--burgundy); margin: 0 0 4px 0;">
+        🎁 ${t("registryTitle")}
+      </h3>
+      <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0;">
+        ${t("registryDesc")}
+      </p>
+    </div>
+    <div class="registry-grid" id="registry-grid-mount"></div>
+
+    <!-- Custom Gift Gesture Box -->
+    <div class="custom-gift-box">
+      <h4 style="font-size: 13px; font-weight: 700; color: var(--charcoal); margin: 0 0 6px 0;">
+        ✨ ${t("customGiftTitle")}
+      </h4>
+      <p style="font-size: 11px; color: var(--charcoal-muted); margin: 0 0 10px 0;">
+        Sebarang hadiah atau barangan di luar senarai amat kami hargai dengan penuh kesyukuran.
+      </p>
+      <div style="display: flex; gap: 10px; flex-wrap: wrap;">
+        <input type="text" class="rsvp-form-input" id="custom-gift-input" placeholder="${t("customGiftPlaceholder")}" style="flex: 1; min-width: 200px;">
+        <button type="button" class="btn-select-gift" id="btn-submit-custom-gift" style="width: auto; padding: 10px 18px;">
+          ${t("customGiftBtn")}
+        </button>
+      </div>
+      <div id="custom-gift-status" style="display: none; font-size: 11px; font-weight: 700; color: #15803D; margin-top: 6px;"></div>
+    </div>
+  `;
+
+  const defaultGifts = [
+    { id: "gift-1", name: "Air Fryer / Smart Oven", category: "Kitchenware" },
+    { id: "gift-2", name: "Espresso Barista Coffee Machine", category: "Kitchenware" },
+    { id: "gift-3", name: "Robot Vacuum Cleaner / Cordless Vacuum", category: "Home Essentials" },
+    { id: "gift-4", name: "Luxury Cotton Bedding & King Comforter Set", category: "Bedroom" },
+    { id: "gift-5", name: "Porcelain Dining Plate & Cutlery Set (16-pcs)", category: "Dining" },
+    { id: "gift-6", name: "Premium Sejadah & Telekung Set for Couple", category: "Spiritual" }
+  ];
+
+  const gridMount = registryCard.querySelector("#registry-grid-mount");
+  gridMount.innerHTML = defaultGifts.map(g => {
+    const giftCount = parseInt(localStorage.getItem(`gift_count_${g.id}`) || "0", 10);
+    return `
+      <div class="registry-card" data-id="${g.id}">
+        <div>
+          <span class="registry-card-cat">${g.category}</span>
+          <h4 class="registry-card-title">${g.name}</h4>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--border); padding-top: 8px;">
+          <span class="registry-card-count" id="count-${g.id}">${giftCount > 0 ? giftCount + ' Dihadiahkan' : 'Boleh Dipilih'}</span>
+          <button type="button" class="btn-select-gift btn-gift-action" data-id="${g.id}" data-name="${g.name}">
+            Hadiahkan 🎁
+          </button>
+        </div>
+      </div>
+    `;
+  }).join("");
+
+  registryCard.querySelectorAll(".btn-gift-action").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const gid = btn.dataset.id;
+      const gname = btn.dataset.name;
+      openDetailModal(`Pilih Hadiah: ${gname}`, `
+        <div style="font-size: 13px; color: var(--charcoal); margin-bottom: 12px;">
+          Terima kasih atas kebaikan hati anda memilih untuk menghadiahkan <strong>${gname}</strong>. Sila masukkan nama anda untuk rekod ingatan kami:
+        </div>
+        <div style="margin-bottom: 12px;">
+          <input type="text" class="rsvp-form-input" id="modal-giver-name" placeholder="Nama anda / keluarga" required>
+        </div>
+        <div style="display: flex; justify-content: flex-end; gap: 8px;">
+          <button type="button" class="btn-select-gift" id="modal-confirm-gift" style="width: auto; background: var(--burgundy); color: #fff;">
+            Sahkan Hadiah Ini 🎁
+          </button>
+        </div>
+      `);
+      document.getElementById("modal-confirm-gift")?.addEventListener("click", async () => {
+        const giver = document.getElementById("modal-giver-name")?.value.trim() || "Hamba Allah";
+        const cur = parseInt(localStorage.getItem(`gift_count_${gid}`) || "0", 10) + 1;
+        localStorage.setItem(`gift_count_${gid}`, String(cur));
+        fetch("/api/registry/select", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ giftId: gid, name: giver })
+        }).catch(() => {});
+        closeDetailModal();
+        const badge = registryCard.querySelector(`#count-${gid}`);
+        if (badge) badge.textContent = `${cur} Dihadiahkan`;
+      });
+    });
+  });
+
+  registryCard.querySelector("#btn-submit-custom-gift")?.addEventListener("click", () => {
+    const input = registryCard.querySelector("#custom-gift-input");
+    const status = registryCard.querySelector("#custom-gift-status");
+    const val = input.value.trim();
+    if (!val) return;
+    fetch("/api/registry/select", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ customName: val, name: "Tetamu Jemputan" })
+    }).catch(() => {});
+    input.value = "";
+    status.style.display = "block";
+    status.textContent = `✓ Cadangan '${val}' telah berjaya dihantar. Terima kasih!`;
+  });
+
+  container.append(registryCard);
+
+  // 5. Public Wishes Wall (Titipan Doa)
+  const wishesCard = make("div", "rsvp-form-card");
+  wishesCard.innerHTML = `
+    <div style="border-bottom: 1px solid var(--border); padding-bottom: 12px; margin-bottom: 14px;">
+      <h3 style="font-family: var(--font-serif); font-size: 18px; color: var(--burgundy); margin: 0 0 4px 0;">
+        💬 ${t("wishesTitle")}
+      </h3>
+      <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0;">
+        Koleksi ucapan manis dan doa restu daripada keluarga serta sahabat handai.
+      </p>
+    </div>
+    <div class="wishes-wall-grid" id="wishes-wall-mount"></div>
+  `;
+
+  const initialWishes = [
+    { name: "Achin (Bapa Saudara)", msg: "Barakallahu lakuma wa baraka alaikuma wa jama'a bainakuma fi khair. Moga ikatan pernikahan kekal hingga ke jannah.", date: "10 Nov 2026" },
+    { name: "Cik Jah & Keluarga", msg: "Tahniah Soya & Ira! Selamat menempuh alam rumahtangga yang penuh barakah.", date: "09 Nov 2026" },
+    { name: "Angah & Along", msg: "Semoga dipermudahkan segala urusan akad nikah & kenduri nanti. Tahniah adik berdua!", date: "08 Nov 2026" }
+  ];
+
+  const wishesMount = wishesCard.querySelector("#wishes-wall-mount");
+  wishesMount.innerHTML = initialWishes.map(w => `
+    <div class="wish-bubble">
+      <div>
+        <div class="wish-bubble-author">${w.name}</div>
+        <div class="wish-bubble-text">"${w.msg}"</div>
+      </div>
+      <div class="wish-bubble-date">📅 ${w.date}</div>
+    </div>
+  `).join("");
+
+  container.append(wishesCard);
+  parent.replaceChildren(container);
+}
+
+/* ========================================================================= */
+/* 3K. ADMIN NIKAH RSVP & GUEST RESPONSES VIEW                              */
+/* ========================================================================= */
+async function adminRsvpView(parent) {
+  const container = make("div", "admin-rsvp-container");
+  container.innerHTML = `
+    <div class="checklist-control-head" style="margin-top: 10px;">
+      <div class="checklist-headline-row">
+        <div>
+          <h2 class="section-title">💌 Akad Nikah Live RSVP Telemetry</h2>
+          <p class="section-caption">Public submissions from /sahdenganira/#rsvp · Capped at 200 Pax · Masjid Raja Haji Cyberjaya</p>
+        </div>
+        <div class="checklist-progress-bar-wrap">
+          <span id="admin-rsvp-badge" class="counter-badge" style="background: var(--burgundy-soft); color: var(--burgundy); font-weight: 700; padding: 4px 12px; border-radius: 9999px; font-size: 12px; border: 1px solid var(--burgundy-border);">
+            Loading Telemetry...
+          </span>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 12px; margin: 16px 0;">
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--burgundy); border-radius: 8px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">CONFIRMED ATTENDANCE</div>
+          <div style="font-size: 22px; font-weight: 800; color: var(--burgundy); margin: 4px 0;" id="metric-attending-pax">0 Pax</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Target Venue Cap: &le; 200 Pax</div>
+        </div>
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid #15803D; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">ADULTS (DEWASA)</div>
+          <div style="font-size: 22px; font-weight: 800; color: #15803D; margin: 4px 0;" id="metric-adults">0</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Aged 12 years and above</div>
+        </div>
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid #2563EB; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">KIDS (KANAK-KANAK)</div>
+          <div style="font-size: 22px; font-weight: 800; color: #2563EB; margin: 4px 0;" id="metric-kids">0</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Below 12 years</div>
+        </div>
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid #D97706; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">UNABLE TO ATTEND</div>
+          <div style="font-size: 22px; font-weight: 800; color: #D97706; margin: 4px 0;" id="metric-declined">0</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Sent well-wishes &amp; regrets</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="overflow-x: auto; margin-top: 16px;">
+      <table class="stream-table" style="font-size: 12px;">
+        <thead>
+          <tr>
+            <th class="col-no">No.</th>
+            <th style="width: 140px;">Tarikh &amp; Masa</th>
+            <th>Nama Tetamu</th>
+            <th style="width: 130px;">WhatsApp / Telefon</th>
+            <th style="width: 100px;">Kehadiran</th>
+            <th style="width: 80px;">Dewasa</th>
+            <th style="width: 80px;">Kanak2</th>
+            <th style="width: 80px;">Jumlah Pax</th>
+            <th>Ucapan &amp; Doa</th>
+          </tr>
+        </thead>
+        <tbody id="admin-rsvp-table-body">
+          <tr><td colspan="9" style="text-align: center; padding: 30px; color: var(--charcoal-muted);">Memuatkan data RSVP...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  `;
+
+  parent.append(container);
+
+  try {
+    const res = await fetch("/api/rsvps");
+    if (!res.ok) throw new Error("HTTP " + res.status);
+    const data = await res.json();
+    const rows = data.rsvps || [];
+    const summary = data.stats || data.summary || {};
+
+    const attendingPax = summary.total_pax || rows.filter(r => r.attending === "Hadir").reduce((s, r) => s + (r.total_pax || 1), 0);
+    const adults = summary.total_adults || rows.filter(r => r.attending === "Hadir").reduce((s, r) => s + (r.adults || 1), 0);
+    const kids = summary.total_kids || rows.filter(r => r.attending === "Hadir").reduce((s, r) => s + (r.kids || 0), 0);
+    const declined = summary.regret_count || rows.filter(r => r.attending === "Tidak Hadir").length;
+
+    const elPax = $("metric-attending-pax");
+    if (elPax) elPax.textContent = attendingPax + " Pax";
+    const elAd = $("metric-adults");
+    if (elAd) elAd.textContent = adults;
+    const elKd = $("metric-kids");
+    if (elKd) elKd.textContent = kids;
+    const elDec = $("metric-declined");
+    if (elDec) elDec.textContent = declined;
+    const elBdg = $("admin-rsvp-badge");
+    if (elBdg) elBdg.textContent = `${attendingPax} / 200 Pax Confirmed (${rows.length} Total Submissions)`;
+
+    const tbody = container.querySelector("#admin-rsvp-table-body");
+    if (!rows.length) {
+      tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 30px; color: var(--charcoal-muted);">Belum ada maklum balas RSVP diterima.</td></tr>`;
+      return;
+    }
+
+    tbody.innerHTML = rows.map((r, idx) => {
+      const isAttending = r.attending === "Hadir";
+      const statusPill = isAttending
+        ? `<span class="pill-chip" style="background: #DCFCE7; color: #15803D; font-weight: 700;">Hadir</span>`
+        : `<span class="pill-chip" style="background: #FEE2E2; color: #B91C1C; font-weight: 700;">Tidak Hadir</span>`;
+
+      const dateStr = r.created_at ? new Date(r.created_at).toLocaleString("ms-MY", { timeZone: "Asia/Kuala_Lumpur", day: "2-digit", month: "2-digit", hour: "2-digit", minute: "2-digit" }) : "—";
+      const waLink = r.phone ? `<a href="https://wa.me/${r.phone.replace(/[^0-9]/g, '')}" target="_blank" rel="noopener noreferrer" style="color: var(--burgundy); font-weight: 600;">${r.phone} ↗</a>` : "—";
+      const guestName = r.name || r.guest_name || "Tetamu";
+      const guestMessage = r.message || r.ucapan || "";
+
+      return `
+        <tr>
+          <td class="col-no">${idx + 1}</td>
+          <td style="font-size: 11px; color: var(--charcoal-muted);">${dateStr}</td>
+          <td><strong>${guestName}</strong></td>
+          <td>${waLink}</td>
+          <td>${statusPill}</td>
+          <td style="text-align: center;">${isAttending ? (r.adults || 1) : "—"}</td>
+          <td style="text-align: center;">${isAttending ? (r.kids || 0) : "—"}</td>
+          <td style="text-align: center; font-weight: 800; color: ${isAttending ? 'var(--burgundy)' : 'inherit'};">${isAttending ? (r.total_pax || 1) : "—"}</td>
+          <td style="font-size: 11px; color: var(--charcoal); max-width: 250px; font-style: italic;">${guestMessage ? `"${guestMessage}"` : "—"}</td>
+        </tr>
+      `;
+    }).join("");
+  } catch (err) {
+    const tbody = container.querySelector("#admin-rsvp-table-body");
+    if (tbody) tbody.innerHTML = `<tr><td colspan="9" style="text-align: center; padding: 30px; color: #B91C1C;">Gagal memuatkan data RSVP (/api/rsvps): ${err.message}</td></tr>`;
+  }
+}
+
+
 function guestView(parent) {
   const container = make("div", "guest-guide-wrap");
 
@@ -5893,6 +6567,8 @@ function render() {
     recordsHubView(parent, sub);
   } else if (active === "contacts") {
     guestContactsView(parent, true);
+  } else if (active === "rsvp") {
+    rsvpView(parent);
   } else {
     guestView(parent);
   }
