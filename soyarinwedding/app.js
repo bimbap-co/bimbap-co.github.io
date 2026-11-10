@@ -197,11 +197,34 @@ function updateAuthUI() {
 }
 
 function daysUntil(dateString) {
-  const target = new Date(dateString + "T00:00:00+08:00").getTime();
-  const now = new Date().getTime();
+  const clean = dateString.includes("T") ? dateString : dateString + "T00:00:00+08:00";
+  const target = new Date(clean);
+  const now = new Date();
   const diff = target - now;
-  return diff > 0 ? Math.floor(diff / (1000 * 60 * 60 * 24)) : 0;
+  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
+  return days > 0 ? days : 0;
 }
+
+function openWaB64(enc) {
+  try {
+    const raw = atob(enc);
+    window.open(`https://wa.me/${raw}`, "_blank", "noopener,noreferrer");
+  } catch (e) {
+    console.error("Failed to decode WhatsApp number", e);
+  }
+}
+
+function callB64(enc) {
+  try {
+    const raw = atob(enc);
+    window.location.href = `tel:${raw}`;
+  } catch (e) {
+    console.error("Failed to decode phone number", e);
+  }
+}
+
+window.openWaB64 = openWaB64;
+window.callB64 = callB64;
 
 function sourceLink(source) {
   const link = make("a", "source-link-chip", source.label + " ↗");
@@ -4763,128 +4786,194 @@ function renderNav() {
   navBar.append(tabsInner);
 }
 
-function guestContactsView(parent) {
+const APPROVED_EVENTS = [
+  {
+    id: "tunang",
+    phaseNum: "1. Tunang",
+    date: "2026-12-27",
+    dateFormatted: "Sunday, 27/12/2026",
+    time: "10:00 AM – 1:00 PM",
+    location: "Gastrohub Event House, Cyberjaya",
+    dressCode: "Matcha & Strawberry",
+    mapsUrl: "https://maps.app.goo.gl/231k2Gxhw8KxayAr7",
+    wazeUrl: "https://waze.com/ul/hw22rurtuh",
+    posterUrl: "./posters/poster-tunang.jpg"
+  },
+  {
+    id: "nikah",
+    phaseNum: "2. Nikah",
+    date: "2027-03-27",
+    dateFormatted: "Saturday, 27/03/2027",
+    time: "9:00 AM – 1:00 PM",
+    location: "Masjid Raja Haji Fi Sabilillah, Cyberjaya",
+    dressCode: "Shades of Blue",
+    mapsUrl: "https://maps.app.goo.gl/tEW5DLnAUDDHascHA",
+    wazeUrl: "https://waze.com/ul/hw2829j9sp",
+    posterUrl: "./posters/poster-nikah.jpg"
+  },
+  {
+    id: "sanding",
+    phaseNum: "3. Sanding",
+    date: "2027-11-27",
+    dateFormatted: "Saturday, 27/11/2027",
+    time: "11:00 AM – 4:00 PM",
+    location: "Royale Palace, Cyberjaya",
+    dressCode: "Shades of Purple",
+    mapsUrl: "https://maps.app.goo.gl/Zuh5LkTiRmYQ63AT9",
+    wazeUrl: "https://waze.com/ul/hw2829ntvy",
+    posterUrl: "./posters/poster-sanding.jpg"
+  }
+];
+
+const APPROVED_COORDINATORS = [
+  {
+    category: "Family Principals & Couple",
+    role: "Groom",
+    name: "Sayed Arif Hakimi (Sayed)",
+    phone: "018-3767437",
+    rawPhone: "60183767437",
+    note: "Primary groom coordinator",
+    icon: "🤵"
+  },
+  {
+    category: "Family Principals & Couple",
+    role: "Bride",
+    name: "Nor Shamira Irwani (Shamira)",
+    phone: "018-9559415",
+    rawPhone: "60189559415",
+    note: "Primary bride coordinator",
+    icon: "👰"
+  },
+  {
+    category: "Family Principals & Couple",
+    role: "Groom Mother",
+    name: "Pn. Zaini",
+    phone: "012-2839140",
+    rawPhone: "60122839140",
+    note: "Groom family liaison & sarung cincin lead",
+    icon: "🧕"
+  },
+  {
+    category: "Family Principals & Couple",
+    role: "Bride Mother",
+    name: "Pn. Norzilawati",
+    phone: "019-6458300",
+    rawPhone: "60196458300",
+    note: "Bride family liaison & welcoming lead",
+    icon: "🧕"
+  },
+  {
+    category: "Venues & Event Logistics",
+    role: "Gastrohub Venue PIC",
+    name: "En. Izz (Gastrohub)",
+    phone: "013-5599032",
+    rawPhone: "60135599032",
+    note: "Engagement venue operations & floor manager",
+    icon: "🏛️"
+  },
+  {
+    category: "Venues & Event Logistics",
+    role: "Masjid Raja Haji PIC",
+    name: "Ustaz Syahir (Masjid Raja Haji)",
+    phone: "013-4767535",
+    rawPhone: "60134767535",
+    note: "Akad Nikah ceremony coordinator & hall booking",
+    icon: "🕌"
+  },
+  {
+    category: "Venues & Event Logistics",
+    role: "Royale Palace Grand Manager",
+    name: "Pn. Elyna (Royale Palace)",
+    phone: "017-9377965",
+    rawPhone: "60179377965",
+    note: "Reception hall, banquet catering & bridal entrance",
+    icon: "👑"
+  },
+  {
+    category: "Media & Photography",
+    role: "Videography Lead",
+    name: "Deloka Videography Official",
+    phone: "012-5888015",
+    rawPhone: "60125888015",
+    note: "Official wedding cinematic film",
+    icon: "🎥"
+  },
+  {
+    category: "Media & Photography",
+    role: "Photography Lead",
+    name: "SejedaFilm Official",
+    phone: "017-9878278",
+    rawPhone: "60179878278",
+    note: "Official portraits, ceremony & album coverage",
+    icon: "📸"
+  }
+];
+
+function guestContactsView(parent, isFullPage = true) {
   const container = make("div", "guest-guide-wrap");
-  const picSection = make("div", "coordinator-card");
-  picSection.innerHTML = `
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px;">
+  if (isFullPage) {
+    const head = make("div", "section-head");
+    head.innerHTML = `
       <div>
-        <h3 style="font-family: var(--font-serif); font-size: 20px; color: var(--burgundy); margin: 0 0 4px 0;">
-          📞 Event Day Coordinators &amp; PIC Directory
-        </h3>
+        <h2 style="font-family: var(--font-serif); font-size: 22px; color: var(--burgundy); margin: 0 0 4px 0;">
+          📞 Official Wedding Coordinators &amp; PIC Directory
+        </h2>
         <p style="font-size: 13px; color: var(--charcoal-muted); margin: 0;">
-          Direct contacts for event logistics, venue coordination, photo/video, and couple emergencies.
+          Direct contact directory for family liaisons, venue operations, and ceremony logistics.
         </p>
       </div>
-    </div>
-    <div style="overflow-x: auto;">
-      <table class="coordinator-table">
-        <thead>
-          <tr>
-            <th style="width: 40px;">No.</th>
-            <th>Role / Responsibility</th>
-            <th>Contact Person / Venue</th>
-            <th>Event Phase</th>
-            <th>Contact Number</th>
-            <th>Quick Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td><strong>Tunang Venue Manager</strong></td>
-            <td>En. Izz · Gastrohub Event House (Nilai)</td>
-            <td><span class="phase-chip-tunang">Tunang</span></td>
-            <td><code>013-5599032</code></td>
-            <td>
-              <a href="tel:0135599032" class="coord-call-btn">📞 Call</a>
-              <a href="https://wa.me/60135599032" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #E0F2FE; color: #0369A1;">💬 WhatsApp</a>
-              <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #FEF3C7; color: #B45309;">🧭 Waze</a>
-            </td>
-          </tr>
-          <tr>
-            <td>2</td>
-            <td><strong>Nikah Venue Officer</strong></td>
-            <td>Ustaz Syahir · Masjid Raja Haji Fi Sabilillah</td>
-            <td><span class="phase-chip-nikah">Nikah</span></td>
-            <td><code>+60 13-476 7535</code></td>
-            <td>
-              <a href="tel:+60134767535" class="coord-call-btn">📞 Call</a>
-              <a href="https://wa.me/60134767535" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #E0F2FE; color: #0369A1;">💬 WhatsApp</a>
-              <a href="https://waze.com/ul/hw2829j9sp" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #FEF3C7; color: #B45309;">🧭 Waze</a>
-            </td>
-          </tr>
-          <tr>
-            <td>3</td>
-            <td><strong>Sanding Venue Coordinator</strong></td>
-            <td>Elyna · Royale Palace Cyberjaya</td>
-            <td><span class="phase-chip-sanding">Sanding</span></td>
-            <td><code>+60 17-937 7965</code></td>
-            <td>
-              <a href="tel:+60179377965" class="coord-call-btn">📞 Call</a>
-              <a href="https://wa.me/60179377965" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #E0F2FE; color: #0369A1;">💬 WhatsApp</a>
-              <a href="https://waze.com/ul/hw2829ntvy" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #FEF3C7; color: #B45309;">🧭 Waze</a>
-            </td>
-          </tr>
-          <tr>
-            <td>4</td>
-            <td><strong>Official Photographer (MSSA)</strong></td>
-            <td>Intan · MSSA Photography</td>
-            <td><span class="phase-chip-nikah">Nikah</span> <span class="phase-chip-sanding">Sanding</span></td>
-            <td><code>019-7677917</code></td>
-            <td>
-              <a href="tel:0197677917" class="coord-call-btn">📞 Call</a>
-              <a href="https://wa.me/60197677917" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #E0F2FE; color: #0369A1;">💬 WhatsApp</a>
-            </td>
-          </tr>
-          <tr>
-            <td>5</td>
-            <td><strong>Official Videographer (Deloka)</strong></td>
-            <td>Affi · Deloka Films</td>
-            <td><span class="phase-chip-nikah">Nikah</span> <span class="phase-chip-sanding">Sanding</span></td>
-            <td><code>@affi.izzani</code></td>
-            <td>
-              <a href="https://instagram.com/affi.izzani" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #FCE7F3; color: #9D174D;">📸 IG Direct</a>
-            </td>
-          </tr>
-          <tr>
-            <td>6</td>
-            <td><strong>Official Videographer (Sejeda)</strong></td>
-            <td>Jid · SejedaFilms</td>
-            <td><span class="phase-chip-nikah">Nikah</span></td>
-            <td><code>+6011-28446534</code></td>
-            <td>
-              <a href="tel:+601128446534" class="coord-call-btn">📞 Call</a>
-              <a href="https://wa.me/601128446534" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #E0F2FE; color: #0369A1;">💬 WhatsApp</a>
-            </td>
-          </tr>
-          <tr>
-            <td>7</td>
-            <td><strong>Groom Emergency PIC</strong></td>
-            <td>Sayed Arif Hakimi (Groom)</td>
-            <td><span class="phase-chip-shared">All Events</span></td>
-            <td><code>018-3767437</code></td>
-            <td>
-              <a href="tel:0183767437" class="coord-call-btn">📞 Call</a>
-              <a href="https://wa.me/60183767437" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #E0F2FE; color: #0369A1;">💬 WhatsApp</a>
-            </td>
-          </tr>
-          <tr>
-            <td>8</td>
-            <td><strong>Bride Emergency PIC</strong></td>
-            <td>Nor Shamira Irwani (Bride)</td>
-            <td><span class="phase-chip-shared">All Events</span></td>
-            <td><code>018-9559415</code></td>
-            <td>
-              <a href="tel:0189559415" class="coord-call-btn">📞 Call</a>
-              <a href="https://wa.me/60189559415" target="_blank" rel="noopener noreferrer" class="coord-call-btn" style="background: #E0F2FE; color: #0369A1;">💬 WhatsApp</a>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  `;
-  container.append(picSection);
+    `;
+    container.append(head);
+  } else {
+    const divider = make("div");
+    divider.style.marginTop = "24px";
+    divider.style.marginBottom = "14px";
+    divider.innerHTML = `
+      <h3 style="font-family: var(--font-serif); font-size: 18px; color: var(--burgundy); margin: 0 0 4px 0;">
+        📞 Event Coordinators &amp; Family Contacts
+      </h3>
+      <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0;">
+        Feel free to reach out to our event coordinators if you have any questions on the day.
+      </p>
+    `;
+    container.append(divider);
+  }
+
+  const groups = {};
+  for (const c of APPROVED_COORDINATORS) {
+    if (!groups[c.category]) groups[c.category] = [];
+    groups[c.category].push(c);
+  }
+
+  for (const [catName, members] of Object.entries(groups)) {
+    const groupCard = make("div", "coordinator-card");
+    groupCard.style.marginBottom = "16px";
+    groupCard.innerHTML = `
+      <div class="coordinator-category-title" style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--burgundy); letter-spacing: 0.5px; margin-bottom: 12px; border-bottom: 1px solid var(--border); padding-bottom: 6px;">
+        ${catName}
+      </div>
+      <div class="coordinator-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 12px;">
+        ${members.map(m => `
+          <div style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; justify-content: space-between;">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: baseline;">
+                <span style="font-size: 10px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted);">${m.role}</span>
+                <span>${m.icon || '👤'}</span>
+              </div>
+              <div style="font-size: 14px; font-weight: 700; color: var(--charcoal); margin: 4px 0 2px 0;">${m.name}</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">${m.note}</div>
+            </div>
+            <div style="display: flex; gap: 6px; margin-top: 10px;">
+              <button type="button" onclick="callB64(btoa('${m.rawPhone}'))" class="contact-btn btn-call" style="flex: 1; text-align: center; padding: 6px 10px; font-size: 11px; cursor: pointer;">📞 Call</button>
+              <button type="button" onclick="openWaB64(btoa('${m.rawPhone}'))" class="contact-btn btn-wa" style="flex: 1; text-align: center; padding: 6px 10px; font-size: 11px; cursor: pointer;">💬 WhatsApp</button>
+            </div>
+          </div>
+        `).join("")}
+      </div>
+    `;
+    container.append(groupCard);
+  }
+
   parent.append(container);
 }
 
@@ -4925,107 +5014,47 @@ function guestView(parent) {
   // 2. The Three Wedding Phases (Event Cards Grid)
   const eventsGrid = make("div", "guest-event-grid");
 
-  // Phase 1: Tunang
-  const tunangCard = make("article", "guest-event-card");
-  tunangCard.innerHTML = `
-    <div class="guest-event-eyebrow">
-      <span class="phase-chip-tunang">1. Tunang</span>
-      <span>Sunday, 27/12/2026</span>
-    </div>
-    <div>
-      <div class="guest-countdown-badge">
-        <span>${daysUntil("2026-12-27")}</span>
-        <span class="guest-countdown-label">Days to go</span>
+  for (const ev of APPROVED_EVENTS) {
+    const card = make("article", "guest-event-card");
+    const chipClass = `phase-chip-${ev.id}`;
+    card.innerHTML = `
+      <div class="guest-event-eyebrow">
+        <span class="${chipClass}">${ev.phaseNum}</span>
+        <span>${ev.dateFormatted}</span>
       </div>
-    </div>
-    <div class="guest-event-meta-list">
-      <div class="guest-meta-item">
-        <span><strong>Time:</strong> 10:00 AM – 1:00 PM</span>
+      <div>
+        <div class="guest-countdown-badge">
+          <span>${daysUntil(ev.date)}</span>
+          <span class="guest-countdown-label">Days to go</span>
+        </div>
       </div>
-      <div class="guest-meta-item">
-        <span><strong>Location:</strong> Gastrohub Event House, Cyberjaya</span>
+      <div class="guest-event-meta-list">
+        <div class="guest-meta-item">
+          <span><strong>Time:</strong> ${ev.time}</span>
+        </div>
+        <div class="guest-meta-item">
+          <span><strong>Location:</strong> ${ev.location}</span>
+        </div>
+        <div class="guest-meta-item">
+          <span><strong>Dress Code:</strong> ${ev.dressCode}</span>
+        </div>
       </div>
-      <div class="guest-meta-item">
-        <span><strong>Dress Code:</strong> Matcha &amp; Strawberry</span>
+      <div class="guest-actions-bar">
+        <a href="${ev.mapsUrl}" target="_blank" rel="noopener noreferrer" class="guest-btn">📍 Google Maps</a>
+        <a href="${ev.wazeUrl}" target="_blank" rel="noopener noreferrer" class="guest-btn">🧭 Waze</a>
+        <button type="button" class="guest-btn guest-btn-primary" data-poster="${ev.id}">🖼️ View Poster</button>
       </div>
-    </div>
-    <div class="guest-actions-bar">
-      <a href="https://maps.app.goo.gl/231k2Gxhw8KxayAr7" target="_blank" rel="noopener noreferrer" class="guest-btn">📍 Google Maps</a>
-      <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="guest-btn">🧭 Waze</a>
-      <button type="button" class="guest-btn guest-btn-primary" data-poster="Tunang">🖼️ View Poster</button>
-    </div>
-  `;
-
-  // Phase 2: Nikah
-  const nikahCard = make("article", "guest-event-card");
-  nikahCard.innerHTML = `
-    <div class="guest-event-eyebrow">
-      <span class="phase-chip-nikah">2. Nikah</span>
-      <span>Saturday, 27/03/2027</span>
-    </div>
-    <div>
-      <div class="guest-countdown-badge">
-        <span>${daysUntil("2027-03-27")}</span>
-        <span class="guest-countdown-label">Days to go</span>
-      </div>
-    </div>
-    <div class="guest-event-meta-list">
-      <div class="guest-meta-item">
-        <span><strong>Time:</strong> 9:00 AM – 1:00 PM</span>
-      </div>
-      <div class="guest-meta-item">
-        <span><strong>Location:</strong> Masjid Raja Haji Fi Sabilillah, Cyberjaya</span>
-      </div>
-      <div class="guest-meta-item">
-        <span><strong>Dress Code:</strong> Shades of Blue</span>
-      </div>
-    </div>
-    <div class="guest-actions-bar">
-      <a href="https://maps.app.goo.gl/tEW5DLnAUDDHascHA" target="_blank" rel="noopener noreferrer" class="guest-btn">📍 Google Maps</a>
-      <a href="https://waze.com/ul/hw2829j9sp" target="_blank" rel="noopener noreferrer" class="guest-btn">🧭 Waze</a>
-      <button type="button" class="guest-btn guest-btn-primary" data-poster="Nikah">🖼️ View Poster</button>
-    </div>
-  `;
-
-  // Phase 3: Sanding
-  const sandingCard = make("article", "guest-event-card");
-  sandingCard.innerHTML = `
-    <div class="guest-event-eyebrow">
-      <span class="phase-chip-sanding">3. Sanding</span>
-      <span>Saturday, 27/11/2027</span>
-    </div>
-    <div>
-      <div class="guest-countdown-badge">
-        <span>${daysUntil("2027-11-27")}</span>
-        <span class="guest-countdown-label">Days to go</span>
-      </div>
-    </div>
-    <div class="guest-event-meta-list">
-      <div class="guest-meta-item">
-        <span><strong>Time:</strong> 11:00 AM – 4:00 PM</span>
-      </div>
-      <div class="guest-meta-item">
-        <span><strong>Location:</strong> Royale Palace, Cyberjaya</span>
-      </div>
-      <div class="guest-meta-item">
-        <span><strong>Dress Code:</strong> Shades of Purple</span>
-      </div>
-    </div>
-    <div class="guest-actions-bar">
-      <a href="https://maps.app.goo.gl/Zuh5LkTiRmYQ63AT9" target="_blank" rel="noopener noreferrer" class="guest-btn">📍 Google Maps</a>
-      <a href="https://waze.com/ul/hw2829ntvy" target="_blank" rel="noopener noreferrer" class="guest-btn">🧭 Waze</a>
-      <button type="button" class="guest-btn guest-btn-primary" data-poster="Sanding">🖼️ View Poster</button>
-    </div>
-  `;
-
-  eventsGrid.append(tunangCard, nikahCard, sandingCard);
+    `;
+    eventsGrid.append(card);
+  }
   container.append(eventsGrid);
 
   // Wire poster click events
   eventsGrid.querySelectorAll("button[data-poster]").forEach(btn => {
     btn.addEventListener("click", () => {
-      const p = btn.getAttribute("data-poster");
-      openPosterModal(p, `./posters/poster-${p.toLowerCase()}.jpg`);
+      const pid = btn.getAttribute("data-poster");
+      const ev = APPROVED_EVENTS.find(e => e.id === pid);
+      if (ev) openPosterModal(ev.phaseNum, ev.posterUrl);
     });
   });
 
@@ -5100,8 +5129,8 @@ function guestView(parent) {
   `;
   container.append(dressSection);
 
-  // 4. Key Event PIC & Coordinator Directory
-  guestContactsView(container);
+  // 4. Key Event PIC & Coordinator Directory (Categorized Cards matching sahdenganira)
+  guestContactsView(container, false);
 
   parent.append(container);
 }
@@ -5163,7 +5192,7 @@ function render() {
     const sub = requested === "audit" ? "audit" : "documents";
     recordsHubView(parent, sub);
   } else if (active === "contacts") {
-    guestContactsView(parent);
+    guestContactsView(parent, true);
   } else {
     guestView(parent);
   }
