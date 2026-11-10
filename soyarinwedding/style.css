@@ -5265,3 +5265,30 @@ dialog#auth-dialog {
   padding-top: 20px;
   border-top: 1px dashed var(--line);
 }
+
+/* ========================================================================= */
+/* SQUINT-TEST VISUAL HIERARCHY REFINEMENTS                                  */
+/* ========================================================================= */
+.guest-hero-card {
+  border-top: 3px solid var(--burgundy) !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.05);
+}
+
+.guest-hero-card h2 {
+  font-size: 26px !important;
+  font-weight: 700 !important;
+  color: var(--burgundy) !important;
+}
+
+.tabs-bar a.nav-admin-btn {
+  background: var(--burgundy) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  box-shadow: 0 2px 8px rgba(107, 29, 47, 0.25) !important;
+  font-weight: 700 !important;
+}
+
+.tabs-bar a.nav-admin-btn:hover {
+  background: var(--burgundy-hover) !important;
+  box-shadow: 0 4px 12px rgba(107, 29, 47, 0.35) !important;
+}
