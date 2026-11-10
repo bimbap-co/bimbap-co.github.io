@@ -614,20 +614,20 @@ function tentativeView(parent) {
   const container = make("div", "tentative-wrap");
 
   container.innerHTML = `
-    <div class="section-head" style="margin-bottom: 20px;">
+    <div class="tentative-header-bar">
       <div>
-        <h2 style="font-family: var(--font-serif); font-size: 22px; color: var(--burgundy); margin: 0 0 4px 0;">
-          📅 Official Tentative Programmes &amp; Posters
-        </h2>
-        <p style="font-size: 13px; color: var(--charcoal-muted); margin: 0;">
-          Approved master timeline, itineraries, venue directions and day schedules for all three wedding phases.
-        </p>
+        <h2 class="section-title">Tentative Event Schedules &amp; Facts</h2>
+        <p class="section-caption">Approved working programmes, official posters, venue locations, dress codes, and vendor contacts for all 3 phases.</p>
+      </div>
+      <div style="display: flex; gap: 8px;">
+        <button type="button" class="quick-action-btn" id="btn-open-contacts-top">📞 Contacts Directory</button>
+        <button type="button" class="quick-action-btn" id="toggle-all-accordions-btn">▾ Expand All Phases</button>
       </div>
     </div>
 
     <!-- PHASE 1: TUNANG -->
-    <div class="phase-accordion is-open" id="accordion-phase-1">
-      <div class="phase-accordion-header" role="button" tabindex="0">
+    <div class="phase-accordion" id="accordion-phase-1">
+      <div class="phase-accordion-header" role="button" tabindex="0" aria-expanded="false">
         <div class="phase-accordion-title-wrap">
           <span class="phase-number-tag" style="background: #588157;">P1</span>
           <div>
@@ -637,6 +637,7 @@ function tentativeView(parent) {
         </div>
         <div class="phase-accordion-meta">
           <span class="event-time-pill">10:00 AM – 1:00 PM</span>
+          <span class="phase-accordion-chevron">▼</span>
         </div>
       </div>
       <div class="phase-accordion-body">
@@ -714,8 +715,8 @@ function tentativeView(parent) {
     </div>
 
     <!-- PHASE 2: AKAD NIKAH -->
-    <div class="phase-accordion is-open" id="accordion-phase-2" style="margin-top: 18px;">
-      <div class="phase-accordion-header" role="button" tabindex="0">
+    <div class="phase-accordion" id="accordion-phase-2" style="margin-top: 18px;">
+      <div class="phase-accordion-header" role="button" tabindex="0" aria-expanded="false">
         <div class="phase-accordion-title-wrap">
           <span class="phase-number-tag" style="background: #0284C7;">P2</span>
           <div>
@@ -725,6 +726,7 @@ function tentativeView(parent) {
         </div>
         <div class="phase-accordion-meta">
           <span class="event-time-pill">9:00 AM – 1:00 PM</span>
+          <span class="phase-accordion-chevron">▼</span>
         </div>
       </div>
       <div class="phase-accordion-body">
@@ -801,8 +803,8 @@ function tentativeView(parent) {
     </div>
 
     <!-- PHASE 3: SANDING -->
-    <div class="phase-accordion is-open" id="accordion-phase-3" style="margin-top: 18px;">
-      <div class="phase-accordion-header" role="button" tabindex="0">
+    <div class="phase-accordion" id="accordion-phase-3" style="margin-top: 18px;">
+      <div class="phase-accordion-header" role="button" tabindex="0" aria-expanded="false">
         <div class="phase-accordion-title-wrap">
           <span class="phase-number-tag" style="background: var(--burgundy);">P3</span>
           <div>
@@ -812,6 +814,7 @@ function tentativeView(parent) {
         </div>
         <div class="phase-accordion-meta">
           <span class="event-time-pill">11:00 AM – 4:00 PM</span>
+          <span class="phase-accordion-chevron">▼</span>
         </div>
       </div>
       <div class="phase-accordion-body">
@@ -887,15 +890,37 @@ function tentativeView(parent) {
     </div>
   `;
 
-  // Accordion Toggle Interactions
+  // Accordion Toggle Interactions (Always start collapsed on load / tab switch)
   const accordions = container.querySelectorAll(".phase-accordion");
   accordions.forEach(acc => {
     const head = acc.querySelector(".phase-accordion-header");
     head?.addEventListener("click", () => {
       acc.classList.toggle("is-open");
       const isOpen = acc.classList.contains("is-open");
-      head.setAttribute("aria-expanded", isOpen);
+      head.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
+  });
+
+  const toggleAllBtn = container.querySelector("#toggle-all-accordions-btn");
+  if (toggleAllBtn) {
+    let allExpanded = false;
+    toggleAllBtn.addEventListener("click", () => {
+      allExpanded = !allExpanded;
+      accordions.forEach(acc => {
+        if (allExpanded) {
+          acc.classList.add("is-open");
+          acc.querySelector(".phase-accordion-header")?.setAttribute("aria-expanded", "true");
+        } else {
+          acc.classList.remove("is-open");
+          acc.querySelector(".phase-accordion-header")?.setAttribute("aria-expanded", "false");
+        }
+      });
+      toggleAllBtn.textContent = allExpanded ? "▴ Collapse All Phases" : "▾ Expand All Phases";
+    });
+  }
+
+  container.querySelector("#btn-open-contacts-top")?.addEventListener("click", () => {
+    location.hash = "#contacts";
   });
 
   // Wire poster click events in Tentative tab
