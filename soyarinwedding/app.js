@@ -3392,7 +3392,8 @@ function tentativeView(parent) {
       </div>
     </div>
 
-    <!-- DEDICATED WEDDING KEY CONTACTS & VENDOR DIRECTORY -->
+    ${isAuthenticated ? `
+    <!-- DEDICATED WEDDING KEY CONTACTS & VENDOR DIRECTORY (ADMIN ONLY) -->
     <div class="contacts-directory-container">
       <div class="contacts-section-head">
         <div>
@@ -3405,6 +3406,7 @@ function tentativeView(parent) {
         ${renderContactsDirectoryHtml()}
       </div>
     </div>
+    ` : ""}
   `;
 
   // Accordion Toggle Interactions (Point 2.d: Use dropdowns to expand each phase)
@@ -3448,7 +3450,13 @@ function tentativeView(parent) {
   });
 
   // Wire up Contacts Modal buttons
-  container.querySelector("#btn-open-contacts-top")?.addEventListener("click", openContactsModal);
+  container.querySelector("#btn-open-contacts-top")?.addEventListener("click", () => {
+    if (!isAuthenticated) {
+      location.hash = "#contacts";
+    } else {
+      openContactsModal();
+    }
+  });
   container.querySelector("#btn-pop-contacts-modal")?.addEventListener("click", openContactsModal);
 
   parent.append(container);
