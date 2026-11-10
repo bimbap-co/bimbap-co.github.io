@@ -5579,3 +5579,77 @@ dialog#auth-dialog {
   font-weight: 600;
   color: var(--charcoal);
 }
+
+
+/* Seating Schematic Theme & Spacing Optimization */
+.seating-hall-schematic {
+  color: #1F2937 !important;
+}
+
+.seating-hall-schematic .schematic-title {
+  color: #881337 !important;
+}
+
+.seating-hall-schematic .schematic-subtitle {
+  color: #4B5563 !important;
+}
+
+.seating-hall-schematic .schematic-pelamin {
+  color: #78350F !important;
+}
+
+.seating-hall-schematic .schematic-buah-tangan,
+.seating-hall-schematic .schematic-speaker {
+  color: #374151 !important;
+}
+
+.seating-hall-schematic .schematic-table-title {
+  color: #1F2937 !important;
+}
+
+.seating-hall-schematic .schematic-table-plank {
+  color: #4B5563 !important;
+  width: 40px !important;
+}
+
+.seating-hall-schematic .schematic-buffet {
+  color: #166534 !important;
+}
+
+.seating-hall-schematic .schematic-legend-item {
+  color: #1F2937 !important;
+}
+
+.schematic-body-row {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  gap: 10px !important;
+  min-height: 380px !important;
+}
+
+.schematic-tables-center {
+  flex: 1 !important;
+  display: flex !important;
+  justify-content: center !important;
+  gap: 14px !important;
+  padding: 0 4px !important;
+}
+
+.schematic-table-card {
+  flex: 1 1 180px !important;
+  max-width: 220px !important;
+  min-width: 160px !important;
+  padding: 10px 8px !important;
+}
+
+.schematic-seat {
+  width: 24px !important;
+  height: 24px !important;
+  font-size: 10px !important;
+}
+
+.schematic-chair-column {
+  gap: 5px !important;
+}
+
