@@ -2986,7 +2986,326 @@ function checklistView(parent, tasks) {
 /* ========================================================================= */
 /* 3C. TENTATIVE EVENTS (COLLAPSIBLE DROPDOWN ACCORDIONS)                    */
 /* ========================================================================= */
+function guestTentativeView(parent) {
+  const container = make("div", "tentative-wrap");
+
+  container.innerHTML = `
+    <div class="section-head" style="margin-bottom: 20px;">
+      <div>
+        <h2 style="font-family: var(--font-serif); font-size: 22px; color: var(--burgundy); margin: 0 0 4px 0;">
+          📅 Official Tentative Programmes &amp; Posters
+        </h2>
+        <p style="font-size: 13px; color: var(--charcoal-muted); margin: 0;">
+          Approved master timeline, itineraries, venue directions and day schedules for all three wedding phases.
+        </p>
+      </div>
+    </div>
+
+    <!-- PHASE 1: TUNANG -->
+    <div class="phase-accordion is-open" id="accordion-phase-1">
+      <div class="phase-accordion-header" role="button" tabindex="0">
+        <div class="phase-accordion-title-wrap">
+          <span class="phase-number-tag" style="background: #588157;">P1</span>
+          <div>
+            <h3 class="phase-accordion-heading">1. Tunang</h3>
+            <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub Event House, Cyberjaya</div>
+          </div>
+        </div>
+        <div class="phase-accordion-meta">
+          <span class="event-time-pill">10:00 AM – 1:00 PM</span>
+        </div>
+      </div>
+      <div class="phase-accordion-body">
+        <div class="tentative-cards-grid">
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">VENUE &amp; LOCATION</div>
+            <div class="tentative-info-val">Gastrohub Event House</div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Cyberjaya</div>
+            <div style="display: flex; gap: 6px; margin-top: 6px;">
+              <a href="https://maps.app.goo.gl/231k2Gxhw8KxayAr7" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">📍 Maps ↗</a>
+              <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">🧭 Waze ↗</a>
+            </div>
+          </div>
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">DRESS CODE &amp; THEME</div>
+            <div class="dresscode-wrap">
+              <span class="dresscode-tag matcha"><span class="dot"></span> Matcha (Groom)</span>
+              <span class="dresscode-tag strawberry"><span class="dot"></span> Strawberry (Bride)</span>
+            </div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 6px;">Baju Melayu &amp; Baju Kurung Moden</div>
+          </div>
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">VENUE PIC &amp; CONTACT</div>
+            <div class="tentative-info-val">En. Izz (Gastrohub)</div>
+            <div class="contact-actions" style="margin-top: 6px;">
+              <button type="button" onclick="callB64('NjAxMzU1OTkwMzI=')" class="contact-btn btn-call" style="cursor: pointer;">📞 013-5599032</button>
+              <button type="button" onclick="openWaB64('NjAxMzU1OTkwMzI=')" class="contact-btn btn-wa" style="cursor: pointer;">💬 WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Poster Preview Card -->
+        <div class="poster-preview-card" style="margin: 16px 0 10px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="./posters/poster-tunang.jpg" alt="1. Tunang Programme Poster" id="thumb-poster-tunang-tab" style="width: 58px; height: 78px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view full poster">
+            <div>
+              <div style="font-weight: 700; font-size: 13px; color: var(--charcoal);">Official Programme Poster · 1. Tunang</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Sunday, 27/12/2026 · Gastrohub Event House</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="quick-action-btn" id="btn-poster-tunang">🖼️ View / Zoom Poster</button>
+            <a href="./posters/poster-tunang.jpg" target="_blank" download class="quick-action-btn">⬇️ Download Poster</a>
+          </div>
+        </div>
+
+        <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); margin: 16px 0 8px 0;">Approved Itinerary (10:00 AM – 1:00 PM)</h4>
+        <div class="table-wrap" style="overflow-x: auto; margin-bottom: 18px;">
+          <table class="tentative-schedule-table">
+            <thead>
+              <tr>
+                <th style="width: 105px;">Time</th>
+                <th>Program &amp; Activity</th>
+                <th style="width: 160px;">Lead / PIC</th>
+                <th>Notes &amp; Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="tentative-time-badge">10:00 AM</span></td><td><strong>Ketibaan Keluarga &amp; Rombongan</strong></td><td>Kedua-dua Keluarga</td><td>Gastrohub Event House · Sesi Sambutan</td></tr>
+              <tr><td><span class="tentative-time-badge">10:15 AM</span></td><td><strong>Pembukaan Majlis &amp; Suai Kenal</strong></td><td>Wakil Keluarga / Emcee</td><td>Ruang Utama · Pantun Pembuka Bicara</td></tr>
+              <tr><td><span class="tentative-time-badge">10:45 AM</span></td><td><strong>Perbincangan Adat &amp; Doa Selamat</strong></td><td>Wakil Keluarga / Ustaz</td><td>Bacaan Doa &amp; Kata Sepakat</td></tr>
+              <tr><td><span class="tentative-time-badge">11:15 AM</span></td><td><strong>Upacara Sarung Cincin Pertunangan</strong></td><td>Ibu Pengantin Lelaki &amp; Perempuan</td><td>Pentas Mini Pelamin</td></tr>
+              <tr><td><span class="tentative-time-badge">11:45 AM</span></td><td><strong>Sesi Fotografi Bersama Keluarga</strong></td><td>Jurutera Foto Rasmi</td><td>Potret Keluarga &amp; Kenangan</td></tr>
+              <tr style="background: rgba(107, 29, 47, 0.03);"><td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFF;">12:00 PM</span></td><td><strong style="color: var(--burgundy);">Jamuan Makan Tengah Hari</strong></td><td>Katering Gastrohub</td><td>Bufet Sajian Keluarga</td></tr>
+              <tr><td><span class="tentative-time-badge">01:00 PM</span></td><td><strong>Majlis Bersurai &amp; Ucapan Terima Kasih</strong></td><td>Kedua-dua Keluarga</td><td>Penyerahan Cenderahati</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display: flex; gap: 8px; border-top: 1px solid var(--border); padding-top: 12px; flex-wrap: wrap;">
+          <a href="https://maps.app.goo.gl/231k2Gxhw8KxayAr7" target="_blank" rel="noopener noreferrer" class="quick-action-btn">📍 Google Maps ↗</a>
+          <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="quick-action-btn">🧭 Waze ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 2: AKAD NIKAH -->
+    <div class="phase-accordion is-open" id="accordion-phase-2" style="margin-top: 18px;">
+      <div class="phase-accordion-header" role="button" tabindex="0">
+        <div class="phase-accordion-title-wrap">
+          <span class="phase-number-tag" style="background: #0284C7;">P2</span>
+          <div>
+            <h3 class="phase-accordion-heading">2. Nikah</h3>
+            <div class="phase-accordion-sub">Saturday, 27/03/2027 · 9:00 AM–1:00 PM · Masjid Raja Haji Fi Sabilillah, Cyberjaya</div>
+          </div>
+        </div>
+        <div class="phase-accordion-meta">
+          <span class="event-time-pill">9:00 AM – 1:00 PM</span>
+        </div>
+      </div>
+      <div class="phase-accordion-body">
+        <div class="tentative-cards-grid">
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">VENUE &amp; LOCATION</div>
+            <div class="tentative-info-val">Masjid Raja Haji Fi Sabilillah</div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Persiaran Semarak Api, Cyberjaya</div>
+            <div style="display: flex; gap: 6px; margin-top: 6px;">
+              <a href="https://maps.app.goo.gl/tEW5DLnAUDDHascHA" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">📍 Maps ↗</a>
+              <a href="https://waze.com/ul/hw2829j9sp" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">🧭 Waze ↗</a>
+            </div>
+          </div>
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">DRESS CODE &amp; THEME</div>
+            <div class="dresscode-wrap">
+              <span class="dresscode-tag blue"><span class="dot"></span> Shades of Blue (Both Families)</span>
+            </div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 6px;">Unified harmonious blue tones</div>
+          </div>
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">MASJID PIC &amp; CONTACT</div>
+            <div class="tentative-info-val">Ustaz Syahir (Masjid Raja Haji)</div>
+            <div class="contact-actions" style="margin-top: 6px;">
+              <button type="button" onclick="callB64('NjAxMzQ3Njc1MzU=')" class="contact-btn btn-call" style="cursor: pointer;">📞 +60 13-476 7535</button>
+              <button type="button" onclick="openWaB64('NjAxMzQ3Njc1MzU=')" class="contact-btn btn-wa" style="cursor: pointer;">💬 WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Poster Preview Card -->
+        <div class="poster-preview-card" style="margin: 16px 0 10px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="./posters/poster-nikah.jpg" alt="2. Nikah Programme Poster" id="thumb-poster-nikah-tab" style="width: 58px; height: 78px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view full poster">
+            <div>
+              <div style="font-weight: 700; font-size: 13px; color: var(--charcoal);">Official Programme Poster · 2. Nikah</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Saturday, 27/03/2027 · Masjid Raja Haji Fi Sabilillah</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="quick-action-btn" id="btn-poster-nikah">🖼️ View / Zoom Poster</button>
+            <a href="./posters/poster-nikah.jpg" target="_blank" download class="quick-action-btn">⬇️ Download Poster</a>
+          </div>
+        </div>
+
+        <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); margin: 16px 0 8px 0;">Approved Itinerary (9:00 AM – 1:00 PM)</h4>
+        <div class="table-wrap" style="overflow-x: auto; margin-bottom: 18px;">
+          <table class="tentative-schedule-table">
+            <thead>
+              <tr>
+                <th style="width: 105px;">Time</th>
+                <th>Program &amp; Activity</th>
+                <th style="width: 160px;">Lead / PIC</th>
+                <th>Notes &amp; Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="tentative-time-badge">09:00 AM</span></td><td><strong>Ketibaan Tetamu &amp; Keluarga</strong></td><td>Keluarga &amp; Urus Setia</td><td>Dewan Solat Utama Masjid</td></tr>
+              <tr><td><span class="tentative-time-badge">09:45 AM</span></td><td><strong>Pemeriksaan Dokumen &amp; Khutbah Nikah</strong></td><td>Tuan Kadi / Jurunikah</td><td>Meja Nikah Dewan Solat Utama</td></tr>
+              <tr style="background: rgba(107, 29, 47, 0.03);"><td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFF;">10:05 AM</span></td><td><strong style="color: var(--burgundy);">Upacara Akad Nikah (Ijab &amp; Qabul)</strong></td><td>Tuan Kadi, Pengantin &amp; Wali</td><td>Lafaz Akad, Mas Kahwin &amp; Taklik</td></tr>
+              <tr><td><span class="tentative-time-badge">10:40 AM</span></td><td><strong>Sesi Batal Air Sembahyang &amp; Hantaran</strong></td><td>Pasangan Pengantin &amp; Keluarga</td><td>Penyarungan Cincin &amp; Hadiah</td></tr>
+              <tr><td><span class="tentative-time-badge">11:15 AM</span></td><td><strong>Sesi Fotografi Bersama Keluarga</strong></td><td>Jurutera Foto Rasmi</td><td>Dewan Utama &amp; Laman Masjid</td></tr>
+              <tr style="background: rgba(107, 29, 47, 0.03);"><td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFF;">11:45 AM</span></td><td><strong style="color: var(--burgundy);">Jamuan Kesyukuran Akad Nikah</strong></td><td>Katering &amp; Urus Setia</td><td>Dewan Jamuan Masjid</td></tr>
+              <tr><td><span class="tentative-time-badge">01:00 PM</span></td><td><strong>Majlis Bersurai</strong></td><td>Semua Tetamu</td><td>Ucapan Kesyukuran &amp; Bersurai</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display: flex; gap: 8px; border-top: 1px solid var(--border); padding-top: 12px; flex-wrap: wrap;">
+          <a href="https://maps.app.goo.gl/tEW5DLnAUDDHascHA" target="_blank" rel="noopener noreferrer" class="quick-action-btn">📍 Google Maps ↗</a>
+          <a href="https://waze.com/ul/hw2829j9sp" target="_blank" rel="noopener noreferrer" class="quick-action-btn">🧭 Waze ↗</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- PHASE 3: SANDING -->
+    <div class="phase-accordion is-open" id="accordion-phase-3" style="margin-top: 18px;">
+      <div class="phase-accordion-header" role="button" tabindex="0">
+        <div class="phase-accordion-title-wrap">
+          <span class="phase-number-tag" style="background: var(--burgundy);">P3</span>
+          <div>
+            <h3 class="phase-accordion-heading">3. Sanding</h3>
+            <div class="phase-accordion-sub">Saturday, 27/11/2027 · 11:00 AM–4:00 PM · Royale Palace Grand Ballroom, Cyberjaya</div>
+          </div>
+        </div>
+        <div class="phase-accordion-meta">
+          <span class="event-time-pill">11:00 AM – 4:00 PM</span>
+        </div>
+      </div>
+      <div class="phase-accordion-body">
+        <div class="tentative-cards-grid">
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">VENUE &amp; LOCATION</div>
+            <div class="tentative-info-val">Royale Palace Grand Ballroom</div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">2 Jalan Teknokrat 2, Cyberjaya</div>
+            <div style="display: flex; gap: 6px; margin-top: 6px;">
+              <a href="https://maps.app.goo.gl/Zuh5LkTiRmYQ63AT9" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">📍 Maps ↗</a>
+              <a href="https://waze.com/ul/hw2829ntvy" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">🧭 Waze ↗</a>
+            </div>
+          </div>
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">DRESS CODE &amp; THEME</div>
+            <div class="dresscode-wrap">
+              <span class="dresscode-tag purple"><span class="dot"></span> Shades of Purple (Both Families)</span>
+            </div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 6px;">Deep Purple, Lilac &amp; Lavender</div>
+          </div>
+          <div class="tentative-info-card">
+            <div class="tentative-info-title">VENUE PIC &amp; CONTACT</div>
+            <div class="tentative-info-val">Pn. Elyna (Royale Palace)</div>
+            <div class="contact-actions" style="margin-top: 6px;">
+              <button type="button" onclick="callB64('NjAxNzkzNzc5NjU=')" class="contact-btn btn-call" style="cursor: pointer;">📞 +60 17-937 7965</button>
+              <button type="button" onclick="openWaB64('NjAxNzkzNzc5NjU=')" class="contact-btn btn-wa" style="cursor: pointer;">💬 WhatsApp</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Inline Poster Preview Card -->
+        <div class="poster-preview-card" style="margin: 16px 0 10px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="./posters/poster-sanding.jpg" alt="3. Sanding Programme Poster" id="thumb-poster-sanding-tab" style="width: 58px; height: 78px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view full poster">
+            <div>
+              <div style="font-weight: 700; font-size: 13px; color: var(--charcoal);">Official Programme Poster · 3. Sanding</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Saturday, 27/11/2027 · Royale Palace Grand Ballroom</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="quick-action-btn" id="btn-poster-sanding">🖼️ View / Zoom Poster</button>
+            <a href="./posters/poster-sanding.jpg" target="_blank" download class="quick-action-btn">⬇️ Download Poster</a>
+          </div>
+        </div>
+
+        <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); margin: 16px 0 8px 0;">Approved Itinerary (11:00 AM – 4:00 PM)</h4>
+        <div class="table-wrap" style="overflow-x: auto; margin-bottom: 18px;">
+          <table class="tentative-schedule-table">
+            <thead>
+              <tr>
+                <th style="width: 105px;">Time</th>
+                <th>Program &amp; Activity</th>
+                <th style="width: 160px;">Lead / PIC</th>
+                <th>Notes &amp; Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td><span class="tentative-time-badge">11:00 AM</span></td><td><strong>Pembukaan Pintu Dewan &amp; Ketibaan Tetamu</strong></td><td>Urus Setia &amp; Sambutan</td><td>Foyer &amp; Ruang Legar Utama</td></tr>
+              <tr style="background: rgba(107, 29, 47, 0.03);"><td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFF;">12:00 PM</span></td><td><strong style="color: var(--burgundy);">Pembukaan Buffet Jamuan Makan</strong></td><td>Katering Royale Palace</td><td>Bufet Sajian Hidangan Diraja</td></tr>
+              <tr style="background: rgba(107, 29, 47, 0.03);"><td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFF;">12:30 PM</span></td><td><strong style="color: var(--burgundy);">Perarakan Masuk Pengantin (Grand Entrance)</strong></td><td>Pengantin &amp; Pengapit</td><td>Laluan Permaidani Merah ke Pelamin</td></tr>
+              <tr><td><span class="tentative-time-badge">01:00 PM</span></td><td><strong>Upacara Makan Beradab &amp; Memotong Kek</strong></td><td>Pasangan &amp; Emcee</td><td>Meja Makan Beradab Diraja</td></tr>
+              <tr><td><span class="tentative-time-badge">01:30 PM</span></td><td><strong>Sesi Salam Restu &amp; Fotografi</strong></td><td>Semua Tetamu Jemputan</td><td>Pentas Pelamin Utama</td></tr>
+              <tr><td><span class="tentative-time-badge">04:00 PM</span></td><td><strong>Majlis Bersurai &amp; Pengedaran Goodies</strong></td><td>Keluarga &amp; Urus Setia</td><td>Pintu Keluar Utama Ballroom</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div style="display: flex; gap: 8px; border-top: 1px solid var(--border); padding-top: 12px; flex-wrap: wrap;">
+          <a href="https://maps.app.goo.gl/Zuh5LkTiRmYQ63AT9" target="_blank" rel="noopener noreferrer" class="quick-action-btn">📍 Google Maps ↗</a>
+          <a href="https://waze.com/ul/hw2829ntvy" target="_blank" rel="noopener noreferrer" class="quick-action-btn">🧭 Waze ↗</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Accordion Toggle Interactions
+  const accordions = container.querySelectorAll(".phase-accordion");
+  accordions.forEach(acc => {
+    const head = acc.querySelector(".phase-accordion-header");
+    head?.addEventListener("click", () => {
+      acc.classList.toggle("is-open");
+      const isOpen = acc.classList.contains("is-open");
+      head.setAttribute("aria-expanded", isOpen);
+    });
+  });
+
+  // Wire poster click events in Tentative tab
+  container.querySelector("#btn-poster-tunang")?.addEventListener("click", () => {
+    openPosterModal("1. Tunang", "./posters/poster-tunang.jpg");
+  });
+  container.querySelector("#thumb-poster-tunang-tab")?.addEventListener("click", () => {
+    openPosterModal("1. Tunang", "./posters/poster-tunang.jpg");
+  });
+  container.querySelector("#btn-poster-nikah")?.addEventListener("click", () => {
+    openPosterModal("2. Nikah", "./posters/poster-nikah.jpg");
+  });
+  container.querySelector("#thumb-poster-nikah-tab")?.addEventListener("click", () => {
+    openPosterModal("2. Nikah", "./posters/poster-nikah.jpg");
+  });
+  container.querySelector("#btn-poster-sanding")?.addEventListener("click", () => {
+    openPosterModal("3. Sanding", "./posters/poster-sanding.jpg");
+  });
+  container.querySelector("#thumb-poster-sanding-tab")?.addEventListener("click", () => {
+    openPosterModal("3. Sanding", "./posters/poster-sanding.jpg");
+  });
+
+  parent.append(container);
+}
+
+/* ========================================================================= */
+/* 7. CONTACTS DIRECTORY VIEW (TAB 3)                                        */
+/* ========================================================================= */
+
 function tentativeView(parent) {
+  if (!isAuthenticated) {
+    guestTentativeView(parent);
+    return;
+  }
   const container = make("div", "tentative-container");
 
   container.innerHTML = `
@@ -5001,7 +5320,7 @@ const APPROVED_SPONSORS = [
     name: "Mama",
     function: "Groom Nikah Ring Sponsorship",
     date: "27/03/2027",
-    detail: "Sponsorship of groom's Elfi wedding ring for Akad Nikah.",
+    detail: "Sponsorship of groom's Elfi platinum wedding ring for Akad Nikah.",
     phase: "2. Nikah",
     phaseClass: "phase-chip-nikah"
   },

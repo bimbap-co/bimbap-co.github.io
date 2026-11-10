@@ -359,7 +359,7 @@ function guestSponsorsView(parent) {
         <div class="guest-sponsor-card">
           <div>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span class="${s.phaseClass}">${s.phase}</span>
+              <span class="${s.phaseClass}" style="font-size: 11px; font-weight: 700;">${s.phase}</span>
               <span style="font-size: 11px; color: var(--charcoal-muted); font-weight: 600;">📅 ${s.date}</span>
             </div>
             <h4 style="font-size: 15px; font-weight: 700; color: var(--charcoal); margin: 0 0 2px 0; font-family: var(--font-sans);">${s.name}</h4>
@@ -798,6 +798,17 @@ function tentativeView(parent) {
       </div>
     </div>
   `;
+
+  // Accordion Toggle Interactions
+  const accordions = container.querySelectorAll(".phase-accordion");
+  accordions.forEach(acc => {
+    const head = acc.querySelector(".phase-accordion-header");
+    head?.addEventListener("click", () => {
+      acc.classList.toggle("is-open");
+      const isOpen = acc.classList.contains("is-open");
+      head.setAttribute("aria-expanded", isOpen);
+    });
+  });
 
   // Wire poster click events in Tentative tab
   container.querySelector("#btn-poster-tunang")?.addEventListener("click", () => {
