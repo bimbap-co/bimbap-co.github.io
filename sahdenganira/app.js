@@ -884,58 +884,49 @@ function tentativeView(parent) {
           </div>
         </div>
 
-        <!-- Inline Poster Preview Card -->
-        <div class="poster-preview-card" style="margin: 16px 0 10px; background: var(--bg-soft); border: 1px solid var(--border); border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <img src="./posters/poster-tunang.jpg" alt="1. Tunang Programme Poster" id="thumb-poster-tunang-tab" style="width: 58px; height: 78px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view full poster">
+        <!-- Dual Visual Showcase: Both Official Poster & Seating Blueprint Displayed Directly -->
+        <div class="tunang-visual-showcase" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 16px; margin: 18px 0 16px;">
+          
+          <!-- 1. Official Programme Poster Card -->
+          <div class="visual-panel-card" style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="font-weight: 700; font-size: 13px; color: var(--charcoal);">Official Programme Poster · 1. Tunang</div>
-              <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Sunday, 27/12/2026 · Gastrohub Event House</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px;">
+                <div>
+                  <div style="font-weight: 700; font-size: 14px; color: var(--burgundy); font-family: var(--font-serif);">🖼️ Official Programme Poster</div>
+                  <div style="font-size: 11.5px; color: var(--charcoal-muted); margin-top: 2px;">1. Tunang · Sunday, 27/12/2026 · Gastrohub, Nilai</div>
+                </div>
+                <span class="phase-chip-tunang" style="font-size: 10.5px; padding: 3px 8px;">Aturcara</span>
+              </div>
+              <div style="text-align: center; background: rgba(0,0,0,0.02); padding: 8px; border-radius: 8px; border: 1px solid var(--border);">
+                <img src="./posters/poster-tunang.jpg" alt="1. Tunang Official Programme Poster" id="thumb-poster-tunang-tab" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.2s;" title="Click to zoom full-screen" loading="lazy">
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+              <button type="button" class="quick-action-btn" id="btn-poster-tunang" style="flex: 1; justify-content: center; min-width: 130px;">🔍 View / Zoom Poster</button>
+              <a href="./posters/poster-tunang.jpg" target="_blank" download class="quick-action-btn" style="flex: 1; justify-content: center; min-width: 130px;">⬇️ Download Poster</a>
             </div>
           </div>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button type="button" class="quick-action-btn" id="btn-poster-tunang">🖼️ View / Zoom Poster</button>
-            <a href="./posters/poster-tunang.jpg" target="_blank" download class="quick-action-btn">⬇️ Download Poster</a>
-          </div>
-        </div>
 
-        
-        <!-- Inline Seating Layout Card -->
-        <div class="poster-preview-card" style="margin: 10px 0 16px; background: #FAFDF8; border: 1px solid #D1E7DD; border-left: 4px solid #166534; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
-          <div style="display: flex; align-items: center; gap: 12px;">
-            <img src="./posters/tunang-seating-layout.jpg" alt="Tunang Seating Layout & Floor Plan" id="thumb-seating-tunang-tab" style="width: 58px; height: 78px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view floor plan">
+          <!-- 2. Official Floor Plan & Seating Layout Card -->
+          <div class="visual-panel-card" style="background: #FAFDF8; border: 1px solid #D1E7DD; border-top: 3px solid #166534; border-radius: 12px; padding: 14px; display: flex; flex-direction: column; justify-content: space-between;">
             <div>
-              <div style="font-weight: 700; font-size: 13px; color: #166534;">Official Floor Plan &amp; Seating Layout · 30 Pax</div>
-              <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Table 1 (VIP 14-pax · 3G/3B Spokespersons) &amp; Table 2 (Family 16-pax)</div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 8px; margin-bottom: 10px;">
+                <div>
+                  <div style="font-weight: 700; font-size: 14px; color: #166534; font-family: var(--font-serif);">🪑 Floor Plan &amp; Seating Layout</div>
+                  <div style="font-size: 11.5px; color: var(--charcoal-muted); margin-top: 2px;">30 Pax · Table 1 (VIP 14-pax) &amp; Table 2 (Family 16-pax)</div>
+                </div>
+                <span style="background: #DCFCE7; color: #166534; font-size: 10.5px; font-weight: 700; padding: 3px 8px; border-radius: 999px;">Level 1 Hall</span>
+              </div>
+              <div style="text-align: center; background: rgba(0,0,0,0.02); padding: 8px; border-radius: 8px; border: 1px solid #D1E7DD;">
+                <img src="./posters/tunang-seating-layout.jpg" alt="Tunang Seating Layout & Floor Plan" id="thumb-seating-tunang-tab" style="width: 100%; max-height: 520px; object-fit: contain; border-radius: 6px; box-shadow: 0 4px 14px rgba(0,0,0,0.08); cursor: pointer; transition: transform 0.2s;" title="Click to view interactive blueprint" loading="lazy">
+              </div>
+            </div>
+            <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+              <button type="button" class="quick-action-btn" id="btn-seating-tunang" style="flex: 1; justify-content: center; min-width: 130px; background: #166534; color: #fff;">🪑 View Seating Blueprint</button>
+              <a href="./posters/tunang-seating-layout.jpg" target="_blank" download class="quick-action-btn" style="flex: 1; justify-content: center; min-width: 130px;">⬇️ Download Layout</a>
             </div>
           </div>
-          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
-            <button type="button" class="quick-action-btn" id="btn-seating-tunang" style="background: #166534; color: #fff;">🪑 View Seating Plan</button>
-            <a href="./posters/tunang-seating-layout.jpg" target="_blank" download class="quick-action-btn">⬇️ Download Layout</a>
-          </div>
-        </div>
 
-        <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); margin: 16px 0 8px 0;">Approved Itinerary (10:00 AM – 1:00 PM)</h4>
-        <div class="table-wrap" style="overflow-x: auto; margin-bottom: 18px;">
-          <table class="tentative-schedule-table">
-            <thead>
-              <tr>
-                <th style="width: 105px;">Time</th>
-                <th>Program &amp; Activity</th>
-                <th style="width: 160px;">Lead / PIC</th>
-                <th>Notes &amp; Location</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td><span class="tentative-time-badge">10:00 AM</span></td><td><strong>Ketibaan Keluarga &amp; Rombongan</strong></td><td>Kedua-dua Keluarga</td><td>Gastrohub Event House · Sesi Sambutan</td></tr>
-              <tr><td><span class="tentative-time-badge">10:15 AM</span></td><td><strong>Pembukaan Majlis &amp; Suai Kenal</strong></td><td>Wakil Keluarga / Emcee</td><td>Ruang Utama · Pantun Pembuka Bicara</td></tr>
-              <tr><td><span class="tentative-time-badge">10:45 AM</span></td><td><strong>Perbincangan Adat &amp; Doa Selamat</strong></td><td>Wakil Keluarga / Ustaz</td><td>Bacaan Doa &amp; Kata Sepakat</td></tr>
-              <tr><td><span class="tentative-time-badge">11:15 AM</span></td><td><strong>Upacara Sarung Cincin Pertunangan</strong></td><td>Ibu Pengantin Lelaki &amp; Perempuan</td><td>Pentas Mini Pelamin</td></tr>
-              <tr><td><span class="tentative-time-badge">11:45 AM</span></td><td><strong>Sesi Fotografi Bersama Keluarga</strong></td><td>Jurutera Foto Rasmi</td><td>Potret Keluarga &amp; Kenangan</td></tr>
-              <tr style="background: rgba(107, 29, 47, 0.03);"><td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFF;">12:00 PM</span></td><td><strong style="color: var(--burgundy);">Jamuan Makan Tengah Hari</strong></td><td>Katering Gastrohub</td><td>Bufet Sajian Keluarga</td></tr>
-              <tr><td><span class="tentative-time-badge">01:00 PM</span></td><td><strong>Majlis Bersurai &amp; Ucapan Terima Kasih</strong></td><td>Kedua-dua Keluarga</td><td>Penyerahan Cenderahati</td></tr>
-            </tbody>
-          </table>
         </div>
 
         <div style="display: flex; gap: 8px; border-top: 1px solid var(--border); padding-top: 12px; flex-wrap: wrap;">
