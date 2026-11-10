@@ -20,6 +20,21 @@ function daysUntil(dateString) {
   return days > 0 ? days : 0;
 }
 
+// Anti-scraping telephone & WhatsApp handlers (decodes base64 on explicit click)
+function openWaB64(enc) {
+  try {
+    const num = atob(enc);
+    window.open("https://wa.me/" + num, "_blank", "noopener,noreferrer");
+  } catch (e) {}
+}
+
+function callB64(enc) {
+  try {
+    const num = atob(enc);
+    window.location.href = "tel:" + num;
+  } catch (e) {}
+}
+
 /* ========================================================================= */
 /* 1. APPROVED PUBLIC EVENTS (ALLOWLISTED FIELDS ONLY)                       */
 /* ========================================================================= */
@@ -441,8 +456,8 @@ function tentativeView(parent) {
             <div class="tentative-info-title">VENUE PIC &amp; CONTACT</div>
             <div class="tentative-info-val">En. Izz (Gastrohub)</div>
             <div class="contact-actions" style="margin-top: 6px;">
-              <a href="tel:60135599032" class="contact-btn btn-call">📞 013-5599032</a>
-              <a href="https://wa.me/60135599032" target="_blank" rel="noopener noreferrer" class="contact-btn btn-wa">💬 WhatsApp</a>
+              <button type="button" onclick="callB64('NjAxMzU1OTkwMzI=')" class="contact-btn btn-call" style="cursor: pointer;">📞 013-5599032</button>
+              <button type="button" onclick="openWaB64('NjAxMzU1OTkwMzI=')" class="contact-btn btn-wa" style="cursor: pointer;">💬 WhatsApp</button>
             </div>
           </div>
         </div>
@@ -528,8 +543,8 @@ function tentativeView(parent) {
             <div class="tentative-info-title">MASJID PIC &amp; CONTACT</div>
             <div class="tentative-info-val">Ustaz Syahir (Masjid Raja Haji)</div>
             <div class="contact-actions" style="margin-top: 6px;">
-              <a href="tel:60134767535" class="contact-btn btn-call">📞 +60 13-476 7535</a>
-              <a href="https://wa.me/60134767535" target="_blank" rel="noopener noreferrer" class="contact-btn btn-wa">💬 WhatsApp</a>
+              <button type="button" onclick="callB64('NjAxMzQ3Njc1MzU=')" class="contact-btn btn-call" style="cursor: pointer;">📞 +60 13-476 7535</button>
+              <button type="button" onclick="openWaB64('NjAxMzQ3Njc1MzU=')" class="contact-btn btn-wa" style="cursor: pointer;">💬 WhatsApp</button>
             </div>
           </div>
         </div>
@@ -615,8 +630,8 @@ function tentativeView(parent) {
             <div class="tentative-info-title">VENUE PIC &amp; CONTACT</div>
             <div class="tentative-info-val">Pn. Elyna (Royale Palace)</div>
             <div class="contact-actions" style="margin-top: 6px;">
-              <a href="tel:60179377965" class="contact-btn btn-call">📞 +60 17-937 7965</a>
-              <a href="https://wa.me/60179377965" target="_blank" rel="noopener noreferrer" class="contact-btn btn-wa">💬 WhatsApp</a>
+              <button type="button" onclick="callB64('NjAxNzkzNzc5NjU=')" class="contact-btn btn-call" style="cursor: pointer;">📞 +60 17-937 7965</button>
+              <button type="button" onclick="openWaB64('NjAxNzkzNzc5NjU=')" class="contact-btn btn-wa" style="cursor: pointer;">💬 WhatsApp</button>
             </div>
           </div>
         </div>
@@ -749,8 +764,8 @@ function contactsView(parent, isStandaloneTab = true) {
               <div style="font-size: 11px; color: var(--charcoal-muted);">${m.note}</div>
             </div>
             <div style="display: flex; gap: 6px; margin-top: 10px;">
-              <a href="tel:${m.rawPhone}" class="contact-btn btn-call" style="flex: 1; text-align: center; padding: 6px 10px; font-size: 11px;">📞 Call</a>
-              <a href="https://wa.me/${m.rawPhone}" target="_blank" rel="noopener noreferrer" class="contact-btn btn-wa" style="flex: 1; text-align: center; padding: 6px 10px; font-size: 11px;">💬 WhatsApp</a>
+              <button type="button" onclick="callB64(btoa('${m.rawPhone}'))" class="contact-btn btn-call" style="flex: 1; text-align: center; padding: 6px 10px; font-size: 11px; cursor: pointer;">📞 Call</button>
+              <button type="button" onclick="openWaB64(btoa('${m.rawPhone}'))" class="contact-btn btn-wa" style="flex: 1; text-align: center; padding: 6px 10px; font-size: 11px; cursor: pointer;">💬 WhatsApp</button>
             </div>
           </div>
         `).join("")}
