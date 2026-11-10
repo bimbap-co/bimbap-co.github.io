@@ -572,6 +572,280 @@ function openPosterModal(phaseName, posterSrc) {
   `);
 }
 
+function openTunangSeatingModal() {
+  openDetailModal("1. Tunang · Official Seating Plan & Floor Layout (30 Pax)", `
+    <div class="seating-plan-wrapper">
+      <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px; flex-wrap: wrap; gap: 8px;">
+        <div>
+          <div style="font-weight: 800; font-size: 15px; color: #881337;">Shamira Sayed Engagement Floor Plan</div>
+          <div style="font-size: 12px; color: var(--charcoal-muted);">Sunday, 27/12/2026 · Gastrohub Restaurant and Event Space, Nilai · 30 Pax Capacity</div>
+        </div>
+        <div style="display: flex; gap: 8px;">
+          <a href="./posters/tunang-seating-layout.jpg" target="_blank" rel="noopener noreferrer" class="quick-action-btn">Open Original Image ↗</a>
+          <a href="./posters/tunang-seating-layout.jpg" download class="quick-action-btn" style="background: #166534; color: #fff;">⬇ Download Layout</a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Ribbon -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; margin-bottom: 16px;">
+        <div style="background: #FAFDF8; border: 1px solid #D1E7DD; border-left: 3px solid #166534; border-radius: 8px; padding: 10px 12px;">
+          <div style="font-size: 10px; font-weight: 800; color: #166534; letter-spacing: 0.5px;">TABLE 1: MAIN / VIP TABLE</div>
+          <div style="font-size: 18px; font-weight: 800; color: #166534; margin: 2px 0;">14 Seats Total</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">7 Groom · 7 Bride · 6 Spokespersons (3G / 3B)</div>
+        </div>
+        <div style="background: #FDF4F8; border: 1px solid #FBCFE8; border-left: 3px solid #BE185D; border-radius: 8px; padding: 10px 12px;">
+          <div style="font-size: 10px; font-weight: 800; color: #9D174D; letter-spacing: 0.5px;">TABLE 2: FAMILY &amp; ENTOURAGE</div>
+          <div style="font-size: 18px; font-weight: 800; color: #BE185D; margin: 2px 0;">16 Seats Total</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">8 Groom (Siblings) · 8 Bride (Siblings &amp; Circle)</div>
+        </div>
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: 8px; padding: 10px 12px; text-align: center;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">TOTAL CONFIRMED PAX</div>
+          <div style="font-size: 18px; font-weight: 800; color: var(--charcoal); margin: 2px 0;">30 Pax</div>
+          <div style="font-size: 11px; color: #15803D; font-weight: 600;">✓ 15 Groom + 15 Bride (100% Balanced)</div>
+        </div>
+      </div>
+
+      <!-- Two-Column Display: Schematic Diagram + Original Layout Image -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 18px;">
+        <!-- Left: Interactive CSS Architectural Schematic -->
+        <div class="seating-hall-schematic" style="margin: 0; max-width: 100%;">
+          <div class="schematic-header">
+            <h4 class="schematic-title">Shamira Sayed Engagement Layout</h4>
+            <div class="schematic-subtitle">Gastrohub Event House · Level 1 Hall Layout</div>
+          </div>
+
+          <!-- Top Perimeter: Buah Tangan, Pelamin, Speaker -->
+          <div class="schematic-perimeter-top">
+            <div class="schematic-buah-tangan" title="Exchange Gifts / Hantaran Trays Table">🎁 Buah Tangan</div>
+            <div class="schematic-pelamin" title="Mini Dais / Pentas Pertunangan">🌸 Pelamin</div>
+            <div class="schematic-speaker" title="Audio Sound & Emcee PA Station">🔊 Speaker</div>
+          </div>
+
+          <!-- Body: Left Wall, Tables in Center, Right Wall -->
+          <div class="schematic-body-row">
+            <!-- Left Wall with 2 AC units -->
+            <div class="schematic-wall-left">
+              <span class="schematic-ac-badge" title="Air Conditioner 1">❄️ AC</span>
+              <span class="schematic-ac-badge" title="Air Conditioner 2">❄️ AC</span>
+            </div>
+
+            <!-- Center Tables Area -->
+            <div class="schematic-tables-center">
+              <!-- Table 1 (Main VIP: 14 seats, 7G vs 7B) -->
+              <div class="schematic-table-card">
+                <div class="schematic-table-title">Table 1 · VIP (14 Pax)</div>
+                <div class="schematic-table-assembly">
+                  <!-- Groom Side (7 chairs, middle 3 are G) -->
+                  <div class="schematic-chair-column">
+                    <span class="schematic-seat groom" title="Groom VIP: Mama (Mother of the Groom)">1</span>
+                    <span class="schematic-seat groom" title="Groom VIP: Immediate Family">2</span>
+                    <span class="schematic-seat groom spokesperson" title="Spokesperson G: Abah (Father of the Groom)">G</span>
+                    <span class="schematic-seat groom spokesperson" title="Spokesperson G: Achin (Groom's Senior Spokesperson)">G</span>
+                    <span class="schematic-seat groom spokesperson" title="Spokesperson G: Abang Shahrom (Groom's Family Lead)">G</span>
+                    <span class="schematic-seat groom" title="Groom VIP: Pakcik (Uncle)">6</span>
+                    <span class="schematic-seat groom" title="Groom VIP: Immediate Family">7</span>
+                  </div>
+                  <!-- Table Surface -->
+                  <div class="schematic-table-plank" style="min-height: 230px;">
+                    MEJA VIP
+                  </div>
+                  <!-- Bride Side (7 chairs, middle 3 are B) -->
+                  <div class="schematic-chair-column">
+                    <span class="schematic-seat bride" title="Bride VIP: Ibu (Mother of the Bride)">1</span>
+                    <span class="schematic-seat bride" title="Bride VIP: Immediate Family">2</span>
+                    <span class="schematic-seat bride spokesperson" title="Spokesperson B: Ayah (Father of the Bride)">B</span>
+                    <span class="schematic-seat bride spokesperson" title="Spokesperson B: Uncle (Bride's Senior Spokesperson)">B</span>
+                    <span class="schematic-seat bride spokesperson" title="Spokesperson B: Pak Ngah (Bride's Senior Spokesperson)">B</span>
+                    <span class="schematic-seat bride" title="Bride VIP: Mak Ngah (Aunt)">6</span>
+                    <span class="schematic-seat bride" title="Bride VIP: Immediate Family">7</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table 2 (Family & Extended: 16 seats, 8G vs 8B) -->
+              <div class="schematic-table-card">
+                <div class="schematic-table-title">Table 2 · Family (16 Pax)</div>
+                <div class="schematic-table-assembly">
+                  <!-- Groom Side (8 chairs) -->
+                  <div class="schematic-chair-column">
+                    <span class="schematic-seat groom" title="Groom Siblings: Along">1</span>
+                    <span class="schematic-seat groom" title="Groom Siblings: Angah">2</span>
+                    <span class="schematic-seat groom" title="Groom Siblings: Acik">3</span>
+                    <span class="schematic-seat groom" title="Groom Siblings: 4th Sibling">4</span>
+                    <span class="schematic-seat groom" title="Groom Siblings: 5th Sibling">5</span>
+                    <span class="schematic-seat groom" title="Groom Siblings: 5th Sibling">5</span>
+                    <span class="schematic-seat groom" title="Groom Family: Aunty Amy">6</span>
+                    <span class="schematic-seat groom" title="Groom Family: Makcik">7</span>
+                    <span class="schematic-seat groom" title="Groom Extended: Raisya & Rizqi">8</span>
+                  </div>
+                  <!-- Table Surface -->
+                  <div class="schematic-table-plank" style="min-height: 260px;">
+                    MEJA KELUARGA
+                  </div>
+                  <!-- Bride Side (8 chairs) -->
+                  <div class="schematic-chair-column">
+                    <span class="schematic-seat bride" title="Bride Siblings: 1st Sibling">1</span>
+                    <span class="schematic-seat bride" title="Bride Siblings: 2nd Sibling">2</span>
+                    <span class="schematic-seat bride" title="Bride Siblings: 3rd Sibling">3</span>
+                    <span class="schematic-seat bride" title="Bride Circle: Kak Elaine">4</span>
+                    <span class="schematic-seat bride" title="Bride Circle: Sherly">5</span>
+                    <span class="schematic-seat bride" title="Bride Circle: Syasya">6</span>
+                    <span class="schematic-seat bride" title="Bride Circle: Kak Mija">7</span>
+                    <span class="schematic-seat bride" title="Bride Family: Abang Lukman (Marsya/Farisya/Wahida)">8</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Wall with Kain Rentang, AC, and Entrance Door -->
+            <div class="schematic-wall-right">
+              <span class="schematic-kain-rentang" title="Engagement Banner Backdrop">KAIN RENTANG</span>
+              <span class="schematic-ac-badge" style="margin: 8px 0;" title="Air Conditioner 3">❄️ AC</span>
+              <div class="schematic-entrance-door" title="Main Entrance Doorway">🚪 Pintu Masuk</div>
+              <span class="schematic-ac-badge" style="margin-top: 8px;" title="Air Conditioner 4">❄️ AC</span>
+            </div>
+          </div>
+
+          <!-- Bottom: Buffet Line -->
+          <div class="schematic-buffet" title="Full catering lunch station spanning rear wall">
+            🍽️ Buffet Line (Lunch Catering Station)
+          </div>
+
+          <!-- Legend Strip -->
+          <div class="schematic-legend-strip">
+            <span class="schematic-legend-item">
+              <span class="schematic-seat groom spokesperson" style="width: 22px; height: 22px; font-size: 10px;">G</span>
+              <span>G: Groom Spokespersons (3)</span>
+            </span>
+            <span class="schematic-legend-item">
+              <span class="schematic-seat bride spokesperson" style="width: 22px; height: 22px; font-size: 10px;">B</span>
+              <span>B: Bride Spokespersons (3)</span>
+            </span>
+            <span class="schematic-legend-item">
+              <span class="schematic-seat groom" style="width: 20px; height: 20px; font-size: 9px;">●</span>
+              <span>Groom Entourage (15 Total)</span>
+            </span>
+            <span class="schematic-legend-item">
+              <span class="schematic-seat bride" style="width: 20px; height: 20px; font-size: 9px;">●</span>
+              <span>Bride Entourage (15 Total)</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Official Hand-Drawn Schematic Visual -->
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: 14px; padding: 14px; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div style="font-weight: 700; font-size: 13px; color: var(--charcoal); margin-bottom: 6px;">Official Floor Plan Reference</div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-bottom: 12px;">Submitted blueprint diagram for Gastrohub Event House</div>
+            <a href="./posters/tunang-seating-layout.jpg" target="_blank" rel="noopener noreferrer">
+              <img src="./posters/tunang-seating-layout.jpg" alt="Official Tunang Seating Layout Blueprint" style="max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view full image in high resolution">
+            </a>
+          </div>
+          <div style="margin-top: 12px; font-size: 11px; color: var(--charcoal-muted);">
+            Tip: Click the image to view or inspect the original high-resolution blueprint in a new browser tab.
+          </div>
+        </div>
+      </div>
+
+      <!-- Detailed Table-by-Table Attendee Breakdown -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+        <!-- Table 1 Detail Card -->
+        <div style="background: #FFFFFF; border: 1px solid var(--border); border-top: 4px solid #166534; border-radius: 10px; padding: 14px; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+            <div>
+              <div style="font-weight: 800; font-size: 14px; color: #166534;">Table 1 · Main / VIP Table (14 Pax)</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">Front Long Table · Closer to Pelamin &amp; Buah Tangan</div>
+            </div>
+            <span style="font-size: 11px; font-weight: 700; color: #166534; background: #DCFCE7; padding: 2px 8px; border-radius: 4px;">6 Spokespersons</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <!-- Groom Side (7 Pax) -->
+            <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 6px; padding: 8px;">
+              <div style="font-size: 11px; font-weight: 800; color: #166534; margin-bottom: 6px; border-bottom: 1px solid #DCFCE7; padding-bottom: 3px;">
+                👨‍💼 Groom VIPs (7 Seats)
+              </div>
+              <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #14532D;">
+                <li>Seat 1: Mama (Mother of Groom)</li>
+                <li>Seat 2: Immediate Family</li>
+                <li><strong style="color: #047857; background: #D1FAE5; padding: 1px 4px; border-radius: 3px;">[G] Seat 3: Abah</strong> (Father)</li>
+                <li><strong style="color: #047857; background: #D1FAE5; padding: 1px 4px; border-radius: 3px;">[G] Seat 4: Achin</strong> (Spokesperson)</li>
+                <li><strong style="color: #047857; background: #D1FAE5; padding: 1px 4px; border-radius: 3px;">[G] Seat 5: Abang Shahrom</strong> (Lead)</li>
+                <li>Seat 6: Pakcik (Uncle)</li>
+                <li>Seat 7: Immediate Family</li>
+              </ul>
+            </div>
+
+            <!-- Bride Side (7 Pax) -->
+            <div style="background: #FDF2F8; border: 1px solid #FBCFE8; border-radius: 6px; padding: 8px;">
+              <div style="font-size: 11px; font-weight: 800; color: #9D174D; margin-bottom: 6px; border-bottom: 1px solid #FCE7F3; padding-bottom: 3px;">
+                👰‍♀️ Bride VIPs (7 Seats)
+              </div>
+              <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #831843;">
+                <li>Seat 1: Ibu (Mother of Bride)</li>
+                <li>Seat 2: Immediate Family</li>
+                <li><strong style="color: #BE185D; background: #FCE7F3; padding: 1px 4px; border-radius: 3px;">[B] Seat 3: Ayah</strong> (Father)</li>
+                <li><strong style="color: #BE185D; background: #FCE7F3; padding: 1px 4px; border-radius: 3px;">[B] Seat 4: Uncle</strong> (Spokesperson)</li>
+                <li><strong style="color: #BE185D; background: #FCE7F3; padding: 1px 4px; border-radius: 3px;">[B] Seat 5: Pak Ngah</strong> (Spokesperson)</li>
+                <li>Seat 6: Mak Ngah (Aunt)</li>
+                <li>Seat 7: Immediate Family</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Table 2 Detail Card -->
+        <div style="background: #FFFFFF; border: 1px solid var(--border); border-top: 4px solid #BE185D; border-radius: 10px; padding: 14px; box-shadow: var(--shadow-sm);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+            <div>
+              <div style="font-weight: 800; font-size: 14px; color: #BE185D;">Table 2 · Family &amp; Entourage Table (16 Pax)</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted);">Side Long Table · Closer to Kain Rentang &amp; Entrance</div>
+            </div>
+            <span style="font-size: 11px; font-weight: 700; color: #BE185D; background: #FCE7F3; padding: 2px 8px; border-radius: 4px;">16 Seats</span>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+            <!-- Groom Side (8 Pax) -->
+            <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 6px; padding: 8px;">
+              <div style="font-size: 11px; font-weight: 800; color: #166534; margin-bottom: 6px; border-bottom: 1px solid #DCFCE7; padding-bottom: 3px;">
+                👨‍💼 Groom Family (8 Seats)
+              </div>
+              <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #14532D;">
+                <li>Seat 1: Sibling Along</li>
+                <li>Seat 2: Sibling Angah</li>
+                <li>Seat 3: Sibling Acik</li>
+                <li>Seat 4: Sibling (4th)</li>
+                <li>Seat 5: Sibling (5th)</li>
+                <li>Seat 6: Aunty Amy</li>
+                <li>Seat 7: Makcik</li>
+                <li>Seat 8: Raisya &amp; Rizqi</li>
+              </ul>
+            </div>
+
+            <!-- Bride Side (8 Pax) -->
+            <div style="background: #FDF2F8; border: 1px solid #FBCFE8; border-radius: 6px; padding: 8px;">
+              <div style="font-size: 11px; font-weight: 800; color: #9D174D; margin-bottom: 6px; border-bottom: 1px solid #FCE7F3; padding-bottom: 3px;">
+                👰‍♀️ Bride Family &amp; Friends (8 Seats)
+              </div>
+              <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #831843;">
+                <li>Seat 1: Sibling (1st)</li>
+                <li>Seat 2: Sibling (2nd)</li>
+                <li>Seat 3: Sibling (3rd)</li>
+                <li>Seat 4: Kak Elaine</li>
+                <li>Seat 5: Sherly</li>
+                <li>Seat 6: Syasya</li>
+                <li>Seat 7: Kak Mija</li>
+                <li>Seat 8: Abang Lukman (Marsya/Farisya/Wahida)</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  `);
+}
+
+
 function renderContactsDirectoryHtml() {
   const groups = {};
   for (const c of WEDDING_CONTACTS) {
@@ -1173,6 +1447,7 @@ function overview(parent) {
           </div>
         </div>
         <button type="button" class="quick-action-btn" id="btn-modal-poster-tunang">View Poster 🖼️</button>
+        <button type="button" class="quick-action-btn" id="btn-modal-seating-tunang" style="background: #166534; color: #fff;">🪑 Seating Plan (30 Pax)</button>
       </div>
 
       <div style="display: flex; gap: 8px; border-top: 1px solid var(--border); padding-top: 12px; margin-top: 14px; flex-wrap: wrap;">
@@ -1185,6 +1460,7 @@ function overview(parent) {
 
     $("thumb-poster-tunang")?.addEventListener("click", () => openPosterModal("Tunang", "./posters/poster-tunang.jpg"));
     $("btn-modal-poster-tunang")?.addEventListener("click", () => openPosterModal("Tunang", "./posters/poster-tunang.jpg"));
+    $("btn-modal-seating-tunang")?.addEventListener("click", openTunangSeatingModal);
   });
 
   horizon.querySelector("#read-more-nikah")?.addEventListener("click", () => {
@@ -3297,6 +3573,22 @@ function guestTentativeView(parent) {
           </div>
         </div>
 
+        
+        <!-- Inline Seating Layout Card -->
+        <div class="poster-preview-card" style="margin: 10px 0 16px; background: #FAFDF8; border: 1px solid #D1E7DD; border-left: 4px solid #166534; border-radius: 10px; padding: 12px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap;">
+          <div style="display: flex; align-items: center; gap: 12px;">
+            <img src="./posters/tunang-seating-layout.jpg" alt="Tunang Seating Layout & Floor Plan" id="thumb-seating-tunang-tab" style="width: 58px; height: 78px; object-fit: cover; border-radius: 6px; box-shadow: 0 2px 8px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view floor plan">
+            <div>
+              <div style="font-weight: 700; font-size: 13px; color: #166534;">Official Floor Plan &amp; Seating Layout · 30 Pax</div>
+              <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Table 1 (VIP 14-pax · 3G/3B Spokespersons) &amp; Table 2 (Family 16-pax)</div>
+            </div>
+          </div>
+          <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+            <button type="button" class="quick-action-btn" id="btn-seating-tunang" style="background: #166534; color: #fff;">🪑 View Seating Plan</button>
+            <a href="./posters/tunang-seating-layout.jpg" target="_blank" download class="quick-action-btn">⬇️ Download Layout</a>
+          </div>
+        </div>
+
         <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); margin: 16px 0 8px 0;">Approved Itinerary (10:00 AM – 1:00 PM)</h4>
         <div class="table-wrap" style="overflow-x: auto; margin-bottom: 18px;">
           <table class="tentative-schedule-table">
@@ -3537,6 +3829,8 @@ function guestTentativeView(parent) {
   });
 
   // Wire poster click events in Tentative tab
+  container.querySelector("#btn-seating-tunang")?.addEventListener("click", openTunangSeatingModal);
+  container.querySelector("#thumb-seating-tunang-tab")?.addEventListener("click", openTunangSeatingModal);
   container.querySelector("#btn-poster-tunang")?.addEventListener("click", () => {
     openPosterModal("1. Tunang", "./posters/poster-tunang.jpg");
   });
@@ -3696,6 +3990,7 @@ function tentativeView(parent) {
 
         <div style="display: flex; gap: 8px; border-top: 1px solid var(--border); padding-top: 12px; flex-wrap: wrap;">
           <button type="button" class="quick-action-btn" id="btn-tentative-poster-tunang">🖼️ View Programme Poster ↗</button>
+          <button type="button" class="quick-action-btn" id="btn-tentative-seating-tunang" style="background: #166534; color: #fff;">🪑 View Seating Plan (30 Pax) ↗</button>
           <a href="https://maps.app.goo.gl/231k2Gxhw8KxayAr7" target="_blank" rel="noopener noreferrer" class="quick-action-btn">📍 Google Maps ↗</a>
           <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="quick-action-btn">🧭 Waze ↗</a>
           <a href="https://app.notion.com/3c9caff354e7816db5b2fedc924fc999" target="_blank" rel="noopener noreferrer" class="quick-action-btn">📄 Gastrohub Invoice (Notion) ↗</a>
@@ -4022,6 +4317,7 @@ function tentativeView(parent) {
   container.querySelector("#btn-tentative-poster-tunang")?.addEventListener("click", () => {
     openPosterModal("Tunang", "./posters/poster-tunang.jpg");
   });
+  container.querySelector("#btn-tentative-seating-tunang")?.addEventListener("click", openTunangSeatingModal);
   container.querySelector("#btn-tentative-poster-nikah")?.addEventListener("click", () => {
     openPosterModal("Nikah", "./posters/poster-nikah.jpg");
   });
@@ -4203,6 +4499,9 @@ function guestsView(parent, records = []) {
               <button type="button" id="toggle-layout-unified" style="padding: 6px 12px; font-size: 11.5px; font-weight: 600; border: none; cursor: pointer; border-left: 1px solid var(--border); background: ${rosterLayout === "unified" ? "var(--burgundy)" : "#fff"}; color: ${rosterLayout === "unified" ? "#fff" : "var(--charcoal)"};">
                 📋 Unified Roster
               </button>
+              <button type="button" id="toggle-layout-seating" style="padding: 6px 12px; font-size: 11.5px; font-weight: 600; border: none; cursor: pointer; border-left: 1px solid var(--border); background: ${rosterLayout === "seating" ? "var(--burgundy)" : "#fff"}; color: ${rosterLayout === "seating" ? "#fff" : "var(--charcoal)"};">
+                🪑 Floor Plan &amp; Seating
+              </button>
             </div>
 
             <!-- Search input -->
@@ -4216,7 +4515,261 @@ function guestsView(parent, records = []) {
         </div>
       `;
 
-      if (rosterLayout === "side-by-side" && rosterSide === "all") {
+      if (rosterLayout === "seating") {
+        // SEATING & FLOOR PLAN SCHEMATIC VIEW
+        subHtml += `
+          <div class="seating-plan-wrapper">
+            <!-- Floor Plan Action Banner -->
+            <div style="background: #FAFDF8; border: 1px solid #D1E7DD; border-left: 4px solid #166534; border-radius: 8px; padding: 12px 16px; margin-bottom: 14px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+              <div>
+                <strong style="color: #166534; font-size: 14px;">🪑 Shamira Sayed Engagement Floor Plan &amp; Seating Allocation</strong>
+                <div style="font-size: 11.5px; color: var(--charcoal-muted); margin-top: 2px;">Gastrohub Restaurant &amp; Event Space, Nilai · Sunday 27/12/2026 · 30 Confirmed Pax across 2 Long Tables</div>
+              </div>
+              <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+                <button type="button" class="quick-action-btn" id="btn-expand-seating-modal" style="background: #166534; color: #fff;">🔍 Fullscreen Blueprint Modal</button>
+                <a href="./posters/tunang-seating-layout.jpg" target="_blank" rel="noopener noreferrer" class="quick-action-btn">Open Image ↗</a>
+                <a href="./posters/tunang-seating-layout.jpg" download class="quick-action-btn">⬇ Download</a>
+              </div>
+            </div>
+
+            <!-- Two-Column Display: Schematic Diagram + Original Layout Image -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-bottom: 18px;">
+              <!-- Left: Interactive CSS Architectural Schematic -->
+              <div class="seating-hall-schematic" style="margin: 0; max-width: 100%;">
+                <div class="schematic-header">
+                  <h4 class="schematic-title">Shamira Sayed Engagement Layout</h4>
+                  <div class="schematic-subtitle">Gastrohub Event House · Level 1 Hall Layout</div>
+                </div>
+
+                <!-- Top Perimeter: Buah Tangan, Pelamin, Speaker -->
+                <div class="schematic-perimeter-top">
+                  <div class="schematic-buah-tangan" title="Exchange Gifts / Hantaran Trays Table">🎁 Buah Tangan</div>
+                  <div class="schematic-pelamin" title="Mini Dais / Pentas Pertunangan">🌸 Pelamin</div>
+                  <div class="schematic-speaker" title="Audio Sound &amp; Emcee PA Station">🔊 Speaker</div>
+                </div>
+
+                <!-- Body: Left Wall, Tables in Center, Right Wall -->
+                <div class="schematic-body-row">
+                  <!-- Left Wall with 2 AC units -->
+                  <div class="schematic-wall-left">
+                    <span class="schematic-ac-badge" title="Air Conditioner 1">❄️ AC</span>
+                    <span class="schematic-ac-badge" title="Air Conditioner 2">❄️ AC</span>
+                  </div>
+
+                  <!-- Center Tables Area -->
+                  <div class="schematic-tables-center">
+                    <!-- Table 1 (Main VIP: 14 seats, 7G vs 7B) -->
+                    <div class="schematic-table-card">
+                      <div class="schematic-table-title">Table 1 · VIP (14 Pax)</div>
+                      <div class="schematic-table-assembly">
+                        <!-- Groom Side (7 chairs, middle 3 are G) -->
+                        <div class="schematic-chair-column">
+                          <span class="schematic-seat groom" title="Groom VIP: Mama (Mother of the Groom)">1</span>
+                          <span class="schematic-seat groom" title="Groom VIP: Immediate Family">2</span>
+                          <span class="schematic-seat groom spokesperson" title="Spokesperson G: Abah (Father of the Groom)">G</span>
+                          <span class="schematic-seat groom spokesperson" title="Spokesperson G: Achin (Groom's Senior Spokesperson)">G</span>
+                          <span class="schematic-seat groom spokesperson" title="Spokesperson G: Abang Shahrom (Groom's Family Lead)">G</span>
+                          <span class="schematic-seat groom" title="Groom VIP: Pakcik (Uncle)">6</span>
+                          <span class="schematic-seat groom" title="Groom VIP: Immediate Family">7</span>
+                        </div>
+                        <!-- Table Surface -->
+                        <div class="schematic-table-plank" style="min-height: 230px;">
+                          MEJA VIP
+                        </div>
+                        <!-- Bride Side (7 chairs, middle 3 are B) -->
+                        <div class="schematic-chair-column">
+                          <span class="schematic-seat bride" title="Bride VIP: Ibu (Mother of the Bride)">1</span>
+                          <span class="schematic-seat bride" title="Bride VIP: Immediate Family">2</span>
+                          <span class="schematic-seat bride spokesperson" title="Spokesperson B: Ayah (Father of the Bride)">B</span>
+                          <span class="schematic-seat bride spokesperson" title="Spokesperson B: Uncle (Bride's Senior Spokesperson)">B</span>
+                          <span class="schematic-seat bride spokesperson" title="Spokesperson B: Pak Ngah (Bride's Senior Spokesperson)">B</span>
+                          <span class="schematic-seat bride" title="Bride VIP: Mak Ngah (Aunt)">6</span>
+                          <span class="schematic-seat bride" title="Bride VIP: Immediate Family">7</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- Table 2 (Family & Extended: 16 seats, 8G vs 8B) -->
+                    <div class="schematic-table-card">
+                      <div class="schematic-table-title">Table 2 · Family (16 Pax)</div>
+                      <div class="schematic-table-assembly">
+                        <!-- Groom Side (8 chairs) -->
+                        <div class="schematic-chair-column">
+                          <span class="schematic-seat groom" title="Groom Siblings: Along">1</span>
+                          <span class="schematic-seat groom" title="Groom Siblings: Angah">2</span>
+                          <span class="schematic-seat groom" title="Groom Siblings: Acik">3</span>
+                          <span class="schematic-seat groom" title="Groom Siblings: 4th Sibling">4</span>
+                          <span class="schematic-seat groom" title="Groom Siblings: 5th Sibling">5</span>
+                          <span class="schematic-seat groom" title="Groom Family: Aunty Amy">6</span>
+                          <span class="schematic-seat groom" title="Groom Family: Makcik">7</span>
+                          <span class="schematic-seat groom" title="Groom Extended: Raisya &amp; Rizqi">8</span>
+                        </div>
+                        <!-- Table Surface -->
+                        <div class="schematic-table-plank" style="min-height: 260px;">
+                          MEJA KELUARGA
+                        </div>
+                        <!-- Bride Side (8 chairs) -->
+                        <div class="schematic-chair-column">
+                          <span class="schematic-seat bride" title="Bride Siblings: 1st Sibling">1</span>
+                          <span class="schematic-seat bride" title="Bride Siblings: 2nd Sibling">2</span>
+                          <span class="schematic-seat bride" title="Bride Siblings: 3rd Sibling">3</span>
+                          <span class="schematic-seat bride" title="Bride Circle: Kak Elaine">4</span>
+                          <span class="schematic-seat bride" title="Bride Circle: Sherly">5</span>
+                          <span class="schematic-seat bride" title="Bride Circle: Syasya">6</span>
+                          <span class="schematic-seat bride" title="Bride Circle: Kak Mija">7</span>
+                          <span class="schematic-seat bride" title="Bride Family: Abang Lukman (Marsya/Farisya/Wahida)">8</span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Right Wall with Kain Rentang, AC, and Entrance Door -->
+                  <div class="schematic-wall-right">
+                    <span class="schematic-kain-rentang" title="Engagement Banner Backdrop">KAIN RENTANG</span>
+                    <span class="schematic-ac-badge" style="margin: 8px 0;" title="Air Conditioner 3">❄️ AC</span>
+                    <div class="schematic-entrance-door" title="Main Entrance Doorway">🚪 Pintu Masuk</div>
+                    <span class="schematic-ac-badge" style="margin-top: 8px;" title="Air Conditioner 4">❄️ AC</span>
+                  </div>
+                </div>
+
+                <!-- Bottom: Buffet Line -->
+                <div class="schematic-buffet" title="Full catering lunch station spanning rear wall">
+                  🍽️ Buffet Line (Lunch Catering Station)
+                </div>
+
+                <!-- Legend Strip -->
+                <div class="schematic-legend-strip">
+                  <span class="schematic-legend-item">
+                    <span class="schematic-seat groom spokesperson" style="width: 22px; height: 22px; font-size: 10px;">G</span>
+                    <span>G: Groom Spokespersons (3)</span>
+                  </span>
+                  <span class="schematic-legend-item">
+                    <span class="schematic-seat bride spokesperson" style="width: 22px; height: 22px; font-size: 10px;">B</span>
+                    <span>B: Bride Spokespersons (3)</span>
+                  </span>
+                  <span class="schematic-legend-item">
+                    <span class="schematic-seat groom" style="width: 20px; height: 20px; font-size: 9px;">●</span>
+                    <span>Groom Entourage (15 Total)</span>
+                  </span>
+                  <span class="schematic-legend-item">
+                    <span class="schematic-seat bride" style="width: 20px; height: 20px; font-size: 9px;">●</span>
+                    <span>Bride Entourage (15 Total)</span>
+                  </span>
+                </div>
+              </div>
+
+              <!-- Right: Official Hand-Drawn Schematic Visual -->
+              <div style="background: var(--bg-soft); border: 1px solid var(--border); border-radius: 14px; padding: 14px; text-align: center; display: flex; flex-direction: column; justify-content: space-between;">
+                <div>
+                  <div style="font-weight: 700; font-size: 13px; color: var(--charcoal); margin-bottom: 6px;">Official Blueprint Image</div>
+                  <div style="font-size: 11px; color: var(--charcoal-muted); margin-bottom: 12px;">Submitted blueprint diagram for Gastrohub Event House</div>
+                  <a href="./posters/tunang-seating-layout.jpg" target="_blank" rel="noopener noreferrer">
+                    <img src="./posters/tunang-seating-layout.jpg" alt="Official Tunang Seating Layout Blueprint" style="max-width: 100%; max-height: 480px; object-fit: contain; border-radius: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.12); cursor: pointer;" title="Click to view full image in high resolution">
+                  </a>
+                </div>
+                <div style="margin-top: 12px; font-size: 11px; color: var(--charcoal-muted);">
+                  Tip: Click the image to view or inspect the original high-resolution blueprint in a new browser tab.
+                </div>
+              </div>
+            </div>
+
+            <!-- Detailed Table-by-Table Attendee Breakdown -->
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px;">
+              <!-- Table 1 Detail Card -->
+              <div style="background: #FFFFFF; border: 1px solid var(--border); border-top: 4px solid #166534; border-radius: 10px; padding: 14px; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                  <div>
+                    <div style="font-weight: 800; font-size: 14px; color: #166534;">Table 1 · Main / VIP Table (14 Pax)</div>
+                    <div style="font-size: 11px; color: var(--charcoal-muted);">Front Long Table · Closer to Pelamin &amp; Buah Tangan</div>
+                  </div>
+                  <span style="font-size: 11px; font-weight: 700; color: #166534; background: #DCFCE7; padding: 2px 8px; border-radius: 4px;">6 Spokespersons</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <!-- Groom Side (7 Pax) -->
+                  <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 6px; padding: 8px;">
+                    <div style="font-size: 11px; font-weight: 800; color: #166534; margin-bottom: 6px; border-bottom: 1px solid #DCFCE7; padding-bottom: 3px;">
+                      👨‍💼 Groom VIPs (7 Seats)
+                    </div>
+                    <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #14532D;">
+                      <li>Seat 1: Mama (Mother of Groom)</li>
+                      <li>Seat 2: Immediate Family</li>
+                      <li><strong style="color: #047857; background: #D1FAE5; padding: 1px 4px; border-radius: 3px;">[G] Seat 3: Abah</strong> (Father)</li>
+                      <li><strong style="color: #047857; background: #D1FAE5; padding: 1px 4px; border-radius: 3px;">[G] Seat 4: Achin</strong> (Spokesperson)</li>
+                      <li><strong style="color: #047857; background: #D1FAE5; padding: 1px 4px; border-radius: 3px;">[G] Seat 5: Abang Shahrom</strong> (Lead)</li>
+                      <li>Seat 6: Pakcik (Uncle)</li>
+                      <li>Seat 7: Immediate Family</li>
+                    </ul>
+                  </div>
+
+                  <!-- Bride Side (7 Pax) -->
+                  <div style="background: #FDF2F8; border: 1px solid #FBCFE8; border-radius: 6px; padding: 8px;">
+                    <div style="font-size: 11px; font-weight: 800; color: #9D174D; margin-bottom: 6px; border-bottom: 1px solid #FCE7F3; padding-bottom: 3px;">
+                      👰‍♀️ Bride VIPs (7 Seats)
+                    </div>
+                    <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #831843;">
+                      <li>Seat 1: Ibu (Mother of Bride)</li>
+                      <li>Seat 2: Immediate Family</li>
+                      <li><strong style="color: #BE185D; background: #FCE7F3; padding: 1px 4px; border-radius: 3px;">[B] Seat 3: Ayah</strong> (Father)</li>
+                      <li><strong style="color: #BE185D; background: #FCE7F3; padding: 1px 4px; border-radius: 3px;">[B] Seat 4: Uncle</strong> (Spokesperson)</li>
+                      <li><strong style="color: #BE185D; background: #FCE7F3; padding: 1px 4px; border-radius: 3px;">[B] Seat 5: Pak Ngah</strong> (Spokesperson)</li>
+                      <li>Seat 6: Mak Ngah (Aunt)</li>
+                      <li>Seat 7: Immediate Family</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Table 2 Detail Card -->
+              <div style="background: #FFFFFF; border: 1px solid var(--border); border-top: 4px solid #BE185D; border-radius: 10px; padding: 14px; box-shadow: var(--shadow-sm);">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 10px; border-bottom: 1px solid var(--border); padding-bottom: 8px;">
+                  <div>
+                    <div style="font-weight: 800; font-size: 14px; color: #BE185D;">Table 2 · Family &amp; Entourage Table (16 Pax)</div>
+                    <div style="font-size: 11px; color: var(--charcoal-muted);">Side Long Table · Closer to Kain Rentang &amp; Entrance</div>
+                  </div>
+                  <span style="font-size: 11px; font-weight: 700; color: #BE185D; background: #FCE7F3; padding: 2px 8px; border-radius: 4px;">16 Seats</span>
+                </div>
+
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+                  <!-- Groom Side (8 Pax) -->
+                  <div style="background: #F0FDF4; border: 1px solid #BBF7D0; border-radius: 6px; padding: 8px;">
+                    <div style="font-size: 11px; font-weight: 800; color: #166534; margin-bottom: 6px; border-bottom: 1px solid #DCFCE7; padding-bottom: 3px;">
+                      👨‍💼 Groom Family (8 Seats)
+                    </div>
+                    <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #14532D;">
+                      <li>Seat 1: Sibling Along</li>
+                      <li>Seat 2: Sibling Angah</li>
+                      <li>Seat 3: Sibling Acik</li>
+                      <li>Seat 4: Sibling (4th)</li>
+                      <li>Seat 5: Sibling (5th)</li>
+                      <li>Seat 6: Aunty Amy</li>
+                      <li>Seat 7: Makcik</li>
+                      <li>Seat 8: Raisya &amp; Rizqi</li>
+                    </ul>
+                  </div>
+
+                  <!-- Bride Side (8 Pax) -->
+                  <div style="background: #FDF2F8; border: 1px solid #FBCFE8; border-radius: 6px; padding: 8px;">
+                    <div style="font-size: 11px; font-weight: 800; color: #9D174D; margin-bottom: 6px; border-bottom: 1px solid #FCE7F3; padding-bottom: 3px;">
+                      👰‍♀️ Bride Family &amp; Friends (8 Seats)
+                    </div>
+                    <ul style="margin: 0; padding-left: 14px; font-size: 11.5px; line-height: 1.6; color: #831843;">
+                      <li>Seat 1: Sibling (1st)</li>
+                      <li>Seat 2: Sibling (2nd)</li>
+                      <li>Seat 3: Sibling (3rd)</li>
+                      <li>Seat 4: Kak Elaine</li>
+                      <li>Seat 5: Sherly</li>
+                      <li>Seat 6: Syasya</li>
+                      <li>Seat 7: Kak Mija</li>
+                      <li>Seat 8: Abang Lukman (Marsya/Farisya/Wahida)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+      } else if (rosterLayout === "side-by-side" && rosterSide === "all") {
         // SIDE-BY-SIDE VIEW (Polished professional English & Title Case)
         subHtml += `
           <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 10px;">
@@ -4500,6 +5053,17 @@ function guestsView(parent, records = []) {
         rosterLayout = "unified";
         renderRosterView();
       });
+    }
+    const seatingBtn = mount.querySelector("#toggle-layout-seating");
+    if (seatingBtn) {
+      seatingBtn.addEventListener("click", () => {
+        rosterLayout = "seating";
+        renderRosterView();
+      });
+    }
+    const expandModalBtn = mount.querySelector("#btn-expand-seating-modal");
+    if (expandModalBtn) {
+      expandModalBtn.addEventListener("click", openTunangSeatingModal);
     }
 
     const searchInput = mount.querySelector("#roster-search");
