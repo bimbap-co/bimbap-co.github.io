@@ -2417,54 +2417,29 @@ function overview(parent) {
 
   cockpit.append(leftCard, rightCard);
 
-  // 3. Clickable Buttons to Change Tabs After the Dashboard Container (Simpler 4-Tab Architecture)
-  const bottomTabs = make("div", "bottom-tab-switcher");
-  const expCount = snapshot.records.filter(r => r.tab === "expenses").length;
-  bottomTabs.innerHTML = `
-    <div class="bottom-tab-title">
-      <span>📂</span> Jump to Other Wedding Sections:
-    </div>
-    <div class="bottom-tab-buttons">
-      <button type="button" class="tab-jump-btn" data-tab="checklist">📋 Checklist (${tasks.length} Tasks)</button>
-      <button type="button" class="tab-jump-btn" data-tab="expenses">💰 Expenses Tracking (${expCount} Records)</button>
-      <button type="button" class="tab-jump-btn" data-tab="tentative">📅 Tentative Events (3 Events)</button>
-    </div>
-  `;
-
-  bottomTabs.querySelectorAll(".tab-jump-btn").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const tab = btn.dataset.tab;
-      window.location.hash = `#${tab}`;
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    });
-  });
-
-  // Live Nikah RSVP Telemetry Strip
+  // Live Nikah RSVP Telemetry Strip (Integrated & Clean)
   const rsvpStrip = make("div", "admin-rsvp-telemetry-strip");
   rsvpStrip.innerHTML = `
-    <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--burgundy); border-radius: 8px; padding: 12px 16px; margin: 14px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+    <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 4px solid var(--burgundy); border-radius: 10px; padding: 12px 16px; margin: 16px 0; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
       <div style="display: flex; align-items: center; gap: 10px;">
-        <span style="font-size: 20px;">💌</span>
+        <span style="font-size: 18px;">💌</span>
         <div>
           <div style="display: flex; align-items: center; gap: 8px;">
-            <strong style="color: var(--charcoal); font-size: 13px;">Akad Nikah RSVP Telemetry</strong>
-            <span class="pill-chip" style="font-size: 10px; background: #DCFCE7; color: #15803D; font-weight: 700;">Cap: &le; 200 Pax</span>
-            <span style="font-size: 11px; color: var(--charcoal-muted);">27 Mac 2027 · Masjid Cyberjaya</span>
-          </div>
-          <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;" id="ov-rsvp-hint">
-            Public submissions live feed from guest portal
+            <strong style="color: var(--charcoal); font-size: 13px;">Akad Nikah RSVPs</strong>
+            <span class="pill-chip" style="font-size: 10px; background: #DCFCE7; color: #15803D; font-weight: 700;">Cap &le; 200 Pax</span>
+            <span style="font-size: 11px; color: var(--charcoal-muted);">27 Mac 2027 · Masjid Raja Haji Fi Sabilillah</span>
           </div>
         </div>
       </div>
       <div style="display: flex; align-items: center; gap: 12px;">
-        <span style="font-size: 13px; font-weight: 800; color: var(--burgundy);" id="ov-rsvp-pax-count">Live Feed Active</span>
+        <span style="font-size: 13px; font-weight: 800; color: var(--burgundy);" id="ov-rsvp-pax-count">Live Telemetry Active</span>
         <button type="button" class="read-more-btn" onclick="location.hash='#directory'; setTimeout(() => { const b = document.querySelector('[data-sub=rsvps]'); if (b) b.click(); }, 100);">Manage RSVPs ↗</button>
       </div>
     </div>
   `;
 
-  // Render everything onto parent
-  parent.replaceChildren(horizon, rsvpStrip, cockpit, bottomTabs);
+  // Render cleanly onto parent with natural negative space
+  parent.replaceChildren(horizon, rsvpStrip, cockpit);
 }
 
 /* ========================================================================= */
@@ -5199,41 +5174,26 @@ function sponsorsView(parent, records = []) {
         </div>
       </div>
 
-      <!-- Quick Metrics Strip -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0;">
-        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 8px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">MAMA CASH GIFT (NIKAH / WEDDING)</div>
-          <div style="font-size: 20px; font-weight: 800; color: #15803D; margin: 4px 0;">RM 5,000.00</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">Cash support from Mama (Groom's Mother) for Nikah &amp; wedding expenses</div>
+      <!-- Minimalist Summary Banner (Zero Clutter, Clean Negative Space) -->
+      <div style="display: flex; gap: 16px; margin: 18px 0; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 220px; background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 10px; padding: 14px 18px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">Total Cash &amp; Ring Pool</div>
+          <div style="font-size: 24px; font-weight: 800; color: #15803D; margin: 2px 0;">RM 7,500.00</div>
+          <div style="font-size: 11.5px; color: var(--charcoal-muted);">Mama RM5k + Achin RM1k + Ayah RM1k + Ring RM500</div>
         </div>
-        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 8px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">AYAH CASH GIFT (TUNANG)</div>
-          <div style="font-size: 20px; font-weight: 800; color: #15803D; margin: 4px 0;">RM 1,000.00</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">Cash gift contribution from Ayah (Bride's Father) for Tunang</div>
-        </div>
-        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 8px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">ACHIN CASH GIFT (NIKAH)</div>
-          <div style="font-size: 20px; font-weight: 800; color: #15803D; margin: 4px 0;">RM 1,000.00</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">Cash contribution received &amp; paid into Nikah pool</div>
-        </div>
-        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid var(--burgundy); border-radius: 8px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">MAMA RING SPONSORSHIP</div>
-          <div style="font-size: 20px; font-weight: 800; color: var(--burgundy); margin: 4px 0;">RM 500.00</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">Funded Groom Elfi Nikah ring (RM 439) with RM 61 buffer</div>
-        </div>
-        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #2563EB; border-radius: 8px; padding: 12px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">LIVE FOOD &amp; RECEPTION KIOSKS</div>
-          <div style="font-size: 20px; font-weight: 800; color: #2563EB; margin: 4px 0;">8 In-Kind Kiosks</div>
-          <div style="font-size: 11px; color: var(--charcoal-muted);">Sanding live stalls &amp; stations (Apam balik, ice cream, laksa, coffee, photobooth, etc.)</div>
+        <div style="flex: 1; min-width: 220px; background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #2563EB; border-radius: 10px; padding: 14px 18px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">Live Reception Kiosks</div>
+          <div style="font-size: 24px; font-weight: 800; color: #2563EB; margin: 2px 0;">8 In-Kind Stations</div>
+          <div style="font-size: 11.5px; color: var(--charcoal-muted);">Apam balik, ice cream, laksa, coffee, photobooth &amp; dessert</div>
         </div>
       </div>
 
-      <!-- Phase Tabs (Chronological across Tunang, Nikah, Sanding) -->
-      <div class="checklist-phase-tabs" id="sponsor-event-tabs" style="margin-bottom: 12px;">
-        <button type="button" class="checklist-phase-btn active" data-event="all">All Celebrations (${sponsorRecords.length} Items · RM7.5k Cash/Ring)</button>
-        <button type="button" class="checklist-phase-btn" data-event="Tunang">1. Tunang (1 Item · Ayah RM1k)</button>
-        <button type="button" class="checklist-phase-btn" data-event="Nikah">2. Nikah (5 Items · RM6.5k Cash/Ring)</button>
-        <button type="button" class="checklist-phase-btn" data-event="Sanding">3. Sanding (6 Live Kiosks)</button>
+      <!-- Phase Tabs (Clean Minimalistic Pills) -->
+      <div class="checklist-phase-tabs" id="sponsor-event-tabs" style="margin-bottom: 14px;">
+        <button type="button" class="checklist-phase-btn active" data-event="all">All (${sponsorRecords.length})</button>
+        <button type="button" class="checklist-phase-btn" data-event="Tunang">1. Tunang (1)</button>
+        <button type="button" class="checklist-phase-btn" data-event="Nikah">2. Nikah (5)</button>
+        <button type="button" class="checklist-phase-btn" data-event="Sanding">3. Sanding (6)</button>
       </div>
 
       <!-- Filters & Search -->
