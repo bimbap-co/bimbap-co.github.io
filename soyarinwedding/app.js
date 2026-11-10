@@ -5476,80 +5476,70 @@ const APPROVED_SPONSORS = [
     name: "Achin (Groom's Uncle)",
     function: "Nikah Ceremony Gift",
     date: "27/03/2027",
-    detail: "Special family cash blessing dedicated to the Akad Nikah ceremony.",
-    phase: "2. Nikah",
+    phase: "Nikah",
     phaseClass: "phase-chip-nikah"
   },
   {
     name: "Mama (Groom's Mother)",
     function: "Groom Nikah Ring Sponsorship",
     date: "27/03/2027",
-    detail: "Sponsorship of groom's Elfi platinum wedding ring for Akad Nikah.",
-    phase: "2. Nikah",
+    phase: "Nikah",
     phaseClass: "phase-chip-nikah"
   },
   {
     name: "Achin (Groom's Uncle)",
     function: "Bunga Telur Rebus (In-Kind)",
     date: "27/03/2027",
-    detail: "Traditional boiled eggs berkat favor for Nikah ceremony guests.",
-    phase: "2. Nikah",
+    phase: "Nikah",
     phaseClass: "phase-chip-nikah"
   },
   {
     name: "Cik Jah (Groom's Auntie)",
     function: "Balang Kacang Favors (In-Kind)",
     date: "27/03/2027",
-    detail: "Curated peanut jar berkat door gifts for Nikah attendees.",
-    phase: "2. Nikah",
+    phase: "Nikah",
     phaseClass: "phase-chip-nikah"
   },
   {
     name: "Mama (Groom's Mother)",
     function: "Reception Beras Supply (In-Kind)",
     date: "27/11/2027",
-    detail: "In-kind staple rice contribution for reception catering support.",
-    phase: "3. Sanding",
+    phase: "Sanding",
     phaseClass: "phase-chip-sanding"
   },
   {
     name: "Mama (Groom's Mother)",
     function: "Apam Balik & Ice Cream Live Kiosk",
     date: "27/11/2027",
-    detail: "Fresh hot apam balik and artisanal ice cream live food station.",
-    phase: "3. Sanding",
+    phase: "Sanding",
     phaseClass: "phase-chip-sanding"
   },
   {
     name: "Mama (Groom's Mother)",
     function: "Laksa Live Kiosk",
     date: "27/11/2027",
-    detail: "Traditional Malay laksa live cooking stall for reception guests.",
-    phase: "3. Sanding",
+    phase: "Sanding",
     phaseClass: "phase-chip-sanding"
   },
   {
     name: "Angah (Groom's Siblings)",
     function: "Artisan Coffee Live Kiosk",
     date: "27/11/2027",
-    detail: "Freshly brewed barista coffee corner during Sanding reception.",
-    phase: "3. Sanding",
+    phase: "Sanding",
     phaseClass: "phase-chip-sanding"
   },
   {
     name: "Along (Groom's Siblings)",
     function: "Photobooth Live Station (In-Kind)",
     date: "27/11/2027",
-    detail: "Interactive guest photobooth station with instant prints during reception.",
-    phase: "3. Sanding",
+    phase: "Sanding",
     phaseClass: "phase-chip-sanding"
   },
   {
     name: "Ibu (Bride's Mother)",
     function: "Sweet Dessert & Pastry Table",
     date: "27/11/2027",
-    detail: "Specially curated sweet dessert & pastry display table.",
-    phase: "3. Sanding",
+    phase: "Sanding",
     phaseClass: "phase-chip-sanding"
   }
 ];
@@ -5574,15 +5564,12 @@ function guestSponsorsView(parent) {
     <div class="guest-sponsors-grid">
       ${APPROVED_SPONSORS.map(s => `
         <div class="guest-sponsor-card">
-          <div>
-            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-              <span class="${s.phaseClass}" style="font-size: 11px; font-weight: 700;">${s.phase}</span>
-              <span style="font-size: 11px; color: var(--charcoal-muted); font-weight: 600;">📅 ${s.date}</span>
-            </div>
-            <h4 style="font-size: 15px; font-weight: 700; color: var(--charcoal); margin: 0 0 2px 0; font-family: var(--font-sans);">${s.name}</h4>
-            <div style="font-size: 13px; font-weight: 600; color: var(--burgundy); margin-bottom: 6px;">${s.function}</div>
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+            <span class="${s.phaseClass}" style="font-size: 11px; font-weight: 700;">${s.phase}</span>
+            <span style="font-size: 11px; color: var(--charcoal-muted); font-weight: 600;">📅 ${s.date}</span>
           </div>
-          <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0; line-height: 1.4;">${s.detail}</p>
+          <h4 style="font-size: 15px; font-weight: 700; color: var(--charcoal); margin: 0 0 4px 0; font-family: var(--font-sans);">${s.name}</h4>
+          <div style="font-size: 13px; font-weight: 600; color: var(--burgundy);">${s.function}</div>
         </div>
       `).join("")}
     </div>
