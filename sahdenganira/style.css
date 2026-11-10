@@ -4460,6 +4460,42 @@ dialog#auth-dialog {
   }
 }
 
+/* ========================================================================= */
+/* Guest Sponsors & In-Kind Contributions (Discreet Cards Grid)              */
+/* ========================================================================= */
+.guest-sponsors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 14px;
+}
+
+.guest-sponsor-card {
+  background: #FAFAFA;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.guest-sponsor-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(107, 29, 47, 0.06);
+  border-color: rgba(107, 29, 47, 0.25);
+}
+
+@media (max-width: 640px) {
+  .guest-sponsors-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .guest-sponsor-card {
+    padding: 12px 14px;
+  }
+}
+
 
 
 

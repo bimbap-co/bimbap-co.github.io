@@ -23,16 +23,20 @@ function daysUntil(dateString) {
 // Anti-scraping telephone & WhatsApp handlers (decodes base64 on explicit click)
 function openWaB64(enc) {
   try {
-    const num = atob(enc);
-    window.open("https://wa.me/" + num, "_blank", "noopener,noreferrer");
-  } catch (e) {}
+    const raw = atob(enc);
+    window.open(`https://wa.me/${raw}`, "_blank", "noopener,noreferrer");
+  } catch (e) {
+    console.error("Failed to decode WhatsApp number", e);
+  }
 }
 
 function callB64(enc) {
   try {
-    const num = atob(enc);
-    window.location.href = "tel:" + num;
-  } catch (e) {}
+    const raw = atob(enc);
+    window.location.href = `tel:${raw}`;
+  } catch (e) {
+    console.error("Failed to decode phone number", e);
+  }
 }
 
 /* ========================================================================= */
@@ -228,7 +232,7 @@ detailModal?.addEventListener("click", event => {
 /* ========================================================================= */
 const GUEST_TABS = {
   guest: ["Guest Menu", "🌸", "Official Wedding Guide"],
-  tentative: ["Tentatives", "📅", "Day Programmes & Posters"],
+  tentative: ["Tentative", "📅", "Day Programmes & Posters"],
   contacts: ["Contacts", "📞", "Key PIC Directory"]
 };
 
@@ -253,6 +257,120 @@ function renderNav() {
     tabsInner.append(a);
   }
   navBar.append(tabsInner);
+}
+
+/* ========================================================================= */
+/* APPROVED WEDDING SPONSORS & IN-KIND CONTRIBUTIONS (DISCREET GUEST LIST)   */
+/* ========================================================================= */
+const APPROVED_SPONSORS = [
+  {
+    name: "Achin (Soya's Uncle)",
+    function: "Nikah Ceremony Gift",
+    date: "27/03/2027",
+    detail: "Special family cash blessing dedicated to the Akad Nikah ceremony.",
+    phase: "2. Nikah",
+    phaseClass: "phase-chip-nikah"
+  },
+  {
+    name: "Mama",
+    function: "Groom Nikah Ring Sponsorship",
+    date: "27/03/2027",
+    detail: "Sponsorship of groom's Elfi platinum wedding ring for Akad Nikah.",
+    phase: "2. Nikah",
+    phaseClass: "phase-chip-nikah"
+  },
+  {
+    name: "Achin",
+    function: "Bunga Telur Rebus (In-Kind)",
+    date: "27/03/2027",
+    detail: "Traditional boiled eggs berkat favor for Nikah ceremony guests.",
+    phase: "2. Nikah",
+    phaseClass: "phase-chip-nikah"
+  },
+  {
+    name: "Siblings (Soya & Rin)",
+    function: "Balang Kacang Favors (In-Kind)",
+    date: "27/03/2027",
+    detail: "Curated peanut jar berkat door gifts for Nikah attendees.",
+    phase: "2. Nikah",
+    phaseClass: "phase-chip-nikah"
+  },
+  {
+    name: "Mama",
+    function: "Reception Beras Supply (In-Kind)",
+    date: "27/11/2027",
+    detail: "In-kind staple rice contribution for reception catering support.",
+    phase: "3. Sanding",
+    phaseClass: "phase-chip-sanding"
+  },
+  {
+    name: "Mama",
+    function: "Apam Balik & Ice Cream Live Kiosk",
+    date: "27/11/2027",
+    detail: "Fresh hot apam balik and artisanal ice cream live food station.",
+    phase: "3. Sanding",
+    phaseClass: "phase-chip-sanding"
+  },
+  {
+    name: "Mama",
+    function: "Laksa Live Kiosk",
+    date: "27/11/2027",
+    detail: "Traditional Malay laksa live cooking stall for reception guests.",
+    phase: "3. Sanding",
+    phaseClass: "phase-chip-sanding"
+  },
+  {
+    name: "Siblings (Soya & Rin)",
+    function: "Artisan Coffee Live Kiosk",
+    date: "27/11/2027",
+    detail: "Freshly brewed barista coffee corner during Sanding reception.",
+    phase: "3. Sanding",
+    phaseClass: "phase-chip-sanding"
+  },
+  {
+    name: "Ibu Rin (Bride's Mother)",
+    function: "Sweet Dessert & Pastry Table",
+    date: "27/11/2027",
+    detail: "Specially curated sweet dessert & pastry display table.",
+    phase: "3. Sanding",
+    phaseClass: "phase-chip-sanding"
+  }
+];
+
+function guestSponsorsView(parent) {
+  const card = make("div", "coordinator-card guest-sponsors-section");
+  card.style.marginTop = "24px";
+  card.innerHTML = `
+    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; flex-wrap: wrap; gap: 8px;">
+      <div>
+        <h3 style="font-family: var(--font-serif); font-size: 18px; color: var(--burgundy); margin: 0 0 4px 0;">
+          🎁 Wedding Sponsors &amp; In-Kind Contributions
+        </h3>
+        <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0;">
+          Heartfelt gratitude to our beloved family and sponsors for their generous blessings and contributions.
+        </p>
+      </div>
+      <span class="tab-badge" style="background: var(--burgundy); color: #fff; border-radius: 9999px; padding: 2px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;">
+        9 Contributions
+      </span>
+    </div>
+    <div class="guest-sponsors-grid">
+      ${APPROVED_SPONSORS.map(s => `
+        <div class="guest-sponsor-card">
+          <div>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+              <span class="${s.phaseClass}">${s.phase}</span>
+              <span style="font-size: 11px; color: var(--charcoal-muted); font-weight: 600;">📅 ${s.date}</span>
+            </div>
+            <h4 style="font-size: 15px; font-weight: 700; color: var(--charcoal); margin: 0 0 2px 0; font-family: var(--font-sans);">${s.name}</h4>
+            <div style="font-size: 13px; font-weight: 600; color: var(--burgundy); margin-bottom: 6px;">${s.function}</div>
+          </div>
+          <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0; line-height: 1.4;">${s.detail}</p>
+        </div>
+      `).join("")}
+    </div>
+  `;
+  parent.append(card);
 }
 
 /* ========================================================================= */
@@ -395,8 +513,8 @@ function guestView(parent) {
   `;
   container.append(dressSection);
 
-  // Key Event PIC Directory Section
-  contactsView(container, false);
+  // Wedding Sponsors & In-Kind Contributions (Discreet Cards Grid)
+  guestSponsorsView(container);
 
   parent.append(container);
 }
