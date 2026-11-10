@@ -5464,7 +5464,12 @@ function sponsorsView(parent, records = []) {
       </div>
 
       <!-- Quick Metrics Strip -->
-      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; margin: 16px 0;">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin: 16px 0;">
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 8px; padding: 12px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">MAMA CASH GIFT (NIKAH / WEDDING)</div>
+          <div style="font-size: 20px; font-weight: 800; color: #15803D; margin: 4px 0;">RM 5,000.00</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Cash support from Mama (Groom's Mother) for Nikah &amp; wedding expenses</div>
+        </div>
         <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 8px; padding: 12px;">
           <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px;">AYAH CASH GIFT (TUNANG)</div>
           <div style="font-size: 20px; font-weight: 800; color: #15803D; margin: 4px 0;">RM 1,000.00</div>
@@ -5489,9 +5494,9 @@ function sponsorsView(parent, records = []) {
 
       <!-- Phase Tabs (Chronological across Tunang, Nikah, Sanding) -->
       <div class="checklist-phase-tabs" id="sponsor-event-tabs" style="margin-bottom: 12px;">
-        <button type="button" class="checklist-phase-btn active" data-event="all">All Celebrations (${sponsorRecords.length} Items)</button>
+        <button type="button" class="checklist-phase-btn active" data-event="all">All Celebrations (${sponsorRecords.length} Items · RM7.5k Cash/Ring)</button>
         <button type="button" class="checklist-phase-btn" data-event="Tunang">1. Tunang (1 Item · Ayah RM1k)</button>
-        <button type="button" class="checklist-phase-btn" data-event="Nikah">2. Nikah (4 Items · RM1.5k Cash/Ring)</button>
+        <button type="button" class="checklist-phase-btn" data-event="Nikah">2. Nikah (5 Items · RM6.5k Cash/Ring)</button>
         <button type="button" class="checklist-phase-btn" data-event="Sanding">3. Sanding (6 Live Kiosks)</button>
       </div>
 
@@ -5519,7 +5524,7 @@ function sponsorsView(parent, records = []) {
     let filtered = sponsorRecords.filter(r => {
       if (curEvent !== "all" && r.event !== curEvent) return false;
 
-      const isCash = (r.amount || 0) > 0 || (r.id && r.id.includes("3c8caff3")) || r.id === "SPN-NIK-001" || r.id === "sponsor-ayah-tunang";
+      const isCash = (r.amount || 0) > 0 || (r.id && r.id.includes("3c8caff3")) || r.id === "SPN-NIK-001" || r.id === "SPN-NIK-002" || r.id === "sponsor-ayah-tunang" || r.id === "sponsor-mama-cash-5k";
       const isRing = r.id === "sponsor-ring" || r.id === "SPN-NIK-003" || (r.title && r.title.toLowerCase().includes("ring"));
       const isKiosk = !isCash && !isRing;
 
@@ -5795,7 +5800,7 @@ function directoryHubView(parent, activeSub = "guests") {
   }
 
   const navBar = make("div", "subnav-segmented-bar");
-  const sponsorCount = snapshot.records ? snapshot.records.filter(r => r.tab === "sponsors").length : 11;
+  const sponsorCount = snapshot.records ? snapshot.records.filter(r => r.tab === "sponsors").length : 12;
   const vendorCount = snapshot.records ? snapshot.records.filter(r => r.tab === "vendors").length : 8;
   navBar.innerHTML = `
     <button type="button" class="subnav-pill ${activeSub === 'guests' ? 'is-active' : ''}" data-sub="guests">
