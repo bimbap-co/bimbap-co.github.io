@@ -4711,21 +4711,28 @@ function renderNav() {
     activeTabId = "records";
   }
 
-  for (const [id, [title, icon, , count]] of Object.entries(currentTabs)) {
-    const link = make("a");
-    link.href = "#" + id;
-    if (activeTabId === id) link.setAttribute("aria-current", "page");
-    const glyph = make("span", "icon", icon);
-    glyph.setAttribute("aria-hidden", "true");
-    link.append(glyph, make("span", "", title));
-    if (count) {
-      link.append(make("span", "tab-badge", count));
-    }
-    tabsInner.append(link);
-  }
-
-  // Admin access button when signed out; no Guest View button when signed in
   if (!isAuthenticated) {
+    tabsInner.classList.add("guest-nav-layout");
+
+    // Left spacer matching right action button to achieve mathematical center alignment
+    const leftSpacer = make("div", "nav-side-spacer");
+    leftSpacer.setAttribute("aria-hidden", "true");
+
+    const centerTabs = make("div", "nav-center-tabs");
+    for (const [id, [title, icon, , count]] of Object.entries(currentTabs)) {
+      const link = make("a");
+      link.href = "#" + id;
+      if (activeTabId === id) link.setAttribute("aria-current", "page");
+      const glyph = make("span", "icon", icon);
+      glyph.setAttribute("aria-hidden", "true");
+      link.append(glyph, make("span", "", title));
+      if (count) {
+        link.append(make("span", "tab-badge", count));
+      }
+      centerTabs.append(link);
+    }
+
+    const rightAction = make("div", "nav-side-action");
     const adminLink = make("a", "nav-admin-btn");
     adminLink.href = "#admin";
     adminLink.title = "Soya & Rin Admin Access (Unlock Control Center)";
@@ -4735,7 +4742,22 @@ function renderNav() {
       e.preventDefault();
       openAuthModal();
     });
-    tabsInner.append(adminLink);
+    rightAction.append(adminLink);
+
+    tabsInner.append(leftSpacer, centerTabs, rightAction);
+  } else {
+    for (const [id, [title, icon, , count]] of Object.entries(currentTabs)) {
+      const link = make("a");
+      link.href = "#" + id;
+      if (activeTabId === id) link.setAttribute("aria-current", "page");
+      const glyph = make("span", "icon", icon);
+      glyph.setAttribute("aria-hidden", "true");
+      link.append(glyph, make("span", "", title));
+      if (count) {
+        link.append(make("span", "tab-badge", count));
+      }
+      tabsInner.append(link);
+    }
   }
 
   navBar.append(tabsInner);

@@ -373,6 +373,62 @@ button, select, summary {
   border-color: var(--burgundy) !important;
 }
 
+/* Centered Guest Navigation Bar with Anchored Admin Action */
+.tabs-bar-inner.guest-nav-layout {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 1360px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.guest-nav-layout .nav-side-spacer {
+  flex: 1 1 0%;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.guest-nav-layout .nav-center-tabs {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.guest-nav-layout .nav-side-action {
+  flex: 1 1 0%;
+  min-width: 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.guest-nav-layout .nav-side-action .nav-admin-btn {
+  margin-left: 0 !important;
+}
+
+@media (max-width: 768px) {
+  .tabs-bar-inner.guest-nav-layout {
+    width: max-content;
+    min-width: 100%;
+    justify-content: flex-start;
+  }
+  .guest-nav-layout .nav-side-spacer {
+    display: none;
+  }
+  .guest-nav-layout .nav-center-tabs {
+    flex: 1;
+    justify-content: flex-start;
+  }
+  .guest-nav-layout .nav-side-action {
+    flex: 0 0 auto;
+    margin-left: auto;
+  }
+}
+
 /* Clear Admin Access & Guest Toggle Buttons in Tabs Bar */
 .tabs-bar a.nav-admin-btn {
   margin-left: auto;

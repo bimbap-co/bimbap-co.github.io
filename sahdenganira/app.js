@@ -245,7 +245,10 @@ function renderNav() {
     const a = make("a");
     a.href = `#${id}`;
     a.title = desc;
-    if (id === requested) a.classList.add("is-active");
+    if (id === requested) {
+      a.classList.add("is-active");
+      a.setAttribute("aria-current", "page");
+    }
 
     const iconSpan = make("span", "icon", icon);
     const labelSpan = make("span", "label", label);
