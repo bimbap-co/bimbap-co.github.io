@@ -721,18 +721,43 @@ function bindFloatingControls() {
 
     const startAudio = () => {
       if (isPlaying) return;
-      audioEl.play().then(() => {
+      audioEl.muted = false;
+      const playPromise = audioEl.play();
+      if (playPromise !== undefined) {
+        playPromise.then(() => {
+          isPlaying = true;
+          audioBtn.classList.add("is-playing");
+          if (musicIcon) musicIcon.textContent = "🔊";
+        }).catch((err) => {
+          console.log("Autoplay unmuted blocked by browser policy, priming muted stream:", err);
+          audioEl.muted = true;
+          audioEl.play().then(() => {
+            audioBtn.classList.add("is-playing");
+            if (musicIcon) musicIcon.textContent = "🔊";
+          }).catch(() => {});
+        });
+      }
+    };
+
+    const unmuteAndPlay = () => {
+      audioEl.muted = false;
+      if (audioEl.paused) {
+        audioEl.play().then(() => {
+          isPlaying = true;
+          audioBtn.classList.add("is-playing");
+          if (musicIcon) musicIcon.textContent = "🔊";
+        }).catch(() => {});
+      } else {
         isPlaying = true;
         audioBtn.classList.add("is-playing");
         if (musicIcon) musicIcon.textContent = "🔊";
-      }).catch((err) => {
-        console.log("Autoplay waiting for user interaction:", err);
-      });
+      }
     };
 
     audioBtn.addEventListener("click", (e) => {
       e.stopPropagation();
-      if (!isPlaying) {
+      if (!isPlaying || audioEl.paused || audioEl.muted) {
+        audioEl.muted = false;
         audioEl.play().then(() => {
           isPlaying = true;
           audioBtn.classList.add("is-playing");
@@ -758,10 +783,13 @@ function bindFloatingControls() {
     // Auto-play the music on each refresh after 2 seconds
     setTimeout(startAudio, 2000);
 
-    // Also attach first-interaction listener if browser autoplay policy delays unprompted audio
-    ["click", "touchstart", "scroll", "keydown"].forEach((evt) => {
-      window.addEventListener(evt, startAudio, { once: true, passive: true });
-    });
+    // Also attach multi-gesture listeners to unmute & play on any user gesture
+    const gestureEvents = ["click", "pointerdown", "mousedown", "touchstart", "touchend", "scroll", "wheel", "keydown"];
+    const handleGesture = () => {
+      unmuteAndPlay();
+      gestureEvents.forEach(evt => window.removeEventListener(evt, handleGesture));
+    };
+    gestureEvents.forEach(evt => window.addEventListener(evt, handleGesture, { passive: true }));
   }
 
   // WhatsApp PIC Drawer
