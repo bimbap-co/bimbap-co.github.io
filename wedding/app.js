@@ -576,11 +576,9 @@ function tentativeView(parent) {
   container.innerHTML = `
     <div class="tentative-header-bar">
       <div>
-        <h2 class="section-title">Tentative Event Schedules &amp; Facts</h2>
-        <p class="section-caption">Approved working programmes, official posters, venue locations, dress codes, and vendor contacts for all 3 phases.</p>
+        <h2 class="section-title" style="margin-bottom: 0;">Tentative Event Schedules</h2>
       </div>
-      <div style="display: flex; gap: 8px;">
-        <button type="button" class="quick-action-btn" id="btn-open-contacts-top">📞 Contacts Directory</button>
+      <div>
         <button type="button" class="quick-action-btn" id="toggle-all-accordions-btn">▾ Expand All Phases</button>
       </div>
     </div>
@@ -596,7 +594,6 @@ function tentativeView(parent) {
           </div>
         </div>
         <div class="phase-accordion-meta">
-          <span class="event-time-pill">10:00 AM – 1:00 PM</span>
           <span class="phase-accordion-chevron">▼</span>
         </div>
       </div>
@@ -684,7 +681,6 @@ function tentativeView(parent) {
           </div>
         </div>
         <div class="phase-accordion-meta">
-          <span class="event-time-pill">9:00 AM – 1:00 PM</span>
           <span class="phase-accordion-chevron">▼</span>
         </div>
       </div>
@@ -772,7 +768,6 @@ function tentativeView(parent) {
           </div>
         </div>
         <div class="phase-accordion-meta">
-          <span class="event-time-pill">11:00 AM – 4:00 PM</span>
           <span class="phase-accordion-chevron">▼</span>
         </div>
       </div>
@@ -878,9 +873,6 @@ function tentativeView(parent) {
     });
   }
 
-  container.querySelector("#btn-open-contacts-top")?.addEventListener("click", () => {
-    location.hash = "#contacts";
-  });
 
   // Wire poster click events in Tentative tab
   container.querySelector("#btn-seating-tunang")?.addEventListener("click", openTunangSeatingModal);
