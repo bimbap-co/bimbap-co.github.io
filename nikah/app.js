@@ -1,6 +1,6 @@
 /* ========================================================================= */
 /* Sayed & Shamira · Akad Nikah Standalone Guest RSVP Portal JavaScript     */
-/* Inspired by sheikha.aizat.dev · Dual-Layer RSVP & Live Countdown Engine   */
+/* Inspired by sheikha.aizat.dev · Complete Dual-Layer RSVP Engine           */
 /* ========================================================================= */
 
 const $ = id => document.getElementById(id);
@@ -13,38 +13,59 @@ const LANG_STORAGE_KEY = "sayedshamira_lang";
 const I18N = {
   ms: {
     langBtn: "EN",
-    navEvent: "Aturcara",
+    navCouple: "Pengantin",
+    navDetails: "Butiran",
+    navCountdown: "Mengira Hari",
     navRsvp: "RSVP",
-    navGift: "Hadiah",
+    navRegistry: "Hadiah",
+    navWishes: "Titipan Doa",
+    navSaveTheDate: "Simpan Tarikh",
     heroEyebrow: "WALIMATULURUS",
+    heroDateLabel: "Tarikh",
     heroDate: "Sabtu, 27 Mac 2027",
+    heroTimeLabel: "Masa",
+    heroTime: "9:00 Pagi - 1:00 Petang",
+    heroVenueLabel: "Lokasi",
     heroVenue: "Masjid Raja Haji Fi Sabilillah, Cyberjaya",
-    cdDays: "HARI",
-    cdHours: "JAM",
-    cdMinutes: "MINIT",
-    cdSeconds: "SAAT",
     heroRsvpCta: "💌 Sahkan Kehadiran (RSVP)",
-    heroDetailsCta: "📍 Aturcara & Lokasi",
+    heroSaveTheDateCta: "📅 Simpan Tarikh (Save the Date)",
     quranTranslation: '"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan untukmu pasangan-pasangan daripada jenismu sendiri, supaya kamu cenderung dan berasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih sayang dan belas kasihan."',
     greetingLead: "Assalamu’alaikum Warahmatullahi Wabarakatuh & Salam Sejahtera",
     invitationBody: "Dengan penuh rasa kesyukuran ke hadrat Ilahi, kami sekeluarga dengan berbesar hati menjemput Dato' / Datin / Tuan / Puan / Encik / Cik serta seisi keluarga ke majlis Akad Nikah dan Jamuan Kesyukuran putera dan puteri kami:",
     prayerSub: "Semoga dengan kehadiran dan doa restu para tetamu sekalian akan menyerikan lagi majlis serta memberkati ikatan suci yang terbina hingga ke Jannah, Insya-Allah.",
+    coupleKicker: "MEMPELAI",
+    coupleTitle: "Pengantin",
+    coupleSubtitle: "Celebrating love, laughter, and a lifetime together.",
+    coupleGroomRole: "Pengantin Lelaki / The Groom",
+    coupleGroomParents: "Anak lelaki kepada Pn. Zaini & Keluarga",
+    coupleGroomQuote: "Bismillah, memulakan fasa baharu dengan penuh kesyukuran dan redha Ilahi.",
+    coupleBrideRole: "Pengantin Perempuan / The Bride",
+    coupleBrideParents: "Anak perempuan kepada Pn. Norzilawati & Keluarga",
+    coupleBrideQuote: "Semoga baitul muslim yang dibina dilimpahi barakah, mawaddah wa rahmah.",
+    countdownKicker: "DETIK WAKTU",
+    countdownTitle: "Mengira Hari",
+    countdownSubtitle: "Menanti saat bermulanya ikatan suci kami",
+    cdDays: "HARI",
+    cdHours: "JAM",
+    cdMinutes: "MINIT",
+    cdSeconds: "SAAT",
     eventKicker: "MAKLUMAT MAJLIS",
-    eventTitle: "Aturcara & Lokasi Majlis",
+    eventTitle: "Butiran Majlis & Lokasi",
     eventSubtitle: "Majlis Akad Nikah & Jamuan Kesyukuran Keluarga",
     cardDateTimeTitle: "Tarikh & Masa",
     cardDateVal: "Sabtu, 27 Mac 2027",
     cardHijriVal: "18 Ramadan 1448H",
-    itinArrival: "Ketibaan Tetamu Jemputan",
+    itineraryTitle: "Susunan Acara (Order of Events)",
+    itinArrival: "Ketibaan Tetamu & Keluarga",
     itinAkad: "Upacara Akad Nikah & Lafaz Ijab Qabul",
-    itinPhoto: "Sesi Bergambar & Doa Selamat",
-    itinFeast: "Jamuan Kesyukuran & Ramah Mesra",
+    itinSarung: "Upacara Pembatalan Air Sembahyang & Sarung Cincin",
+    itinFeast: "Jamuan Kesyukuran & Sesi Bergambar",
     itinEnd: "Majlis Bersurai",
     cardVenueTitle: "Lokasi Masjid",
     cardVenueNotes: "Ruang Solat Utama & Dewan Jamuan Masjid (Aras Bawah)",
+    qrScanPrompt: "Imbas Kod QR Menggunakan Telefon Pintar",
     cardDressTitle: "Tema & Kod Pakaian",
-    cardDressHighlight: "Baju Melayu / Pakaian Sopan",
-    cardDressSub: "Tona Warna Biru (Shades of Blue / Soft Pastel)",
+    cardDressSub: "Tona Warna Biru (Shades of Blue / Modest Malay Attire)",
     etiq1: "Pakaian menutup aurat dan sopan bersesuaian dengan adab di dalam masjid.",
     etiq2: "Ruang meletak kenderaan berpagar yang luas disediakan di perkarangan masjid.",
     etiq3: "Kapasiti majlis adalah terhad ≤ 200 tetamu untuk keselesaan bersama.",
@@ -53,10 +74,10 @@ const I18N = {
     rsvpSubtitle: "Mohon maklumkan kehadiran anda selewat-lewatnya sebelum 27 Februari 2027 bagi membantu kami menguruskan kapasiti dewan (≤ 200 pax).",
     capBannerTitle: "Kapasiti Terhad Dewan Masjid Raja Haji",
     capBannerDesc: "Maksimum 200 Orang Tetamu Jemputan Sahaja",
-    formNameLabel: "Nama Penuh Tetamu",
-    formPhoneLabel: "Nombor WhatsApp / Telefon",
+    formNameLabel: "Nama Penuh Tetamu *",
+    formPhoneLabel: "Nombor WhatsApp / Telefon *",
     formPhoneHint: "Untuk kami hantarkan peringatan dan pengesahan majlis.",
-    formAttendingLabel: "Adakah anda akan hadir?",
+    formAttendingLabel: "Adakah anda akan hadir? *",
     attendingYesTitle: "Ya, Saya Akan Hadir!",
     attendingYesSub: "Insya-Allah dapat hadir ke majlis",
     attendingNoTitle: "Maaf, Tidak Dapat Hadir",
@@ -67,6 +88,7 @@ const I18N = {
     formMessageLabel: "Titipan Ucapan & Doa Khas",
     btnSubmitRsvp: "Hantar Pengesahan Kehadiran 💌",
     successTitle: "Terima Kasih Atas Pengesahan Anda!",
+    successSub: "Maklumat kehadiran anda telah selamat direkodkan ke dalam daftar tetamu majlis.",
     sumGuestName: "Nama Tetamu:",
     sumStatus: "Status Kehadiran:",
     sumPax: "Jumlah Kehadiran:",
@@ -87,38 +109,59 @@ const I18N = {
   },
   en: {
     langBtn: "BM",
-    navEvent: "Schedule",
+    navCouple: "The Couple",
+    navDetails: "Details",
+    navCountdown: "Countdown",
     navRsvp: "RSVP",
-    navGift: "Registry",
-    heroEyebrow: "THE WEDDING OF",
+    navRegistry: "Gifts",
+    navWishes: "Wishes",
+    navSaveTheDate: "Save the Date",
+    heroEyebrow: "CELEBRATE WITH US!",
+    heroDateLabel: "Date",
     heroDate: "Saturday, 27 March 2027",
+    heroTimeLabel: "Time",
+    heroTime: "9:00 AM - 1:00 PM",
+    heroVenueLabel: "Venue",
     heroVenue: "Masjid Raja Haji Fi Sabilillah, Cyberjaya",
-    cdDays: "DAYS",
-    cdHours: "HOURS",
-    cdMinutes: "MINS",
-    cdSeconds: "SECS",
     heroRsvpCta: "💌 Confirm Attendance (RSVP)",
-    heroDetailsCta: "📍 Event Schedule & Venue",
+    heroSaveTheDateCta: "📅 Save the Date",
     quranTranslation: '"And among His signs is that He created for you spouses from among yourselves that you may find tranquility in them; and He placed between you affection and mercy."',
     greetingLead: "Peace and Warmest Greetings",
     invitationBody: "With profound gratitude to God, our families cordially invite you and your family to celebrate the Solemnization (Akad Nikah) and Thanksgiving Reception of our children:",
     prayerSub: "May your presence and prayers grace this occasion and bless this sacred union for all years to come.",
+    coupleKicker: "THE NEWLYWEDS",
+    coupleTitle: "The Couple",
+    coupleSubtitle: "Celebrating love, laughter, and a lifetime together.",
+    coupleGroomRole: "The Groom",
+    coupleGroomParents: "Son of Pn. Zaini & Family",
+    coupleGroomQuote: "Bismillah, embarking on this blessed new chapter with gratitude and peace.",
+    coupleBrideRole: "The Bride",
+    coupleBrideParents: "Daughter of Pn. Norzilawati & Family",
+    coupleBrideQuote: "May our home and union be filled with perpetual blessings, grace, and harmony.",
+    countdownKicker: "TIME REMAINING",
+    countdownTitle: "Counting Down",
+    countdownSubtitle: "Counting down the moments until we begin our journey together",
+    cdDays: "DAYS",
+    cdHours: "HOURS",
+    cdMinutes: "MINS",
+    cdSeconds: "SECS",
     eventKicker: "EVENT DETAILS",
-    eventTitle: "Programme & Location",
-    eventSubtitle: "Akad Nikah Ceremony & Family Thanksgiving Reception",
+    eventTitle: "Wedding Details & Venue",
+    eventSubtitle: "Solemnization Ceremony (Akad Nikah) & Reception",
     cardDateTimeTitle: "Date & Time",
     cardDateVal: "Saturday, 27 March 2027",
     cardHijriVal: "18 Ramadan 1448H",
+    itineraryTitle: "Order of Events (Itinerary)",
     itinArrival: "Guest & Family Arrival",
-    itinAkad: "Solemnization Ceremony (Akad Nikah)",
-    itinPhoto: "Photography & Thanksgiving Prayers",
-    itinFeast: "Celebratory Feast & Reception",
+    itinAkad: "Akad Nikah Solemnization Ceremony",
+    itinSarung: "Ablution Cancellation & Ring Exchange",
+    itinFeast: "Celebratory Luncheon & Photography",
     itinEnd: "Reception Concludes",
     cardVenueTitle: "Mosque Venue",
     cardVenueNotes: "Main Prayer Hall & Ground Floor Banquet Hall",
-    cardDressTitle: "Attire & Dress Code",
-    cardDressHighlight: "Modest Malay Attire / Smart Modest",
-    cardDressSub: "Shades of Blue / Soft Pastel Tones",
+    qrScanPrompt: "Scan QR Code with Your Smartphone Camera",
+    cardDressTitle: "Theme & Dress Code",
+    cardDressSub: "Shades of Blue (Navy, Royal Blue, Sky Blue / Modest Attire)",
     etiq1: "Modest, respectfully covered attire in line with mosque etiquette.",
     etiq2: "Ample designated secure parking available within mosque grounds.",
     etiq3: "Hall capacity strictly limited to ≤ 200 guests for comfort.",
@@ -127,10 +170,10 @@ const I18N = {
     rsvpSubtitle: "Please RSVP before 27 February 2027 to assist us in managing the limited venue capacity (≤ 200 pax).",
     capBannerTitle: "Limited Hall Capacity (Masjid Raja Haji)",
     capBannerDesc: "Strict Maximum of 200 Invited Guests",
-    formNameLabel: "Guest Full Name",
-    formPhoneLabel: "WhatsApp / Phone Number",
+    formNameLabel: "Guest Full Name *",
+    formPhoneLabel: "WhatsApp / Phone Number *",
     formPhoneHint: "For event updates and confirmation notices.",
-    formAttendingLabel: "Will you be attending?",
+    formAttendingLabel: "Will you be attending? *",
     attendingYesTitle: "Yes, I/We Will Attend!",
     attendingYesSub: "Looking forward to celebrating together",
     attendingNoTitle: "Unable to Attend",
@@ -141,6 +184,7 @@ const I18N = {
     formMessageLabel: "Special Wishes & Prayers",
     btnSubmitRsvp: "Submit Attendance RSVP 💌",
     successTitle: "Thank You for Your Confirmation!",
+    successSub: "Your attendance details have been recorded into the official guest register.",
     sumGuestName: "Guest Name:",
     sumStatus: "Attendance Status:",
     sumPax: "Total Pax:",
@@ -187,7 +231,6 @@ function setLanguage(lang) {
     }
   });
 
-  // Re-render conditional dynamic texts
   updatePaxCounter();
 }
 
@@ -254,7 +297,6 @@ function bindRsvpForm() {
   const adultsSelect = $("rsvp-adults");
   const kidsSelect = $("rsvp-kids");
 
-  // Radio button card toggling
   if (optYes && optNo) {
     optYes.addEventListener("click", () => {
       currentAttending = "Hadir";
@@ -297,6 +339,11 @@ function bindRsvpForm() {
       const phone = $("rsvp-phone").value.trim();
       const message = $("rsvp-message").value.trim();
 
+      if (!name || !phone) {
+        alert("Sila lengkapkan nama dan nombor telefon.");
+        return;
+      }
+
       const isAttending = currentAttending === "Hadir";
       const adults = isAttending ? (parseInt(adultsSelect.value, 10) || 1) : 0;
       const kids = isAttending ? (parseInt(kidsSelect.value, 10) || 0) : 0;
@@ -314,34 +361,24 @@ function bindRsvpForm() {
         timestamp: new Date().toISOString()
       };
 
-      // UI Loading state
       if (submitBtn) submitBtn.disabled = true;
       if (btnText) btnText.style.opacity = "0.6";
       if (spinner) spinner.style.display = "inline-block";
 
       try {
-        // Dual-Layer Submission:
-        // 1. Submit to local/tunnel SQLite server
         await fetch("/api/rsvp", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(payload)
-        }).catch(() => {
-          // Graceful offline fallback
-        });
+        }).catch(() => {});
 
-        // 2. Cache in localStorage
         localStorage.setItem("sayedshamira_nikah_rsvp", JSON.stringify(payload));
-
-        // Show Success View
         showSuccessCard(payload);
 
-        // Refresh wishes wall if message provided
         if (message && isAttending) {
           appendWishLocally(name, message);
         }
       } catch (err) {
-        // Fallback: save locally anyway
         localStorage.setItem("sayedshamira_nikah_rsvp", JSON.stringify(payload));
         showSuccessCard(payload);
       } finally {
@@ -352,7 +389,6 @@ function bindRsvpForm() {
     });
   }
 
-  // Edit RSVP Button Handler
   $("btn-edit-rsvp")?.addEventListener("click", () => {
     $("nikah-rsvp-form").style.display = "flex";
     $("rsvp-success-card").style.display = "none";
@@ -385,17 +421,27 @@ function showSuccessCard(data) {
     if (paxRow) paxRow.style.display = "none";
   }
 
-  // Generate Google Calendar Link
+  setupCalendarButtons();
+}
+
+function setupCalendarButtons() {
+  const title = encodeURIComponent("Akad Nikah Sayed Arif & Nor Shamira (#SAHdenganIra)");
+  const details = encodeURIComponent("Majlis Akad Nikah & Jamuan Kesyukuran Sayed Arif Hakimi & Nor Shamira Irwani.\nLokasi: Masjid Raja Haji Fi Sabilillah Cyberjaya.");
+  const location = encodeURIComponent("Masjid Raja Haji Fi Sabilillah, Cyberjaya, Selangor");
+  const dates = "20270327T010000Z/20270327T050000Z"; // 9:00 AM - 1:00 PM GMT+8
+
   const gcalBtn = $("btn-add-gcal");
   if (gcalBtn) {
-    const title = encodeURIComponent("Akad Nikah Sayed Arif & Nor Shamira (#SAHdenganIra)");
-    const details = encodeURIComponent("Majlis Akad Nikah & Jamuan Kesyukuran Sayed Arif Hakimi & Nor Shamira Irwani.\nLokasi: Masjid Raja Haji Fi Sabilillah Cyberjaya.");
-    const location = encodeURIComponent("Masjid Raja Haji Fi Sabilillah, Cyberjaya, Selangor");
-    const dates = "20270327T010000Z/20270327T050000Z"; // 9:00 AM - 1:00 PM GMT+8 (0100 - 0500 UTC)
     gcalBtn.href = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
   }
 
-  // Generate iCal (.ics) Download
+  const heroSaveBtn = $("btn-hero-save-date");
+  if (heroSaveBtn) {
+    heroSaveBtn.onclick = () => {
+      window.open(`https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`, "_blank");
+    };
+  }
+
   const icsBtn = $("btn-download-ics");
   if (icsBtn) {
     icsBtn.onclick = () => {
@@ -429,12 +475,12 @@ function showSuccessCard(data) {
 }
 
 /* ========================================================================= */
-/* 4. DUIT SALAM KAUT & GIFT REGISTRY                                        */
+/* 4. DUIT SALAM KAUT & INTERACTIVE GIFT REGISTRY                            */
 /* ========================================================================= */
 function bindSalamKaut() {
   const copyBtn = $("btn-copy-acc");
   const copyBtnText = $("copy-btn-text");
-  const accNum = $("bank-acc-num")?.textContent.trim() || "162834241920";
+  const accNum = $("bank-acc-num")?.textContent.trim() || "162209995537";
 
   if (copyBtn) {
     copyBtn.addEventListener("click", () => {
@@ -443,7 +489,7 @@ function bindSalamKaut() {
         copyBtn.style.background = "#15803D";
         setTimeout(() => {
           if (copyBtnText) copyBtnText.textContent = "Salin 📋";
-          copyBtn.style.background = "var(--gold-accent)";
+          copyBtn.style.background = "var(--primary)";
         }, 2500);
       }).catch(() => {
         alert("Nombor Akaun: " + accNum);
@@ -451,7 +497,6 @@ function bindSalamKaut() {
     });
   }
 
-  // Custom Gift Suggestion Button
   const customGiftBtn = $("btn-custom-gift");
   const customGiftInput = $("custom-gift-input");
   if (customGiftBtn && customGiftInput) {
@@ -469,58 +514,100 @@ function bindSalamKaut() {
 }
 
 const DEFAULT_GIFTS = [
-  { id: "gift-1", name: "Air Fryer / Smart Oven", category: "Kitchenware", count: 0 },
-  { id: "gift-2", name: "Espresso Barista Coffee Machine", category: "Kitchenware", count: 0 },
-  { id: "gift-3", name: "Robot Vacuum Cleaner / Cordless Vacuum", category: "Home Essentials", count: 0 },
-  { id: "gift-4", name: "Luxury Cotton Bedding & King Comforter Set", category: "Bedroom", count: 0 },
-  { id: "gift-5", name: "Porcelain Dining Plate & Cutlery Set (16-pcs)", category: "Dining", count: 0 },
-  { id: "gift-6", name: "Premium Sejadah & Telekung Set for Couple", category: "Spiritual", count: 0 }
+  { id: "gift-1", name: "Air Fryer / Smart Oven", category: "Kitchen", selectedBy: null },
+  { id: "gift-2", name: "Espresso Barista Coffee Machine", category: "Kitchen", selectedBy: null },
+  { id: "gift-3", name: "Robot Vacuum Cleaner / Cordless Vacuum", category: "Home Essentials", selectedBy: null },
+  { id: "gift-4", name: "Luxury Cotton Bedding & King Comforter Set", category: "Bedroom", selectedBy: null },
+  { id: "gift-5", name: "Porcelain Dining Plate & Cutlery Set (16-pcs)", category: "Dining", selectedBy: null },
+  { id: "gift-6", name: "Premium Sejadah & Telekung Set for Couple", category: "Spiritual", selectedBy: null }
 ];
 
-async function loadGiftRegistry() {
+let selectedGiftsState = {};
+
+function loadGiftState() {
+  try {
+    const saved = localStorage.getItem("sayedshamira_selected_gifts");
+    if (saved) selectedGiftsState = JSON.parse(saved);
+  } catch (e) {}
+}
+
+function saveGiftState() {
+  try {
+    localStorage.setItem("sayedshamira_selected_gifts", JSON.stringify(selectedGiftsState));
+  } catch (e) {}
+}
+
+function loadGiftRegistry() {
   const mount = $("gift-items-mount");
   if (!mount) return;
 
-  let items = DEFAULT_GIFTS;
-  try {
-    const res = await fetch("/api/registry");
-    if (res.ok) {
-      const data = await res.json();
-      if (data.items && data.items.length) {
-        items = data.items;
-      }
-    }
-  } catch (e) {}
+  loadGiftState();
 
-  mount.innerHTML = items.map(item => `
-    <div class="gift-item-card">
-      <div>
-        <div class="gift-cat-pill">${item.category}</div>
-        <h4 class="gift-name">${item.name}</h4>
+  mount.innerHTML = DEFAULT_GIFTS.map(item => {
+    const selectedInfo = selectedGiftsState[item.id];
+    const isSelected = Boolean(selectedInfo);
+    return `
+      <div class="gift-item-card" id="card-${item.id}">
+        <div>
+          <div class="gift-cat-pill">${item.category}</div>
+          <h4 class="gift-name">${item.name}</h4>
+        </div>
+        <div class="gift-footer">
+          <span class="gift-status-pill ${isSelected ? 'status-selected' : 'status-available'}">
+            ${isSelected ? `Dipilih oleh ${selectedInfo.name}` : 'Tersedia'}
+          </span>
+          <button type="button" class="btn-select-gift" data-id="${item.id}" data-name="${encodeURIComponent(item.name)}">
+            ${isSelected ? 'Dipilih ✓' : 'Pilih Hadiah 🎁'}
+          </button>
+        </div>
       </div>
-      <div class="gift-footer">
-        <span class="gift-counter" id="gift-count-${item.id}">${item.count > 0 ? `${item.count} dihadiahkan` : 'Boleh dipilih'}</span>
-        <button type="button" class="btn-select-gift" data-id="${item.id}" data-name="${encodeURIComponent(item.name)}">
-          Hadiahkan Ini 🎁
-        </button>
-      </div>
-    </div>
-  `).join("");
+    `;
+  }).join("");
 
-  mount.querySelectorAll(".btn-select-gift").forEach(btn => {
+  bindGiftModalEvents();
+}
+
+let pendingGiftId = null;
+let pendingGiftName = null;
+
+function bindGiftModalEvents() {
+  const modal = $("gift-modal");
+  const closeBtn = $("close-gift-modal");
+  const cancelBtn = $("btn-cancel-gift");
+  const confirmBtn = $("btn-confirm-gift");
+  const giverInput = $("gift-giver-name");
+
+  document.querySelectorAll(".btn-select-gift").forEach(btn => {
     btn.addEventListener("click", () => {
-      const gid = btn.dataset.id;
-      const gname = decodeURIComponent(btn.dataset.name);
-      const text = encodeURIComponent(`Salam Sayed & Shamira, saya berhasrat untuk menghadiahkan: "${gname}" untuk majlis Akad Nikah kalian.`);
-      window.open(`https://wa.me/601132641499?text=${text}`, "_blank");
+      pendingGiftId = btn.dataset.id;
+      pendingGiftName = decodeURIComponent(btn.dataset.name);
 
-      // Post count update if endpoint available
-      fetch("/api/registry/select", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ gift_id: gid, giver_name: "Tetamu" })
-      }).catch(() => {});
+      if (modal) {
+        $("gift-modal-desc").textContent = `Sila masukkan nama anda untuk memilih: "${pendingGiftName}"`;
+        if (giverInput) giverInput.value = "";
+        modal.showModal();
+      }
     });
+  });
+
+  const closeModal = () => modal && modal.close();
+  closeBtn?.addEventListener("click", closeModal);
+  cancelBtn?.addEventListener("click", closeModal);
+
+  confirmBtn?.addEventListener("click", () => {
+    const giverName = giverInput.value.trim() || "Tetamu";
+    if (pendingGiftId) {
+      selectedGiftsState[pendingGiftId] = {
+        name: giverName,
+        timestamp: new Date().toISOString()
+      };
+      saveGiftState();
+      loadGiftRegistry();
+
+      const text = encodeURIComponent(`Salam Sayed & Shamira, saya (${giverName}) berhasrat untuk menghadiahkan: "${pendingGiftName}" sempena majlis Akad Nikah kalian.`);
+      window.open(`https://wa.me/601132641499?text=${text}`, "_blank");
+    }
+    closeModal();
   });
 }
 
@@ -529,8 +616,8 @@ async function loadGiftRegistry() {
 /* ========================================================================= */
 const DEFAULT_WISHES = [
   { name: "Pak Ngah & Mak Ngah", message: "Tahniah Soya & Shamira! Semoga ikatan perkahwinan ini diberkati Allah SWT dan kekal bahagia hingga ke syurga." },
-  { name: "Afiq & Isteri", message: "Selamat melangkah ke alam perkahwinan! Semoga dimurahkan rezeki dan dipermudahkan urusan kedua-dua mempelai." },
-  { name: "Ibu & Ayah", message: "Doa restu kami sentiasa mengiringi perjalanan hidup baharu kamu berdua. Jadilah pasangan yang saling melengkapi." }
+  { name: "Afiq & Isteri", message: "Selamat melangkah ke alam perkahwinan! Semoga dimurahkan rezeki dan dipermudahkan segala urusan kedua-dua mempelai." },
+  { name: "Mama & Family", message: "Doa restu kami sentiasa mengiringi perjalanan hidup baharu kamu berdua. Jadilah pasangan yang saling melengkapi dan menyayangi." }
 ];
 
 async function loadWishesWall() {
@@ -569,26 +656,80 @@ function appendWishLocally(name, message) {
 }
 
 /* ========================================================================= */
-/* 6. FLOATING AUDIO & WHATSAPP DRAWER                                       */
+/* 6. FLOATING SYNTHESIZED MUSIC & WHATSAPP DRAWER                           */
 /* ========================================================================= */
+let audioCtx = null;
+let isSynthPlaying = false;
+let synthTimer = null;
+
+function playAmbientHarpChord() {
+  if (!audioCtx) {
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new AudioContext();
+  }
+  if (audioCtx.state === "suspended") {
+    audioCtx.resume();
+  }
+
+  // Gentle acoustic wedding progression: D - A - Bm - G
+  const chordNotes = [
+    [293.66, 369.99, 440.0, 587.33], // D maj
+    [220.0, 277.18, 329.63, 440.0],  // A maj
+    [246.94, 293.66, 369.99, 493.88], // B min
+    [196.0, 246.94, 293.66, 392.0]   // G maj
+  ];
+
+  let chordIndex = 0;
+  function triggerNextChord() {
+    if (!isSynthPlaying) return;
+    const now = audioCtx.currentTime;
+    const notes = chordNotes[chordIndex % chordNotes.length];
+    chordIndex++;
+
+    notes.forEach((freq, i) => {
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = "sine";
+      osc.frequency.setValueAtTime(freq, now + i * 0.12);
+
+      gain.gain.setValueAtTime(0, now + i * 0.12);
+      gain.gain.linearRampToValueAtTime(0.04, now + i * 0.12 + 0.1);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + i * 0.12 + 3.2);
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start(now + i * 0.12);
+      osc.stop(now + i * 0.12 + 3.5);
+    });
+
+    synthTimer = setTimeout(triggerNextChord, 3600);
+  }
+
+  triggerNextChord();
+}
+
 function bindFloatingControls() {
-  // Audio Player
   const audioBtn = $("btn-floating-music");
   const audioEl = $("ambient-audio");
   const musicIcon = $("music-icon");
 
-  if (audioBtn && audioEl) {
+  if (audioBtn) {
     audioBtn.addEventListener("click", () => {
-      if (audioEl.paused) {
-        audioEl.play().then(() => {
-          audioBtn.classList.add("is-playing");
-          if (musicIcon) musicIcon.textContent = "🔊";
-        }).catch(() => {
-          audioBtn.classList.add("is-playing");
-          if (musicIcon) musicIcon.textContent = "🔊";
-        });
+      if (!isSynthPlaying) {
+        // Try playing audio element first, else synthesized ambient chords
+        if (audioEl && audioEl.src && !audioEl.error) {
+          audioEl.play().catch(() => {});
+        }
+        isSynthPlaying = true;
+        playAmbientHarpChord();
+        audioBtn.classList.add("is-playing");
+        if (musicIcon) musicIcon.textContent = "🔊";
       } else {
-        audioEl.pause();
+        if (audioEl) audioEl.pause();
+        isSynthPlaying = false;
+        if (synthTimer) clearTimeout(synthTimer);
         audioBtn.classList.remove("is-playing");
         if (musicIcon) musicIcon.textContent = "🎵";
       }
@@ -634,4 +775,5 @@ document.addEventListener("DOMContentLoaded", () => {
   loadGiftRegistry();
   loadWishesWall();
   bindFloatingControls();
+  setupCalendarButtons();
 });

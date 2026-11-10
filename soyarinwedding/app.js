@@ -6502,6 +6502,95 @@ function guestView(parent) {
   parent.append(container);
 }
 
+
+function adminGateView(parent) {
+  const container = make("div", "admin-gate-wrap");
+  container.innerHTML = `
+    <div class="admin-gate-card">
+      <div class="admin-gate-badge">🔐 KAWALAN PENTADBIR SAHAJA</div>
+      <div class="admin-gate-seal">S &amp; S</div>
+      <h2 class="admin-gate-title">Soya &amp; Rin Wedding Control Center</h2>
+      <p class="admin-gate-desc">
+        Laman ini dikhaskan untuk pengurusan &amp; perancangan perkahwinan Sayed &amp; Shamira. Sila masukkan kod akses pentadbir untuk membuka dashboard penuh.
+      </p>
+
+      <form id="admin-gate-form" class="admin-gate-form">
+        <div class="form-group" style="text-align: left; margin-bottom: 16px;">
+          <label for="gate-passcode-input" class="form-label" style="font-size: 13px; font-weight: 600; color: var(--text-muted); display: block; margin-bottom: 6px;">
+            Kod Laluan Pentadbir (Admin Passcode)
+          </label>
+          <input type="password" id="gate-passcode-input" class="search-input" placeholder="Masukkan kod laluan..." required autofocus style="width: 100%; padding: 12px 16px; font-size: 15px; border-radius: 8px; border: 1px solid var(--line);">
+          <div id="gate-error-msg" style="display: none; color: #b91c1c; font-size: 12px; margin-top: 6px; font-weight: 600;">Kod laluan tidak sah. Sila cuba lagi.</div>
+        </div>
+        <button type="submit" class="quick-action-btn" style="width: 100%; padding: 12px; justify-content: center; font-size: 14px; font-weight: 600; background: var(--burgundy); color: #fff; border-radius: 8px; cursor: pointer;">
+          Buka Dashboard Pentadbir 🔐
+        </button>
+      </form>
+
+      <div class="admin-gate-portals">
+        <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); font-weight: 700;">Laman Tetamu &amp; RSVP Awam:</span>
+        <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px; flex-wrap: wrap;">
+          <a href="../sahdenganira/" class="subnav-pill" style="font-size: 12px; text-decoration: none;">🌸 Portal Keluarga (#SAHdenganIra)</a>
+          <a href="../sayedshamira.nikah/" class="subnav-pill" style="font-size: 12px; text-decoration: none;">💌 Laman RSVP Nikah</a>
+        </div>
+      </div>
+    </div>
+  `;
+
+  container.querySelector("#admin-gate-form").addEventListener("submit", async e => {
+    e.preventDefault();
+    const input = container.querySelector("#gate-passcode-input");
+    const errEl = container.querySelector("#gate-error-msg");
+    const val = input.value.trim();
+    if (!val) return;
+
+    let unlocked = false;
+    if (vault) {
+      try {
+        snapshot = await decryptMasterVault(val, vault);
+        sessionStorage.setItem("soyarin_admin_passcode", val);
+        unlocked = true;
+      } catch (err) {
+        if (errEl) errEl.style.display = "block";
+        input.select();
+        return;
+      }
+    } else {
+      try {
+        const res = await fetch("/api/auth/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ passcode: val })
+        });
+        if (res.ok) {
+          const stateRes = await fetch("/api/state");
+          if (stateRes.ok) snapshot = await stateRes.json();
+          unlocked = true;
+        } else {
+          if (errEl) errEl.style.display = "block";
+          input.select();
+          return;
+        }
+      } catch (err) {
+        if (errEl) errEl.style.display = "block";
+        return;
+      }
+    }
+
+    if (unlocked) {
+      sessionStorage.removeItem("soyarin_guest_mode");
+      isAuthenticated = true;
+      updateAuthUI();
+      location.hash = "#overview";
+      renderNav();
+      render();
+      showToast("✓ Selamat kembali Soya & Rin! Dashboard pentadbir dibuka.");
+    }
+  });
+
+  parent.append(container);
+}
+
 function render() {
   let requested = location.hash.slice(1);
   if (!requested || requested === "dashboard") requested = isAuthenticated ? "overview" : "guest";

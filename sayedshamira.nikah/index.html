@@ -9,26 +9,30 @@
   <link rel="alternate icon" type="image/x-icon" href="./favicon.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./style.css?v=1794309605">
-  <script src="./app.js?v=1794309605" defer></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./style.css?v=1794310712">
+  <script src="./app.js?v=1794310712" defer></script>
 </head>
 <body>
-  <!-- Top Floating Header Bar -->
+  <!-- 0. STICKY TOP NAVIGATION BAR -->
   <header class="nikah-nav-header">
     <div class="nav-container">
       <a href="#hero" class="brand-monogram">
         <span class="seal-icon">💍</span>
         <span class="seal-text">S &amp; S · #SAHdenganIra</span>
       </a>
-      <div class="nav-shortcuts">
-        <a href="#event" class="nav-quick-link" data-i18n="navEvent">Aturcara</a>
+      <nav class="nav-shortcuts" aria-label="Navigasi Utama">
+        <a href="#couple" class="nav-quick-link" data-i18n="navCouple">Pengantin</a>
+        <a href="#details" class="nav-quick-link" data-i18n="navDetails">Butiran</a>
+        <a href="#countdown" class="nav-quick-link" data-i18n="navCountdown">Mengira Hari</a>
         <a href="#rsvp" class="nav-quick-link" data-i18n="navRsvp">RSVP</a>
-        <a href="#registry" class="nav-quick-link" data-i18n="navGift">Hadiah</a>
+        <a href="#registry" class="nav-quick-link" data-i18n="navRegistry">Hadiah</a>
+        <a href="#wishes" class="nav-quick-link" data-i18n="navWishes">Titipan Doa</a>
         <button type="button" class="lang-switch-btn" id="btn-lang-toggle" aria-label="Tukar Bahasa (Switch Language)">
           <span id="lang-btn-text">EN</span>
         </button>
-      </div>
+        <a href="#rsvp" class="nav-cta-btn" data-i18n="navSaveTheDate">Simpan Tarikh</a>
+      </nav>
     </div>
   </header>
 
@@ -42,37 +46,32 @@
       <div class="hero-event-meta">
         <div class="meta-item">
           <span class="meta-icon">📅</span>
-          <span class="meta-text" data-i18n="heroDate">Sabtu, 27 Mac 2027</span>
+          <div>
+            <span class="meta-label" data-i18n="heroDateLabel">Tarikh</span>
+            <span class="meta-text" data-i18n="heroDate">Sabtu, 27 Mac 2027</span>
+          </div>
         </div>
+        <div class="meta-divider" aria-hidden="true">·</div>
+        <div class="meta-item">
+          <span class="meta-icon">⏰</span>
+          <div>
+            <span class="meta-label" data-i18n="heroTimeLabel">Masa</span>
+            <span class="meta-text" data-i18n="heroTime">9:00 Pagi - 1:00 Petang</span>
+          </div>
+        </div>
+        <div class="meta-divider" aria-hidden="true">·</div>
         <div class="meta-item">
           <span class="meta-icon">🕌</span>
-          <span class="meta-text" data-i18n="heroVenue">Masjid Raja Haji Fi Sabilillah, Cyberjaya</span>
-        </div>
-      </div>
-
-      <!-- Live 4-Unit Countdown Timer -->
-      <div class="countdown-wrapper">
-        <div class="countdown-unit-box">
-          <span class="countdown-number" id="cd-days">0</span>
-          <span class="countdown-label" data-i18n="cdDays">HARI</span>
-        </div>
-        <div class="countdown-unit-box">
-          <span class="countdown-number" id="cd-hours">0</span>
-          <span class="countdown-label" data-i18n="cdHours">JAM</span>
-        </div>
-        <div class="countdown-unit-box">
-          <span class="countdown-number" id="cd-minutes">0</span>
-          <span class="countdown-label" data-i18n="cdMinutes">MINIT</span>
-        </div>
-        <div class="countdown-unit-box">
-          <span class="countdown-number" id="cd-seconds">0</span>
-          <span class="countdown-label" data-i18n="cdSeconds">SAAT</span>
+          <div>
+            <span class="meta-label" data-i18n="heroVenueLabel">Lokasi</span>
+            <span class="meta-text" data-i18n="heroVenue">Masjid Raja Haji Fi Sabilillah, Cyberjaya</span>
+          </div>
         </div>
       </div>
 
       <div class="hero-actions">
         <a href="#rsvp" class="hero-btn-primary" data-i18n="heroRsvpCta">💌 Sahkan Kehadiran (RSVP)</a>
-        <a href="#event" class="hero-btn-secondary" data-i18n="heroDetailsCta">📍 Aturcara &amp; Lokasi</a>
+        <button type="button" class="hero-btn-secondary" id="btn-hero-save-date" data-i18n="heroSaveTheDateCta">📅 Simpan Tarikh (Save the Date)</button>
       </div>
     </div>
   </section>
@@ -86,123 +85,233 @@
         <cite class="quran-translation" data-i18n="quranTranslation">
           "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan untukmu pasangan-pasangan daripada jenismu sendiri, supaya kamu cenderung dan berasa tenteram kepadanya, dan dijadikan-Nya di antaramu rasa kasih sayang dan belas kasihan."
         </cite>
-        <span class="quran-ref">(Surah Ar-Rum: 21)</span>
+        <span class="quran-ref">(Surah Ar-Rum : 21)</span>
       </blockquote>
 
-      <div class="invitation-text-card">
-        <p class="greeting-lead" data-i18n="greetingLead">Assalamu’alaikum Warahmatullahi Wabarakatuh &amp; Salam Sejahtera</p>
-        <p data-i18n="invitationBody">
+      <div class="welcome-invitation-card">
+        <p class="invitation-lead" data-i18n="greetingLead">Assalamu’alaikum Warahmatullahi Wabarakatuh &amp; Salam Sejahtera</p>
+        <p class="invitation-body" data-i18n="invitationBody">
           Dengan penuh rasa kesyukuran ke hadrat Ilahi, kami sekeluarga dengan berbesar hati menjemput Dato' / Datin / Tuan / Puan / Encik / Cik serta seisi keluarga ke majlis Akad Nikah dan Jamuan Kesyukuran putera dan puteri kami:
         </p>
-        <div class="couple-names-callout">
-          <h3>Sayed Arif Hakimi bin Sayed Ahmad</h3>
-          <span class="with-amp">&amp;</span>
-          <h3>Nor Shamira Irwani binti Kamarozaman</h3>
+        <div class="invitation-names">
+          <strong>Sayed Arif Hakimi Bin Sayed</strong>
+          <span class="names-separator">&amp;</span>
+          <strong>Nor Shamira Irwani Binti Sham</strong>
         </div>
-        <p class="prayer-sub" data-i18n="prayerSub">
+        <p class="invitation-prayer" data-i18n="prayerSub">
           Semoga dengan kehadiran dan doa restu para tetamu sekalian akan menyerikan lagi majlis serta memberkati ikatan suci yang terbina hingga ke Jannah, Insya-Allah.
         </p>
       </div>
     </div>
   </section>
 
-  <!-- 3. EVENT DETAILS & SCHEDULE SECTION -->
-  <section id="event" class="event-section">
+  <!-- 3. THE COUPLE SECTION -->
+  <section id="couple" class="couple-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-kicker" data-i18n="coupleKicker">MEMPELAI</span>
+        <h2 class="section-title" data-i18n="coupleTitle">Pengantin</h2>
+        <p class="section-subtitle" data-i18n="coupleSubtitle">Celebrating love, laughter, and a lifetime together.</p>
+        <div class="header-divider-line"></div>
+      </div>
+
+      <div class="couple-grid">
+        <!-- Groom Card -->
+        <div class="couple-card">
+          <div class="couple-avatar-wrap">
+            <div class="couple-avatar-monogram">SAH</div>
+          </div>
+          <span class="couple-role-badge" data-i18n="coupleGroomRole">Pengantin Lelaki / The Groom</span>
+          <h3 class="couple-name">Sayed Arif Hakimi</h3>
+          <p class="couple-parents" data-i18n="coupleGroomParents">Anak lelaki kepada Pn. Zaini &amp; Keluarga</p>
+          <div class="couple-quote-box">
+            <span class="quote-mark">“</span>
+            <p data-i18n="coupleGroomQuote">Bismillah, memulakan fasa baharu dengan penuh kesyukuran dan redha Ilahi.</p>
+          </div>
+        </div>
+
+        <!-- Heart Divider -->
+        <div class="couple-center-emblem" aria-hidden="true">
+          <span class="emblem-heart">💍</span>
+        </div>
+
+        <!-- Bride Card -->
+        <div class="couple-card">
+          <div class="couple-avatar-wrap">
+            <div class="couple-avatar-monogram">NSI</div>
+          </div>
+          <span class="couple-role-badge" data-i18n="coupleBrideRole">Pengantin Perempuan / The Bride</span>
+          <h3 class="couple-name">Nor Shamira Irwani</h3>
+          <p class="couple-parents" data-i18n="coupleBrideParents">Anak perempuan kepada Pn. Norzilawati &amp; Keluarga</p>
+          <div class="couple-quote-box">
+            <span class="quote-mark">“</span>
+            <p data-i18n="coupleBrideQuote">Semoga baitul muslim yang dibina dilimpahi barakah, mawaddah wa rahmah.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. COUNTDOWN SECTION -->
+  <section id="countdown" class="countdown-section">
+    <div class="section-container">
+      <div class="section-header">
+        <span class="section-kicker" data-i18n="countdownKicker">DETIK WAKTU</span>
+        <h2 class="section-title" data-i18n="countdownTitle">Mengira Hari</h2>
+        <p class="section-subtitle" data-i18n="countdownSubtitle">Menanti saat bermulanya ikatan suci kami</p>
+      </div>
+
+      <div class="countdown-grid">
+        <div class="countdown-card">
+          <span class="countdown-number" id="cd-days">0</span>
+          <span class="countdown-label" data-i18n="cdDays">HARI</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-number" id="cd-hours">0</span>
+          <span class="countdown-label" data-i18n="cdHours">JAM</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-number" id="cd-minutes">0</span>
+          <span class="countdown-label" data-i18n="cdMinutes">MINIT</span>
+        </div>
+        <div class="countdown-card">
+          <span class="countdown-number" id="cd-seconds">0</span>
+          <span class="countdown-label" data-i18n="cdSeconds">SAAT</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. WEDDING DETAILS SECTION -->
+  <section id="details" class="event-section">
     <div class="section-container">
       <div class="section-header">
         <span class="section-kicker" data-i18n="eventKicker">MAKLUMAT MAJLIS</span>
-        <h2 class="section-title" data-i18n="eventTitle">Aturcara &amp; Lokasi Majlis</h2>
+        <h2 class="section-title" data-i18n="eventTitle">Butiran Majlis &amp; Lokasi</h2>
         <p class="section-subtitle" data-i18n="eventSubtitle">Majlis Akad Nikah &amp; Jamuan Kesyukuran Keluarga</p>
       </div>
 
       <div class="event-cards-grid">
         <!-- Date & Time Card -->
         <div class="event-info-card">
-          <div class="card-icon">📅</div>
-          <h3 data-i18n="cardDateTimeTitle">Tarikh &amp; Masa</h3>
-          <p class="card-highlight" data-i18n="cardDateVal">Sabtu, 27 Mac 2027</p>
-          <p class="card-sub" data-i18n="cardHijriVal">18 Ramadan 1448H</p>
+          <div class="card-icon-header">
+            <span class="card-emoji">📅</span>
+            <div>
+              <h3 class="card-title" data-i18n="cardDateTimeTitle">Tarikh &amp; Masa</h3>
+              <p class="card-subtitle" data-i18n="cardHijriVal">18 Ramadan 1448H</p>
+            </div>
+          </div>
+          <div class="event-spec-box">
+            <div class="spec-highlight" data-i18n="cardDateVal">Sabtu, 27 Mac 2027</div>
+            <div class="spec-sub">9:00 Pagi – 1:00 Petang</div>
+          </div>
           <div class="itinerary-timeline">
-            <div class="timeline-row">
-              <span class="time-col">09:00 AM</span>
-              <span class="desc-col" data-i18n="itinArrival">Ketibaan Tetamu Jemputan</span>
-            </div>
-            <div class="timeline-row highlight">
-              <span class="time-col">10:05 AM</span>
-              <span class="desc-col" data-i18n="itinAkad">Upacara Akad Nikah &amp; Lafaz Ijab Qabul</span>
-            </div>
-            <div class="timeline-row">
-              <span class="time-col">11:15 AM</span>
-              <span class="desc-col" data-i18n="itinPhoto">Sesi Bergambar &amp; Doa Selamat</span>
-            </div>
-            <div class="timeline-row">
-              <span class="time-col">11:30 AM</span>
-              <span class="desc-col" data-i18n="itinFeast">Jamuan Kesyukuran &amp; Ramah Mesra</span>
-            </div>
-            <div class="timeline-row">
-              <span class="time-col">01:00 PM</span>
-              <span class="desc-col" data-i18n="itinEnd">Majlis Bersurai</span>
-            </div>
+            <h4 class="itinerary-title" data-i18n="itineraryTitle">Susunan Acara (Order of Events)</h4>
+            <ul class="itinerary-list">
+              <li>
+                <span class="time-col">09:00 AM</span>
+                <span class="event-col" data-i18n="itinArrival">Ketibaan Tetamu &amp; Keluarga</span>
+              </li>
+              <li>
+                <span class="time-col">09:30 AM</span>
+                <span class="event-col" data-i18n="itinAkad">Upacara Akad Nikah &amp; Lafaz Ijab Qabul</span>
+              </li>
+              <li>
+                <span class="time-col">10:30 AM</span>
+                <span class="event-col" data-i18n="itinSarung">Upacara Pembatalan Air Sembahyang &amp; Sarung Cincin</span>
+              </li>
+              <li>
+                <span class="time-col">11:00 AM</span>
+                <span class="event-col" data-i18n="itinFeast">Jamuan Kesyukuran &amp; Sesi Bergambar</span>
+              </li>
+              <li>
+                <span class="time-col">01:00 PM</span>
+                <span class="event-col" data-i18n="itinEnd">Majlis Bersurai</span>
+              </li>
+            </ul>
           </div>
         </div>
 
-        <!-- Venue & GPS Card -->
+        <!-- Venue & Navigation Card -->
         <div class="event-info-card">
-          <div class="card-icon">🕌</div>
-          <h3 data-i18n="cardVenueTitle">Lokasi Masjid</h3>
-          <p class="card-highlight">Masjid Raja Haji Fi Sabilillah</p>
-          <p class="card-sub">Persiaran Semarak Api, Cyberjaya, Selangor</p>
-          <p class="card-notes" data-i18n="cardVenueNotes">Ruang Solat Utama &amp; Dewan Jamuan Masjid (Aras Bawah)</p>
+          <div class="card-icon-header">
+            <span class="card-emoji">🕌</span>
+            <div>
+              <h3 class="card-title" data-i18n="cardVenueTitle">Lokasi Masjid</h3>
+              <p class="card-subtitle" data-i18n="cardVenueNotes">Ruang Solat Utama &amp; Dewan Jamuan Masjid (Aras Bawah)</p>
+            </div>
+          </div>
+          <div class="venue-address-box">
+            <h4 class="venue-name">Masjid Raja Haji Fi Sabilillah</h4>
+            <p class="venue-address">Persiaran Semarak Api, Cyber 6, 63000 Cyberjaya, Selangor Darul Ehsan</p>
+          </div>
 
-          <!-- GPS Buttons -->
-          <div class="gps-actions-group">
-            <a href="https://maps.app.goo.gl/9y9r6R1Z9q7y4j3y9" target="_blank" rel="noopener noreferrer" class="gps-btn google-maps">
-              <span>📍 Google Maps ↗</span>
+          <div class="nav-action-buttons">
+            <a href="https://maps.google.com/?q=Masjid+Raja+Haji+Fi+Sabilillah+Cyberjaya" target="_blank" rel="noopener noreferrer" class="btn-nav btn-gmaps">
+              <span>📍 Google Maps</span>
             </a>
-            <a href="https://waze.com/ul/hw2829ev3q" target="_blank" rel="noopener noreferrer" class="gps-btn waze">
-              <span>🚗 Waze GPS ↗</span>
+            <a href="https://waze.com/ul?q=Masjid+Raja+Haji+Fi+Sabilillah+Cyberjaya" target="_blank" rel="noopener noreferrer" class="btn-nav btn-waze">
+              <span>🚗 Waze</span>
             </a>
           </div>
 
-          <!-- Desktop QR Codes Grid -->
+          <!-- Desktop QR Codes for Mobile Scanning -->
           <div class="desktop-qr-container">
-            <div class="qr-box">
-              <img src="./qr/qr-maps-nikah.svg" alt="Google Maps QR Code" class="qr-svg-img">
-              <span class="qr-label">Scan Google Maps</span>
-            </div>
-            <div class="qr-box">
-              <img src="./qr/qr-waze-nikah.svg" alt="Waze QR Code" class="qr-svg-img">
-              <span class="qr-label">Scan Waze</span>
+            <span class="qr-heading" data-i18n="qrScanPrompt">Imbas Kod QR Menggunakan Telefon Pintar</span>
+            <div class="qr-cards-flex">
+              <div class="qr-card-item">
+                <img src="./qr/qr-maps-nikah.svg" alt="Google Maps QR" class="qr-image" width="110" height="110">
+                <span class="qr-caption">Google Maps</span>
+              </div>
+              <div class="qr-card-item">
+                <img src="./qr/qr-waze-nikah.svg" alt="Waze QR" class="qr-image" width="110" height="110">
+                <span class="qr-caption">Waze</span>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- Dress Code & Etiquette Card -->
-        <div class="event-info-card">
-          <div class="card-icon">👔</div>
-          <h3 data-i18n="cardDressTitle">Tema &amp; Kod Pakaian</h3>
-          <p class="card-highlight" data-i18n="cardDressHighlight">Baju Melayu / Pakaian Sopan</p>
-          <p class="card-sub" data-i18n="cardDressSub">Tona Warna Biru (Shades of Blue / Soft Pastel)</p>
-
-          <div class="palette-swatches">
-            <span class="swatch blue-navy" title="Navy Blue">Navy</span>
-            <span class="swatch blue-royal" title="Royal Blue">Royal Blue</span>
-            <span class="swatch blue-sky" title="Sky Blue">Sky Blue</span>
-            <span class="swatch blue-soft" title="Soft Neutral">Pastel</span>
+        <div class="event-info-card full-width-card">
+          <div class="card-icon-header">
+            <span class="card-emoji">🎨</span>
+            <div>
+              <h3 class="card-title" data-i18n="cardDressTitle">Tema &amp; Kod Pakaian</h3>
+              <p class="card-subtitle" data-i18n="cardDressSub">Tona Warna Biru (Shades of Blue / Modest Malay Attire)</p>
+            </div>
           </div>
-
-          <div class="etiquette-list">
-            <div class="etiquette-item">
-              <span class="check-icon">✓</span>
-              <span data-i18n="etiq1">Pakaian menutup aurat dan sopan bersesuaian dengan adab di dalam masjid.</span>
+          <div class="dress-code-content">
+            <div class="palette-swatches">
+              <div class="swatch-item">
+                <span class="swatch-circle" style="background: #1E3A8A;"></span>
+                <span class="swatch-name">Navy Blue</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-circle" style="background: #2563EB;"></span>
+                <span class="swatch-name">Royal Blue</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-circle" style="background: #60A5FA;"></span>
+                <span class="swatch-name">Sky Blue</span>
+              </div>
+              <div class="swatch-item">
+                <span class="swatch-circle" style="background: #F1F5F9; border: 1px solid #CBD5E1;"></span>
+                <span class="swatch-name">White / Neutral</span>
+              </div>
             </div>
-            <div class="etiquette-item">
-              <span class="check-icon">✓</span>
-              <span data-i18n="etiq2">Ruang meletak kenderaan berpagar yang luas disediakan di perkarangan masjid.</span>
-            </div>
-            <div class="etiquette-item">
-              <span class="check-icon">✓</span>
-              <span data-i18n="etiq3">Kapasiti majlis adalah terhad &le; 200 tetamu untuk keselesaan bersama.</span>
+            <div class="etiquette-bullets">
+              <div class="etiq-row">
+                <span class="etiq-icon">✨</span>
+                <span data-i18n="etiq1">Pakaian menutup aurat dan sopan bersesuaian dengan adab di dalam masjid.</span>
+              </div>
+              <div class="etiq-row">
+                <span class="etiq-icon">🅿️</span>
+                <span data-i18n="etiq2">Ruang meletak kenderaan berpagar yang luas disediakan di perkarangan masjid.</span>
+              </div>
+              <div class="etiq-row">
+                <span class="etiq-icon">👥</span>
+                <span data-i18n="etiq3">Kapasiti majlis adalah terhad ≤ 200 tetamu untuk keselesaan bersama.</span>
+              </div>
             </div>
           </div>
         </div>
@@ -210,162 +319,138 @@
     </div>
   </section>
 
-  <!-- 4. RSVP FORM SECTION -->
+  <!-- 6. RSVP SECTION -->
   <section id="rsvp" class="rsvp-section">
     <div class="section-container">
       <div class="section-header">
         <span class="section-kicker" data-i18n="rsvpKicker">PENGESAHAN KEHADIRAN</span>
         <h2 class="section-title" data-i18n="rsvpTitle">Sahkan Kehadiran Anda (RSVP)</h2>
         <p class="section-subtitle" data-i18n="rsvpSubtitle">
-          Mohon maklumkan kehadiran anda selewat-lewatnya sebelum 27 Februari 2027 bagi membantu kami menguruskan kapasiti dewan (&le; 200 pax).
+          Mohon maklumkan kehadiran anda selewat-lewatnya sebelum 27 Februari 2027 bagi membantu kami menguruskan kapasiti dewan (≤ 200 pax).
         </p>
       </div>
 
-      <!-- Capacity Tracker Strip -->
-      <div class="rsvp-cap-banner">
-        <div class="cap-info">
-          <span class="cap-icon">🏛️</span>
-          <div>
+      <div class="rsvp-form-container">
+        <!-- Capacity notice -->
+        <div class="capacity-banner">
+          <div class="cap-icon">⚠️</div>
+          <div class="cap-text">
             <strong data-i18n="capBannerTitle">Kapasiti Terhad Dewan Masjid Raja Haji</strong>
-            <span class="cap-desc" data-i18n="capBannerDesc">Maksimum 200 Orang Tetamu Jemputan Sahaja</span>
+            <span data-i18n="capBannerDesc">Maksimum 200 Orang Tetamu Jemputan Sahaja</span>
           </div>
         </div>
-        <div class="cap-pills">
-          <span class="cap-badge" id="rsvp-status-badge">RSVP Dibuka</span>
-        </div>
-      </div>
 
-      <!-- Main RSVP Form Card -->
-      <div class="rsvp-card-wrapper" id="rsvp-form-container">
-        <form id="nikah-rsvp-form" class="nikah-form">
-          <!-- Full Name -->
+        <!-- Active RSVP Form -->
+        <form id="nikah-rsvp-form" class="luxury-form" novalidate>
           <div class="form-group">
-            <label for="rsvp-name" data-i18n="formNameLabel">Nama Penuh Tetamu <span class="required">*</span></label>
-            <input type="text" id="rsvp-name" name="name" class="form-input" placeholder="cth: Dr. Kamarul &amp; Isteri / Pak Cik Rahim" required autocomplete="name">
+            <label for="rsvp-name" class="form-label" data-i18n="formNameLabel">Nama Penuh Tetamu *</label>
+            <input type="text" id="rsvp-name" name="name" required class="form-input" placeholder="cth: Ahmad Zulkifli / Sarah Halim">
           </div>
 
-          <!-- Phone Number -->
           <div class="form-group">
-            <label for="rsvp-phone" data-i18n="formPhoneLabel">Nombor WhatsApp / Telefon <span class="required">*</span></label>
-            <input type="tel" id="rsvp-phone" name="phone" class="form-input" placeholder="cth: 012-3456789" required autocomplete="tel">
-            <span class="field-hint" data-i18n="formPhoneHint">Untuk kami hantarkan peringatan dan pengesahan majlis.</span>
+            <label for="rsvp-phone" class="form-label" data-i18n="formPhoneLabel">Nombor WhatsApp / Telefon *</label>
+            <input type="tel" id="rsvp-phone" name="phone" required class="form-input" placeholder="cth: 012-3456789">
+            <span class="form-hint" data-i18n="formPhoneHint">Untuk kami hantarkan peringatan dan pengesahan majlis.</span>
           </div>
 
-          <!-- Attendance Status -->
           <div class="form-group">
-            <label data-i18n="formAttendingLabel">Adakah anda akan hadir? <span class="required">*</span></label>
-            <div class="attendance-options">
-              <label class="attendance-radio-card is-selected" id="opt-attending-yes">
-                <input type="radio" name="attending" value="Hadir" checked>
-                <span class="radio-content">
-                  <span class="radio-icon">🎉</span>
-                  <span class="radio-text">
-                    <strong data-i18n="attendingYesTitle">Ya, Saya Akan Hadir!</strong>
-                    <span class="radio-sub" data-i18n="attendingYesSub">Insya-Allah dapat hadir ke majlis</span>
-                  </span>
-                </span>
-              </label>
-
-              <label class="attendance-radio-card" id="opt-attending-no">
-                <input type="radio" name="attending" value="Tidak Hadir">
-                <span class="radio-content">
-                  <span class="radio-icon">💌</span>
-                  <span class="radio-text">
-                    <strong data-i18n="attendingNoTitle">Maaf, Tidak Dapat Hadir</strong>
-                    <span class="radio-sub" data-i18n="attendingNoSub">Mendoakan dari kejauhan</span>
-                  </span>
-                </span>
-              </label>
+            <label class="form-label" data-i18n="formAttendingLabel">Adakah anda akan hadir? *</label>
+            <div class="attendance-radio-group">
+              <div class="attendance-option is-selected" id="opt-attending-yes" tabindex="0" role="button">
+                <span class="option-icon">🎉</span>
+                <div>
+                  <strong data-i18n="attendingYesTitle">Ya, Saya Akan Hadir!</strong>
+                  <p data-i18n="attendingYesSub">Insya-Allah dapat hadir ke majlis</p>
+                </div>
+              </div>
+              <div class="attendance-option" id="opt-attending-no" tabindex="0" role="button">
+                <span class="option-icon">💌</span>
+                <div>
+                  <strong data-i18n="attendingNoTitle">Maaf, Tidak Dapat Hadir</strong>
+                  <p data-i18n="attendingNoSub">Mendoakan dari kejauhan</p>
+                </div>
+              </div>
             </div>
           </div>
 
-          <!-- Headcount Breakdown (Conditional) -->
-          <div id="headcount-section" class="form-section-headcount">
-            <div class="form-grid-2">
-              <div class="form-group">
-                <label for="rsvp-adults" data-i18n="formAdultsLabel">Dewasa (12 tahun ke atas)</label>
+          <!-- Headcount Selectors (Only shown if attending) -->
+          <div id="headcount-section" class="form-group">
+            <div class="pax-selectors-row">
+              <div class="pax-col">
+                <label for="rsvp-adults" class="form-label" data-i18n="formAdultsLabel">Dewasa (12 tahun ke atas)</label>
                 <select id="rsvp-adults" name="adults" class="form-select">
-                  <option value="1">1 Orang</option>
-                  <option value="2" selected>2 Orang</option>
-                  <option value="3">3 Orang</option>
-                  <option value="4">4 Orang</option>
-                  <option value="5">5 Orang</option>
-                </select>
-              </div>
-
-              <div class="form-group">
-                <label for="rsvp-kids" data-i18n="formKidsLabel">Kanak-kanak (Bawah 12 tahun)</label>
-                <select id="rsvp-kids" name="kids" class="form-select">
-                  <option value="0" selected>0 Orang (Tiada)</option>
-                  <option value="1">1 Orang</option>
+                  <option value="1" selected>1 Orang</option>
                   <option value="2">2 Orang</option>
                   <option value="3">3 Orang</option>
                   <option value="4">4 Orang</option>
-                  <option value="5">5 Orang</option>
+                </select>
+              </div>
+              <div class="pax-col">
+                <label for="rsvp-kids" class="form-label" data-i18n="formKidsLabel">Kanak-kanak (Bawah 12 tahun)</label>
+                <select id="rsvp-kids" name="kids" class="form-select">
+                  <option value="0" selected>0 Orang</option>
+                  <option value="1">1 Orang</option>
+                  <option value="2">2 Orang</option>
+                  <option value="3">3 Orang</option>
                 </select>
               </div>
             </div>
-
-            <div class="total-pax-indicator">
-              <span class="indicator-label" data-i18n="totalPaxLabel">Jumlah Tetamu Keseluruhan:</span>
-              <span class="indicator-badge" id="total-pax-count">2 Pax</span>
+            <div class="pax-total-banner">
+              <span data-i18n="totalPaxLabel">Jumlah Tetamu Keseluruhan:</span>
+              <strong id="total-pax-count">1 Pax (1 Dewasa)</strong>
             </div>
           </div>
 
-          <!-- Wishes / Message -->
           <div class="form-group">
-            <label for="rsvp-message" data-i18n="formMessageLabel">Titipan Ucapan &amp; Doa Khas</label>
-            <textarea id="rsvp-message" name="message" class="form-textarea" rows="3" placeholder="Tuliskan ucapan tahniah atau doa buat kedua-dua mempelai..."></textarea>
+            <label for="rsvp-message" class="form-label" data-i18n="formMessageLabel">Titipan Ucapan &amp; Doa Khas</label>
+            <textarea id="rsvp-message" name="message" rows="3" class="form-textarea" placeholder="Tuliskan ucapan tahniah atau doa restu buat pasangan mempelai..."></textarea>
           </div>
 
-          <!-- Submit Button -->
-          <div class="form-actions">
-            <button type="submit" class="submit-btn" id="btn-submit-rsvp">
-              <span id="submit-btn-text" data-i18n="btnSubmitRsvp">Hantar Pengesahan Kehadiran 💌</span>
-              <span id="submit-spinner" class="spinner-loader" style="display: none;"></span>
-            </button>
-          </div>
+          <button type="submit" class="btn-submit-rsvp" id="btn-submit-rsvp">
+            <span id="submit-spinner" class="spinner" style="display: none;"></span>
+            <span id="submit-btn-text" data-i18n="btnSubmitRsvp">Hantar Pengesahan Kehadiran 💌</span>
+          </button>
         </form>
 
-        <!-- Success Feedback Card (Hidden by default) -->
-        <div id="rsvp-success-card" class="rsvp-success-state" style="display: none;">
-          <div class="success-icon">✨</div>
-          <h3 class="success-title" data-i18n="successTitle">Terima Kasih Atas Pengesahan Anda!</h3>
-          <p class="success-msg" id="success-guest-msg">
-            Maklum balas anda telah berjaya direkodkan. Kami amat menghargai kesudian anda untuk bersama-sama meraikan detik bahagia kami.
-          </p>
+        <!-- Post-Submission Personalized Confirmation Card -->
+        <div id="rsvp-success-card" class="rsvp-success-box" style="display: none;">
+          <div class="success-icon-badge">✓</div>
+          <h3 class="success-heading" data-i18n="successTitle">Terima Kasih Atas Pengesahan Anda!</h3>
+          <p class="success-sub" data-i18n="successSub">Maklumat kehadiran anda telah selamat direkodkan ke dalam daftar tetamu majlis.</p>
 
-          <div class="success-summary-card">
-            <div class="summary-line">
-              <span class="sum-label" data-i18n="sumGuestName">Nama Tetamu:</span>
-              <strong class="sum-val" id="sum-name">—</strong>
+          <div class="summary-receipt">
+            <div class="receipt-row">
+              <span class="r-label" data-i18n="sumGuestName">Nama Tetamu:</span>
+              <strong class="r-value" id="sum-name">-</strong>
             </div>
-            <div class="summary-line">
-              <span class="sum-label" data-i18n="sumStatus">Status Kehadiran:</span>
-              <strong class="sum-val" id="sum-status">—</strong>
+            <div class="receipt-row">
+              <span class="r-label" data-i18n="sumStatus">Status Kehadiran:</span>
+              <strong class="r-value" id="sum-status">-</strong>
             </div>
-            <div class="summary-line" id="sum-pax-row">
-              <span class="sum-label" data-i18n="sumPax">Jumlah Kehadiran:</span>
-              <strong class="sum-val" id="sum-pax">—</strong>
+            <div class="receipt-row" id="sum-pax-row">
+              <span class="r-label" data-i18n="sumPax">Jumlah Kehadiran:</span>
+              <strong class="r-value" id="sum-pax">-</strong>
             </div>
           </div>
 
-          <div class="calendar-action-wrap">
-            <a id="btn-add-gcal" href="#" target="_blank" rel="noopener noreferrer" class="btn-calendar gcal">
-              <span>📅 Masukkan ke Google Calendar</span>
+          <div class="calendar-integration-group">
+            <a id="btn-add-gcal" target="_blank" rel="noopener noreferrer" class="btn-calendar btn-gcal">
+              <span>📅 Tambah ke Google Calendar</span>
             </a>
-            <button type="button" id="btn-download-ics" class="btn-calendar ics">
+            <button type="button" id="btn-download-ics" class="btn-calendar btn-ics">
               <span>📥 Muat Turun Kalendar (.ics)</span>
             </button>
           </div>
 
-          <button type="button" class="btn-edit-rsvp" id="btn-edit-rsvp" data-i18n="btnEditRsvp">Kemaskini Maklumat RSVP ↺</button>
+          <button type="button" id="btn-edit-rsvp" class="btn-edit-rsvp" data-i18n="btnEditRsvp">
+            Kemaskini Maklumat RSVP ↺
+          </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- 5. DUIT SALAM KAUT & GIFT REGISTRY SECTION -->
+  <!-- 7. GIFT REGISTRY & SALAM KAUT SECTION -->
   <section id="registry" class="registry-section">
     <div class="section-container">
       <div class="section-header">
@@ -376,48 +461,44 @@
         </p>
       </div>
 
-      <!-- Maybank DuitNow Card -->
+      <!-- Salam Kaut DuitNow Card -->
       <div class="salam-kaut-card">
-        <div class="salam-badge">Maybank DuitNow</div>
-        <div class="salam-content-grid">
-          <div class="salam-details-col">
-            <h3 class="salam-title" data-i18n="salamTitle">Duit Salam Kaut Digital</h3>
-            <p class="salam-desc" data-i18n="salamDesc">
-              Kemudahan tanpa tunai bagi tetamu yang ingin menghulurkan ingatan atau tidak berkesempatan hadir secara fizikal.
-            </p>
+        <div class="salam-info">
+          <div class="bank-pill">MAYBANK · DUITNOW QR</div>
+          <h3 class="salam-title" data-i18n="salamTitle">Duit Salam Kaut Digital</h3>
+          <p class="salam-desc" data-i18n="salamDesc">
+            Kemudahan tanpa tunai bagi tetamu yang ingin menghulurkan ingatan atau tidak berkesempatan hadir secara fizikal.
+          </p>
 
-            <div class="bank-details-box">
-              <div class="bank-row">
-                <span class="bank-label">Bank:</span>
-                <span class="bank-val">Malayan Banking Berhad (Maybank)</span>
-              </div>
-              <div class="bank-row">
-                <span class="bank-label">Nama Pemegang:</span>
-                <span class="bank-val">Sayed Arif Hakimi bin Sayed Ahmad</span>
-              </div>
-              <div class="bank-row highlight-acc">
-                <span class="bank-label">Nombor Akaun:</span>
-                <div class="acc-copy-wrap">
-                  <span class="acc-number" id="bank-acc-num">162834241920</span>
-                  <button type="button" class="btn-copy-acc" id="btn-copy-acc" title="Salin Nombor Akaun">
-                    <span id="copy-btn-text">Salin 📋</span>
-                  </button>
-                </div>
+          <div class="account-details-box">
+            <div class="acc-row">
+              <span class="acc-label">Nama Pemegang Akaun:</span>
+              <strong class="acc-name">Sayed Arif Hakimi Bin Sayed</strong>
+            </div>
+            <div class="acc-row">
+              <span class="acc-label">Nombor Akaun Maybank:</span>
+              <div class="acc-num-flex">
+                <code class="acc-num" id="bank-acc-num">162209995537</code>
+                <button type="button" class="btn-copy-acc" id="btn-copy-acc" title="Salin Nombor Akaun">
+                  <span id="copy-btn-text">Salin 📋</span>
+                </button>
               </div>
             </div>
-
-            <div class="salam-receipt-action">
-              <a id="btn-wa-salam-receipt" href="https://wa.me/601132641499?text=Salam%20Sayed%20%26%20Shamira,%20saya%20telah%20menghantar%20Duit%20Salam%20Kaut%20buat%20kalian." target="_blank" rel="noopener noreferrer" class="btn-wa-receipt">
-                <span>💬 Hantar Resit / Notifikasi WhatsApp ↗</span>
-              </a>
+            <div class="acc-row">
+              <span class="acc-label">DuitNow ID (No. Telefon):</span>
+              <code class="acc-num">011-32641499</code>
             </div>
           </div>
 
-          <div class="salam-qr-col">
-            <div class="qr-duitnow-box">
-              <img src="./qr/qr-duitnow.svg" alt="Maybank DuitNow QR" class="duitnow-qr-img">
-              <span class="qr-duitnow-label">Scan DuitNow QR</span>
-            </div>
+          <a href="https://wa.me/601132641499?text=Salam%20Sayed%20%26%20Shamira,%20saya%20telah%20menitipkan%20salam%20kaut%20untuk%20majlis%20kalian." target="_blank" rel="noopener noreferrer" class="btn-send-receipt">
+            <span>💬 Hantar Resit / Ucapan ke WhatsApp Pengantin</span>
+          </a>
+        </div>
+
+        <div class="salam-qr-wrap">
+          <div class="qr-border-frame">
+            <img src="./qr/qr-duitnow.svg" alt="DuitNow QR Code" class="duitnow-qr-img" width="180" height="180">
+            <span class="qr-scan-text">Imbas Menggunakan DuitNow / MAE / Bank App</span>
           </div>
         </div>
       </div>
@@ -453,7 +534,7 @@
     </div>
   </section>
 
-  <!-- 6. GUEST WISHES WALL SECTION -->
+  <!-- 8. GUEST WISHES WALL SECTION -->
   <section id="wishes" class="wishes-section">
     <div class="section-container">
       <div class="section-header">
@@ -468,7 +549,7 @@
     </div>
   </section>
 
-  <!-- 7. FOOTER SECTION -->
+  <!-- 9. FOOTER SECTION -->
   <footer class="nikah-site-footer">
     <div class="footer-container">
       <div class="footer-seal">S &amp; S</div>
@@ -476,9 +557,32 @@
       <p class="footer-sub">#SAHdenganIra · 27 Mac 2027 · Masjid Raja Haji Cyberjaya</p>
       <div class="footer-bottom-line">
         <span>Rasmi &amp; Dikhaskan untuk Jemputan Majlis Akad Nikah</span>
+        <span class="footer-dot">·</span>
+        <span>2027 Sayed &amp; Shamira. All rights reserved. Made with love.</span>
       </div>
     </div>
   </footer>
+
+  <!-- Modal: Select Gift -->
+  <dialog id="gift-modal" class="gift-dialog">
+    <div class="dialog-content">
+      <div class="dialog-header">
+        <h3 id="gift-modal-title" class="dialog-title">Pilih Hadiah</h3>
+        <button type="button" id="close-gift-modal" class="dialog-close-btn" aria-label="Tutup">×</button>
+      </div>
+      <div class="dialog-body">
+        <p id="gift-modal-desc">Sila masukkan nama anda untuk memilih hadiah ini sebagai tanda ingatan:</p>
+        <div class="form-group" style="margin-top: 14px;">
+          <label for="gift-giver-name" class="form-label">Nama Anda *</label>
+          <input type="text" id="gift-giver-name" class="form-input" placeholder="cth: Pak Long &amp; Mak Long">
+        </div>
+      </div>
+      <div class="dialog-footer">
+        <button type="button" id="btn-cancel-gift" class="btn-secondary">Batal</button>
+        <button type="button" id="btn-confirm-gift" class="btn-primary">Sahkan Pilihan ✓</button>
+      </div>
+    </div>
+  </dialog>
 
   <!-- Floating Ambient Music Player -->
   <div class="floating-music-wrap">
