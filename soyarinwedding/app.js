@@ -3515,8 +3515,8 @@ function guestTentativeView(parent) {
     </div>
 
     <!-- PHASE 1: TUNANG -->
-    <div class="phase-accordion" id="accordion-phase-1">
-      <div class="phase-accordion-header" role="button" tabindex="0" aria-expanded="false">
+    <div class="phase-accordion is-open" id="accordion-phase-1">
+      <div class="phase-accordion-header" role="button" tabindex="0" aria-expanded="true">
         <div class="phase-accordion-title-wrap">
           <span class="phase-number-tag" style="background: #588157;">P1</span>
           <div>
@@ -3876,8 +3876,8 @@ function tentativeView(parent) {
     </div>
 
     <!-- PHASE 1: PERTUNANGAN -->
-    <div class="phase-accordion" id="accordion-phase-1">
-      <div class="phase-accordion-header" role="button" tabindex="0" aria-expanded="false">
+    <div class="phase-accordion is-open" id="accordion-phase-1">
+      <div class="phase-accordion-header" role="button" tabindex="0" aria-expanded="true">
         <div class="phase-accordion-title-wrap">
           <span class="phase-number-tag">P1</span>
           <div>
