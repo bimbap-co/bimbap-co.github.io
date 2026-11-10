@@ -5324,7 +5324,6 @@ function getActiveTabs() {
     return {
       guest: ["Guest Menu", "🌸", "Official Wedding Guide", ""],
       tentative: ["Tentative", "📅", "Day Programmes & Posters", ""],
-      rsvp: ["RSVP Nikah", "💌", "Sahkan Kehadiran & Hadiah", ""],
       contacts: ["Contacts", "📞", "Key PIC Directory", ""]
     };
   }
@@ -6567,8 +6566,6 @@ function render() {
     recordsHubView(parent, sub);
   } else if (active === "contacts") {
     guestContactsView(parent, true);
-  } else if (active === "rsvp") {
-    rsvpView(parent);
   } else {
     guestView(parent);
   }

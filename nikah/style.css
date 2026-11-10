@@ -1,0 +1,1541 @@
+/* ========================================================================= */
+/* Sayed & Shamira · Akad Nikah Standalone Guest RSVP Portal                */
+/* Inspired by sheikha.aizat.dev · Luxury Cream, Soft Gold & Akad Navy Blue  */
+/* ========================================================================= */
+
+:root {
+  --bg-main: #FAF7F2;
+  --bg-card: #FFFFFF;
+  --bg-soft: #F4EFEA;
+  --bg-accent: #EFE7DA;
+  
+  --primary-navy: #1E3A8A;
+  --navy-dark: #0F172A;
+  --navy-light: #2563EB;
+  --navy-soft: #EFF6FF;
+  --navy-border: #BFDBFE;
+
+  --gold-accent: #B38F5B;
+  --gold-light: #C5A880;
+  --gold-soft: #FDF9F3;
+  --gold-border: #E8DFC8;
+
+  --text-main: #1E293B;
+  --text-muted: #64748B;
+  --text-light: #94A3B8;
+
+  --border: #E5DFD7;
+  --border-light: #F1ECE6;
+  
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 6px 24px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 12px 36px rgba(15, 23, 42, 0.08);
+
+  --font-serif: 'Cormorant Garamond', Georgia, serif;
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-arabic: 'Amiri', serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+}
+
+body {
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Base Containers */
+.section-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 60px 24px;
+}
+
+@media (min-width: 768px) {
+  .section-container {
+    padding: 80px 24px;
+  }
+}
+
+/* ========================================================================= */
+/* 1. TOP FLOATING NAVIGATION                                                */
+/* ========================================================================= */
+.nikah-nav-header {
+  position: sticky;
+  top: 0;
+  z-index: 999;
+  background: rgba(250, 247, 242, 0.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-light);
+  padding: 12px 20px;
+  transition: all 0.3s ease;
+}
+
+.nav-container {
+  max-width: 960px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.brand-monogram {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--primary-navy);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.5px;
+}
+
+.seal-icon {
+  font-size: 16px;
+}
+
+.seal-text {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+}
+
+.nav-shortcuts {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.nav-quick-link {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  transition: color 0.2s ease;
+}
+
+.nav-quick-link:hover {
+  color: var(--primary-navy);
+}
+
+.lang-switch-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  color: var(--gold-accent);
+  font-weight: 800;
+  font-size: 11px;
+  padding: 4px 10px;
+  border-radius: 9999px;
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  transition: all 0.2s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+.lang-switch-btn:hover {
+  background: var(--gold-accent);
+  color: #FFFFFF;
+  border-color: var(--gold-accent);
+}
+
+/* ========================================================================= */
+/* 2. HERO SECTION                                                           */
+/* ========================================================================= */
+.hero-section {
+  position: relative;
+  min-height: 85vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 60px 20px 80px;
+  background: radial-gradient(circle at top, rgba(239, 231, 218, 0.45) 0%, rgba(250, 247, 242, 1) 70%);
+}
+
+.hero-content {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.hero-eyebrow {
+  font-family: var(--font-sans);
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  color: var(--gold-accent);
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: 38px;
+  line-height: 1.25;
+  color: var(--navy-dark);
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 52px;
+  }
+}
+
+.hero-amp {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold-accent);
+  font-size: 0.8em;
+}
+
+.hero-hashtag {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 24px;
+}
+
+.hero-event-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 640px) {
+  .hero-event-meta {
+    flex-direction: row;
+    gap: 24px;
+  }
+}
+
+.meta-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--primary-navy);
+  background: rgba(255, 255, 255, 0.85);
+  padding: 6px 14px;
+  border-radius: 9999px;
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-sm);
+}
+
+/* 4-Unit Countdown Timer */
+.countdown-wrapper {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-bottom: 36px;
+  flex-wrap: wrap;
+}
+
+.countdown-unit-box {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 12px;
+  padding: 12px 14px;
+  min-width: 72px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+@media (min-width: 640px) {
+  .countdown-unit-box {
+    min-width: 84px;
+    padding: 14px 18px;
+  }
+}
+
+.countdown-number {
+  font-family: var(--font-serif);
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--primary-navy);
+  line-height: 1;
+}
+
+.countdown-label {
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  color: var(--gold-accent);
+  margin-top: 4px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.hero-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 28px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.35);
+  transition: all 0.25s ease;
+}
+
+.hero-btn-primary:hover {
+  background: var(--navy-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(30, 58, 138, 0.45);
+}
+
+.hero-btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--bg-card);
+  color: var(--primary-navy);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 24px;
+  border-radius: 9999px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.25s ease;
+}
+
+.hero-btn-secondary:hover {
+  border-color: var(--primary-navy);
+  transform: translateY(-2px);
+}
+
+/* ========================================================================= */
+/* 3. WELCOME & QURANIC AYAH SECTION                                         */
+/* ========================================================================= */
+.welcome-section {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+  text-align: center;
+}
+
+.bismillah-graphic {
+  font-family: var(--font-arabic);
+  font-size: 32px;
+  color: var(--gold-accent);
+  margin-bottom: 24px;
+  direction: rtl;
+}
+
+.quran-quote {
+  max-width: 680px;
+  margin: 0 auto 36px;
+}
+
+.quran-arabic {
+  font-family: var(--font-arabic);
+  font-size: 24px;
+  line-height: 2;
+  color: var(--navy-dark);
+  margin-bottom: 16px;
+  direction: rtl;
+}
+
+.quran-translation {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 16px;
+  line-height: 1.7;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.quran-ref {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--gold-accent);
+  letter-spacing: 0.5px;
+}
+
+.invitation-text-card {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 32px 24px;
+  background: var(--bg-soft);
+  border: 1px solid var(--gold-border);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+}
+
+.greeting-lead {
+  font-weight: 700;
+  color: var(--primary-navy);
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+
+.couple-names-callout {
+  margin: 24px 0;
+  padding: 16px 0;
+  border-top: 1px dashed var(--gold-border);
+  border-bottom: 1px dashed var(--gold-border);
+}
+
+.couple-names-callout h3 {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--navy-dark);
+  font-weight: 700;
+}
+
+.couple-names-callout .with-amp {
+  display: block;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--gold-accent);
+  margin: 4px 0;
+}
+
+.prayer-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* ========================================================================= */
+/* 4. EVENT DETAILS & SCHEDULE                                               */
+/* ========================================================================= */
+.section-header {
+  text-align: center;
+  max-width: 640px;
+  margin: 0 auto 40px;
+}
+
+.section-kicker {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  color: var(--gold-accent);
+  margin-bottom: 8px;
+}
+
+.section-title {
+  font-family: var(--font-serif);
+  font-size: 34px;
+  color: var(--navy-dark);
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.section-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.event-cards-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 840px) {
+  .event-cards-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.event-info-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 28px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+}
+
+.card-icon {
+  font-size: 28px;
+  margin-bottom: 14px;
+}
+
+.event-info-card h3 {
+  font-family: var(--font-serif);
+  font-size: 20px;
+  color: var(--navy-dark);
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.card-highlight {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--primary-navy);
+  margin-bottom: 2px;
+}
+
+.card-sub {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.card-notes {
+  font-size: 12px;
+  color: var(--gold-accent);
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+/* Itinerary Timeline */
+.itinerary-timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: auto;
+  border-top: 1px solid var(--border-light);
+  padding-top: 16px;
+}
+
+.timeline-row {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  align-items: baseline;
+}
+
+.timeline-row.highlight {
+  background: var(--navy-soft);
+  padding: 6px 8px;
+  border-radius: 6px;
+  border-left: 3px solid var(--primary-navy);
+}
+
+.time-col {
+  font-weight: 800;
+  color: var(--primary-navy);
+  width: 65px;
+  flex-shrink: 0;
+}
+
+.desc-col {
+  color: var(--text-main);
+  font-weight: 500;
+}
+
+/* GPS Actions */
+.gps-actions-group {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+}
+
+.gps-btn {
+  flex: 1;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  text-align: center;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.gps-btn.google-maps {
+  background: #1A73E8;
+  color: #FFFFFF;
+}
+
+.gps-btn.waze {
+  background: #33CCFF;
+  color: #0F172A;
+}
+
+.gps-btn:hover {
+  opacity: 0.9;
+  transform: translateY(-1px);
+}
+
+/* Desktop QR Codes */
+.desktop-qr-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.qr-box {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+
+.qr-svg-img {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 6px;
+  display: block;
+}
+
+.qr-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Dress Code Palette */
+.palette-swatches {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.swatch {
+  font-size: 10px;
+  font-weight: 700;
+  color: #FFFFFF;
+  padding: 4px 8px;
+  border-radius: 9999px;
+  flex: 1;
+  text-align: center;
+}
+
+.swatch.blue-navy { background: #1E3A8A; }
+.swatch.blue-royal { background: #2563EB; }
+.swatch.blue-sky { background: #38BDF8; color: #0F172A; }
+.swatch.blue-soft { background: #E0E7FF; color: #1E3A8A; }
+
+.etiquette-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+  padding-top: 16px;
+  border-top: 1px solid var(--border-light);
+}
+
+.etiquette-item {
+  display: flex;
+  gap: 8px;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.check-icon {
+  color: #15803D;
+  font-weight: bold;
+}
+
+/* ========================================================================= */
+/* 5. RSVP SECTION                                                           */
+/* ========================================================================= */
+.rsvp-section {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.rsvp-cap-banner {
+  max-width: 640px;
+  margin: 0 auto 24px;
+  background: var(--navy-soft);
+  border: 1px solid var(--navy-border);
+  border-left: 4px solid var(--primary-navy);
+  border-radius: 10px;
+  padding: 12px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.cap-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cap-icon {
+  font-size: 22px;
+}
+
+.cap-info strong {
+  display: block;
+  font-size: 13px;
+  color: var(--navy-dark);
+}
+
+.cap-desc {
+  font-size: 11px;
+  color: var(--primary-navy);
+  font-weight: 600;
+}
+
+.cap-badge {
+  font-size: 11px;
+  font-weight: 800;
+  color: #15803D;
+  background: #DCFCE7;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.5px;
+}
+
+.rsvp-card-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  box-shadow: var(--shadow-md);
+}
+
+.nikah-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-group label {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.required {
+  color: #DC2626;
+}
+
+.form-input, .form-select, .form-textarea {
+  width: 100%;
+  padding: 12px 14px;
+  font-size: 14px;
+  font-family: inherit;
+  color: var(--text-main);
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  transition: all 0.2s ease;
+}
+
+.form-input:focus, .form-select:focus, .form-textarea:focus {
+  outline: none;
+  border-color: var(--primary-navy);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+}
+
+.field-hint {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Attendance Radio Cards */
+.attendance-options {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+@media (min-width: 540px) {
+  .attendance-options {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.attendance-radio-card {
+  position: relative;
+  border: 2px solid var(--border);
+  border-radius: 10px;
+  padding: 14px;
+  cursor: pointer;
+  background: #FFFFFF;
+  transition: all 0.2s ease;
+}
+
+.attendance-radio-card input {
+  position: absolute;
+  opacity: 0;
+}
+
+.attendance-radio-card.is-selected {
+  border-color: var(--primary-navy);
+  background: var(--navy-soft);
+}
+
+.radio-content {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.radio-icon {
+  font-size: 22px;
+}
+
+.radio-text strong {
+  display: block;
+  font-size: 13px;
+  color: var(--navy-dark);
+}
+
+.radio-sub {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* Headcount Breakdown */
+.form-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.total-pax-indicator {
+  margin-top: 10px;
+  background: #FFFFFF;
+  border: 1px dashed var(--navy-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.indicator-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.indicator-badge {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  background: var(--navy-soft);
+  padding: 2px 10px;
+  border-radius: 9999px;
+}
+
+.form-actions {
+  margin-top: 10px;
+}
+
+.submit-btn {
+  width: 100%;
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  border: none;
+  font-weight: 700;
+  font-size: 15px;
+  padding: 15px 24px;
+  border-radius: 9999px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  box-shadow: 0 4px 14px rgba(30, 58, 138, 0.35);
+  transition: all 0.25s ease;
+}
+
+.submit-btn:hover {
+  background: var(--navy-dark);
+  transform: translateY(-1px);
+}
+
+.spinner-loader {
+  width: 18px;
+  height: 18px;
+  border: 2px solid #FFFFFF;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Success Card */
+.rsvp-success-state {
+  text-align: center;
+  padding: 10px 0;
+}
+
+.success-icon {
+  font-size: 40px;
+  margin-bottom: 12px;
+}
+
+.success-title {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--navy-dark);
+  margin-bottom: 8px;
+}
+
+.success-msg {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.6;
+  max-width: 480px;
+  margin: 0 auto 20px;
+}
+
+.success-summary-card {
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  text-align: left;
+}
+
+.summary-line {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border-light);
+  font-size: 13px;
+}
+
+.summary-line:last-child {
+  border-bottom: none;
+}
+
+.sum-label {
+  color: var(--text-muted);
+}
+
+.sum-val {
+  color: var(--navy-dark);
+}
+
+.calendar-action-wrap {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+
+.btn-calendar {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-calendar.gcal {
+  background: #1A73E8;
+  color: #FFFFFF;
+  border: none;
+}
+
+.btn-calendar.ics {
+  background: #FFFFFF;
+  color: var(--text-main);
+  border: 1px solid var(--border);
+}
+
+.btn-calendar:hover {
+  transform: translateY(-1px);
+}
+
+.btn-edit-rsvp {
+  background: none;
+  border: none;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--gold-accent);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* ========================================================================= */
+/* 6. DUIT SALAM KAUT & GIFT REGISTRY                                        */
+/* ========================================================================= */
+.salam-kaut-card {
+  background: var(--bg-card);
+  border: 1px solid var(--gold-border);
+  border-radius: 16px;
+  padding: 32px 24px;
+  margin-bottom: 48px;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.salam-badge {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #FFD200;
+  color: #000000;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  letter-spacing: 0.5px;
+}
+
+.salam-content-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+@media (min-width: 680px) {
+  .salam-content-grid {
+    grid-template-columns: 1fr 200px;
+  }
+}
+
+.salam-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  color: var(--navy-dark);
+  margin-bottom: 6px;
+}
+
+.salam-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 20px;
+}
+
+.bank-details-box {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 16px;
+  margin-bottom: 20px;
+}
+
+.bank-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12.5px;
+  padding: 6px 0;
+  border-bottom: 1px solid var(--border-light);
+}
+
+.bank-row:last-child {
+  border-bottom: none;
+}
+
+.bank-row.highlight-acc {
+  padding-top: 10px;
+}
+
+.bank-label {
+  color: var(--text-muted);
+}
+
+.bank-val {
+  font-weight: 700;
+  color: var(--navy-dark);
+}
+
+.acc-copy-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.acc-number {
+  font-family: monospace;
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--primary-navy);
+  letter-spacing: 1px;
+}
+
+.btn-copy-acc {
+  background: var(--gold-accent);
+  color: #FFFFFF;
+  border: none;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-copy-acc:hover {
+  background: #9A7744;
+}
+
+.btn-wa-receipt {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: #FFFFFF;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 10px 18px;
+  border-radius: 8px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.2s ease;
+}
+
+.btn-wa-receipt:hover {
+  background: #1EBE5D;
+}
+
+.qr-duitnow-box {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.duitnow-qr-img {
+  width: 140px;
+  height: 140px;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.qr-duitnow-label {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+/* Gift Registry Block */
+.registry-block-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 28px;
+}
+
+.registry-block-header h3 {
+  font-family: var(--font-serif);
+  font-size: 24px;
+  color: var(--navy-dark);
+  margin-bottom: 6px;
+}
+
+.registry-block-header p {
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
+.gift-items-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+@media (min-width: 640px) {
+  .gift-items-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 880px) {
+  .gift-items-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.gift-item-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 20px 18px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.25s ease;
+}
+
+.gift-item-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold-border);
+}
+
+.gift-cat-pill {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--gold-accent);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.gift-name {
+  font-family: var(--font-serif);
+  font-size: 17px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  line-height: 1.35;
+  margin-bottom: 12px;
+}
+
+.gift-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--border-light);
+  padding-top: 12px;
+  margin-top: auto;
+}
+
+.gift-counter {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.btn-select-gift {
+  background: var(--navy-soft);
+  color: var(--primary-navy);
+  border: 1px solid var(--navy-border);
+  font-size: 11px;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-select-gift:hover {
+  background: var(--primary-navy);
+  color: #FFFFFF;
+}
+
+/* Custom Gift */
+.custom-gift-box {
+  background: var(--bg-soft);
+  border: 1px dashed var(--gold-border);
+  border-radius: 12px;
+  padding: 20px;
+}
+
+.custom-gift-head {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+.c-icon {
+  font-size: 24px;
+}
+
+.custom-gift-head h4 {
+  font-family: var(--font-serif);
+  font-size: 18px;
+  color: var(--navy-dark);
+  margin-bottom: 2px;
+}
+
+.custom-gift-head p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+.custom-gift-form {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+@media (min-width: 580px) {
+  .custom-gift-form {
+    flex-direction: row;
+  }
+}
+
+.btn-send-custom-gift {
+  background: var(--gold-accent);
+  color: #FFFFFF;
+  border: none;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 12px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.btn-send-custom-gift:hover {
+  background: #9A7744;
+}
+
+/* ========================================================================= */
+/* 7. WISHES WALL                                                            */
+/* ========================================================================= */
+.wishes-section {
+  background: var(--bg-card);
+  border-top: 1px solid var(--border-light);
+}
+
+.wishes-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+@media (min-width: 640px) {
+  .wishes-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 880px) {
+  .wishes-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.wish-card {
+  background: var(--bg-soft);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 18px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.wish-message {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: var(--text-main);
+  margin-bottom: 14px;
+}
+
+.wish-author {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--primary-navy);
+  border-top: 1px solid var(--border-light);
+  padding-top: 8px;
+}
+
+/* ========================================================================= */
+/* 8. FOOTER                                                                 */
+/* ========================================================================= */
+.nikah-site-footer {
+  background: var(--navy-dark);
+  color: #FFFFFF;
+  text-align: center;
+  padding: 48px 20px;
+}
+
+.footer-container {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.footer-seal {
+  font-family: var(--font-serif);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  letter-spacing: 2px;
+}
+
+.footer-title {
+  font-family: var(--font-serif);
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+
+.footer-sub {
+  font-size: 12px;
+  color: var(--text-light);
+  margin-bottom: 20px;
+}
+
+.footer-bottom-line {
+  font-size: 11px;
+  color: #64748B;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding-top: 16px;
+}
+
+/* ========================================================================= */
+/* 9. FLOATING WIDGETS                                                       */
+/* ========================================================================= */
+.floating-music-wrap {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 998;
+}
+
+.floating-music-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--primary-navy);
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.25);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all 0.2s ease;
+}
+
+.floating-music-btn.is-playing {
+  background: var(--gold-accent);
+  animation: pulse-ring 2s infinite;
+}
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(179, 143, 91, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(179, 143, 91, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(179, 143, 91, 0); }
+}
+
+.floating-wa-wrap {
+  position: fixed;
+  bottom: 24px;
+  left: 24px;
+  z-index: 998;
+}
+
+.floating-wa-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: #FFFFFF;
+  border: 2px solid #FFFFFF;
+  font-weight: 700;
+  font-size: 13px;
+  padding: 10px 18px;
+  border-radius: 9999px;
+  box-shadow: 0 4px 16px rgba(37, 211, 102, 0.35);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.floating-wa-btn:hover {
+  background: #1EBE5D;
+  transform: translateY(-2px);
+}
+
+.floating-wa-drawer {
+  position: absolute;
+  bottom: 56px;
+  left: 0;
+  background: #FFFFFF;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 14px;
+  width: 250px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.wa-drawer-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy-dark);
+  border-bottom: 1px solid var(--border-light);
+  padding-bottom: 8px;
+}
+
+.wa-drawer-close {
+  background: none;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  color: var(--text-muted);
+}
+
+.wa-contact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-decoration: none;
+  color: var(--text-main);
+  padding: 6px 8px;
+  border-radius: 6px;
+  transition: background 0.15s ease;
+}
+
+.wa-contact-row:hover {
+  background: var(--bg-soft);
+}
