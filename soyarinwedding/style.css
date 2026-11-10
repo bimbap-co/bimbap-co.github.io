@@ -5193,3 +5193,15 @@ dialog#auth-dialog {
 
 
 
+
+.directory-hub-wrap .subnav-segmented-bar {
+  flex-wrap: wrap;
+}
+
+.master-sponsors-container > .grid {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 320px), 1fr));
+}
+
+.sponsor-register-card {
+  overflow-wrap: anywhere;
+}

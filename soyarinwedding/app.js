@@ -4849,8 +4849,8 @@ function sponsorsView(parent, records = []) {
     if (!mount) return;
 
     let filtered = sponsorRecords.filter(r => {
-      const isCash = (r.amount || 0) > 0 || r.id.includes("3c8caff3") || r.id === "sponsor-ring";
-      const isRing = r.id === "sponsor-ring" || (r.title && r.title.toLowerCase().includes("ring"));
+      const isCash = (r.amount || 0) > 0 || (r.id && r.id.includes("3c8caff3")) || r.id === "SPN-NIK-001";
+      const isRing = r.id === "sponsor-ring" || r.id === "SPN-NIK-003" || (r.title && r.title.toLowerCase().includes("ring"));
       const isKiosk = !isCash && !isRing;
 
       if (curCategory === "Cash" && !isCash) return false;
@@ -4874,21 +4874,35 @@ function sponsorsView(parent, records = []) {
 
     const gridEl = make("div", "grid");
     gridEl.innerHTML = filtered.map(s => {
-      const isCash = (s.amount || 0) > 0 || s.id.includes("3c8caff3");
+      const isRing = s.id === "sponsor-ring" || s.id === "SPN-NIK-003" || (s.title && s.title.toLowerCase().includes("ring"));
       const source = s.sources?.[0];
       const sourceHtml = source
         ? `<a href="${source.url}" target="_blank" rel="noopener noreferrer" class="source-link-chip">${source.label} ↗</a>`
         : "";
 
+      let amountBadgeHtml = "";
+      if (s.amount) {
+        amountBadgeHtml = `<p class="key" style="font-size: 16px; font-weight: 800; color: #15803D; margin: 4px 0;">${money(s.amount)}</p>`;
+      } else if (isRing) {
+        amountBadgeHtml = `<p class="key" style="font-size: 16px; font-weight: 800; color: var(--burgundy); margin: 4px 0;">RM 500.00 <span style="font-size: 11px; font-weight: 600; color: var(--charcoal-muted);">(Ring Funded)</span></p>`;
+      } else {
+        amountBadgeHtml = `<p style="font-size: 11px; font-weight: 700; color: #2563EB; margin: 4px 0; display: inline-flex; align-items: center; gap: 4px;"><span>🎁 In-Kind Contribution</span></p>`;
+      }
+
       return `
-        <article class="card">
-          <div class="meta">
-            <span class="eyebrow">${renderPhaseChip(s.event)}</span>
-            <span class="status-chip ${s.status === "Paid" ? "done" : "progress"}">${s.status}</span>
+        <article class="card" style="display: flex; flex-direction: column; justify-content: space-between;">
+          <div>
+            <div class="meta" style="margin-bottom: 8px;">
+              <span class="eyebrow">${renderPhaseChip(s.event)}</span>
+              <span class="status-chip ${s.status === "Paid" ? "done" : "progress"}">${s.status || "In-Kind"}</span>
+            </div>
+            <div style="font-size: 12px; font-weight: 700; color: var(--burgundy); margin-bottom: 4px;">
+              👤 ${s.owner || "Family Contribution"}
+            </div>
+            <h3 style="margin: 0 0 6px 0; font-family: var(--font-serif); font-size: 16px; color: var(--charcoal); line-height: 1.35;">${s.title}</h3>
+            ${amountBadgeHtml}
+            <p style="font-size: 12px; color: var(--charcoal-muted); line-height: 1.5; margin: 8px 0 12px 0;">${s.detail || ""}</p>
           </div>
-          <h3 style="margin: 8px 0 4px 0; font-family: var(--font-serif); font-size: 17px; color: var(--charcoal);">${s.title}</h3>
-          ${isCash ? `<p class="key" style="font-size: 16px; font-weight: 800; color: #15803D; margin: 4px 0;">${money(s.amount)}</p>` : ""}
-          <p style="font-size: 12px; color: var(--charcoal-muted); line-height: 1.5; margin: 6px 0 12px 0;">${s.detail || ""}</p>
           <div class="sources" style="margin-top: auto; padding-top: 8px; border-top: 1px solid var(--border);">
             ${sourceHtml}
           </div>
@@ -5093,13 +5107,13 @@ function directoryHubView(parent, activeSub = "guests") {
   const navBar = make("div", "subnav-segmented-bar");
   navBar.innerHTML = `
     <button type="button" class="subnav-pill ${activeSub === 'guests' ? 'is-active' : ''}" data-sub="guests">
-      👥 Guest Lists <span class="tab-badge">3</span>
+      Guest Menu
     </button>
     <button type="button" class="subnav-pill ${activeSub === 'vendors' ? 'is-active' : ''}" data-sub="vendors">
       🤝 Vendors &amp; Venues <span class="tab-badge">8</span>
     </button>
     <button type="button" class="subnav-pill ${activeSub === 'sponsors' ? 'is-active' : ''}" data-sub="sponsors">
-      🎁 Sponsors &amp; Kiosks <span class="tab-badge">9</span>
+      Sponsors &amp; Contributors
     </button>
   `;
 
@@ -5864,7 +5878,20 @@ function openAuthModal() {
       logoutBtn.addEventListener("click", async () => {
         localStorage.removeItem("soyarin_passcode");
         sessionStorage.setItem("soyarin_guest_mode", "1");
-        try { await fetch("/api/auth/logout", { method: "POST" }); } catch (e) {}
+        sessionStorage.removeItem("soyarin_admin_passcode");
+        localStorage.removeItem("soyarin_admin_passcode");
+        try {
+          const response = await fetch("/api/auth/logout", { method: "POST" });
+          if (response.ok) {
+            location.replace(location.pathname + location.search + "#guest");
+            location.reload();
+            return;
+          }
+          if (!await loadStaticVault()) throw Error("Sign-out failed");
+        } catch (error) {
+          showToast("Sign-out could not be verified. Try again.");
+          return;
+        }
         try {
           const res = await fetch("/api/state");
           if (res.ok) snapshot = await res.json();
