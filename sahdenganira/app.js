@@ -187,7 +187,7 @@ const APPROVED_EVENTS = [
     date: "2026-12-27",
     dateFormatted: "Sunday, 27/12/2026",
     time: "10:00 AM – 1:00 PM",
-    location: "Gastrohub Event House, Cyberjaya",
+    location: "Gastrohub, Nilai",
     dressCode: "Matcha & Strawberry",
     mapsUrl: "https://maps.app.goo.gl/231k2Gxhw8KxayAr7",
     wazeUrl: "https://waze.com/ul/hw22rurtuh",
@@ -686,7 +686,7 @@ function tentativeView(parent) {
           <span class="phase-number-tag" style="background: #588157;">P1</span>
           <div>
             <h3 class="phase-accordion-heading">1. Tunang</h3>
-            <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub Event House, Cyberjaya</div>
+            <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub, Nilai</div>
           </div>
         </div>
         <div class="phase-accordion-meta">
@@ -698,8 +698,8 @@ function tentativeView(parent) {
         <div class="tentative-cards-grid">
           <div class="tentative-info-card">
             <div class="tentative-info-title">VENUE &amp; LOCATION</div>
-            <div class="tentative-info-val">Gastrohub Event House</div>
-            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Cyberjaya</div>
+            <div class="tentative-info-val">Gastrohub Restaurant and Event Space</div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Persiaran Korporat, Bandar Baru Nilai, 71800 Nilai, Negeri Sembilan</div>
             <div style="display: flex; gap: 6px; margin-top: 6px;">
               <a href="https://maps.app.goo.gl/231k2Gxhw8KxayAr7" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">📍 Maps ↗</a>
               <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">🧭 Waze ↗</a>

@@ -1057,7 +1057,7 @@ function overview(parent) {
           <span class="horizon-num">${daysUntil("2026-12-27")}</span>
           <span class="horizon-unit">Days to Go</span>
         </div>
-        <div class="horizon-sub" title="Gastrohub Event House, Cyberjaya">Gastrohub Cyberjaya</div>
+        <div class="horizon-sub" title="Gastrohub, Nilai">Gastrohub Nilai</div>
       </div>
       <div class="horizon-footer">
         <span class="event-time-pill">10AM to 1PM</span>
@@ -1128,7 +1128,7 @@ function overview(parent) {
     openDetailModal("1. Tunang (Engagement) Details & Schedule", `
       <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 14px; border-bottom: 1px solid var(--border); padding-bottom: 10px;">
         <div>
-          <h4 style="font-family: var(--font-serif); font-size: 18px; color: var(--charcoal); margin: 0;">Gastrohub Event House Cyberjaya</h4>
+          <h4 style="font-family: var(--font-serif); font-size: 18px; color: var(--charcoal); margin: 0;">Gastrohub Restaurant and Event Space, Nilai</h4>
           <span style="font-size: 12px; color: var(--charcoal-muted);">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · 30 Family Guests</span>
         </div>
         <span class="pill-chip" style="background: var(--burgundy); color: #fff;">Confirmed Date</span>
@@ -3245,7 +3245,7 @@ function guestTentativeView(parent) {
           <span class="phase-number-tag" style="background: #588157;">P1</span>
           <div>
             <h3 class="phase-accordion-heading">1. Tunang</h3>
-            <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub Event House, Cyberjaya</div>
+            <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub, Nilai</div>
           </div>
         </div>
         <div class="phase-accordion-meta">
@@ -3257,8 +3257,8 @@ function guestTentativeView(parent) {
         <div class="tentative-cards-grid">
           <div class="tentative-info-card">
             <div class="tentative-info-title">VENUE &amp; LOCATION</div>
-            <div class="tentative-info-val">Gastrohub Event House</div>
-            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Cyberjaya</div>
+            <div class="tentative-info-val">Gastrohub Restaurant and Event Space</div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Persiaran Korporat, Bandar Baru Nilai, 71800 Nilai, Negeri Sembilan</div>
             <div style="display: flex; gap: 6px; margin-top: 6px;">
               <a href="https://maps.app.goo.gl/231k2Gxhw8KxayAr7" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">📍 Maps ↗</a>
               <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">🧭 Waze ↗</a>
@@ -3588,7 +3588,7 @@ function tentativeView(parent) {
           <span class="phase-number-tag">P1</span>
           <div>
             <h3 class="phase-accordion-heading">1. Tunang</h3>
-            <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub Event House, Cyberjaya</div>
+            <div class="phase-accordion-sub">Sunday, 27/12/2026 · 10:00 AM–1:00 PM · Gastrohub, Nilai</div>
           </div>
         </div>
         <div class="phase-accordion-meta">
@@ -3600,8 +3600,8 @@ function tentativeView(parent) {
         <div class="tentative-cards-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));">
           <div class="tentative-info-card">
             <div class="tentative-info-title">VENUE &amp; LOCATION</div>
-            <div class="tentative-info-val">Gastrohub Event House, Nilai</div>
-            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Persiaran Korporat, Nilai · 30 Pax</div>
+            <div class="tentative-info-val">Gastrohub Restaurant and Event Space</div>
+            <div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">Persiaran Korporat, Bandar Baru Nilai, 71800 Nilai · 30 Pax</div>
             <div style="display: flex; gap: 6px; margin-top: 6px;">
               <a href="https://maps.app.goo.gl/231k2Gxhw8KxayAr7" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">📍 Maps ↗</a>
               <a href="https://waze.com/ul/hw22rurtuh" target="_blank" rel="noopener noreferrer" class="contact-btn btn-map">🧭 Waze ↗</a>
@@ -5407,7 +5407,7 @@ const APPROVED_EVENTS = [
     date: "2026-12-27",
     dateFormatted: "Sunday, 27/12/2026",
     time: "10:00 AM – 1:00 PM",
-    location: "Gastrohub Event House, Cyberjaya",
+    location: "Gastrohub, Nilai",
     dressCode: "Matcha & Strawberry",
     mapsUrl: "https://maps.app.goo.gl/231k2Gxhw8KxayAr7",
     wazeUrl: "https://waze.com/ul/hw22rurtuh",
