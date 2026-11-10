@@ -27,44 +27,44 @@
 
 [data-theme="dark"] {
   color-scheme: dark;
-  --bg: #131014;
-  --bg-card: #1D1820;
-  --bg-soft: #252029;
-  --bg-inset: #2E2733;
-  --burgundy: #F28B9F;
-  --burgundy-hover: #FFAEC0;
-  --burgundy-soft: rgba(242, 139, 159, 0.16);
-  --burgundy-border: rgba(242, 139, 159, 0.35);
-  --charcoal: #F5F0EB;
-  --charcoal-muted: #ABA19D;
-  --charcoal-light: #7E7572;
-  --border: #3A3240;
-  --border-strong: #4F4456;
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
-  --shadow-lg: 0 8px 26px rgba(0, 0, 0, 0.65);
+  --bg: #110E12;
+  --bg-card: #1C1720;
+  --bg-soft: #27212D;
+  --bg-inset: #342B3C;
+  --burgundy: #FF9EB2;
+  --burgundy-hover: #FFB8C7;
+  --burgundy-soft: rgba(255, 158, 178, 0.18);
+  --burgundy-border: rgba(255, 158, 178, 0.4);
+  --charcoal: #FFFFFF;
+  --charcoal-muted: #E2E8F0;
+  --charcoal-light: #94A3B8;
+  --border: #3D3545;
+  --border-strong: #5A4E66;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.6);
+  --shadow-lg: 0 8px 26px rgba(0, 0, 0, 0.75);
   --cream-soft: var(--bg-soft);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     color-scheme: dark;
-    --bg: #131014;
-    --bg-card: #1D1820;
-    --bg-soft: #252029;
-    --bg-inset: #2E2733;
-    --burgundy: #F28B9F;
-    --burgundy-hover: #FFAEC0;
-    --burgundy-soft: rgba(242, 139, 159, 0.16);
-    --burgundy-border: rgba(242, 139, 159, 0.35);
-    --charcoal: #F5F0EB;
-    --charcoal-muted: #ABA19D;
-    --charcoal-light: #7E7572;
-    --border: #3A3240;
-    --border-strong: #4F4456;
-    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.5);
-    --shadow-lg: 0 8px 26px rgba(0, 0, 0, 0.65);
+    --bg: #110E12;
+    --bg-card: #1C1720;
+    --bg-soft: #27212D;
+    --bg-inset: #342B3C;
+    --burgundy: #FF9EB2;
+    --burgundy-hover: #FFB8C7;
+    --burgundy-soft: rgba(255, 158, 178, 0.18);
+    --burgundy-border: rgba(255, 158, 178, 0.4);
+    --charcoal: #FFFFFF;
+    --charcoal-muted: #E2E8F0;
+    --charcoal-light: #94A3B8;
+    --border: #3D3545;
+    --border-strong: #5A4E66;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.5);
+    --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.6);
+    --shadow-lg: 0 8px 26px rgba(0, 0, 0, 0.75);
     --cream-soft: var(--bg-soft);
   }
 }
@@ -161,7 +161,7 @@ button, select, summary {
   font-family: var(--font-serif);
   font-size: 18px;
   font-weight: 800;
-  color: #111111;
+  color: var(--charcoal);
   letter-spacing: -0.015em;
   margin: 0;
   line-height: 1.2;
@@ -540,7 +540,7 @@ button, select, summary {
 }
 
 .subnav-pill.is-active {
-  background: #FFFFFF;
+  background: var(--bg-card);
   color: var(--burgundy);
   border-color: var(--border);
   font-weight: 700;
@@ -1504,7 +1504,7 @@ button, select, summary {
 }
 
 .checklist-search-input:focus {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border-color: var(--burgundy);
 }
 
@@ -2331,7 +2331,7 @@ dialog#detail-modal {
 }
 
 .chart-tab-btn.active {
-  background: #FFFFFF;
+  background: var(--bg-card);
   color: var(--burgundy);
   box-shadow: 0 1px 4px rgba(0,0,0,0.08);
 }
@@ -2447,7 +2447,7 @@ dialog#detail-modal {
 .header-search-wrap {
   display: flex;
   align-items: center;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 9999px;
   padding: 5px 12px;
@@ -2493,7 +2493,7 @@ dialog#detail-modal {
   width: 38px;
   height: 38px;
   border-radius: 50%;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   display: inline-flex;
   align-items: center;
@@ -2589,7 +2589,7 @@ dialog#detail-modal {
 
 /* Contribution Split Card (Sample 2 Elegance) */
 .contribution-card {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 14px;
   padding: 14px 18px;
@@ -2685,7 +2685,7 @@ dialog#detail-modal {
 
 /* Bottom Tab Switcher Buttons (Point 5) */
 .bottom-tab-switcher {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
   padding: 18px 22px;
@@ -2782,8 +2782,8 @@ dialog#detail-modal {
 
 .donut-legend-card:hover,
 .donut-legend-card.is-hovered {
-  background: #FFFFFF;
-  border-color: var(--burgundy-soft);
+  background: var(--bg-card);
+  border-color: var(--burgundy-border);
   box-shadow: 0 4px 12px rgba(107, 29, 47, 0.08);
   transform: translateX(4px);
 }
@@ -2823,7 +2823,7 @@ dialog#detail-modal {
 }
 
 .forecast-step-chip:hover {
-  background: #FFFFFF;
+  background: var(--bg-soft);
   border-color: var(--burgundy);
   color: var(--burgundy);
 }
@@ -2840,7 +2840,7 @@ dialog#detail-modal {
   justify-content: space-between;
   align-items: center;
   padding: 10px 14px;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 10px;
   box-shadow: 0 2px 8px rgba(107, 29, 47, 0.04);
@@ -3213,7 +3213,7 @@ dialog#detail-modal {
 .bar-card-item:hover,
 .bar-card-item.is-hovered {
   border-color: var(--burgundy);
-  background: #FFFFFF;
+  background: var(--bg-card);
   transform: translateY(-2px);
   box-shadow: var(--shadow-sm);
 }
@@ -3242,7 +3242,7 @@ dialog#detail-modal {
 
 .bar-card-track {
   height: 16px;
-  background: #FFFFFF;
+  background: var(--bg-inset);
   border-radius: 9999px;
   overflow: hidden;
   border: 1px solid var(--border);
@@ -3268,7 +3268,7 @@ dialog#detail-modal {
 /* 34. CHART EXPAND / MINIMIZE BUTTON & POPUP (Point 4.d)                    */
 /* ========================================================================= */
 .chart-expand-btn {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--charcoal-muted);
   border-radius: 6px;
@@ -3369,7 +3369,7 @@ dialog#detail-modal {
 }
 
 .reconciled-sync-banner {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   border-left: 4px solid var(--burgundy);
   border-radius: 10px;
@@ -3480,7 +3480,7 @@ dialog#detail-modal {
   width: 36px;
   height: 36px;
   border-radius: 8px;
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   display: flex;
   align-items: center;
@@ -3531,7 +3531,7 @@ dialog#detail-modal {
 }
 
 .contact-btn.btn-call {
-  background: #FFFFFF;
+  background: var(--bg-card);
   border: 1px solid var(--border);
   color: var(--charcoal);
 }
@@ -4610,139 +4610,584 @@ dialog#auth-dialog {
   }
 }
 
-/* Specific Dark Mode Refinements */
-[data-theme="dark"] .hashtag-badge,
-[data-theme="dark"] .year-badge {
+/* ========================================================================= */
+/* 45. THEME DROPDOWN MENU & HEADER SWITCHER                                 */
+/* ========================================================================= */
+.theme-dropdown-wrap {
+  position: relative;
+  display: inline-flex;
+}
+
+.theme-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  min-width: 140px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.18);
+  padding: 6px;
+  display: none;
+  flex-direction: column;
+  gap: 3px;
+  z-index: 1200;
+  backdrop-filter: blur(10px);
+}
+
+.theme-dropdown-menu.is-open {
+  display: flex;
+  animation: themeMenuPop 0.16s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes themeMenuPop {
+  from {
+    opacity: 0;
+    transform: translateY(-4px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.theme-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  padding: 7px 11px;
+  border: none;
+  background: transparent;
+  border-radius: var(--radius-sm);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--charcoal);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  transition: all 0.15s ease;
+  user-select: none;
+}
+
+.theme-menu-item:hover {
   background: var(--bg-soft);
   color: var(--charcoal);
-  border-color: var(--border);
 }
 
-[data-theme="dark"] .phase-chip-tunang {
-  background: rgba(88, 129, 87, 0.22) !important;
-  color: #86EFAC !important;
-  border: 1px solid rgba(88, 129, 87, 0.45) !important;
+.theme-menu-item.is-active {
+  background: var(--burgundy-soft);
+  color: var(--burgundy);
+  font-weight: 700;
 }
 
-[data-theme="dark"] .phase-chip-nikah {
-  background: rgba(14, 165, 233, 0.22) !important;
-  color: #7DD3FC !important;
-  border: 1px solid rgba(14, 165, 233, 0.45) !important;
+.theme-menu-icon {
+  font-size: 13px;
+  line-height: 1;
 }
 
-[data-theme="dark"] .phase-chip-sanding {
-  background: rgba(168, 85, 247, 0.22) !important;
-  color: #D8B4FE !important;
-  border: 1px solid rgba(168, 85, 247, 0.45) !important;
+.theme-menu-label {
+  flex: 1;
 }
 
-[data-theme="dark"] .guest-actions-bar .guest-btn {
-  background: var(--bg-soft);
-  color: var(--charcoal);
-  border-color: var(--border);
+.theme-menu-check {
+  font-size: 12px;
+  opacity: 0;
+  color: var(--burgundy);
+  font-weight: 800;
 }
 
-[data-theme="dark"] .guest-actions-bar .guest-btn:hover {
-  background: var(--burgundy);
-  color: #121013;
-  border-color: var(--burgundy);
+.theme-menu-item.is-active .theme-menu-check {
+  opacity: 1;
 }
 
-[data-theme="dark"] .guest-btn-primary {
-  background: var(--burgundy);
-  color: #121013 !important;
-  border-color: var(--burgundy);
+/* ========================================================================= */
+/* 46. HIGH-CONTRAST DARK MODE OVERHAUL ("UTILIZE WHITE MORE")               */
+/* ========================================================================= */
+[data-theme="dark"] body {
+  color: #FFFFFF;
 }
 
-[data-theme="dark"] .guest-btn-primary:hover {
-  background: var(--burgundy-hover);
-  color: #121013 !important;
+/* Typography & Headings */
+[data-theme="dark"] h1,
+[data-theme="dark"] h2,
+[data-theme="dark"] h3,
+[data-theme="dark"] h4,
+[data-theme="dark"] h5,
+[data-theme="dark"] h6,
+[data-theme="dark"] .brand-names,
+[data-theme="dark"] .section-title,
+[data-theme="dark"] .cockpit-card-title,
+[data-theme="dark"] .cockpit-card-title span,
+[data-theme="dark"] .dialog-title-luxury,
+[data-theme="dark"] .dialog-header label {
+  color: #FFFFFF !important;
 }
 
-[data-theme="dark"] .nav-admin-btn {
-  background: rgba(242, 139, 159, 0.14) !important;
-  color: #F28B9F !important;
-  border-color: rgba(242, 139, 159, 0.3) !important;
+[data-theme="dark"] .brand-subline,
+[data-theme="dark"] .brand-meta-row,
+[data-theme="dark"] .section-caption,
+[data-theme="dark"] .cockpit-card-sub,
+[data-theme="dark"] .horizon-unit,
+[data-theme="dark"] .horizon-sub,
+[data-theme="dark"] #stream-status-hint,
+[data-theme="dark"] .contact-note {
+  color: #E2E8F0 !important;
 }
 
-[data-theme="dark"] .nav-admin-btn:hover {
+[data-theme="dark"] .brand-subline strong,
+[data-theme="dark"] .brand-meta-row strong,
+[data-theme="dark"] strong {
+  color: #FFFFFF !important;
+}
+
+/* Header & Badges */
+[data-theme="dark"] .brand-tag,
+[data-theme="dark"] .hashtag-badge {
   background: var(--burgundy) !important;
-  color: #121013 !important;
+  color: #FFFFFF !important;
 }
 
-[data-theme="dark"] .dress-card {
-  background: var(--bg-card);
-}
-
-[data-theme="dark"] .dress-swatch {
-  filter: brightness(0.9);
-}
-
-[data-theme="dark"] .contact-btn.btn-call {
-  background: var(--bg-soft);
-  color: var(--charcoal);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] .contact-btn.btn-wa {
-  background: rgba(37, 211, 102, 0.16);
-  color: #4ADE80;
-  border-color: rgba(37, 211, 102, 0.3);
-}
-
-[data-theme="dark"] table th {
-  background: var(--bg-inset);
-  color: var(--charcoal-muted);
-  border-color: var(--border);
-}
-
-[data-theme="dark"] table td {
-  border-color: var(--border);
-  color: var(--charcoal);
-}
-
-[data-theme="dark"] table tr:hover td {
-  background: var(--bg-soft);
-}
-
-[data-theme="dark"] dialog {
-  background: var(--bg-card);
-  color: var(--charcoal);
-  border-color: var(--border-strong);
-}
-
-[data-theme="dark"] dialog::backdrop {
-  background: rgba(0, 0, 0, 0.75);
-}
-
-[data-theme="dark"] input,
-[data-theme="dark"] select {
-  background: var(--bg-inset);
-  color: var(--charcoal);
-  border-color: var(--border);
+[data-theme="dark"] .year-badge {
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
+  border-color: var(--border) !important;
 }
 
 [data-theme="dark"] .shortcut-icon-btn,
 [data-theme="dark"] .header-search-wrap {
-  background: var(--bg-soft);
-  border-color: var(--border);
-  color: var(--charcoal);
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .shortcut-icon-btn:hover {
+  background: var(--burgundy-soft) !important;
+  border-color: var(--burgundy) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .header-search-wrap input {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .header-search-wrap input::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Navigation Tabs */
+[data-theme="dark"] .tabs-bar {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
 }
 
 [data-theme="dark"] .tabs-bar a {
-  color: var(--charcoal-muted);
+  color: #E2E8F0 !important;
+}
+
+[data-theme="dark"] .tabs-bar a .icon {
+  color: #FFFFFF !important;
 }
 
 [data-theme="dark"] .tabs-bar a:hover {
-  background: var(--bg-soft);
-  color: var(--charcoal);
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
 }
 
 [data-theme="dark"] .tabs-bar a[aria-current="page"],
 [data-theme="dark"] .tabs-bar a.is-active {
-  background: rgba(242, 139, 159, 0.18) !important;
-  color: #FFAEC0 !important;
-  border-color: rgba(242, 139, 159, 0.35) !important;
+  background: rgba(255, 158, 178, 0.22) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 158, 178, 0.45) !important;
+  font-weight: 700 !important;
+}
+
+[data-theme="dark"] .tab-badge {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+/* Horizon Summary Cards (Top Cockpit) */
+[data-theme="dark"] .horizon-card {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .horizon-phase {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .horizon-date {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .horizon-num {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .event-time-pill {
+  background: var(--bg-inset) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--border) !important;
+}
+
+[data-theme="dark"] .read-more-btn {
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
+  border: 1px solid var(--border) !important;
+}
+
+[data-theme="dark"] .read-more-btn:hover {
+  background: var(--burgundy-soft) !important;
+  color: #FFFFFF !important;
+  border-color: var(--burgundy) !important;
+}
+
+/* Stream Table & Action Items */
+[data-theme="dark"] .cockpit-card {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .cockpit-card-head {
+  border-bottom-color: var(--border) !important;
+}
+
+[data-theme="dark"] .stream-table th,
+[data-theme="dark"] table th {
+  background: var(--bg-inset) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  border-bottom: 2px solid var(--border-strong) !important;
+}
+
+[data-theme="dark"] .stream-table td,
+[data-theme="dark"] table td {
+  color: #FFFFFF !important;
+  border-bottom: 1px solid var(--border) !important;
+}
+
+[data-theme="dark"] .stream-table tr:hover td,
+[data-theme="dark"] table tr:hover td {
+  background: var(--bg-soft) !important;
+}
+
+/* Person Chips (High Contrast: White for Joint, Vivid Sky for Soya, Vivid Pink for Rin) */
+[data-theme="dark"] .person-chip.person-joint {
+  color: #FFFFFF !important;
+}
+[data-theme="dark"] .person-chip.person-joint .person-icon {
+  color: #FFFFFF !important;
+}
+[data-theme="dark"] .person-chip.person-soya {
+  color: #93C5FD !important;
+}
+[data-theme="dark"] .person-chip.person-soya .person-icon {
+  color: #60A5FA !important;
+}
+[data-theme="dark"] .person-chip.person-rin {
+  color: #F9A8D4 !important;
+}
+[data-theme="dark"] .person-chip.person-rin .person-icon {
+  color: #F472B6 !important;
+}
+
+/* Priority Pills */
+[data-theme="dark"] .kanban-priority-pill.High {
+  background: rgba(239, 68, 68, 0.25) !important;
+  color: #FCA5A5 !important;
+  border: 1px solid rgba(239, 68, 68, 0.5) !important;
+}
+[data-theme="dark"] .kanban-priority-pill.Medium {
+  background: rgba(245, 158, 11, 0.25) !important;
+  color: #FCD34D !important;
+  border: 1px solid rgba(245, 158, 11, 0.5) !important;
+}
+[data-theme="dark"] .kanban-priority-pill.Low {
+  background: rgba(59, 130, 246, 0.25) !important;
+  color: #93C5FD !important;
+  border: 1px solid rgba(59, 130, 246, 0.5) !important;
+}
+
+/* Phase Pills & Chips */
+[data-theme="dark"] .phase-chip-tunang {
+  background: rgba(88, 129, 87, 0.32) !important;
+  color: #86EFAC !important;
+  border: 1px solid rgba(134, 239, 172, 0.45) !important;
+}
+[data-theme="dark"] .phase-chip-nikah {
+  background: rgba(14, 165, 233, 0.32) !important;
+  color: #7DD3FC !important;
+  border: 1px solid rgba(125, 211, 252, 0.45) !important;
+}
+[data-theme="dark"] .phase-chip-sanding {
+  background: rgba(168, 85, 247, 0.32) !important;
+  color: #D8B4FE !important;
+  border: 1px solid rgba(216, 180, 254, 0.45) !important;
+}
+[data-theme="dark"] .phase-chip-shared {
+  background: rgba(255, 255, 255, 0.12) !important;
+  color: #FFFFFF !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+}
+
+/* Chart Tabs & Subnav Pills */
+[data-theme="dark"] .chart-tab-group {
+  background: var(--bg-inset) !important;
+  border: 1px solid var(--border) !important;
+}
+
+[data-theme="dark"] .chart-tab-btn {
+  background: transparent !important;
+  color: #E2E8F0 !important;
+}
+
+[data-theme="dark"] .chart-tab-btn.active {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="dark"] .chart-expand-btn {
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .subnav-pill {
+  background: var(--bg-soft) !important;
+  color: #E2E8F0 !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .subnav-pill.is-active {
+  background: #FFFFFF !important;
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+/* Donut & Growth Charts */
+[data-theme="dark"] #donut-center-label {
+  fill: #E2E8F0 !important;
+}
+
+[data-theme="dark"] #donut-center-value {
+  fill: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="dark"] #donut-center-sub {
+  fill: #CBD5E1 !important;
+}
+
+[data-theme="dark"] svg circle[stroke="#F4EFEA"] {
+  stroke: var(--bg-inset) !important;
+}
+
+[data-theme="dark"] .donut-legend-card {
+  background: var(--bg-soft) !important;
+  border-color: var(--border) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .donut-legend-card strong {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .donut-legend-card span {
+  color: #E2E8F0 !important;
+}
+
+[data-theme="dark"] .donut-legend-card:hover,
+[data-theme="dark"] .donut-legend-card.is-hovered {
+  background: var(--bg-inset) !important;
+  border-color: var(--burgundy-border) !important;
+}
+
+/* Contribution Split Card */
+[data-theme="dark"] .contribution-card {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .contrib-title {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .contrib-person {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .contrib-val {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+[data-theme="dark"] .contrib-bar-track {
+  background: var(--bg-inset) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .contrib-hover-tip {
+  color: #E2E8F0 !important;
+}
+
+[data-theme="dark"] .contrib-hover-tip strong {
+  color: #FFFFFF !important;
+}
+
+/* Bottom Tab Switcher ("Jump to Other Sections") */
+[data-theme="dark"] .bottom-tab-switcher {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .bottom-tab-title {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .tab-jump-btn {
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .tab-jump-btn:hover {
+  background: var(--burgundy) !important;
+  color: #FFFFFF !important;
+  border-color: var(--burgundy) !important;
+}
+
+/* Inputs, Dialogs & Form Elements */
+[data-theme="dark"] input,
+[data-theme="dark"] select,
+[data-theme="dark"] textarea {
+  background: var(--bg-inset) !important;
+  color: #FFFFFF !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] dialog {
+  background: var(--bg-card) !important;
+  color: #FFFFFF !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: 0 16px 48px rgba(0, 0, 0, 0.85) !important;
+}
+
+[data-theme="dark"] dialog::backdrop {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+[data-theme="dark"] .dialog-header {
+  border-bottom-color: var(--border) !important;
+}
+
+[data-theme="dark"] .dialog-close-btn,
+[data-theme="dark"] #close-auth,
+[data-theme="dark"] #close-search,
+[data-theme="dark"] #close-detail-modal {
+  color: #FFFFFF !important;
+}
+
+/* Guest View & Contact Buttons */
+[data-theme="dark"] .contact-btn.btn-call {
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .contact-btn.btn-call:hover {
+  background: var(--border-strong) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .contact-btn.btn-wa {
+  background: rgba(37, 211, 102, 0.22) !important;
+  color: #4ADE80 !important;
+  border-color: rgba(37, 211, 102, 0.45) !important;
+}
+
+[data-theme="dark"] .guest-actions-bar .guest-btn {
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .guest-actions-bar .guest-btn:hover {
+  background: var(--burgundy) !important;
+  color: #FFFFFF !important;
+  border-color: var(--burgundy) !important;
+}
+
+[data-theme="dark"] .guest-btn-primary {
+  background: var(--burgundy) !important;
+  color: #FFFFFF !important;
+  border-color: var(--burgundy) !important;
+}
+
+[data-theme="dark"] .guest-btn-primary:hover {
+  background: var(--burgundy-hover) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .nav-admin-btn {
+  background: rgba(255, 158, 178, 0.16) !important;
+  color: #FFFFFF !important;
+  border-color: rgba(255, 158, 178, 0.35) !important;
+}
+
+[data-theme="dark"] .nav-admin-btn:hover {
+  background: var(--burgundy) !important;
+  color: #FFFFFF !important;
+}
+
+/* Accordions (Tentatives) */
+[data-theme="dark"] .phase-accordion-header {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+
+[data-theme="dark"] .phase-accordion-title {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .phase-accordion-subtitle {
+  color: #E2E8F0 !important;
+}
+
+[data-theme="dark"] .phase-accordion-chevron {
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .phase-accordion-body {
+  background: var(--bg-card) !important;
+  border-color: var(--border) !important;
+}
+
+/* Theme Dropdown Menu In Dark Mode */
+[data-theme="dark"] .theme-dropdown-menu {
+  background: var(--bg-card) !important;
+  border-color: var(--border-strong) !important;
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.7) !important;
+}
+
+[data-theme="dark"] .theme-menu-item {
+  color: #E2E8F0 !important;
+}
+
+[data-theme="dark"] .theme-menu-item:hover {
+  background: var(--bg-soft) !important;
+  color: #FFFFFF !important;
+}
+
+[data-theme="dark"] .theme-menu-item.is-active {
+  background: rgba(255, 158, 178, 0.2) !important;
+  color: #FF9EB2 !important;
+}
+
+[data-theme="dark"] .theme-menu-item.is-active .theme-menu-check {
+  color: #FF9EB2 !important;
 }
 
 

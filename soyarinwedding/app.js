@@ -42,6 +42,68 @@ function applyTheme(preference) {
     btn.classList.toggle("is-active", isActive);
     btn.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
+
+  // Update theme dropdown button icon and active menu item
+  const themeIcons = { light: "☀️", dark: "🌙", system: "💻" };
+  const currentIcon = themeIcons[preference] || (effectiveTheme === "dark" ? "🌙" : "☀️");
+  document.querySelectorAll(".theme-current-icon").forEach(el => {
+    el.textContent = currentIcon;
+  });
+
+  const modeCapitalized = preference.charAt(0).toUpperCase() + preference.slice(1);
+  document.querySelectorAll(".theme-toggle-btn").forEach(btn => {
+    btn.setAttribute("data-prompt", `Theme: ${modeCapitalized} (Click to change)`);
+    btn.setAttribute("title", `Theme: ${modeCapitalized}`);
+  });
+
+  document.querySelectorAll(".theme-menu-item").forEach(item => {
+    const val = item.getAttribute("data-theme-val");
+    const isActive = val === preference;
+    item.classList.toggle("is-active", isActive);
+    item.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+}
+
+function bindThemeDropdown(container = document) {
+  const toggleBtn = container.querySelector("#btn-theme-toggle") || container.querySelector(".theme-toggle-btn");
+  const menu = container.querySelector("#theme-dropdown-menu") || container.querySelector(".theme-dropdown-menu");
+  
+  if (toggleBtn && menu) {
+    toggleBtn.onclick = e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = menu.classList.toggle("is-open");
+      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    };
+
+    menu.querySelectorAll(".theme-menu-item").forEach(item => {
+      item.onclick = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const val = item.getAttribute("data-theme-val");
+        if (val) {
+          setThemePreference(val);
+        }
+        menu.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+      };
+    });
+
+    document.addEventListener("click", e => {
+      if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        menu.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && menu.classList.contains("is-open")) {
+        menu.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        toggleBtn.focus();
+      }
+    });
+  }
 }
 
 function setThemePreference(preference) {
@@ -1049,7 +1111,7 @@ function overview(parent) {
           <span class="pill-chip" style="font-size: 10px; color: #15803D; background: #DCFCE7;">+RM 500 Savings</span>
         </div>
         <div class="horizon-main">
-          <span class="horizon-num" style="font-size: 24px; color: var(--burgundy);">${money(reconciledPaid).replace(".00", "")}</span>
+          <span class="horizon-num" style="font-size: 24px;">${money(reconciledPaid).replace(".00", "")}</span>
           <span class="horizon-unit" style="color: var(--charcoal-muted); font-size: 13px;">of RM 25,000 Spent</span>
         </div>
         <div class="horizon-sub">${money(remainingBudget).replace(".00", "")} Left to Spend</div>
@@ -1665,7 +1727,7 @@ function overview(parent) {
     if (centerLabel && centerVal && centerSub) {
       centerLabel.textContent = "TOTAL SPENT";
       centerVal.textContent = money(reconciledPaid).replace(".00", "");
-      centerVal.setAttribute("fill", "#6B1D2F");
+      centerVal.setAttribute("fill", document.documentElement.getAttribute("data-theme") === "dark" ? "#FFFFFF" : "#6B1D2F");
       centerSub.textContent = "by Phase";
     }
     rightCard.querySelectorAll(".donut-slice").forEach(s => {
@@ -1807,7 +1869,7 @@ function overview(parent) {
             ${slicesSvg}
             <g transform="rotate(90 110 110)">
               <text id="donut-center-label" x="110" y="98" text-anchor="middle" font-size="10" font-weight="700" fill="#8A8282" letter-spacing="0.5px">TOTAL SPENT</text>
-              <text id="donut-center-value" x="110" y="120" text-anchor="middle" font-size="18" font-weight="800" fill="#6B1D2F">${money(reconciledPaid).replace(".00", "")}</text>
+              <text id="donut-center-value" x="110" y="120" text-anchor="middle" font-size="18" font-weight="800" fill="var(--burgundy)">${money(reconciledPaid).replace(".00", "")}</text>
               <text id="donut-center-sub" x="110" y="136" text-anchor="middle" font-size="10" font-weight="600" fill="#5C5555">by Phase</text>
             </g>
           </svg>
@@ -5183,9 +5245,6 @@ function renderNav() {
     }
 
     const rightAction = make("div", "nav-side-action");
-    const themeWrap = make("div", "nav-theme-wrap");
-    themeWrap.innerHTML = createThemeSwitcherHtml("guest-nav");
-    rightAction.append(themeWrap);
 
     const adminLink = make("a", "nav-admin-btn");
     adminLink.href = "#admin";
@@ -5212,10 +5271,6 @@ function renderNav() {
       }
       tabsInner.append(link);
     }
-    const themeWrap = make("div", "admin-nav-theme-wrap");
-    themeWrap.style.marginLeft = "auto";
-    themeWrap.innerHTML = createThemeSwitcherHtml("admin-nav");
-    tabsInner.append(themeWrap);
   }
 
   navBar.append(tabsInner);
@@ -6018,6 +6073,7 @@ async function start() {
     render();
     applyTheme(getActiveThemePreference());
     bindThemeSwitcherEvents(document);
+    bindThemeDropdown(document);
     window.addEventListener("hashchange", render);
     $("btn-header-contacts")?.addEventListener("click", openContactsModal);
     $("btn-footer-lock")?.addEventListener("click", openAuthModal);

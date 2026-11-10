@@ -47,6 +47,68 @@ function applyTheme(preference) {
     btn.classList.toggle("is-active", isActive);
     btn.setAttribute("aria-pressed", isActive ? "true" : "false");
   });
+
+  // Update theme dropdown button icon and active menu item
+  const themeIcons = { light: "☀️", dark: "🌙", system: "💻" };
+  const currentIcon = themeIcons[preference] || (effectiveTheme === "dark" ? "🌙" : "☀️");
+  document.querySelectorAll(".theme-current-icon").forEach(el => {
+    el.textContent = currentIcon;
+  });
+
+  const modeCapitalized = preference.charAt(0).toUpperCase() + preference.slice(1);
+  document.querySelectorAll(".theme-toggle-btn").forEach(btn => {
+    btn.setAttribute("data-prompt", `Theme: ${modeCapitalized} (Click to change)`);
+    btn.setAttribute("title", `Theme: ${modeCapitalized}`);
+  });
+
+  document.querySelectorAll(".theme-menu-item").forEach(item => {
+    const val = item.getAttribute("data-theme-val");
+    const isActive = val === preference;
+    item.classList.toggle("is-active", isActive);
+    item.setAttribute("aria-selected", isActive ? "true" : "false");
+  });
+}
+
+function bindThemeDropdown(container = document) {
+  const toggleBtn = container.querySelector("#btn-theme-toggle") || container.querySelector(".theme-toggle-btn");
+  const menu = container.querySelector("#theme-dropdown-menu") || container.querySelector(".theme-dropdown-menu");
+  
+  if (toggleBtn && menu) {
+    toggleBtn.onclick = e => {
+      e.preventDefault();
+      e.stopPropagation();
+      const isOpen = menu.classList.toggle("is-open");
+      toggleBtn.setAttribute("aria-expanded", isOpen ? "true" : "false");
+    };
+
+    menu.querySelectorAll(".theme-menu-item").forEach(item => {
+      item.onclick = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const val = item.getAttribute("data-theme-val");
+        if (val) {
+          setThemePreference(val);
+        }
+        menu.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+      };
+    });
+
+    document.addEventListener("click", e => {
+      if (!menu.contains(e.target) && !toggleBtn.contains(e.target)) {
+        menu.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape" && menu.classList.contains("is-open")) {
+        menu.classList.remove("is-open");
+        toggleBtn.setAttribute("aria-expanded", "false");
+        toggleBtn.focus();
+      }
+    });
+  }
 }
 
 function setThemePreference(preference) {
@@ -338,9 +400,6 @@ function renderNav() {
   }
 
   const rightAction = make("div", "nav-side-action");
-  const themeWrap = make("div", "nav-theme-wrap");
-  themeWrap.innerHTML = createThemeSwitcherHtml("guest-nav");
-  rightAction.append(themeWrap);
 
   tabsInner.append(leftSpacer, centerTabs, rightAction);
   navBar.append(tabsInner);
@@ -1048,4 +1107,5 @@ document.addEventListener("DOMContentLoaded", () => {
   render();
   applyTheme(getActiveThemePreference());
   bindThemeSwitcherEvents(document);
+  bindThemeDropdown(document);
 });
