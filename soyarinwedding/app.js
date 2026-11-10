@@ -1,9 +1,9 @@
 const tabs = {
   overview: ["Overview", "❖", "Executive Cockpit", ""],
-  checklist: ["Checklist", "☑", "Tasks & Deadlines", "34"],
+  checklist: ["Checklist", "☑", "Tasks & Deadlines", "55"],
   expenses: ["Expenses", "💰", "Reconciled Ledger & Split", "16"],
   tentative: ["Tentative", "📅", "Day Programmes & Timelines", "3"],
-  directory: ["Directory", "👥", "Guests · Vendors · Sponsors", "20"],
+  directory: ["Directory", "👥", "Guests · Vendors · Sponsors", "27"],
   records: ["Records & Audit", "📁", "Documents & Sync Trail", "19"]
 };
 
@@ -1372,21 +1372,41 @@ function overview(parent) {
   const doneTasksList = tasks.filter(t => t.status === "Done");
   const activeTasksList = tasks.filter(t => t.status !== "Done");
 
-  // Priority ranking: High -> Medium -> Low, then earliest deadline
+  const now = new Date();
+  const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
+  function getTaskUrgencyTier(task) {
+    if (!task.date) {
+      return task.priority === "High" ? 4 : 6;
+    }
+    const tDate = new Date(task.date);
+    const diffDays = Math.ceil((tDate - today) / (1000 * 60 * 60 * 24));
+    if (diffDays < 0) return 1; // 1. Overdue
+    if (diffDays <= 7) return 2; // 2. Due within 7 days
+    if (diffDays <= 30) return 3; // 3. Due within 30 days
+    return 5; // 5. Later scheduled work
+  }
+
   const priorityRank = { High: 1, Medium: 2, Low: 3 };
   const sortedActiveTasks = [...activeTasksList].sort((a, b) => {
+    const tierA = getTaskUrgencyTier(a);
+    const tierB = getTaskUrgencyTier(b);
+    if (tierA !== tierB) return tierA - tierB;
+
+    if (a.date && b.date) {
+      const diff = new Date(a.date) - new Date(b.date);
+      if (diff !== 0) return diff;
+    }
     const pA = priorityRank[a.priority] || 4;
     const pB = priorityRank[b.priority] || 4;
     if (pA !== pB) return pA - pB;
-    if (a.date && b.date) return new Date(a.date) - new Date(b.date);
-    if (a.date) return -1;
-    if (b.date) return 1;
-    return 0;
+    return (a.title || "").localeCompare(b.title || "");
   });
 
   const tunangActive = activeTasksList.filter(t => (t.event || "").includes("Tunang")).length;
   const nikahActive = activeTasksList.filter(t => (t.event || "").includes("Nikah")).length;
   const sandingActive = activeTasksList.filter(t => (t.event || "").includes("Sanding")).length;
+  const sharedActive = activeTasksList.filter(t => !(t.event || "").includes("Tunang") && !(t.event || "").includes("Nikah") && !(t.event || "").includes("Sanding")).length;
 
   leftCard.innerHTML = `
     <div>
@@ -1399,7 +1419,8 @@ function overview(parent) {
           <button type="button" class="chart-tab-btn" data-phase="Tunang">Tunang (${tunangActive})</button>
           <button type="button" class="chart-tab-btn" data-phase="Nikah">Nikah (${nikahActive})</button>
           <button type="button" class="chart-tab-btn" data-phase="Sanding">Sanding (${sandingActive})</button>
-          <button type="button" class="chart-tab-btn" data-phase="completed" title="View 10 completed tasks">📦 Done (${doneTasks})</button>
+          <button type="button" class="chart-tab-btn" data-phase="Shared">Shared (${sharedActive})</button>
+          <button type="button" class="chart-tab-btn" data-phase="completed" title="View ${doneTasks} completed tasks">📦 Done (${doneTasks})</button>
         </div>
       </div>
       <div id="stream-items-wrap"></div>
@@ -1408,7 +1429,7 @@ function overview(parent) {
       <span style="font-size: 11px; color: var(--charcoal-muted);" id="stream-status-hint">
         Showing top priority tasks · ${doneTasks} completed hidden
       </span>
-      <button type="button" class="read-more-btn" id="read-more-tasks">See All 34 Tasks ↗</button>
+      <button type="button" class="read-more-btn" id="read-more-tasks">See All ${tasks.length} Tasks ↗</button>
     </div>
   `;
 
@@ -1419,19 +1440,27 @@ function overview(parent) {
 
     let itemsToDisplay = [];
     if (filterPhase === "completed") {
-      itemsToDisplay = doneTasksList.slice(0, 7);
+      itemsToDisplay = doneTasksList.slice(0, 8);
       if (hint) hint.textContent = `Showing ${itemsToDisplay.length} completed tasks (${doneTasks} total done)`;
     } else {
       let filtered = sortedActiveTasks;
-      if (filterPhase !== "all") {
+      if (filterPhase === "Shared") {
+        filtered = sortedActiveTasks.filter(t => !(t.event || "").includes("Tunang") && !(t.event || "").includes("Nikah") && !(t.event || "").includes("Sanding"));
+      } else if (filterPhase !== "all") {
         filtered = sortedActiveTasks.filter(t => (t.event || "").toLowerCase().includes(filterPhase.toLowerCase()));
       }
-      itemsToDisplay = filtered.slice(0, 7);
-      if (hint) hint.textContent = `Showing top ${itemsToDisplay.length} priority actions · ${doneTasks} completed hidden · ${activeTasksList.length} remaining`;
+      itemsToDisplay = filtered.slice(0, 8);
+      if (hint) hint.textContent = `Showing top ${itemsToDisplay.length} priority actions · ${doneTasks} completed hidden · ${activeTasksList.length} active`;
     }
 
     if (!itemsToDisplay.length) {
-      wrap.innerHTML = `<p class="empty" style="padding: 24px 0; text-align: center;">No active tasks in this phase.</p>`;
+      const reconciledTime = snapshot.capturedAt ? new Date(snapshot.capturedAt).toLocaleString('en-MY', { timeZone: 'Asia/Kuala_Lumpur' }) : '10 Nov 2026';
+      wrap.innerHTML = `
+        <div style="padding: 24px 16px; text-align: center; border: 1px dashed var(--border); border-radius: 8px; margin: 12px 0; background: var(--bg-soft);">
+          <p style="font-size: 13px; font-weight: 600; color: var(--charcoal); margin: 0 0 4px 0;">No active actions recorded in this phase</p>
+          <p style="font-size: 11px; color: var(--charcoal-muted); margin: 0;">All scheduled commitments are fulfilled or pending assignment. Reconciled: ${reconciledTime}.</p>
+        </div>
+      `;
       return;
     }
 
@@ -1454,12 +1483,28 @@ function overview(parent) {
             const icon = isDone ? "✓" : (isProgress ? "⚡" : "○");
             const iconClass = isDone ? "done" : (isProgress ? "progress" : "pending");
             const hoverText = `${t.title} · Phase: ${t.event || 'General'} · Assigned to: ${t.owner || 'Joint'} · Status: ${t.status}`;
-            const dateBadge = t.date ? `<span style="font-size: 10px; color: var(--charcoal-muted); margin-left: 6px; font-weight: normal;">📅 ${date(t.date)}</span>` : "";
+            
+            let urgencyBadge = "";
+            if (t.date && !isDone) {
+              const tDate = new Date(t.date);
+              const diffDays = Math.ceil((tDate - today) / (1000 * 60 * 60 * 24));
+              if (diffDays < 0) {
+                urgencyBadge = `<span style="font-size: 9px; font-weight: 700; color: #dc2626; background: #fee2e2; padding: 1px 5px; border-radius: 4px; margin-left: 4px;">⚠️ Overdue</span>`;
+              } else if (diffDays <= 7) {
+                urgencyBadge = `<span style="font-size: 9px; font-weight: 700; color: #ea580c; background: #ffedd5; padding: 1px 5px; border-radius: 4px; margin-left: 4px;">🚨 Due in ${diffDays}d</span>`;
+              } else if (diffDays <= 30) {
+                urgencyBadge = `<span style="font-size: 9px; font-weight: 600; color: #d97706; background: #fef3c7; padding: 1px 5px; border-radius: 4px; margin-left: 4px;">⏳ In ${diffDays}d</span>`;
+              }
+            }
+
+            const dateBadge = t.date ? `<span style="font-size: 10px; color: var(--charcoal-muted); margin-left: 6px; font-weight: normal;">📅 ${date(t.date)}</span>${urgencyBadge}` : (urgencyBadge || "");
+            const amountBadge = t.amount ? `<span class="amount-pill" style="font-size: 10px; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 1px 6px; border-radius: 4px; margin-left: 6px;">RM ${Number(t.amount).toLocaleString()}</span>` : "";
+
             return `
               <tr class="${isDone ? "is-done" : ""}" title="${hoverText}">
                 <td class="col-no">${idx + 1}</td>
                 <td><span class="checklist-check-btn ${iconClass}">${icon}</span></td>
-                <td><strong>${t.title}</strong>${dateBadge}</td>
+                <td><strong>${t.title}</strong>${amountBadge}${dateBadge}</td>
                 <td>${renderPhaseChip(t.event)}</td>
                 <td>${renderPersonChip(t.owner)}</td>
                 <td><span class="kanban-priority-pill ${t.priority ?? "Normal"}" style="font-size: 9px;">${t.priority ?? "Normal"}</span></td>
@@ -1482,9 +1527,9 @@ function overview(parent) {
   });
 
   leftCard.querySelector("#read-more-tasks")?.addEventListener("click", () => {
-    openDetailModal("All 34 Wedding Tasks & Deliverables", `
+    openDetailModal(`All ${tasks.length} Wedding Tasks & Deliverables`, `
       <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px;">
-        <span style="font-size: 12px; color: var(--charcoal-muted);">34 Activities across Tunang, Nikah, Sanding, and Shared</span>
+        <span style="font-size: 12px; color: var(--charcoal-muted);">${tasks.length} Activities across Tunang, Nikah, Sanding, and Shared/Admin</span>
         <button type="button" class="quick-action-btn" onclick="document.getElementById('detail-modal').close(); location.hash = '#checklist';">Open Checklist Tab ↗</button>
       </div>
       <table class="stream-table" style="font-size: 12px;">
@@ -1504,11 +1549,16 @@ function overview(parent) {
             const isProgress = t.status === "In progress";
             const icon = isDone ? "✓" : (isProgress ? "⚡" : "○");
             const iconClass = isDone ? "done" : (isProgress ? "progress" : "pending");
+            const amountBadge = t.amount ? `<span class="amount-pill" style="font-size: 10px; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 1px 5px; border-radius: 4px; margin-left: 4px;">RM ${Number(t.amount).toLocaleString()}</span>` : "";
+            const dateBadge = t.date ? `<span style="font-size: 10px; color: var(--charcoal-muted); margin-left: 4px;">📅 ${date(t.date)}</span>` : "";
             return `
               <tr class="${isDone ? "is-done" : ""}">
                 <td class="col-no">${idx + 1}</td>
                 <td><span class="checklist-check-btn ${iconClass}">${icon}</span></td>
-                <td><strong>${t.title}</strong>${t.detail ? `<div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">${t.detail}</div>` : ""}</td>
+                <td>
+                  <strong>${t.title}</strong>${amountBadge}${dateBadge}
+                  ${t.detail ? `<div style="font-size: 11px; color: var(--charcoal-muted); margin-top: 2px;">${t.detail}</div>` : ""}
+                </td>
                 <td><span class="pill-chip" style="font-size: 10px;">${t.event ?? "General"}</span></td>
                 <td>👤 ${t.owner ?? "Joint"}</td>
                 <td><span class="kanban-priority-pill ${t.priority ?? "Normal"}">${t.priority ?? "Normal"}</span></td>
@@ -2349,13 +2399,14 @@ function overview(parent) {
 
   // 3. Clickable Buttons to Change Tabs After the Dashboard Container (Simpler 4-Tab Architecture)
   const bottomTabs = make("div", "bottom-tab-switcher");
+  const expCount = snapshot.records.filter(r => r.tab === "expenses").length;
   bottomTabs.innerHTML = `
     <div class="bottom-tab-title">
       <span>📂</span> Jump to Other Wedding Sections:
     </div>
     <div class="bottom-tab-buttons">
-      <button type="button" class="tab-jump-btn" data-tab="checklist">📋 Checklist (34 Tasks)</button>
-      <button type="button" class="tab-jump-btn" data-tab="expenses">💰 Expenses Tracking (40 Records)</button>
+      <button type="button" class="tab-jump-btn" data-tab="checklist">📋 Checklist (${tasks.length} Tasks)</button>
+      <button type="button" class="tab-jump-btn" data-tab="expenses">💰 Expenses Tracking (${expCount} Records)</button>
       <button type="button" class="tab-jump-btn" data-tab="tentative">📅 Tentative Events (3 Events)</button>
     </div>
   `;
@@ -2892,7 +2943,7 @@ function checklistView(parent, tasks) {
           <button type="button" class="batch-action-btn" id="chk-toggle-notes-btn">▾ Expand All Notes</button>
         </div>
         <div class="checklist-filters-row">
-          <input type="text" class="checklist-search-input" id="chk-search" placeholder="Type to search 34 checklist tasks…">
+          <input type="text" class="checklist-search-input" id="chk-search" placeholder="Type to search ${tasks.length} checklist tasks…">
           <select class="checklist-filter-select" id="chk-owner-select" aria-label="Filter by Owner">
             <option value="">All Owners</option>
             ${[...new Set(tasks.map(t => t.owner).filter(Boolean))].sort().map(o => `<option value="${o}">${o}</option>`).join("")}
@@ -2956,7 +3007,13 @@ function checklistView(parent, tasks) {
     if (fill) fill.style.width = `${filteredPct}%`;
 
     if (!filtered.length) {
-      mount.innerHTML = `<p class="empty" style="padding: 30px; text-align: center;">No matching checklist tasks found for selected filters.</p>`;
+      const reconciledTime = snapshot.capturedAt ? new Date(snapshot.capturedAt).toLocaleString('en-MY', { timeZone: 'Asia/Kuala_Lumpur' }) : '10 Nov 2026';
+      mount.innerHTML = `
+        <div class="empty-state-box" style="padding: 32px 16px; text-align: center; border: 1px dashed var(--border); border-radius: 8px; margin: 16px 0; background: var(--bg-soft);">
+          <p style="font-size: 14px; font-weight: 600; color: var(--charcoal); margin: 0 0 6px 0;">No active actions recorded for this view</p>
+          <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0;">All items are completed or none match the selected filter criteria. Last reconciled: ${reconciledTime} (Asia/Kuala_Lumpur).</p>
+        </div>
+      `;
       return;
     }
 
@@ -2992,6 +3049,9 @@ function checklistView(parent, tasks) {
       return 0;
     });
 
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+
     const tableWrap = make("div", "table-wrap");
     tableWrap.style.overflowX = "auto";
     const tableEl = make("table", "checklist-table");
@@ -3021,6 +3081,21 @@ function checklistView(parent, tasks) {
 
           const hasDetail = Boolean(t.detail);
           const priorityClass = t.priority === "High" ? "High" : (t.priority === "Medium" ? "Medium" : "Low");
+          const amountBadge = t.amount ? `<span class="amount-pill" style="font-size: 10px; font-weight: 700; background: #e0f2fe; color: #0369a1; padding: 2px 6px; border-radius: 4px; margin-left: 6px;">RM ${Number(t.amount).toLocaleString()}</span>` : "";
+
+          let urgencyBadge = "";
+          if (t.date && !isDone) {
+            const tDate = new Date(t.date);
+            const diffDays = Math.ceil((tDate - today) / (1000 * 60 * 60 * 24));
+            if (diffDays < 0) {
+              urgencyBadge = `<span style="display: block; font-size: 9px; font-weight: 700; color: #dc2626; background: #fee2e2; padding: 1px 4px; border-radius: 3px; margin-top: 2px; width: fit-content;">⚠️ Overdue</span>`;
+            } else if (diffDays <= 7) {
+              urgencyBadge = `<span style="display: block; font-size: 9px; font-weight: 700; color: #ea580c; background: #ffedd5; padding: 1px 4px; border-radius: 3px; margin-top: 2px; width: fit-content;">🚨 Due in ${diffDays}d</span>`;
+            } else if (diffDays <= 30) {
+              urgencyBadge = `<span style="display: block; font-size: 9px; font-weight: 600; color: #d97706; background: #fef3c7; padding: 1px 4px; border-radius: 3px; margin-top: 2px; width: fit-content;">⏳ In ${diffDays}d</span>`;
+            }
+          }
+          const dateCellHtml = t.date ? `<div>${date(t.date)}${urgencyBadge}</div>` : "—";
 
           return `
             <tr class="checklist-row ${isDone ? "is-done" : ""}" data-id="${t.id}">
@@ -3030,14 +3105,14 @@ function checklistView(parent, tasks) {
               </td>
               <td>
                 <div class="task-title-cell">
-                  <span class="task-title-text">${t.title}</span>
+                  <span class="task-title-text">${t.title}</span>${amountBadge}
                   ${hasDetail ? `<button type="button" class="note-toggle-btn" data-idx="chk-${idx}">note ▾</button>` : ""}
                 </div>
               </td>
               <td>${renderPhaseChip(t.event)}</td>
               <td>${renderPersonChip(t.owner)}</td>
               <td><span class="kanban-priority-pill ${priorityClass}">${t.priority ?? "Normal"}</span></td>
-              <td style="font-size: 11px; font-weight: 500; color: var(--charcoal-muted);">${t.date ? date(t.date) : "—"}</td>
+              <td style="font-size: 11px; font-weight: 500; color: var(--charcoal-muted);">${dateCellHtml}</td>
               <td>${sourceHtml}</td>
             </tr>
             ${hasDetail ? `
@@ -5202,14 +5277,19 @@ function recordsHubView(parent, activeSub = "documents") {
 /* 4. MASTER TAB ROUTER & DUAL-ROLE VIEWS (SOYA & RIN vs GUEST & VENDOR)    */
 /* ========================================================================= */
 function getActiveTabs() {
+  const checklistCount = snapshot.records ? snapshot.records.filter(r => r.tab === "checklist").length : 55;
+  const expPaidCount = snapshot.records ? (snapshot.records.filter(r => r.tab === "expenses" && (r.status === "Paid" || (r.paid || 0) > 0)).length || 16) : 16;
+  const directoryCount = snapshot.records ? snapshot.records.filter(r => ["guests", "vendors", "sponsors"].includes(r.tab)).length : 27;
+  const recordsCount = snapshot.records ? snapshot.records.filter(r => ["files", "audit"].includes(r.tab)).length : 19;
+
   if (isAuthenticated) {
     return {
       overview: ["Overview", "❖", "Executive Cockpit", ""],
-      checklist: ["Checklist", "☑", "Tasks & Deadlines", "34"],
-      expenses: ["Expenses", "💰", "Reconciled Ledger & Split", "16"],
+      checklist: ["Checklist", "☑", "Tasks & Deadlines", String(checklistCount)],
+      expenses: ["Expenses", "💰", "Reconciled Ledger & Split", String(expPaidCount)],
       tentative: ["Tentative", "📅", "Day Programmes & Timelines", "3"],
-      directory: ["Directory", "👥", "Guests · Vendors · Sponsors", "20"],
-      records: ["Records & Audit", "📁", "Documents & Sync Trail", "19"]
+      directory: ["Directory", "👥", "Guests · Vendors · Sponsors", String(directoryCount)],
+      records: ["Records & Audit", "📁", "Documents & Sync Trail", String(recordsCount)]
     };
   } else {
     return {
