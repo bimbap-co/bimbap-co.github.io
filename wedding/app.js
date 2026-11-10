@@ -407,115 +407,6 @@ function renderNav() {
 }
 
 /* ========================================================================= */
-/* APPROVED WEDDING SPONSORS & IN-KIND CONTRIBUTIONS (DISCREET GUEST LIST)   */
-/* ========================================================================= */
-const APPROVED_SPONSORS = [
-  {
-    name: "Achin (Groom's Uncle)",
-    function: "Nikah Ceremony Gift",
-    date: "27/03/2027",
-    phase: "Nikah",
-    phaseClass: "phase-chip-nikah"
-  },
-  {
-    name: "Mama (Groom's Mother)",
-    function: "Groom Nikah Ring Sponsorship",
-    date: "27/03/2027",
-    phase: "Nikah",
-    phaseClass: "phase-chip-nikah"
-  },
-  {
-    name: "Achin (Groom's Uncle)",
-    function: "Bunga Telur Rebus (In-Kind)",
-    date: "27/03/2027",
-    phase: "Nikah",
-    phaseClass: "phase-chip-nikah"
-  },
-  {
-    name: "Cik Jah (Groom's Auntie)",
-    function: "Balang Kacang Favors (In-Kind)",
-    date: "27/03/2027",
-    phase: "Nikah",
-    phaseClass: "phase-chip-nikah"
-  },
-  {
-    name: "Mama (Groom's Mother)",
-    function: "Reception Beras Supply (In-Kind)",
-    date: "27/11/2027",
-    phase: "Sanding",
-    phaseClass: "phase-chip-sanding"
-  },
-  {
-    name: "Mama (Groom's Mother)",
-    function: "Apam Balik & Ice Cream Live Kiosk",
-    date: "27/11/2027",
-    phase: "Sanding",
-    phaseClass: "phase-chip-sanding"
-  },
-  {
-    name: "Mama (Groom's Mother)",
-    function: "Laksa Live Kiosk",
-    date: "27/11/2027",
-    phase: "Sanding",
-    phaseClass: "phase-chip-sanding"
-  },
-  {
-    name: "Angah (Groom's Siblings)",
-    function: "Artisan Coffee Live Kiosk",
-    date: "27/11/2027",
-    phase: "Sanding",
-    phaseClass: "phase-chip-sanding"
-  },
-  {
-    name: "Along (Groom's Siblings)",
-    function: "Photobooth Live Station (In-Kind)",
-    date: "27/11/2027",
-    phase: "Sanding",
-    phaseClass: "phase-chip-sanding"
-  },
-  {
-    name: "Ibu (Bride's Mother)",
-    function: "Sweet Dessert & Pastry Table",
-    date: "27/11/2027",
-    phase: "Sanding",
-    phaseClass: "phase-chip-sanding"
-  }
-];
-
-function guestSponsorsView(parent) {
-  const card = make("div", "coordinator-card guest-sponsors-section");
-  card.style.marginTop = "24px";
-  card.innerHTML = `
-    <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; border-bottom: 1px solid var(--border); padding-bottom: 12px; flex-wrap: wrap; gap: 8px;">
-      <div>
-        <h3 style="font-family: var(--font-serif); font-size: 18px; color: var(--burgundy); margin: 0 0 4px 0;">
-          🎁 Wedding Sponsors &amp; In-Kind Contributions
-        </h3>
-        <p style="font-size: 12px; color: var(--charcoal-muted); margin: 0;">
-          Heartfelt gratitude to our beloved family and sponsors for their generous blessings and contributions.
-        </p>
-      </div>
-      <span class="tab-badge" style="background: var(--burgundy); color: #fff; border-radius: 9999px; padding: 2px 10px; font-size: 11px; font-weight: 700; letter-spacing: 0.5px;">
-        ${APPROVED_SPONSORS.length} Contributions
-      </span>
-    </div>
-    <div class="guest-sponsors-grid">
-      ${APPROVED_SPONSORS.map(s => `
-        <div class="guest-sponsor-card">
-          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
-            <span class="${s.phaseClass}" style="font-size: 11px; font-weight: 700;">${s.phase}</span>
-            <span style="font-size: 11px; color: var(--charcoal-muted); font-weight: 600;">📅 ${s.date}</span>
-          </div>
-          <h4 style="font-size: 15px; font-weight: 700; color: var(--charcoal); margin: 0 0 4px 0; font-family: var(--font-sans);">${s.name}</h4>
-          <div style="font-size: 13px; font-weight: 600; color: var(--burgundy);">${s.function}</div>
-        </div>
-      `).join("")}
-    </div>
-  `;
-  parent.append(card);
-}
-
-/* ========================================================================= */
 /* 5. GUEST MENU VIEW (TAB 1)                                                */
 /* ========================================================================= */
 function guestView(parent) {
@@ -654,9 +545,6 @@ function guestView(parent) {
     </div>
   `;
   container.append(dressSection);
-
-  // Wedding Sponsors & In-Kind Contributions (Discreet Cards Grid)
-  guestSponsorsView(container);
 
   parent.append(container);
 }
