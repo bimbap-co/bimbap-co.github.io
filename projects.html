@@ -113,7 +113,7 @@
     <div class="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4 mb-8">
       <div class="flex flex-wrap items-center gap-2" id="filterContainer">
         <button onclick="filterCategory('all')" id="btn-all" class="filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-indigo-600 text-white shadow-lg shadow-indigo-500/25">
-          All Services (9)
+          All Services (10)
         </button>
         <button onclick="filterCategory('live')" id="btn-live" class="filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all bg-white/5 border border-white/10 text-slate-400 hover:text-white">
           Active HTTP Ports (5)
@@ -471,6 +471,44 @@
           </button>
         </div>
       </div>
+      <!-- 10. Soya Genshin Impact Archive -->
+      <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="live" data-search="genshin impact soya archive swiss editorial 24 characters enka showcase amber geo pyro electro cryo anemo dendro hydro ningguang yoimiya raiden 3000">
+        <div>
+          <div class="flex items-center justify-between mb-3">
+            <span class="px-2.5 py-1 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 font-mono text-xs font-semibold flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+              PORT :3000 /genshin
+            </span>
+            <span id="badge-genshin" class="px-2 py-0.5 rounded-full text-[11px] font-mono font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center gap-1">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+              ONLINE
+            </span>
+          </div>
+          <h2 class="text-xl font-bold text-white mb-1 flex items-center justify-between">
+            Soya Genshin Impact Archive
+            <span class="text-xs font-mono font-normal text-amber-400/80">Swiss Editorial</span>
+          </h2>
+          <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">
+            Curatorial 24-character archive &amp; comparison bench. Features dual Tracked Build &amp; Enka live snapshot switching, 7-element fluid filter, and whole-web dynamic elemental ambiance.
+          </p>
+          <div class="space-y-1.5 text-xs font-mono text-slate-400 mb-5 bg-black/30 p-2.5 rounded-xl border border-white/5">
+            <div class="flex justify-between"><span class="text-slate-500">Lead:</span> <span class="text-slate-300">Violet (CDO) &amp; Asta (CTO)</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Path:</span> <span class="text-slate-300 truncate max-w-[180px]" title="E:\Hermes-Profiles\genshin\dashboard">E:\Hermes-Profiles\genshin\dashboard</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Local URL:</span> <span class="text-amber-400 font-bold">http://localhost:3000/genshin/</span></div>
+            <div class="flex justify-between"><span class="text-slate-500">Live URL:</span> <span class="text-slate-300 truncate max-w-[180px]" title="https://bimbap-co.github.io/genshin/">https://bimbap-co.github.io/genshin/</span></div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 pt-2 border-t border-white/5">
+          <a href="https://bimbap-co.github.io/genshin/" target="_blank" rel="noopener noreferrer" class="flex-1 py-2 px-3 rounded-xl bg-gradient-to-r from-amber-600 to-yellow-600 hover:from-amber-500 hover:to-yellow-500 text-white font-semibold text-xs text-center shadow-lg shadow-amber-500/20 transition-all flex items-center justify-center gap-1.5">
+            <span>Open Archive</span>
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </a>
+          <button onclick="copyToClipboard('https://bimbap-co.github.io/genshin/', this)" class="p-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white border border-white/10 transition-all" title="Copy URL">
+            <svg class="w-4 h-4 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+      </div>
+
 
     </div>
 
@@ -484,6 +522,16 @@
         Need to spin up or restart one of your local servers? Run these in PowerShell:
       </p>
       <div class="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
+        <div class="bg-black/50 p-3 rounded-xl border border-white/5 flex items-center justify-between">
+          <div>
+            <span class="text-amber-400"># Soya Genshin Impact Archive (Port 3000)</span><br/>
+            <span class="text-slate-300">python -m http.server 3000 --directory E:\Soya\Github\bimbap-co.github.io</span>
+          </div>
+          <button onclick="copyToClipboard('cd E:\Hermes-Profiles\genshin\dashboard; npm run dev', this)" class="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white" title="Copy Command">
+            <svg class="w-3.5 h-3.5 fill-none stroke-current stroke-2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/></svg>
+          </button>
+        </div>
+
         <div class="bg-black/50 p-3 rounded-xl border border-white/5 flex items-center justify-between">
           <div>
             <span class="text-sky-400"># Soya Control Center (Port 8765)</span><br/>
@@ -631,6 +679,7 @@
       pingPort(11434, 'badge-11434');
       pingPort(8787, 'badge-8787');
       pingPort(61647, 'badge-61647');
+      pingPort(3000, 'badge-genshin');
     }
 
     // Initial ping on load
