@@ -16,7 +16,7 @@ Official root website for **bimbap.co** (`https://bimbap-co.github.io`), hosted 
 - **Edge Face Recognition Kiosk:** Biometric vision kiosk with YuNet/SFace ONNX inference (port 8080).
 - **Sayed Digital Portfolio:** High-performance static web showcase (port 4173).
 - **Soyarin Wedding 2027:** Milestone orchestrator & Telegram gateway daemon (port 61647).
-- **Soya Genshin Impact Showcase (`/genshin/`):** Swiss Editorial gallery monograph with explicit combat math engine, chronological combo action rails, and live Enka telemetry (UID 805652522).
+- **Soya Genshin Impact Showcase (`/genshin/`):** Swiss Editorial gallery monograph with vertical left-sidebar roster, elemental color bars, zero horizontal scroll, one-glance curatorial sheet, 4-drawer progressive disclosure, explicit combat math formulas, and live Enka telemetry (UID 805652522).
 - **Health Check Engineer (HCE):** Automated security and integrity audit framework.
 
 ---
