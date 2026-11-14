@@ -3614,65 +3614,74 @@ function tentativeView(parent) {
           </div>
         </div>
 
-        <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); margin-bottom: 8px;">Approved Working Programme (10:00 AM – 1:00 PM)</h4>
+        <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+          <h4 style="font-size: 12px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); margin: 0;">TENTATIF TUNANG · GASTROHUB EVENT HOUSE, NILAI</h4>
+          <span style="font-size: 11px; font-weight: 700; color: #15803D; background: #DCFCE7; padding: 2px 8px; border-radius: 4px;">✓ Verified Master Programme</span>
+        </div>
         <div class="table-wrap" style="overflow-x: auto; margin-bottom: 18px;">
           <table class="tentative-schedule-table">
             <thead>
               <tr>
                 <th style="width: 105px;">Time</th>
                 <th>Program &amp; Activity</th>
-                <th style="width: 150px;">Lead / PIC</th>
-                <th style="width: 220px;">Notes &amp; Location</th>
+                <th style="width: 170px;">Lead / PIC</th>
+                <th style="width: 220px;">Notes &amp; Operational Details</th>
               </tr>
             </thead>
             <tbody>
+              <tr style="background: rgba(100, 116, 139, 0.04);">
+                <td><span class="tentative-time-badge" style="background: #475569; color: #fff;">09:30 AM</span></td>
+                <td><strong>Arrival of the bride's family</strong></td>
+                <td>Bride's Family &amp; Host Team</td>
+                <td>Pre-programme arrival · Hall readiness &amp; welcome checks</td>
+              </tr>
               <tr>
                 <td><span class="tentative-time-badge">10:00 AM</span></td>
-                <td><strong>Families arrive, greet and take their seats</strong></td>
-                <td>Both Families</td>
-                <td>Gastrohub Event House · Welcoming &amp; Seating Area</td>
+                <td><strong>Arrival of the groom's family</strong></td>
+                <td>Groom's Family &amp; Entourage</td>
+                <td>Formal event window begins (10:00 AM–1:00 PM)</td>
               </tr>
               <tr>
                 <td><span class="tentative-time-badge">10:10 AM</span></td>
-                <td><strong>Programme begins</strong></td>
-                <td>Emcee / Family Lead</td>
-                <td>Main Hall · Opening remarks &amp; introduction</td>
-              </tr>
-              <tr>
-                <td><span class="tentative-time-badge">10:15 AM</span></td>
-                <td><strong>Family discussion begins</strong></td>
+                <td><strong>Family introductions and discussion</strong></td>
                 <td>Family Spokespersons</td>
-                <td>Discussion Pelamin Area · Pantun, hantaran review &amp; wedding date confirmation</td>
+                <td>Opening remarks, family introductions &amp; discussions</td>
               </tr>
               <tr>
-                <td><span class="tentative-time-badge">10:50 AM</span></td>
-                <td><strong>Discussion concludes and doa selamat</strong></td>
-                <td>Ustaz / Family Spokesperson</td>
-                <td>Recitation of doa selamat &amp; formal mutual agreement</td>
+                <td><span class="tentative-time-badge">10:35 AM</span></td>
+                <td><strong>Exchange of gifts (Buah Tangan)</strong></td>
+                <td>Both Families / Floor Manager</td>
+                <td>Exchange of 3 sets of buah tangan</td>
+              </tr>
+              <tr style="background: rgba(107, 29, 47, 0.04);">
+                <td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFFFFF;">10:45 AM</span></td>
+                <td><strong style="color: var(--burgundy);">Ring ceremony (Sesi Sarung Cincin)</strong></td>
+                <td>Mother of Groom &amp; Bride</td>
+                <td>Presentation and wearing of the engagement ring</td>
               </tr>
               <tr>
                 <td><span class="tentative-time-badge">10:55 AM</span></td>
-                <td><strong>Bride welcomed for upacara sarung cincin</strong></td>
-                <td>Mother of Groom &amp; Bride</td>
-                <td>Center Stage Mini Pelamin · Ring presentation by Groom's mother to Bride</td>
+                <td><strong>Couple and family photographs</strong></td>
+                <td>Farisya (Photographer) &amp; Kak Mija</td>
+                <td>Stage portraits with immediate family groupings</td>
               </tr>
-              <tr>
-                <td><span class="tentative-time-badge">11:10 AM</span></td>
-                <td><strong>Couple and family photos</strong></td>
-                <td>Official Photographer</td>
-                <td>Mini pelamin &amp; hall family portraits</td>
-              </tr>
-              <tr style="background: rgba(107, 29, 47, 0.03);">
-                <td><span class="tentative-time-badge" style="background: var(--burgundy); color: #FFFFFF;">11:30 AM</span></td>
-                <td><strong style="color: var(--burgundy);">Lunch</strong></td>
+              <tr style="background: rgba(21, 128, 61, 0.04);">
+                <td><span class="tentative-time-badge" style="background: #15803D; color: #FFFFFF;">11:00 AM</span></td>
+                <td><strong style="color: #15803D;">Meal service</strong></td>
                 <td>Gastrohub Catering</td>
                 <td>Curated 30-pax family lunch buffet</td>
               </tr>
               <tr>
+                <td><span class="tentative-time-badge">12:00 PM</span></td>
+                <td><strong>Group photographs and socialising</strong></td>
+                <td>All Guests, Families &amp; Crew</td>
+                <td>Extended family photo sessions &amp; social mingling</td>
+              </tr>
+              <tr>
                 <td><span class="tentative-time-badge">01:00 PM</span></td>
-                <td><strong>Event ends</strong></td>
+                <td><strong>Ceremony concludes</strong></td>
                 <td>Both Families</td>
-                <td>Gift exchange, final farewells and departure</td>
+                <td>Farewells and event wrap-up</td>
               </tr>
             </tbody>
           </table>
@@ -5160,17 +5169,27 @@ function sponsorsView(parent, records = []) {
         </div>
       </div>
 
-      <!-- Minimalist Summary Banner (Zero Clutter, Clean Negative Space) -->
-      <div style="display: flex; gap: 16px; margin: 18px 0; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 220px; background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 10px; padding: 14px 18px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">Total Cash &amp; Ring Pool</div>
-          <div style="font-size: 24px; font-weight: 800; color: #15803D; margin: 2px 0;">RM 7,500.00</div>
-          <div style="font-size: 11.5px; color: var(--charcoal-muted);">Mama RM5k + Achin RM1k + Ayah RM1k + Ring RM500</div>
+      <!-- Governance-Compliant Financial & Contribution Pool Banner -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 12px; margin: 16px 0;">
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #15803D; border-radius: 8px; padding: 12px 16px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">Received Cash Funding</div>
+          <div style="font-size: 22px; font-weight: 800; color: #15803D; margin: 2px 0;">RM 6,000.00</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Mama RM5,000 + Achin RM1,000 (Nikah · Verified in bank)</div>
         </div>
-        <div style="flex: 1; min-width: 220px; background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #2563EB; border-radius: 10px; padding: 14px 18px;">
-          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">Live Reception Kiosks</div>
-          <div style="font-size: 24px; font-weight: 800; color: #2563EB; margin: 2px 0;">8 In-Kind Stations</div>
-          <div style="font-size: 11.5px; color: var(--charcoal-muted);">Apam balik, ice cream, laksa, coffee, photobooth &amp; dessert</div>
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #D97706; border-radius: 8px; padding: 12px 16px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">Reported / Unconfirmed Cash</div>
+          <div style="font-size: 22px; font-weight: 800; color: #D97706; margin: 2px 0;">RM 1,000.00</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Ayah (Tunang · Receipt not yet explicitly confirmed)</div>
+        </div>
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #4F46E5; border-radius: 8px; padding: 12px 16px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">Total Reported Cash Pool</div>
+          <div style="font-size: 22px; font-weight: 800; color: #4F46E5; margin: 2px 0;">RM 7,000.00</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Strictly funding · Not subtracted from vendor rates</div>
+        </div>
+        <div style="background: var(--bg-soft); border: 1px solid var(--border); border-left: 3px solid #2563EB; border-radius: 8px; padding: 12px 16px;">
+          <div style="font-size: 10px; font-weight: 800; color: var(--charcoal-muted); letter-spacing: 0.5px; text-transform: uppercase;">In-Kind &amp; Live Kiosks</div>
+          <div style="font-size: 22px; font-weight: 800; color: #2563EB; margin: 2px 0;">8+ Stations / Services</div>
+          <div style="font-size: 11px; color: var(--charcoal-muted);">Coffee, dessert, laksa, photobooth, kacang &amp; crew</div>
         </div>
       </div>
 
@@ -5262,7 +5281,7 @@ function sponsorsView(parent, records = []) {
           <div>
             <div class="meta" style="margin-bottom: 8px;">
               <span class="eyebrow">${renderPhaseChip(s.event)}</span>
-              <span class="status-chip ${s.status === "Paid" ? "done" : "progress"}">${s.status || "In-Kind"}</span>
+              <span class="status-chip ${s.status === 'Received' || s.status === 'Paid' || s.status === 'In-Kind / Confirmed' ? 'done' : (s.status === 'Reported' ? 'progress' : (s.status === 'Tentative' ? 'warning' : 'outline'))}">${s.status || "In-Kind"}</span>
             </div>
             <div style="font-size: 12px; font-weight: 700; color: var(--burgundy); margin-bottom: 4px;">
               👤 ${s.owner || "Family Contribution"}
@@ -5474,6 +5493,82 @@ function auditView(parent, records = []) {
 /* ========================================================================= */
 /* 3I. CONSOLIDATED DIRECTORY HUB (GUESTS · VENDORS · SPONSORS)              */
 /* ========================================================================= */
+
+/* ========================================================================= */
+/* 3H-2. TUNANG CREW & INTERNAL OPERATIONS VIEW (ADMIN ONLY)                 */
+/* ========================================================================= */
+function tunangCrewView(parent, records = []) {
+  const crewRecords = records.length ? records : snapshot.records.filter(r => r.category === "Crew" || r.tab === "crew");
+  const container = make("div", "master-crew-container");
+
+  container.innerHTML = `
+    <div class="checklist-control-head" style="margin-top: 10px;">
+      <div class="checklist-headline-row">
+        <div>
+          <h2 class="section-title">Tunang Crew &amp; Internal Operations</h2>
+          <p class="section-caption">Assigned duty roles, operational responsibilities, and pending protocol decisions for Sunday, 27 Dec 2026 at Gastrohub Event House, Nilai (Internal / Admin-only).</p>
+        </div>
+        <div class="checklist-progress-bar-wrap">
+          <span class="pill-chip" style="background: #DCFCE7; color: #166534; font-weight: 700;">✓ 4 Core Roles Assigned</span>
+        </div>
+      </div>
+
+      <!-- Pending Decisions Strip (Rule 04 & Governance) -->
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px; margin: 16px 0;">
+        <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-left: 4px solid #D97706; border-radius: 8px; padding: 14px 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 10.5px; font-weight: 800; color: #B45309; letter-spacing: 0.5px; text-transform: uppercase;">Decision 01 · Emcee Format</span>
+            <span class="status-chip warning" style="font-size: 10px;">To Confirm</span>
+          </div>
+          <div style="font-size: 12.5px; font-weight: 700; color: #92400E; margin-bottom: 4px;">Microphone &amp; Formal Opening vs Informal Ceremony</div>
+          <p style="font-size: 11.5px; color: #78350F; margin: 0; line-height: 1.45;">Decide whether a microphone and formal opening are needed or whether an intimate informal family flow is sufficient.</p>
+        </div>
+        <div style="background: #FFFBEB; border: 1px solid #FDE68A; border-left: 4px solid #D97706; border-radius: 8px; padding: 14px 16px;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+            <span style="font-size: 10.5px; font-weight: 800; color: #B45309; letter-spacing: 0.5px; text-transform: uppercase;">Decision 02 · Backup Video Coverage</span>
+            <span class="status-chip warning" style="font-size: 10px;">To Confirm</span>
+          </div>
+          <div style="font-size: 12.5px; font-weight: 700; color: #92400E; margin-bottom: 4px;">Camera Operator During Emcee Speeches</div>
+          <p style="font-size: 11.5px; color: #78350F; margin: 0; line-height: 1.45;">Assign a family member or backup crew to record key moments while Marsya @ Wahida is occupied with emcee duties.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Crew Members Cards Grid -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 16px;">
+      ${crewRecords.map(c => {
+        const respList = (c.responsibilities || []).map(r => `<li style="margin-bottom: 4px;">${r}</li>`).join("");
+        return `
+          <article class="card" style="display: flex; flex-direction: column; justify-content: space-between; border-top: 3px solid var(--burgundy);">
+            <div>
+              <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 8px;">
+                <div>
+                  <span class="eyebrow" style="background: var(--burgundy-subtle); color: var(--burgundy); font-weight: 800;">${c.role}</span>
+                  <h3 style="margin: 6px 0 2px 0; font-family: var(--font-serif); font-size: 18px; color: var(--charcoal); font-weight: 700;">${c.name}</h3>
+                </div>
+                <span class="status-chip done" style="font-size: 10.5px;">${c.status}</span>
+              </div>
+              <div style="margin-top: 10px;">
+                <div style="font-size: 11px; font-weight: 800; text-transform: uppercase; color: var(--charcoal-muted); letter-spacing: 0.5px; margin-bottom: 6px;">Key Responsibilities:</div>
+                <ul style="margin: 0; padding-left: 16px; font-size: 12px; line-height: 1.5; color: var(--charcoal);">
+                  ${respList}
+                </ul>
+              </div>
+            </div>
+            <div style="margin-top: 14px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 11.5px;">
+              <div style="color: var(--burgundy); font-weight: 700; margin-bottom: 2px;">⚡ Operational Notes:</div>
+              <div style="color: var(--charcoal-muted);">${c.notes || ""}</div>
+              ${c.pending ? `<div style="margin-top: 6px; color: #B45309; font-weight: 600; background: #FFFBEB; padding: 4px 8px; border-radius: 4px;">⏳ ${c.pending}</div>` : ""}
+            </div>
+          </article>
+        `;
+      }).join("")}
+    </div>
+  `;
+
+  parent.append(container);
+}
+
 function directoryHubView(parent, activeSub = "guests") {
   const container = make("div", "directory-hub-wrap");
   
@@ -5487,6 +5582,9 @@ function directoryHubView(parent, activeSub = "guests") {
   navBar.innerHTML = `
     <button type="button" class="subnav-pill ${activeSub === 'guests' ? 'is-active' : ''}" data-sub="guests">
       👥 Guests &amp; RSVP <span class="tab-badge">30 Pax</span>
+    </button>
+    <button type="button" class="subnav-pill ${activeSub === 'crew' ? 'is-active' : ''}" data-sub="crew">
+      📋 Tunang Crew <span class="tab-badge">4 Assigned</span>
     </button>
     <button type="button" class="subnav-pill ${activeSub === 'vendors' ? 'is-active' : ''}" data-sub="vendors">
       🤝 Vendors &amp; Venues <span class="tab-badge">${vendorCount}</span>
@@ -5511,6 +5609,8 @@ function directoryHubView(parent, activeSub = "guests") {
 
     if (sub === "vendors") {
       vendorsView(contentMount, snapshot.records.filter(r => r.tab === "vendors"));
+    } else if (sub === "crew") {
+      tunangCrewView(contentMount, snapshot.records.filter(r => r.category === "Crew" || r.tab === "crew"));
     } else if (sub === "sponsors") {
       sponsorsView(contentMount, snapshot.records.filter(r => r.tab === "sponsors"));
     } else if (sub === "rsvps") {
@@ -5620,7 +5720,7 @@ function renderNav() {
   if (!requested || requested === "dashboard") requested = isAuthenticated ? "overview" : "guest";
   if (requested === "events") requested = "tentative";
   let activeTabId = requested;
-  if (["guests", "vendors", "sponsors"].includes(requested)) {
+  if (["guests", "vendors", "sponsors", "crew"].includes(requested)) {
     activeTabId = "directory";
   } else if (["files", "documents", "audit"].includes(requested)) {
     activeTabId = "records";
@@ -6698,7 +6798,7 @@ function adminGateView(parent) {
         <span style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-light); font-weight: 700;">Laman Tetamu &amp; RSVP Awam:</span>
         <div style="display: flex; gap: 10px; justify-content: center; margin-top: 10px; flex-wrap: wrap;">
           <a href="../sahdenganira/" class="subnav-pill" style="font-size: 12px; text-decoration: none;">🌸 Portal Keluarga (#SAHdenganIra)</a>
-          <a href="../sayedshamira.nikah/" class="subnav-pill" style="font-size: 12px; text-decoration: none;">💌 Laman RSVP Nikah</a>
+          <a href="../shamirasayed.nikah/" class="subnav-pill" style="font-size: 12px; text-decoration: none;">💌 Laman RSVP Nikah</a>
         </div>
       </div>
     </div>
@@ -6771,7 +6871,7 @@ function render() {
   }
 
   // If user requests a private admin tab while not authenticated, quietly fallback to guest view (do NOT auto-open modal)
-  const adminOnlyTabs = ["overview", "checklist", "expenses", "directory", "records", "guests", "vendors", "sponsors", "files", "documents", "audit"];
+  const adminOnlyTabs = ["overview", "checklist", "expenses", "directory", "records", "guests", "vendors", "sponsors", "crew", "files", "documents", "audit"];
   if (!isAuthenticated && adminOnlyTabs.includes(requested)) {
     requested = "guest";
     location.hash = "#guest";
@@ -6779,7 +6879,7 @@ function render() {
 
   const currentTabs = getActiveTabs();
   let active = requested;
-  if (["guests", "vendors", "sponsors"].includes(requested)) {
+  if (["guests", "vendors", "sponsors", "crew"].includes(requested)) {
     active = "directory";
   } else if (["files", "documents", "audit"].includes(requested)) {
     active = "records";
@@ -6815,7 +6915,7 @@ function render() {
   } else if (active === "tentative") {
     tentativeView(parent);
   } else if (active === "directory" && isAuthenticated) {
-    const sub = ["guests", "vendors", "sponsors"].includes(requested) ? requested : "guests";
+    const sub = ["guests", "vendors", "sponsors", "crew"].includes(requested) ? requested : "guests";
     directoryHubView(parent, sub);
   } else if (active === "records" && isAuthenticated) {
     const sub = requested === "audit" ? "audit" : "documents";
