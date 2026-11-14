@@ -120,12 +120,21 @@
             Incorrect passcode. Decryption failed.
           </div>
         </form>
-        <a href="https://bimbap-co.github.io/shamirasayed.tunang/" class="mt-4 inline-flex min-h-11 items-center text-sm text-indigo-300 underline hover:text-white">
-          Shamira &amp; Sayed · Tunang guest site
-        </a>
       </div>
     </div>
   </div>
+
+  <template id="tunang-tile">
+    <div class="project-card specular-glass rounded-2xl p-5 flex flex-col justify-between" data-category="cloud" data-search="tunang engagement wedding guest site shamira sayed soyarin">
+      <div>
+        <h2 class="text-xl font-bold text-white mb-1">Shamira &amp; Sayed · Tunang</h2>
+        <p class="text-slate-400 text-xs sm:text-sm mb-4 leading-relaxed">Public engagement guest site with the programme, poster, and venue directions.</p>
+      </div>
+      <a href="https://bimbap-co.github.io/shamirasayed.tunang/" class="py-2 px-3 rounded-xl bg-rose-800 hover:bg-rose-700 text-white font-semibold text-xs text-center">
+        Open Tunang guest site
+      </a>
+    </div>
+  </template>
 
   <!-- Footer -->
   <footer class="relative z-10 border-t border-white/10 py-6 text-center text-xs text-slate-500 font-mono">
@@ -220,6 +229,17 @@
     function mountDecryptedPortal(data) {
       const root = document.getElementById("portal-root");
       root.innerHTML = data.html;
+      const grid = root.querySelector("#projectGrid") ?? root.querySelector(".project-card")?.parentElement;
+      if (grid) {
+        const tile = document.getElementById("tunang-tile").content.cloneNode(true);
+        const wedding = grid.querySelector('[data-search^="wedding 2027 control center"]');
+        if (wedding) wedding.after(tile);
+        else grid.append(tile);
+        const all = root.querySelector("#btn-all");
+        const cloud = root.querySelector("#btn-cloud");
+        if (all) all.textContent = `All Services (${grid.querySelectorAll(".project-card").length})`;
+        if (cloud) cloud.textContent = `Cloud & Milestones (${grid.querySelectorAll('[data-category="cloud"]').length})`;
+      }
 
       // Update header indicators
       const badge = document.getElementById("headerPulseBadge");
