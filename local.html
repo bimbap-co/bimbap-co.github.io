@@ -223,6 +223,26 @@
     function mountDecryptedPortal(data) {
       const root = document.getElementById("portal-root");
       root.innerHTML = data.html;
+      for (const [port, path, label] of [
+        [4173, "sayed.portfolio", "Open Portfolio"],
+        [8080, "face.recognition", "Open Case Study"],
+      ]) {
+        const local = `http://localhost:${port}`;
+        const publicUrl = `https://bimbap-co.github.io/${path}/`;
+        const launch = root.querySelector(`a[href="${local}"], a[href="${local}/"]`);
+        const card = launch?.closest(".project-card");
+        if (!card) continue;
+        launch.href = publicUrl;
+        const labelElement = launch.querySelector("span") ?? launch;
+        labelElement.textContent = label;
+        const urlText = Array.from(card.querySelectorAll("span")).find((span) => span.textContent.trim() === local);
+        if (urlText) {
+          urlText.textContent = `${path}/`;
+          urlText.title = publicUrl;
+        }
+        const copy = card.querySelector(`button[onclick*="${local}"]`);
+        if (copy) copy.setAttribute("onclick", `copyToClipboard('${publicUrl}', this)`);
+      }
       const wedding = root.querySelector('[data-search^="wedding 2027 control center"]');
       if (wedding) {
         wedding.append(document.getElementById("tunang-link").content.cloneNode(true));
